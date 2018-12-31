@@ -24,36 +24,7 @@ namespace MaiinTimer.Controls
         DuiBaseControl typeControl = new DuiBaseControl();
 
 
-        public bool addImgType(BridImg.ImgJson imgJsons)
-        {
-            
-            typeControl.Size = new Size(this.Width, 50);
-            for (int i = 0; i < imgJsons.data.Count; i++)
-            {
-                DuiLabel dlbe = new DuiLabel();
-                dlbe.Size = new Size(40, 20);
-                dlbe.Text = imgJsons.data[i].name;
-                dlbe.Name = "ImageTypeName_" + imgJsons.data[i].id.ToString();
-                dlbe.Location = new Point(40 * i, 0);
-                dlbe.Cursor = System.Windows.Forms.Cursors.Hand;
-
-                DuiLabel dLabel1 = new DuiLabel();
-                dLabel1.Name = "ImageTypeLine_"+ imgJsons.data[i].id.ToString();
-                dLabel1.Cursor = dlbe.Cursor;
-                dLabel1.Size = new Size(40, 2);
-                dLabel1.BackColor = System.Drawing.Color.Silver;
-                dLabel1.Height = 2;
-                dLabel1.MouseEnter += new System.EventHandler(this.skinLine_MouseEnter);
-                dLabel1.Tag = imgJsons.data[i].id;
-                dLabel1.Location = new Point(40*i,25);
-
-                typeControl.Controls.Add(dlbe);
-                typeControl.Controls.Add(dLabel1);
-            }
-            Items.Add(typeControl);
-            return true;
-        }
-        #region 控件事件
+       #region 控件事件
 
         private void skinLine_MouseEnter(object sender, EventArgs e)
         {
@@ -79,7 +50,41 @@ namespace MaiinTimer.Controls
                 }
             }
         }
-        #endregion
+        /// <summary>
+        /// 添加图片分类
+        /// </summary>
+        /// <param name="imgJsons"></param>
+        /// <returns></returns>
+        public bool addImgType(BridImg.ImgJson imgJsons)
+        {
+
+            typeControl.Size = new Size(this.Width, 50);
+            for (int i = 0; i < imgJsons.data.Count; i++)
+            {
+                DuiLabel dlbe = new DuiLabel();
+                dlbe.Size = new Size(60, 20);
+                dlbe.Text = imgJsons.data[i].name;
+                dlbe.Name = "ImageTypeName_" + imgJsons.data[i].id.ToString();
+                dlbe.Location = new Point(60 * i, 0);
+                dlbe.Cursor = System.Windows.Forms.Cursors.Hand;
+
+                DuiLabel dLabel1 = new DuiLabel();
+                dLabel1.Name = "ImageTypeLine_" + imgJsons.data[i].id.ToString();
+                dLabel1.Cursor = dlbe.Cursor;
+                dLabel1.Size = new Size(60, 2);
+                dLabel1.BackColor = System.Drawing.Color.Silver;
+                dLabel1.Height = 2;
+                dLabel1.MouseEnter += new System.EventHandler(this.skinLine_MouseEnter);
+                dLabel1.Tag = imgJsons.data[i].id;
+                dLabel1.Location = new Point(60 * i, 25);
+
+                typeControl.Controls.Add(dlbe);
+                typeControl.Controls.Add(dLabel1);
+            }
+            Items.Add(typeControl);
+            return true;
+        }
+
         /// <summary>
         /// 添加图片列表
         /// </summary>
@@ -87,35 +92,47 @@ namespace MaiinTimer.Controls
         /// <returns></returns>
         public bool addImgList(List<BridImg.ImageInfo> imgInfos)
         {
+            int thisWidth = this.Width - 5;//减去滚动条宽度
             DuiBaseControl baseControl = new DuiBaseControl();
-            int zWidth = (int)(this.Width / 3);
-            int zHeight = (int)(this.Width / 3 * 0.65);
-            baseControl.Size = new Size(this.Width, zHeight);
+            int zWidth = (int)(thisWidth / 3);
+            int zHeight = (int)(thisWidth / 3 * 0.65);
+            baseControl.Size = new Size(thisWidth, zHeight);
             baseControl.BackColor = Color.FromArgb(245, 245, 247);
             int i = 0;
             foreach (var imgInfo in imgInfos)
             {
+                DuiBaseControl abaseControl = new DuiBaseControl();
+                abaseControl.Size = new Size(zWidth, zHeight);
+                abaseControl.Location = new Point(i * zWidth, 0);
                 //背景图
                 DuiPictureBox dp = new DuiPictureBox();
-                dp.Size = new Size(zWidth, zHeight);
+                dp.Size = new Size(zWidth - 4, zHeight - 4);
                 dp.BackgroundImage = GetImageByUrl(imgInfo.img_1024_768);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
-                dp.Location = new Point(i * zWidth, 0);
-
+                dp.Location = new Point(2, 2);
+                //图片说明
                 DuiLabel imgTag = new DuiLabel();
                 imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-                imgTag.Size = new Size(zWidth, 20);
+                imgTag.Size = new Size(zWidth - 4, 20);
                 imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
                 imgTag.ForeColor = Color.White;
-                imgTag.TextAlign = ContentAlignment.TopRight;
+                imgTag.TextAlign = ContentAlignment.MiddleCenter;
                 imgTag.BackColor = Color.FromArgb(100, 0, 0, 0);
                 imgTag.Text = imgInfo.utag;
                 imgTag.Name = "tag" + imgInfo.id.ToString();
-                imgTag.Location = new Point(i * zWidth, 0);
+                imgTag.Location = new Point(2, zHeight - 22);
 
-                baseControl.Controls.Add(dp);
-                baseControl.Controls.Add(imgTag);
+                Borders baseBorder = new Borders(baseControl);
+                baseBorder.BottomWidth = 2;
+                baseBorder.TopWidth = 2;
+                baseBorder.LeftWidth = 2;
+                baseBorder.RightWidth = 2;
+
+                abaseControl.Borders = baseBorder;
+                abaseControl.Controls.Add(dp);
+                abaseControl.Controls.Add(imgTag);
+                baseControl.Controls.Add(abaseControl);
                 i++;
             }
             Items.Add(baseControl);
@@ -124,6 +141,8 @@ namespace MaiinTimer.Controls
             GC.Collect();
             return true;
         }
+
+        #endregion
 
 
 

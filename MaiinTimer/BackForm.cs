@@ -9,6 +9,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
 using LayeredSkin.Forms;
 using MaiinTimer.Controls;
@@ -39,11 +40,13 @@ namespace MaiinTimer
         public BackForm()
         {
             InitializeComponent();
+            layeredPanel_top.BackColor = Color.FromArgb(255, 92, 138);
+            scorllbar.BackColor = Color.FromArgb(100, 205, 205, 205);
+            Panel_Bottom.BackColor = Color.FromArgb(255, 92, 138);
         }
 
         private void BackForm_Load(object sender, EventArgs e)
         {
-            layeredPanel_top.BackColor = Color.FromArgb(255, 92, 138);
             addBackImg();
         }
 
@@ -70,7 +73,7 @@ namespace MaiinTimer
                 List_Main.addImgType(rType.Result);
                 //添加详细信息
                 List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
-                result.Result = bimg.getNewImageInfos("0", "50");
+                result.Result = bimg.getNewImageInfos("0", "30");
                 for (int i = 0; i < result.Result.data.Count; i++)
                 {
                     int zi = i + 1;
@@ -170,5 +173,22 @@ namespace MaiinTimer
         }
         #endregion
 
+        private void btn_min_MouseDown(object sender, MouseEventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+        }
+
+        private void btn_min_MouseHover(object sender, EventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+        }
+
+        private void btn_min_MouseLeave(object sender, EventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.Transparent;
+        }
     }
 }

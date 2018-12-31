@@ -33,6 +33,9 @@
             this.btn_close = new LayeredSkin.Controls.LayeredButton();
             this.btn_min = new LayeredSkin.Controls.LayeredButton();
             this.scorllbar = new LayeredSkin.Controls.LayeredBaseControl();
+            this.Panel_Bottom = new LayeredSkin.Controls.LayeredPanel();
+            this.layeredPictureBox1 = new LayeredSkin.Controls.LayeredPictureBox();
+            this.layeredPictureBox2 = new LayeredSkin.Controls.LayeredPictureBox();
             this.List_Main = new MaiinTimer.Controls.ImageListControl();
             this.layeredPanel_top.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +52,8 @@
             this.layeredPanel_top.Borders.TopColor = System.Drawing.Color.Empty;
             this.layeredPanel_top.Borders.TopWidth = 1;
             this.layeredPanel_top.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_top.Canvas")));
+            this.layeredPanel_top.Controls.Add(this.layeredPictureBox2);
+            this.layeredPanel_top.Controls.Add(this.layeredPictureBox1);
             this.layeredPanel_top.Controls.Add(this.btn_close);
             this.layeredPanel_top.Controls.Add(this.btn_min);
             this.layeredPanel_top.Dock = System.Windows.Forms.DockStyle.Top;
@@ -89,6 +94,9 @@
             this.btn_close.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_close.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            this.btn_close.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_min_MouseDown);
+            this.btn_close.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
+            this.btn_close.MouseHover += new System.EventHandler(this.btn_min_MouseHover);
             // 
             // btn_min
             // 
@@ -121,6 +129,9 @@
             this.btn_min.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_min.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
+            this.btn_min.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_min_MouseDown);
+            this.btn_min.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
+            this.btn_min.MouseHover += new System.EventHandler(this.btn_min_MouseHover);
             // 
             // scorllbar
             // 
@@ -147,6 +158,70 @@
             this.scorllbar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.scorllbar_MouseMove);
             this.scorllbar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.scorllbar_MouseUp);
             this.scorllbar.Move += new System.EventHandler(this.scorllbar_Move);
+            // 
+            // Panel_Bottom
+            // 
+            this.Panel_Bottom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Panel_Bottom.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.Panel_Bottom.Borders.BottomWidth = 1;
+            this.Panel_Bottom.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.Panel_Bottom.Borders.LeftWidth = 1;
+            this.Panel_Bottom.Borders.RightColor = System.Drawing.Color.Empty;
+            this.Panel_Bottom.Borders.RightWidth = 1;
+            this.Panel_Bottom.Borders.TopColor = System.Drawing.Color.Empty;
+            this.Panel_Bottom.Borders.TopWidth = 1;
+            this.Panel_Bottom.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("Panel_Bottom.Canvas")));
+            this.Panel_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Panel_Bottom.Location = new System.Drawing.Point(0, 616);
+            this.Panel_Bottom.Name = "Panel_Bottom";
+            this.Panel_Bottom.Size = new System.Drawing.Size(914, 30);
+            this.Panel_Bottom.TabIndex = 5;
+            // 
+            // layeredPictureBox1
+            // 
+            this.layeredPictureBox1.BackgroundImage = global::MaiinTimer.Properties.Resources.logo;
+            this.layeredPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.layeredPictureBox1.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox1.Borders.BottomWidth = 1;
+            this.layeredPictureBox1.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox1.Borders.LeftWidth = 1;
+            this.layeredPictureBox1.Borders.RightColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox1.Borders.RightWidth = 1;
+            this.layeredPictureBox1.Borders.TopColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox1.Borders.TopWidth = 1;
+            this.layeredPictureBox1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPictureBox1.Canvas")));
+            this.layeredPictureBox1.Image = null;
+            this.layeredPictureBox1.Images = null;
+            this.layeredPictureBox1.Interval = 100;
+            this.layeredPictureBox1.Location = new System.Drawing.Point(15, 3);
+            this.layeredPictureBox1.MultiImageAnimation = false;
+            this.layeredPictureBox1.Name = "layeredPictureBox1";
+            this.layeredPictureBox1.Size = new System.Drawing.Size(41, 32);
+            this.layeredPictureBox1.TabIndex = 2;
+            this.layeredPictureBox1.Text = "layeredPictureBox1";
+            // 
+            // layeredPictureBox2
+            // 
+            this.layeredPictureBox2.BackgroundImage = global::MaiinTimer.Properties.Resources.xlbz_w;
+            this.layeredPictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.layeredPictureBox2.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox2.Borders.BottomWidth = 1;
+            this.layeredPictureBox2.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox2.Borders.LeftWidth = 1;
+            this.layeredPictureBox2.Borders.RightColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox2.Borders.RightWidth = 1;
+            this.layeredPictureBox2.Borders.TopColor = System.Drawing.Color.Empty;
+            this.layeredPictureBox2.Borders.TopWidth = 1;
+            this.layeredPictureBox2.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPictureBox2.Canvas")));
+            this.layeredPictureBox2.Image = null;
+            this.layeredPictureBox2.Images = null;
+            this.layeredPictureBox2.Interval = 100;
+            this.layeredPictureBox2.Location = new System.Drawing.Point(60, 9);
+            this.layeredPictureBox2.MultiImageAnimation = false;
+            this.layeredPictureBox2.Name = "layeredPictureBox2";
+            this.layeredPictureBox2.Size = new System.Drawing.Size(90, 19);
+            this.layeredPictureBox2.TabIndex = 3;
+            this.layeredPictureBox2.Text = "layeredPictureBox2";
             // 
             // List_Main
             // 
@@ -176,7 +251,7 @@
             this.List_Main.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.List_Main.ScrollBarWidth = 10;
             this.List_Main.ShowScrollBar = true;
-            this.List_Main.Size = new System.Drawing.Size(914, 569);
+            this.List_Main.Size = new System.Drawing.Size(914, 575);
             this.List_Main.SmoothScroll = false;
             this.List_Main.TabIndex = 4;
             this.List_Main.Text = "imageListControl1";
@@ -188,14 +263,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 608);
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.ClientSize = new System.Drawing.Size(914, 646);
+            this.Controls.Add(this.Panel_Bottom);
             this.Controls.Add(this.scorllbar);
             this.Controls.Add(this.layeredPanel_top);
             this.Controls.Add(this.List_Main);
             this.Name = "BackForm";
             this.Radius = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "图片选择";
+            this.Text = "";
             this.Load += new System.EventHandler(this.BackForm_Load);
             this.layeredPanel_top.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -209,5 +286,8 @@
         private LayeredSkin.Controls.LayeredButton btn_close;
         private LayeredSkin.Controls.LayeredBaseControl scorllbar;
         private Controls.ImageListControl List_Main;
+        private LayeredSkin.Controls.LayeredPanel Panel_Bottom;
+        private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox1;
+        private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox2;
     }
 }

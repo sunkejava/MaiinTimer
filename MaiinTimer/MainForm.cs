@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using LayeredSkin.Forms;
+using LayeredSkin.Controls;
 
 namespace MaiinTimer
 {
@@ -54,6 +55,24 @@ namespace MaiinTimer
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_skin_MouseHover(object sender, EventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+        }
+
+        private void btn_skin_MouseLeave(object sender, EventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.Transparent;
+        }
+
+        private void btn_skin_MouseDown(object sender, MouseEventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.FromArgb(255, 92, 125);
         }
     }
 }

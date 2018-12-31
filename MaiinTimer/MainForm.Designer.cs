@@ -29,45 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.layeredButton1 = new LayeredSkin.Controls.LayeredButton();
             this.layeredPanel_top = new LayeredSkin.Controls.LayeredPanel();
+            this.btn_skin = new LayeredSkin.Controls.LayeredButton();
             this.btn_close = new LayeredSkin.Controls.LayeredButton();
             this.btn_min = new LayeredSkin.Controls.LayeredButton();
             this.layeredPanel_top.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // layeredButton1
-            // 
-            this.layeredButton1.AdaptImage = true;
-            this.layeredButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.layeredButton1.BaseColor = System.Drawing.Color.Wheat;
-            this.layeredButton1.Borders.BottomColor = System.Drawing.Color.Empty;
-            this.layeredButton1.Borders.BottomWidth = 1;
-            this.layeredButton1.Borders.LeftColor = System.Drawing.Color.Empty;
-            this.layeredButton1.Borders.LeftWidth = 1;
-            this.layeredButton1.Borders.RightColor = System.Drawing.Color.Empty;
-            this.layeredButton1.Borders.RightWidth = 1;
-            this.layeredButton1.Borders.TopColor = System.Drawing.Color.Empty;
-            this.layeredButton1.Borders.TopWidth = 1;
-            this.layeredButton1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredButton1.Canvas")));
-            this.layeredButton1.ControlState = LayeredSkin.Controls.ControlStates.Normal;
-            this.layeredButton1.HaloColor = System.Drawing.Color.White;
-            this.layeredButton1.HaloSize = 5;
-            this.layeredButton1.HoverImage = null;
-            this.layeredButton1.IsPureColor = false;
-            this.layeredButton1.Location = new System.Drawing.Point(145, 93);
-            this.layeredButton1.Name = "layeredButton1";
-            this.layeredButton1.NormalImage = null;
-            this.layeredButton1.PressedImage = null;
-            this.layeredButton1.Radius = 10;
-            this.layeredButton1.ShowBorder = true;
-            this.layeredButton1.Size = new System.Drawing.Size(163, 100);
-            this.layeredButton1.TabIndex = 0;
-            this.layeredButton1.Text = "layeredButton1";
-            this.layeredButton1.TextLocationOffset = new System.Drawing.Point(0, 0);
-            this.layeredButton1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            this.layeredButton1.TextShowMode = LayeredSkin.TextShowModes.Halo;
-            this.layeredButton1.Click += new System.EventHandler(this.layeredButton1_Click);
             // 
             // layeredPanel_top
             // 
@@ -81,6 +48,7 @@
             this.layeredPanel_top.Borders.TopColor = System.Drawing.Color.Empty;
             this.layeredPanel_top.Borders.TopWidth = 1;
             this.layeredPanel_top.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_top.Canvas")));
+            this.layeredPanel_top.Controls.Add(this.btn_skin);
             this.layeredPanel_top.Controls.Add(this.btn_close);
             this.layeredPanel_top.Controls.Add(this.btn_min);
             this.layeredPanel_top.Dock = System.Windows.Forms.DockStyle.Top;
@@ -89,6 +57,41 @@
             this.layeredPanel_top.Size = new System.Drawing.Size(439, 41);
             this.layeredPanel_top.TabIndex = 1;
             this.layeredPanel_top.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layeredPanel_top_MouseDown);
+            // 
+            // btn_skin
+            // 
+            this.btn_skin.AdaptImage = true;
+            this.btn_skin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_skin.BaseColor = System.Drawing.Color.Transparent;
+            this.btn_skin.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.btn_skin.Borders.BottomWidth = 1;
+            this.btn_skin.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.btn_skin.Borders.LeftWidth = 1;
+            this.btn_skin.Borders.RightColor = System.Drawing.Color.Empty;
+            this.btn_skin.Borders.RightWidth = 1;
+            this.btn_skin.Borders.TopColor = System.Drawing.Color.Empty;
+            this.btn_skin.Borders.TopWidth = 1;
+            this.btn_skin.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("btn_skin.Canvas")));
+            this.btn_skin.ControlState = LayeredSkin.Controls.ControlStates.Normal;
+            this.btn_skin.HaloColor = System.Drawing.Color.Transparent;
+            this.btn_skin.HaloSize = 5;
+            this.btn_skin.HoverImage = global::MaiinTimer.Properties.Resources.skin1;
+            this.btn_skin.IsPureColor = true;
+            this.btn_skin.Location = new System.Drawing.Point(366, 12);
+            this.btn_skin.Name = "btn_skin";
+            this.btn_skin.NormalImage = global::MaiinTimer.Properties.Resources.skin0;
+            this.btn_skin.PressedImage = global::MaiinTimer.Properties.Resources.skin1;
+            this.btn_skin.Radius = 10;
+            this.btn_skin.ShowBorder = false;
+            this.btn_skin.Size = new System.Drawing.Size(16, 16);
+            this.btn_skin.TabIndex = 3;
+            this.btn_skin.TextLocationOffset = new System.Drawing.Point(0, 0);
+            this.btn_skin.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.btn_skin.TextShowMode = LayeredSkin.TextShowModes.Halo;
+            this.btn_skin.Click += new System.EventHandler(this.layeredButton1_Click);
+            this.btn_skin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_skin_MouseDown);
+            this.btn_skin.MouseLeave += new System.EventHandler(this.btn_skin_MouseLeave);
+            this.btn_skin.MouseHover += new System.EventHandler(this.btn_skin_MouseHover);
             // 
             // btn_close
             // 
@@ -121,6 +124,9 @@
             this.btn_close.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_close.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            this.btn_close.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_skin_MouseDown);
+            this.btn_close.MouseLeave += new System.EventHandler(this.btn_skin_MouseLeave);
+            this.btn_close.MouseHover += new System.EventHandler(this.btn_skin_MouseHover);
             // 
             // btn_min
             // 
@@ -153,15 +159,17 @@
             this.btn_min.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_min.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
+            this.btn_min.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_skin_MouseDown);
+            this.btn_min.MouseLeave += new System.EventHandler(this.btn_skin_MouseLeave);
+            this.btn_min.MouseHover += new System.EventHandler(this.btn_skin_MouseHover);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(439, 281);
             this.Controls.Add(this.layeredPanel_top);
-            this.Controls.Add(this.layeredButton1);
             this.Name = "MainForm";
             this.Radius = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -173,11 +181,10 @@
         }
 
         #endregion
-
-        private LayeredSkin.Controls.LayeredButton layeredButton1;
         private LayeredSkin.Controls.LayeredPanel layeredPanel_top;
         private LayeredSkin.Controls.LayeredButton btn_close;
         private LayeredSkin.Controls.LayeredButton btn_min;
+        private LayeredSkin.Controls.LayeredButton btn_skin;
     }
 }
 
