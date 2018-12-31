@@ -59,6 +59,24 @@ namespace MaiinTimer
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void btn_min_MouseDown(object sender, MouseEventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+        }
+
+        private void btn_min_MouseHover(object sender, EventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+        }
+
+        private void btn_min_MouseLeave(object sender, EventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.Transparent;
+        }
         #endregion
 
         #region 自定义事件
@@ -173,22 +191,5 @@ namespace MaiinTimer
         }
         #endregion
 
-        private void btn_min_MouseDown(object sender, MouseEventArgs e)
-        {
-            LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.FromArgb(255, 92, 125);
-        }
-
-        private void btn_min_MouseHover(object sender, EventArgs e)
-        {
-            LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.FromArgb(255, 92, 125);
-        }
-
-        private void btn_min_MouseLeave(object sender, EventArgs e)
-        {
-            LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.Transparent;
-        }
     }
 }
