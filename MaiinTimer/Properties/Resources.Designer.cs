@@ -173,6 +173,16 @@ namespace MaiinTimer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap skinPanel1_NormlBack {
+            get {
+                object obj = ResourceManager.GetObject("skinPanel1_NormlBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap xlbz_w {
             get {
                 object obj = ResourceManager.GetObject("xlbz_w", resourceCulture);

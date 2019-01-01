@@ -41,7 +41,7 @@ namespace MaiinTimer
         {
             InitializeComponent();
             layeredPanel_top.BackColor = Color.FromArgb(255, 92, 138);
-            scorllbar.BackColor = Color.FromArgb(100, 205, 205, 205);
+            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 138);
             Panel_Bottom.BackColor = Color.FromArgb(255, 92, 138);
         }
 
@@ -135,7 +135,7 @@ namespace MaiinTimer
         {
             mousetop = scorllbar.PointToClient(MousePosition).Y;
             scorlling = true;
-            scorllbar.BackColor = Color.FromArgb(80, 55, 55, 55);
+            scorllbar.BackColor = Color.FromArgb(80, 215, 92, 95);
         }
 
         private void scorllbar_MouseEnter(object sender, EventArgs e)
@@ -144,12 +144,12 @@ namespace MaiinTimer
                 scorllbar.Top = List_Main.Top + 2;
             if (scorllbar.Top > (List_Main.Top + List_Main.Height - scorllbar.Height))
                 scorllbar.Top = (List_Main.Top + List_Main.Height - scorllbar.Height);
-            scorllbar.BackColor = Color.FromArgb(100, 55, 55, 55);
+            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 58);
         }
 
         private void scorllbar_MouseLeave(object sender, EventArgs e)
         {
-            scorllbar.BackColor = Color.FromArgb(100, 205, 205, 205);
+            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 138);
         }
 
         private void scorllbar_MouseMove(object sender, MouseEventArgs e)
@@ -164,7 +164,7 @@ namespace MaiinTimer
         private void scorllbar_MouseUp(object sender, MouseEventArgs e)
         {
             mousetop = e.Y; scorlling = false;
-            scorllbar.BackColor = Color.FromArgb(100, 205, 205, 205);
+            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 138);
         }
 
         private void List_Main_RefreshListed(object sender, EventArgs e)
