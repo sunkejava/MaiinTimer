@@ -35,7 +35,7 @@
             LayeredSkin.DirectUI.DuiButton duiButton2 = new LayeredSkin.DirectUI.DuiButton();
             System.Drawing.StringFormat stringFormat2 = new System.Drawing.StringFormat();
             this.layeredPanel_top = new LayeredSkin.Controls.LayeredPanel();
-            this.layeredBaseControl1 = new LayeredSkin.Controls.LayeredBaseControl();
+            this.BaseControl_Search = new LayeredSkin.Controls.LayeredBaseControl();
             this.layeredPictureBox2 = new LayeredSkin.Controls.LayeredPictureBox();
             this.layeredPictureBox1 = new LayeredSkin.Controls.LayeredPictureBox();
             this.btn_close = new LayeredSkin.Controls.LayeredButton();
@@ -58,7 +58,7 @@
             this.layeredPanel_top.Borders.TopColor = System.Drawing.Color.Empty;
             this.layeredPanel_top.Borders.TopWidth = 1;
             this.layeredPanel_top.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_top.Canvas")));
-            this.layeredPanel_top.Controls.Add(this.layeredBaseControl1);
+            this.layeredPanel_top.Controls.Add(this.BaseControl_Search);
             this.layeredPanel_top.Controls.Add(this.layeredPictureBox2);
             this.layeredPanel_top.Controls.Add(this.layeredPictureBox1);
             this.layeredPanel_top.Controls.Add(this.btn_close);
@@ -70,18 +70,18 @@
             this.layeredPanel_top.TabIndex = 0;
             this.layeredPanel_top.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layeredPanel_top_MouseDown);
             // 
-            // layeredBaseControl1
+            // BaseControl_Search
             // 
-            this.layeredBaseControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.layeredBaseControl1.Borders.BottomColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.BottomWidth = 1;
-            this.layeredBaseControl1.Borders.LeftColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.LeftWidth = 1;
-            this.layeredBaseControl1.Borders.RightColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.RightWidth = 1;
-            this.layeredBaseControl1.Borders.TopColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.TopWidth = 1;
-            this.layeredBaseControl1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredBaseControl1.Canvas")));
+            this.BaseControl_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BaseControl_Search.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.BaseControl_Search.Borders.BottomWidth = 1;
+            this.BaseControl_Search.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.BaseControl_Search.Borders.LeftWidth = 1;
+            this.BaseControl_Search.Borders.RightColor = System.Drawing.Color.Empty;
+            this.BaseControl_Search.Borders.RightWidth = 1;
+            this.BaseControl_Search.Borders.TopColor = System.Drawing.Color.Empty;
+            this.BaseControl_Search.Borders.TopWidth = 1;
+            this.BaseControl_Search.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("BaseControl_Search.Canvas")));
             duiButton1.AdaptImage = true;
             duiButton1.AutoSize = false;
             duiButton1.BackColor = System.Drawing.Color.Transparent;
@@ -128,7 +128,7 @@
             duiTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             duiTextBox1.Enabled = true;
             duiTextBox1.Font = new System.Drawing.Font("宋体", 11F);
-            duiTextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            duiTextBox1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             duiTextBox1.Height = 16;
             duiTextBox1.IsInsert = true;
             duiTextBox1.IsMoveParentPaint = true;
@@ -248,13 +248,13 @@
             duiButton2.Top = 3;
             duiButton2.Visible = true;
             duiButton2.Width = 20;
-            this.layeredBaseControl1.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
+            this.BaseControl_Search.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
             duiButton1,
             duiButton2});
-            this.layeredBaseControl1.Location = new System.Drawing.Point(294, 9);
-            this.layeredBaseControl1.Name = "layeredBaseControl1";
-            this.layeredBaseControl1.Size = new System.Drawing.Size(179, 26);
-            this.layeredBaseControl1.TabIndex = 4;
+            this.BaseControl_Search.Location = new System.Drawing.Point(294, 9);
+            this.BaseControl_Search.Name = "BaseControl_Search";
+            this.BaseControl_Search.Size = new System.Drawing.Size(179, 26);
+            this.BaseControl_Search.TabIndex = 4;
             // 
             // layeredPictureBox2
             // 
@@ -482,6 +482,6 @@
         private LayeredSkin.Controls.LayeredPanel Panel_Bottom;
         private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox1;
         private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox2;
-        private LayeredSkin.Controls.LayeredBaseControl layeredBaseControl1;
+        private LayeredSkin.Controls.LayeredBaseControl BaseControl_Search;
     }
 }

@@ -47,7 +47,86 @@ namespace MaiinTimer
 
         private void BackForm_Load(object sender, EventArgs e)
         {
+            foreach (var item in BaseControl_Search.DUIControls)
+            {
+                if (item is DuiButton)
+                {
+                    DuiButton btn_search = item as DuiButton;
+                    if (btn_search.Name == "btn_search")
+                    {
+                        btn_search.MouseClick += Btn_search_MouseClick;
+                    }
+                    if (btn_search.Name == "btn_searchtext")
+                    {
+                        foreach (var citem in btn_search.Controls)
+                        {
+                            if (citem is DuiTextBox)
+                            {
+                                DuiTextBox searchText = citem as DuiTextBox;
+                                searchText.FocusedChanged += SearchText_FocusedChanged;
+                            }
+                        }
+                    }
+                }
+            }
             addBackImg();
+        }
+        /// <summary>
+        /// 搜索框获取焦点后事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchText_FocusedChanged(object sender, EventArgs e)
+        {
+            DuiTextBox searchText = sender as DuiTextBox;
+            if (searchText != null)
+            {
+                if (searchText.Text == "输入关键字进行搜索")
+                {
+                    searchText.Text = "";
+                    searchText.ForeColor = Color.White;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(searchText.Text))
+                    {
+                        searchText.Text = "输入关键字进行搜索";
+                        searchText.ForeColor = Color.FromArgb(255, 171, 171, 171);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 搜索按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_search_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            foreach (var item in BaseControl_Search.DUIControls)
+            {
+                if (item is DuiButton)
+                {
+                    DuiButton btn_search = item as DuiButton;
+                    foreach (var citem in btn_search.Controls)
+                    {
+                        if (citem is DuiTextBox)
+                        {
+                            DuiTextBox searchText = citem as DuiTextBox;
+                            if (!string.IsNullOrEmpty(searchText.Text) && searchText.Text != "输入关键字进行搜索")
+                            {
+                                MessageBox.Show("搜索" + searchText.Text);
+                            }
+                            else
+                            {
+                                MessageBox.Show("请输入关键字进行搜索");
+                            }
+                        }
+                    }
+
+                }
+            }
         }
 
         private void btn_close_Click(object sender, EventArgs e)

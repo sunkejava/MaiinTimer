@@ -23,21 +23,38 @@ namespace MaiinTimer.Controls
     {
         DuiBaseControl typeControl = new DuiBaseControl();
         BridImg bimg = new BridImg();
-        
+        string labelId = "";//选择的标签与类型ID
+        string startNo = "0";//开始序号
         #region 控件事件
 
         private void skinLine_MouseEnter(object sender, EventArgs e)
         {
             skinLine_Update();
             DuiLabel btn = sender as DuiLabel;
+            DuiBaseControl bControl = btn.Parent as DuiBaseControl;
             if (btn.Name.Contains("ImageTypeName_"))
             {
                 btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                foreach (var item in bControl.FindControl("ImageTypeLine_" + btn.Tag.ToString()))
+                {
+                    if (item is DuiLabel)
+                    {
+                        item.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                    }
+                }
             }
             else
             {
                 btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                foreach (var item in bControl.FindControl("ImageTypeName_" + btn.Tag.ToString()))
+                {
+                    if (item is DuiLabel)
+                    {
+                        item.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                    }
+                }
             }
+
             //NowNum = int.Parse(btn.Tag.ToString());
             //LoadSliderImg(NowNum);
         }
@@ -152,6 +169,7 @@ namespace MaiinTimer.Controls
         {
             if (!string.IsNullOrEmpty((sender as DuiLabel).Tag.ToString()))
             {
+                labelId = (sender as DuiLabel).Tag.ToString();
                 List<DuiBaseControl> cItems = new List<DuiBaseControl>();
                 foreach (var item in Items)
                 {
@@ -192,11 +210,11 @@ namespace MaiinTimer.Controls
             {
                 if (itemControl is DuiLabel)
                 {
-                    if ((itemControl as DuiLabel).Name.Contains("ImageTypeLine_"))
+                    if ((itemControl as DuiLabel).Name.Contains("ImageTypeLine_") && (itemControl as DuiLabel).Tag.ToString() != labelId)
                     {
                         (itemControl as DuiLabel).BackColor = System.Drawing.Color.Silver;
                     }
-                    if ((itemControl as DuiLabel).Name.Contains("ImageTypeName_"))
+                    if ((itemControl as DuiLabel).Name.Contains("ImageTypeName_") && (itemControl as DuiLabel).Tag.ToString() != labelId)
                     {
                         (itemControl as DuiLabel).ForeColor = System.Drawing.Color.Black;
                     }
