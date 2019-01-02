@@ -188,7 +188,7 @@ namespace MaiinTimer.Controls
                 cItems.Clear();
                 var result = new Utils.Response<BridImg.ImageJson>();
                 List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
-                result.Result = bimg.getImageInfos((sender as DuiLabel).Tag.ToString(), "0", "30");
+                result.Result = bimg.getImageInfos((sender as DuiLabel).Tag.ToString(), "0", "6");
                 for (int i = 0; i < result.Result.data.Count; i++)
                 {
                     int zi = i + 1;
@@ -201,6 +201,11 @@ namespace MaiinTimer.Controls
                 }
             }
         }
+        private void Dlbe_MouseLeave(object sender, EventArgs e)
+        {
+            skinLine_Update();
+        }
+
         #endregion
 
         #region 自定义事件
@@ -240,6 +245,7 @@ namespace MaiinTimer.Controls
                 dlbe.Location = new Point(60 * i, 5);
                 dlbe.Cursor = System.Windows.Forms.Cursors.Hand;
                 dlbe.MouseEnter += skinLine_MouseEnter;
+                dlbe.MouseLeave += Dlbe_MouseLeave;
                 dlbe.TextAlign = ContentAlignment.MiddleCenter;
                 dlbe.Tag = imgJsons.data[i].id;
                 dlbe.MouseClick += Dlbe_MouseClick;
@@ -250,7 +256,8 @@ namespace MaiinTimer.Controls
                 dLabel1.Size = new Size(60, 2);
                 dLabel1.BackColor = System.Drawing.Color.Silver;
                 dLabel1.Height = 2;
-                dLabel1.MouseEnter += new System.EventHandler(this.skinLine_MouseEnter);
+                dLabel1.MouseEnter += skinLine_MouseEnter;
+                dLabel1.MouseLeave += Dlbe_MouseLeave;
                 dLabel1.Tag = imgJsons.data[i].id;
                 dLabel1.Location = new Point(60 * i, 30);
                 dLabel1.MouseClick += Dlbe_MouseClick;
@@ -262,6 +269,7 @@ namespace MaiinTimer.Controls
             Items.Add(typeControl);
             return true;
         }
+
 
         /// <summary>
         /// 添加图片列表
