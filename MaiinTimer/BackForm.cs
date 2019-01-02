@@ -170,7 +170,7 @@ namespace MaiinTimer
                 List_Main.addImgType(rType.Result);
                 //添加详细信息
                 List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
-                result.Result = bimg.getNewImageInfos("0", "6");
+                result.Result = bimg.getNewImageInfos("0", "9");
                 for (int i = 0; i < result.Result.data.Count; i++)
                 {
                     int zi = i + 1;

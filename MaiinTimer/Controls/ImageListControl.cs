@@ -188,7 +188,7 @@ namespace MaiinTimer.Controls
                 cItems.Clear();
                 var result = new Utils.Response<BridImg.ImageJson>();
                 List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
-                result.Result = bimg.getImageInfos((sender as DuiLabel).Tag.ToString(), "0", "6");
+                result.Result = bimg.getImageInfos((sender as DuiLabel).Tag.ToString(), "0", "9");
                 for (int i = 0; i < result.Result.data.Count; i++)
                 {
                     int zi = i + 1;
