@@ -148,13 +148,23 @@ namespace MaiinTimer
         private void btn_min_MouseHover(object sender, EventArgs e)
         {
             LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+            switch (thisButton.Name)
+            {
+                case "btn_min":
+                    layeredPanel_min.BackColor = Color.FromArgb(100,234, 234, 234);
+                    break;
+                default:
+                    layeredPanel_close.BackColor = Color.FromArgb(255, 88, 88);
+                    break;
+            }
         }
 
         private void btn_min_MouseLeave(object sender, EventArgs e)
         {
             LayeredButton thisButton = sender as LayeredButton;
             thisButton.BackColor = Color.Transparent;
+            layeredPanel_min.BackColor = thisButton.BackColor;
+            layeredPanel_close.BackColor = thisButton.BackColor;
         }
         #endregion
 

@@ -43,6 +43,8 @@
             this.scorllbar = new LayeredSkin.Controls.LayeredBaseControl();
             this.Panel_Bottom = new LayeredSkin.Controls.LayeredPanel();
             this.List_Main = new MaiinTimer.Controls.ImageListControl();
+            this.layeredPanel_close = new LayeredSkin.Controls.LayeredPanel();
+            this.layeredPanel_min = new LayeredSkin.Controls.LayeredPanel();
             this.layeredPanel_top.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +65,8 @@
             this.layeredPanel_top.Controls.Add(this.layeredPictureBox1);
             this.layeredPanel_top.Controls.Add(this.btn_close);
             this.layeredPanel_top.Controls.Add(this.btn_min);
+            this.layeredPanel_top.Controls.Add(this.layeredPanel_close);
+            this.layeredPanel_top.Controls.Add(this.layeredPanel_min);
             this.layeredPanel_top.Dock = System.Windows.Forms.DockStyle.Top;
             this.layeredPanel_top.Location = new System.Drawing.Point(0, 0);
             this.layeredPanel_top.Name = "layeredPanel_top";
@@ -321,7 +325,7 @@
             this.btn_close.HaloSize = 5;
             this.btn_close.HoverImage = global::MaiinTimer.Properties.Resources.close1;
             this.btn_close.IsPureColor = true;
-            this.btn_close.Location = new System.Drawing.Point(886, 12);
+            this.btn_close.Location = new System.Drawing.Point(890, 7);
             this.btn_close.Name = "btn_close";
             this.btn_close.NormalImage = global::MaiinTimer.Properties.Resources.close0;
             this.btn_close.PressedImage = global::MaiinTimer.Properties.Resources.close1;
@@ -356,7 +360,7 @@
             this.btn_min.HaloSize = 5;
             this.btn_min.HoverImage = global::MaiinTimer.Properties.Resources.min1;
             this.btn_min.IsPureColor = true;
-            this.btn_min.Location = new System.Drawing.Point(858, 12);
+            this.btn_min.Location = new System.Drawing.Point(858, 7);
             this.btn_min.Name = "btn_min";
             this.btn_min.NormalImage = global::MaiinTimer.Properties.Resources.min0;
             this.btn_min.PressedImage = global::MaiinTimer.Properties.Resources.min1;
@@ -452,6 +456,40 @@
             this.List_Main.Value = 0D;
             this.List_Main.RefreshListed += new System.EventHandler(this.List_Main_RefreshListed);
             // 
+            // layeredPanel_close
+            // 
+            this.layeredPanel_close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.layeredPanel_close.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.layeredPanel_close.Borders.BottomWidth = 1;
+            this.layeredPanel_close.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.layeredPanel_close.Borders.LeftWidth = 1;
+            this.layeredPanel_close.Borders.RightColor = System.Drawing.Color.Empty;
+            this.layeredPanel_close.Borders.RightWidth = 1;
+            this.layeredPanel_close.Borders.TopColor = System.Drawing.Color.Empty;
+            this.layeredPanel_close.Borders.TopWidth = 1;
+            this.layeredPanel_close.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_close.Canvas")));
+            this.layeredPanel_close.Location = new System.Drawing.Point(882, 0);
+            this.layeredPanel_close.Name = "layeredPanel_close";
+            this.layeredPanel_close.Size = new System.Drawing.Size(32, 29);
+            this.layeredPanel_close.TabIndex = 5;
+            // 
+            // layeredPanel_min
+            // 
+            this.layeredPanel_min.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.layeredPanel_min.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.layeredPanel_min.Borders.BottomWidth = 1;
+            this.layeredPanel_min.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.layeredPanel_min.Borders.LeftWidth = 1;
+            this.layeredPanel_min.Borders.RightColor = System.Drawing.Color.Empty;
+            this.layeredPanel_min.Borders.RightWidth = 1;
+            this.layeredPanel_min.Borders.TopColor = System.Drawing.Color.Empty;
+            this.layeredPanel_min.Borders.TopWidth = 1;
+            this.layeredPanel_min.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_min.Canvas")));
+            this.layeredPanel_min.Location = new System.Drawing.Point(850, 0);
+            this.layeredPanel_min.Name = "layeredPanel_min";
+            this.layeredPanel_min.Size = new System.Drawing.Size(32, 29);
+            this.layeredPanel_min.TabIndex = 6;
+            // 
             // BackForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -483,5 +521,7 @@
         private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox1;
         private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox2;
         private LayeredSkin.Controls.LayeredBaseControl BaseControl_Search;
+        private LayeredSkin.Controls.LayeredPanel layeredPanel_close;
+        private LayeredSkin.Controls.LayeredPanel layeredPanel_min;
     }
 }

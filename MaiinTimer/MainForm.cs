@@ -60,13 +60,28 @@ namespace MaiinTimer
         private void btn_skin_MouseHover(object sender, EventArgs e)
         {
             LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+            switch (thisButton.Name)
+            {
+                case "btn_skin":
+                    layeredPanel_skin.BackColor = Color.FromArgb(100,234, 234, 234);
+                    break;
+                case "btn_min":
+                    layeredPanel_min.BackColor = Color.FromArgb(100,234, 234, 234);
+                    break;
+                default:
+                    layeredPanel_close.BackColor = Color.FromArgb(255, 88, 88);
+                    break;
+            }
+            
         }
 
         private void btn_skin_MouseLeave(object sender, EventArgs e)
         {
             LayeredButton thisButton = sender as LayeredButton;
             thisButton.BackColor = Color.Transparent;
+            layeredPanel_min.BackColor = thisButton.BackColor;
+            layeredPanel_close.BackColor = thisButton.BackColor;
+            layeredPanel_skin.BackColor = thisButton.BackColor;
         }
 
         private void btn_skin_MouseDown(object sender, MouseEventArgs e)
