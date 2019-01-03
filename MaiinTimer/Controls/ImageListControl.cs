@@ -34,24 +34,31 @@ namespace MaiinTimer.Controls
             DuiBaseControl bControl = btn.Parent as DuiBaseControl;
             if (btn.Name.Contains("ImageTypeName_"))
             {
-                btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                btn.ForeColor = System.Drawing.Color.FromArgb(255,92,138);
                 foreach (var item in bControl.FindControl("ImageTypeLine_" + btn.Tag.ToString()))
                 {
                     if (item is DuiLabel)
                     {
-                        item.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                        item.BackColor = System.Drawing.Color.FromArgb(255, 92, 138);
                     }
                 }
             }
             else
             {
-                btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                btn.BackColor = System.Drawing.Color.FromArgb(255, 92, 138);
                 foreach (var item in bControl.FindControl("ImageTypeName_" + btn.Tag.ToString()))
                 {
                     if (item is DuiLabel)
                     {
-                        item.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
+                        item.ForeColor = System.Drawing.Color.FromArgb(255, 92, 138);
                     }
+                }
+            }
+            foreach (var item in bControl.FindControl("ImageTypeGrid_" + btn.Tag.ToString()))
+            {
+                if (item is DuiBaseControl)
+                {
+                    item.Visible = true;
                 }
             }
 
@@ -204,6 +211,15 @@ namespace MaiinTimer.Controls
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
             skinLine_Update();
+            DuiLabel btn = sender as DuiLabel;
+            DuiBaseControl bControl = btn.Parent as DuiBaseControl;
+            foreach (var item in bControl.FindControl("ImageTypeGrid_" + btn.Tag.ToString()))
+            {
+                if (item is DuiBaseControl)
+                {
+                    item.Visible = false;
+                }
+            }
         }
 
         #endregion
@@ -233,9 +249,26 @@ namespace MaiinTimer.Controls
         /// <returns></returns>
         public bool addImgType(BridImg.ImgJson imgJsons)
         {
-
+            //获取热门标签
+            BridImg.ImageTags imgTags = bimg.getImageHotTags();
+            List<BridImg.TagStringId> tagStrId = new List<BridImg.TagStringId>();
+            List<BridImg.tagItem> tagsList = new List<BridImg.tagItem>();
+            tagStrId.Add(new BridImg.TagStringId("5", "gameImg"));
+            tagStrId.Add(new BridImg.TagStringId("6", "mnmtImg"));
+            tagStrId.Add(new BridImg.TagStringId("7", "ysjzImg"));
+            tagStrId.Add(new BridImg.TagStringId("9", "fjdpImg"));
+            tagStrId.Add(new BridImg.TagStringId("10", "kxssImg"));
+            tagStrId.Add(new BridImg.TagStringId("11", "mxfsImg"));
+            tagStrId.Add(new BridImg.TagStringId("12", "qctxImg"));
+            tagStrId.Add(new BridImg.TagStringId("14", "mcdwImg"));
+            tagStrId.Add(new BridImg.TagStringId("15", "xqxImg"));
+            tagStrId.Add(new BridImg.TagStringId("16", "jbtyImg"));
+            tagStrId.Add(new BridImg.TagStringId("22", "jstdImg"));
+            tagStrId.Add(new BridImg.TagStringId("26", "dmktImg"));
+            tagStrId.Add(new BridImg.TagStringId("30", "aqmtImg"));
             typeControl.Size = new Size(this.Width, 35);
             typeControl.Name = "typeControl";
+            //循环增加分类
             for (int i = 0; i < imgJsons.data.Count; i++)
             {
                 DuiLabel dlbe = new DuiLabel();
@@ -262,9 +295,86 @@ namespace MaiinTimer.Controls
                 dLabel1.Location = new Point(60 * i, 30);
                 dLabel1.MouseClick += Dlbe_MouseClick;
 
-                typeControl.BackColor = Color.White;
                 typeControl.Controls.Add(dlbe);
                 typeControl.Controls.Add(dLabel1);
+                //是否增加下签
+                foreach (BridImg.TagStringId item in tagStrId)
+                {
+                    switch (item.tagString)
+                    {
+                        case "gameImg":
+                            tagsList = imgTags.gameImg;
+                            break;
+                        case "aqmtImg":
+                            tagsList = imgTags.aqmtImg;
+                            break;
+                        case "dmktImg":
+                            tagsList = imgTags.dmktImg;
+                            break;
+                        case "fjdpImg":
+                            tagsList = imgTags.fjdpImg;
+                            break;
+                        case "jbtyImg":
+                            tagsList = imgTags.jbtyImg;
+                            break;
+                        case "jstdImg":
+                            tagsList = imgTags.jstdImg;
+                            break;
+                        case "kxssImg":
+                            tagsList = imgTags.kxssImg;
+                            break;
+                        case "mcdwImg":
+                            tagsList = imgTags.mcdwImg;
+                            break;
+                        case "mnmtImg":
+                            tagsList = imgTags.mnmtImg;
+                            break;
+                        case "mxfsImg":
+                            tagsList = imgTags.mxfsImg;
+                            break;
+                        case "qctxImg":
+                            tagsList = imgTags.qctxImg;
+                            break;
+                        case "xqxImg":
+                            tagsList = imgTags.xqxImg;
+                            break;
+                        default:
+                            tagsList = imgTags.ysjzImg;
+                            break;
+                    }
+                    if (item.tagId == imgJsons.data[i].id.ToString())
+                    {
+                        DuiBaseControl ltypeControl = new DuiBaseControl();
+                        ltypeControl.Size = new Size(124,tagsList.Count*24/2);
+                        ltypeControl.Name = "ImageTypeGrid_"+item.tagId;
+                        ltypeControl.Location = new Point(60*i,25);
+                        ltypeControl.Visible = false;
+                        ltypeControl.BackColor = Color.White;
+                        int rowi = 1;
+                        int coli = 1;
+                        int ti = 1;
+                        foreach (BridImg.tagItem citem in tagsList)
+                        {
+                            coli = (ti % 2 == 0 ? 2 : 1);
+                            rowi = (int)Math.Ceiling(((double)ti/2));
+                            DuiLabel dlbea = new DuiLabel();
+                            dlbea.Size = new Size(60, 20);
+                            dlbea.Text = citem.tagName;
+                            dlbea.Name = "ImageTypeNameOther_" + citem.tagName;
+                            dlbea.Location = new Point(60 * (coli-1), 21*(rowi-1));
+                            dlbea.Cursor = System.Windows.Forms.Cursors.Hand;
+                            //dlbea.MouseEnter += skinLine_MouseEnter;
+                            //dlbea.MouseLeave += Dlbe_MouseLeave;
+                            dlbea.TextAlign = ContentAlignment.MiddleCenter;
+                            dlbea.Tag = citem.tagName;
+                            //dlbea.MouseClick += Dlbe_MouseClick;
+                            ltypeControl.Controls.Add(dlbea);
+                            ti++;
+                        }
+                        typeControl.Controls.Add(ltypeControl);
+                    }
+                }
+                typeControl.BackColor = Color.White;
             }
             Items.Add(typeControl);
             return true;
@@ -373,7 +483,6 @@ namespace MaiinTimer.Controls
             try
             {
                 WebRequest webreq = WebRequest.Create(url);
-                //红色部分为文件URL地址，这里是一张图片
                 WebResponse webres = webreq.GetResponse();
                 Stream stream = webres.GetResponseStream();
                 image = System.Drawing.Image.FromStream(stream);

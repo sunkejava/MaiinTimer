@@ -382,6 +382,17 @@ namespace MaiinTimer.Utils
             public string tagName { get; set; }
         }
 
+        public class TagStringId
+        {
+            public string tagString { get; set; }
+
+            public string tagId { get; set; }
+
+            public TagStringId(string id, string value) {
+                tagId = id;
+                tagString = value;
+            }
+        }
 
         /// <summary>
         /// Unicode转字符串
