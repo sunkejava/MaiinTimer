@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackForm));
-            LayeredSkin.DirectUI.DuiButton duiButton3 = new LayeredSkin.DirectUI.DuiButton();
-            LayeredSkin.DirectUI.DuiTextBox duiTextBox2 = new LayeredSkin.DirectUI.DuiTextBox();
-            System.Drawing.StringFormat stringFormat3 = new System.Drawing.StringFormat();
-            LayeredSkin.DirectUI.DuiButton duiButton4 = new LayeredSkin.DirectUI.DuiButton();
-            System.Drawing.StringFormat stringFormat4 = new System.Drawing.StringFormat();
+            LayeredSkin.DirectUI.DuiButton duiButton1 = new LayeredSkin.DirectUI.DuiButton();
+            LayeredSkin.DirectUI.DuiTextBox duiTextBox1 = new LayeredSkin.DirectUI.DuiTextBox();
+            System.Drawing.StringFormat stringFormat1 = new System.Drawing.StringFormat();
+            LayeredSkin.DirectUI.DuiButton duiButton2 = new LayeredSkin.DirectUI.DuiButton();
+            System.Drawing.StringFormat stringFormat2 = new System.Drawing.StringFormat();
             this.layeredPanel_top = new LayeredSkin.Controls.LayeredPanel();
             this.BaseControl_Search = new LayeredSkin.Controls.LayeredBaseControl();
             this.layeredPictureBox2 = new LayeredSkin.Controls.LayeredPictureBox();
@@ -72,12 +72,15 @@
             this.layeredPanel_top.Dock = System.Windows.Forms.DockStyle.Top;
             this.layeredPanel_top.Location = new System.Drawing.Point(0, 0);
             this.layeredPanel_top.Name = "layeredPanel_top";
-            this.layeredPanel_top.Size = new System.Drawing.Size(914, 41);
+            this.layeredPanel_top.Size = new System.Drawing.Size(975, 41);
             this.layeredPanel_top.TabIndex = 0;
             this.layeredPanel_top.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layeredPanel_top_MouseDown);
             // 
             // BaseControl_Search
             // 
+            this.BaseControl_Search.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BaseControl_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.BaseControl_Search.Borders.BottomColor = System.Drawing.Color.Empty;
             this.BaseControl_Search.Borders.BottomWidth = 1;
@@ -88,178 +91,178 @@
             this.BaseControl_Search.Borders.TopColor = System.Drawing.Color.Empty;
             this.BaseControl_Search.Borders.TopWidth = 1;
             this.BaseControl_Search.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("BaseControl_Search.Canvas")));
-            duiButton3.AdaptImage = true;
-            duiButton3.AutoSize = false;
-            duiButton3.BackColor = System.Drawing.Color.Transparent;
-            duiButton3.BackgroundImage = null;
-            duiButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            duiButton3.BackgroundRender = null;
-            duiButton3.BaseColor = System.Drawing.Color.Transparent;
-            duiButton3.BitmapCache = false;
-            duiButton3.BorderPath = null;
-            duiButton3.BorderRender = null;
-            duiButton3.Borders.BottomColor = System.Drawing.Color.Empty;
-            duiButton3.Borders.BottomWidth = 1;
-            duiButton3.Borders.LeftColor = System.Drawing.Color.Empty;
-            duiButton3.Borders.LeftWidth = 1;
-            duiButton3.Borders.RightColor = System.Drawing.Color.Empty;
-            duiButton3.Borders.RightWidth = 1;
-            duiButton3.Borders.TopColor = System.Drawing.Color.Empty;
-            duiButton3.Borders.TopWidth = 1;
-            duiButton3.CanFocus = true;
-            duiButton3.ClientRectangle = new System.Drawing.Rectangle(0, 0, 179, 26);
-            duiTextBox2.AutoHeight = false;
-            duiTextBox2.AutoSize = false;
-            duiTextBox2.BackColor = System.Drawing.Color.Transparent;
-            duiTextBox2.BackgroundImage = null;
-            duiTextBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            duiTextBox2.BackgroundRender = null;
-            duiTextBox2.BitmapCache = false;
-            duiTextBox2.BorderPath = null;
-            duiTextBox2.BorderRender = null;
-            duiTextBox2.Borders.BottomColor = System.Drawing.Color.Empty;
-            duiTextBox2.Borders.BottomWidth = 1;
-            duiTextBox2.Borders.LeftColor = System.Drawing.Color.Empty;
-            duiTextBox2.Borders.LeftWidth = 1;
-            duiTextBox2.Borders.RightColor = System.Drawing.Color.Empty;
-            duiTextBox2.Borders.RightWidth = 1;
-            duiTextBox2.Borders.TopColor = System.Drawing.Color.Empty;
-            duiTextBox2.Borders.TopWidth = 1;
-            duiTextBox2.CanFocus = true;
-            duiTextBox2.CaretColor = System.Drawing.SystemColors.ControlText;
-            duiTextBox2.CaretIndex = 0;
-            duiTextBox2.ClientRectangle = new System.Drawing.Rectangle(5, 5, 169, 16);
-            duiTextBox2.CurrentCursor = System.Windows.Forms.Cursors.Default;
-            duiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            duiTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            duiTextBox2.Enabled = true;
-            duiTextBox2.Font = new System.Drawing.Font("宋体", 11F);
-            duiTextBox2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            duiTextBox2.Height = 16;
-            duiTextBox2.IsInsert = true;
-            duiTextBox2.IsMoveParentPaint = true;
-            duiTextBox2.Left = 5;
-            duiTextBox2.Location = new System.Drawing.Point(5, 5);
-            duiTextBox2.Margin = new System.Windows.Forms.Padding(5);
-            duiTextBox2.Multiline = false;
-            duiTextBox2.Name = "search_text";
-            duiTextBox2.ParentInvalidate = true;
-            duiTextBox2.ReadOnly = false;
-            duiTextBox2.RollSize = 12;
-            duiTextBox2.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            duiTextBox2.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            duiTextBox2.ScrollBarNormalColor = System.Drawing.Color.Gray;
-            duiTextBox2.ScrollBarPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            duiTextBox2.SelectionBackColor = System.Drawing.Color.Gray;
-            duiTextBox2.SelectionColor = System.Drawing.Color.DarkSalmon;
-            duiTextBox2.SelectionLength = 0;
-            duiTextBox2.SelectionStart = 0;
-            duiTextBox2.ShowBorder = false;
-            duiTextBox2.ShowScrollBar = false;
-            duiTextBox2.Size = new System.Drawing.Size(169, 16);
-            duiTextBox2.SuspendInvalidate = false;
-            duiTextBox2.Tag = null;
-            duiTextBox2.Text = "输入关键字进行搜索";
-            duiTextBox2.TextRenderMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            duiTextBox2.Top = 5;
-            duiTextBox2.Visible = true;
-            duiTextBox2.Width = 169;
-            duiButton3.Controls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
-            duiTextBox2});
-            duiButton3.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
-            duiButton3.CurrentCursor = System.Windows.Forms.Cursors.Default;
-            duiButton3.Cursor = System.Windows.Forms.Cursors.Default;
-            duiButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            duiButton3.Enabled = true;
-            duiButton3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            duiButton3.ForeColor = System.Drawing.SystemColors.ControlText;
-            duiButton3.Height = 26;
-            duiButton3.HoverImage = null;
-            duiButton3.IsMoveParentPaint = true;
-            duiButton3.IsPureColor = false;
-            duiButton3.Left = 0;
-            duiButton3.Location = new System.Drawing.Point(0, 0);
-            duiButton3.Margin = new System.Windows.Forms.Padding(0);
-            duiButton3.Name = "btn_searchtext";
-            duiButton3.NormalImage = null;
-            duiButton3.ParentInvalidate = true;
-            duiButton3.PressedImage = null;
-            duiButton3.Radius = 20;
-            duiButton3.ShowBorder = false;
-            duiButton3.Size = new System.Drawing.Size(179, 26);
-            stringFormat3.Alignment = System.Drawing.StringAlignment.Center;
-            stringFormat3.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
-            stringFormat3.LineAlignment = System.Drawing.StringAlignment.Center;
-            stringFormat3.Trimming = System.Drawing.StringTrimming.Character;
-            duiButton3.StringFormat = stringFormat3;
-            duiButton3.SuspendInvalidate = false;
-            duiButton3.Tag = null;
-            duiButton3.Text = null;
-            duiButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            duiButton3.TextPadding = 0;
-            duiButton3.Top = 0;
-            duiButton3.Visible = true;
-            duiButton3.Width = 179;
-            duiButton4.AdaptImage = false;
-            duiButton4.AutoSize = false;
-            duiButton4.BackColor = System.Drawing.Color.Transparent;
-            duiButton4.BackgroundImage = null;
-            duiButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            duiButton4.BackgroundRender = null;
-            duiButton4.BaseColor = System.Drawing.Color.Transparent;
-            duiButton4.BitmapCache = false;
-            duiButton4.BorderPath = null;
-            duiButton4.BorderRender = null;
-            duiButton4.Borders.BottomColor = System.Drawing.Color.Empty;
-            duiButton4.Borders.BottomWidth = 1;
-            duiButton4.Borders.LeftColor = System.Drawing.Color.Empty;
-            duiButton4.Borders.LeftWidth = 1;
-            duiButton4.Borders.RightColor = System.Drawing.Color.Empty;
-            duiButton4.Borders.RightWidth = 1;
-            duiButton4.Borders.TopColor = System.Drawing.Color.Empty;
-            duiButton4.Borders.TopWidth = 1;
-            duiButton4.CanFocus = true;
-            duiButton4.ClientRectangle = new System.Drawing.Rectangle(158, 3, 20, 20);
-            duiButton4.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
-            duiButton4.CurrentCursor = System.Windows.Forms.Cursors.Default;
-            duiButton4.Cursor = System.Windows.Forms.Cursors.Default;
-            duiButton4.Dock = System.Windows.Forms.DockStyle.None;
-            duiButton4.Enabled = true;
-            duiButton4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            duiButton4.ForeColor = System.Drawing.SystemColors.ControlText;
-            duiButton4.Height = 20;
-            duiButton4.HoverImage = global::MaiinTimer.Properties.Resources.search1;
-            duiButton4.IsMoveParentPaint = true;
-            duiButton4.IsPureColor = false;
-            duiButton4.Left = 158;
-            duiButton4.Location = new System.Drawing.Point(158, 3);
-            duiButton4.Margin = new System.Windows.Forms.Padding(0);
-            duiButton4.Name = "btn_search";
-            duiButton4.NormalImage = global::MaiinTimer.Properties.Resources.search0;
-            duiButton4.ParentInvalidate = true;
-            duiButton4.PressedImage = global::MaiinTimer.Properties.Resources.search1;
-            duiButton4.Radius = 10;
-            duiButton4.ShowBorder = true;
-            duiButton4.Size = new System.Drawing.Size(20, 20);
-            stringFormat4.Alignment = System.Drawing.StringAlignment.Center;
-            stringFormat4.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
-            stringFormat4.LineAlignment = System.Drawing.StringAlignment.Center;
-            stringFormat4.Trimming = System.Drawing.StringTrimming.Character;
-            duiButton4.StringFormat = stringFormat4;
-            duiButton4.SuspendInvalidate = false;
-            duiButton4.Tag = null;
-            duiButton4.Text = null;
-            duiButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            duiButton4.TextPadding = 0;
-            duiButton4.Top = 3;
-            duiButton4.Visible = true;
-            duiButton4.Width = 20;
+            duiButton1.AdaptImage = true;
+            duiButton1.AutoSize = false;
+            duiButton1.BackColor = System.Drawing.Color.Transparent;
+            duiButton1.BackgroundImage = null;
+            duiButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            duiButton1.BackgroundRender = null;
+            duiButton1.BaseColor = System.Drawing.Color.Transparent;
+            duiButton1.BitmapCache = false;
+            duiButton1.BorderPath = null;
+            duiButton1.BorderRender = null;
+            duiButton1.Borders.BottomColor = System.Drawing.Color.Empty;
+            duiButton1.Borders.BottomWidth = 1;
+            duiButton1.Borders.LeftColor = System.Drawing.Color.Empty;
+            duiButton1.Borders.LeftWidth = 1;
+            duiButton1.Borders.RightColor = System.Drawing.Color.Empty;
+            duiButton1.Borders.RightWidth = 1;
+            duiButton1.Borders.TopColor = System.Drawing.Color.Empty;
+            duiButton1.Borders.TopWidth = 1;
+            duiButton1.CanFocus = true;
+            duiButton1.ClientRectangle = new System.Drawing.Rectangle(0, 0, 240, 26);
+            duiTextBox1.AutoHeight = false;
+            duiTextBox1.AutoSize = false;
+            duiTextBox1.BackColor = System.Drawing.Color.Transparent;
+            duiTextBox1.BackgroundImage = null;
+            duiTextBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            duiTextBox1.BackgroundRender = null;
+            duiTextBox1.BitmapCache = false;
+            duiTextBox1.BorderPath = null;
+            duiTextBox1.BorderRender = null;
+            duiTextBox1.Borders.BottomColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.BottomWidth = 1;
+            duiTextBox1.Borders.LeftColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.LeftWidth = 1;
+            duiTextBox1.Borders.RightColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.RightWidth = 1;
+            duiTextBox1.Borders.TopColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.TopWidth = 1;
+            duiTextBox1.CanFocus = true;
+            duiTextBox1.CaretColor = System.Drawing.SystemColors.ControlText;
+            duiTextBox1.CaretIndex = 0;
+            duiTextBox1.ClientRectangle = new System.Drawing.Rectangle(5, 5, 230, 16);
+            duiTextBox1.CurrentCursor = System.Windows.Forms.Cursors.Default;
+            duiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            duiTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            duiTextBox1.Enabled = true;
+            duiTextBox1.Font = new System.Drawing.Font("宋体", 11F);
+            duiTextBox1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            duiTextBox1.Height = 16;
+            duiTextBox1.IsInsert = true;
+            duiTextBox1.IsMoveParentPaint = true;
+            duiTextBox1.Left = 5;
+            duiTextBox1.Location = new System.Drawing.Point(5, 5);
+            duiTextBox1.Margin = new System.Windows.Forms.Padding(5);
+            duiTextBox1.Multiline = false;
+            duiTextBox1.Name = "search_text";
+            duiTextBox1.ParentInvalidate = true;
+            duiTextBox1.ReadOnly = false;
+            duiTextBox1.RollSize = 12;
+            duiTextBox1.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            duiTextBox1.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
+            duiTextBox1.ScrollBarNormalColor = System.Drawing.Color.Gray;
+            duiTextBox1.ScrollBarPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            duiTextBox1.SelectionBackColor = System.Drawing.Color.Gray;
+            duiTextBox1.SelectionColor = System.Drawing.Color.DarkSalmon;
+            duiTextBox1.SelectionLength = 0;
+            duiTextBox1.SelectionStart = 0;
+            duiTextBox1.ShowBorder = false;
+            duiTextBox1.ShowScrollBar = false;
+            duiTextBox1.Size = new System.Drawing.Size(230, 16);
+            duiTextBox1.SuspendInvalidate = false;
+            duiTextBox1.Tag = null;
+            duiTextBox1.Text = "输入关键字进行搜索";
+            duiTextBox1.TextRenderMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            duiTextBox1.Top = 5;
+            duiTextBox1.Visible = true;
+            duiTextBox1.Width = 230;
+            duiButton1.Controls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
+            duiTextBox1});
+            duiButton1.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
+            duiButton1.CurrentCursor = System.Windows.Forms.Cursors.Default;
+            duiButton1.Cursor = System.Windows.Forms.Cursors.Default;
+            duiButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            duiButton1.Enabled = true;
+            duiButton1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            duiButton1.ForeColor = System.Drawing.SystemColors.ControlText;
+            duiButton1.Height = 26;
+            duiButton1.HoverImage = null;
+            duiButton1.IsMoveParentPaint = true;
+            duiButton1.IsPureColor = false;
+            duiButton1.Left = 0;
+            duiButton1.Location = new System.Drawing.Point(0, 0);
+            duiButton1.Margin = new System.Windows.Forms.Padding(0);
+            duiButton1.Name = "btn_searchtext";
+            duiButton1.NormalImage = null;
+            duiButton1.ParentInvalidate = true;
+            duiButton1.PressedImage = null;
+            duiButton1.Radius = 20;
+            duiButton1.ShowBorder = false;
+            duiButton1.Size = new System.Drawing.Size(240, 26);
+            stringFormat1.Alignment = System.Drawing.StringAlignment.Center;
+            stringFormat1.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
+            stringFormat1.LineAlignment = System.Drawing.StringAlignment.Center;
+            stringFormat1.Trimming = System.Drawing.StringTrimming.Character;
+            duiButton1.StringFormat = stringFormat1;
+            duiButton1.SuspendInvalidate = false;
+            duiButton1.Tag = null;
+            duiButton1.Text = null;
+            duiButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            duiButton1.TextPadding = 0;
+            duiButton1.Top = 0;
+            duiButton1.Visible = true;
+            duiButton1.Width = 240;
+            duiButton2.AdaptImage = false;
+            duiButton2.AutoSize = false;
+            duiButton2.BackColor = System.Drawing.Color.Transparent;
+            duiButton2.BackgroundImage = null;
+            duiButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            duiButton2.BackgroundRender = null;
+            duiButton2.BaseColor = System.Drawing.Color.Transparent;
+            duiButton2.BitmapCache = false;
+            duiButton2.BorderPath = null;
+            duiButton2.BorderRender = null;
+            duiButton2.Borders.BottomColor = System.Drawing.Color.Empty;
+            duiButton2.Borders.BottomWidth = 1;
+            duiButton2.Borders.LeftColor = System.Drawing.Color.Empty;
+            duiButton2.Borders.LeftWidth = 1;
+            duiButton2.Borders.RightColor = System.Drawing.Color.Empty;
+            duiButton2.Borders.RightWidth = 1;
+            duiButton2.Borders.TopColor = System.Drawing.Color.Empty;
+            duiButton2.Borders.TopWidth = 1;
+            duiButton2.CanFocus = true;
+            duiButton2.ClientRectangle = new System.Drawing.Rectangle(218, 3, 20, 20);
+            duiButton2.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
+            duiButton2.CurrentCursor = System.Windows.Forms.Cursors.Default;
+            duiButton2.Cursor = System.Windows.Forms.Cursors.Default;
+            duiButton2.Dock = System.Windows.Forms.DockStyle.None;
+            duiButton2.Enabled = true;
+            duiButton2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            duiButton2.ForeColor = System.Drawing.SystemColors.ControlText;
+            duiButton2.Height = 20;
+            duiButton2.HoverImage = global::MaiinTimer.Properties.Resources.search1;
+            duiButton2.IsMoveParentPaint = true;
+            duiButton2.IsPureColor = false;
+            duiButton2.Left = 218;
+            duiButton2.Location = new System.Drawing.Point(218, 3);
+            duiButton2.Margin = new System.Windows.Forms.Padding(0);
+            duiButton2.Name = "btn_search";
+            duiButton2.NormalImage = global::MaiinTimer.Properties.Resources.search0;
+            duiButton2.ParentInvalidate = true;
+            duiButton2.PressedImage = global::MaiinTimer.Properties.Resources.search1;
+            duiButton2.Radius = 10;
+            duiButton2.ShowBorder = true;
+            duiButton2.Size = new System.Drawing.Size(20, 20);
+            stringFormat2.Alignment = System.Drawing.StringAlignment.Center;
+            stringFormat2.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
+            stringFormat2.LineAlignment = System.Drawing.StringAlignment.Center;
+            stringFormat2.Trimming = System.Drawing.StringTrimming.Character;
+            duiButton2.StringFormat = stringFormat2;
+            duiButton2.SuspendInvalidate = false;
+            duiButton2.Tag = null;
+            duiButton2.Text = null;
+            duiButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            duiButton2.TextPadding = 0;
+            duiButton2.Top = 3;
+            duiButton2.Visible = true;
+            duiButton2.Width = 20;
             this.BaseControl_Search.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
-            duiButton3,
-            duiButton4});
-            this.BaseControl_Search.Location = new System.Drawing.Point(294, 9);
+            duiButton1,
+            duiButton2});
+            this.BaseControl_Search.Location = new System.Drawing.Point(408, 8);
             this.BaseControl_Search.Name = "BaseControl_Search";
-            this.BaseControl_Search.Size = new System.Drawing.Size(179, 26);
+            this.BaseControl_Search.Size = new System.Drawing.Size(240, 26);
             this.BaseControl_Search.TabIndex = 4;
             // 
             // layeredPictureBox2
@@ -311,6 +314,9 @@
             // btn_close
             // 
             this.btn_close.AdaptImage = true;
+            this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_close.BaseColor = System.Drawing.Color.Transparent;
             this.btn_close.Borders.BottomColor = System.Drawing.Color.Empty;
@@ -327,7 +333,7 @@
             this.btn_close.HaloSize = 5;
             this.btn_close.HoverImage = global::MaiinTimer.Properties.Resources.close1;
             this.btn_close.IsPureColor = true;
-            this.btn_close.Location = new System.Drawing.Point(890, 7);
+            this.btn_close.Location = new System.Drawing.Point(951, 7);
             this.btn_close.Name = "btn_close";
             this.btn_close.NormalImage = global::MaiinTimer.Properties.Resources.close0;
             this.btn_close.PressedImage = global::MaiinTimer.Properties.Resources.close1;
@@ -346,6 +352,9 @@
             // btn_min
             // 
             this.btn_min.AdaptImage = true;
+            this.btn_min.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_min.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_min.BaseColor = System.Drawing.Color.Transparent;
             this.btn_min.Borders.BottomColor = System.Drawing.Color.Empty;
@@ -362,7 +371,7 @@
             this.btn_min.HaloSize = 5;
             this.btn_min.HoverImage = global::MaiinTimer.Properties.Resources.min1;
             this.btn_min.IsPureColor = true;
-            this.btn_min.Location = new System.Drawing.Point(858, 7);
+            this.btn_min.Location = new System.Drawing.Point(919, 7);
             this.btn_min.Name = "btn_min";
             this.btn_min.NormalImage = global::MaiinTimer.Properties.Resources.min0;
             this.btn_min.PressedImage = global::MaiinTimer.Properties.Resources.min1;
@@ -380,6 +389,9 @@
             // 
             // layeredPanel_close
             // 
+            this.layeredPanel_close.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.layeredPanel_close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.layeredPanel_close.Borders.BottomColor = System.Drawing.Color.Empty;
             this.layeredPanel_close.Borders.BottomWidth = 1;
@@ -390,13 +402,16 @@
             this.layeredPanel_close.Borders.TopColor = System.Drawing.Color.Empty;
             this.layeredPanel_close.Borders.TopWidth = 1;
             this.layeredPanel_close.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_close.Canvas")));
-            this.layeredPanel_close.Location = new System.Drawing.Point(882, 0);
+            this.layeredPanel_close.Location = new System.Drawing.Point(943, 0);
             this.layeredPanel_close.Name = "layeredPanel_close";
             this.layeredPanel_close.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_close.TabIndex = 5;
             // 
             // layeredPanel_min
             // 
+            this.layeredPanel_min.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.layeredPanel_min.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.layeredPanel_min.Borders.BottomColor = System.Drawing.Color.Empty;
             this.layeredPanel_min.Borders.BottomWidth = 1;
@@ -407,15 +422,14 @@
             this.layeredPanel_min.Borders.TopColor = System.Drawing.Color.Empty;
             this.layeredPanel_min.Borders.TopWidth = 1;
             this.layeredPanel_min.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_min.Canvas")));
-            this.layeredPanel_min.Location = new System.Drawing.Point(850, 0);
+            this.layeredPanel_min.Location = new System.Drawing.Point(911, 0);
             this.layeredPanel_min.Name = "layeredPanel_min";
             this.layeredPanel_min.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_min.TabIndex = 6;
             // 
             // scorllbar
             // 
-            this.scorllbar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.scorllbar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.scorllbar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.scorllbar.Borders.BottomColor = System.Drawing.Color.Empty;
             this.scorllbar.Borders.BottomWidth = 1;
@@ -426,7 +440,7 @@
             this.scorllbar.Borders.TopColor = System.Drawing.Color.Empty;
             this.scorllbar.Borders.TopWidth = 1;
             this.scorllbar.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("scorllbar.Canvas")));
-            this.scorllbar.Location = new System.Drawing.Point(909, 41);
+            this.scorllbar.Location = new System.Drawing.Point(970, 41);
             this.scorllbar.Name = "scorllbar";
             this.scorllbar.Size = new System.Drawing.Size(5, 50);
             this.scorllbar.TabIndex = 3;
@@ -451,9 +465,9 @@
             this.Panel_Bottom.Borders.TopWidth = 1;
             this.Panel_Bottom.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("Panel_Bottom.Canvas")));
             this.Panel_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Bottom.Location = new System.Drawing.Point(0, 616);
+            this.Panel_Bottom.Location = new System.Drawing.Point(0, 636);
             this.Panel_Bottom.Name = "Panel_Bottom";
-            this.Panel_Bottom.Size = new System.Drawing.Size(914, 30);
+            this.Panel_Bottom.Size = new System.Drawing.Size(975, 10);
             this.Panel_Bottom.TabIndex = 5;
             // 
             // Panel_Type
@@ -471,7 +485,7 @@
             this.Panel_Type.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel_Type.Location = new System.Drawing.Point(0, 41);
             this.Panel_Type.Name = "Panel_Type";
-            this.Panel_Type.Size = new System.Drawing.Size(914, 36);
+            this.Panel_Type.Size = new System.Drawing.Size(975, 36);
             this.Panel_Type.TabIndex = 6;
             // 
             // Panel_TypeMess
@@ -520,7 +534,7 @@
             this.List_Main.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.List_Main.ScrollBarWidth = 10;
             this.List_Main.ShowScrollBar = false;
-            this.List_Main.Size = new System.Drawing.Size(914, 538);
+            this.List_Main.Size = new System.Drawing.Size(975, 538);
             this.List_Main.SmoothScroll = false;
             this.List_Main.TabIndex = 4;
             this.List_Main.Text = "imageListControl1";
@@ -533,7 +547,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(914, 646);
+            this.ClientSize = new System.Drawing.Size(975, 646);
             this.Controls.Add(this.Panel_TypeMess);
             this.Controls.Add(this.Panel_Type);
             this.Controls.Add(this.Panel_Bottom);

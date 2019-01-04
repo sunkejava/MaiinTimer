@@ -170,8 +170,28 @@ namespace MaiinTimer.Utils
             ImageJson it = jss.Deserialize<ImageJson>(Reader);
             return it;
         }
-
-
+        /// <summary>
+        /// 搜索图片
+        /// </summary>
+        /// <param name="words">关键字</param>
+        /// <param name="startImgNumber">起始数</param>
+        /// <param name="ImgCount">要获取的总数</param>
+        /// <returns></returns>
+        public ImageJson getImageInfosBySearch(string words,string startImgNumber, string ImgCount)
+        {
+            //index.php?c=WallPaper&a=search&start=0&count=9&kw=%E4%B8%9D%E8%A2%9C
+            string curl = @"http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=search&start=" + startImgNumber.ToString() + "&count=" + ImgCount.ToString() + "&kw=" + words.ToString();
+            //创建一个HttpWebRequest对象  
+            req = (HttpWebRequest)HttpWebRequest.Create(curl);
+            //设置它提交数据的方式GET  
+            req.Method = "GET";
+            StreamReader sr = new StreamReader(req.GetResponse().GetResponseStream());
+            //获取返回的XML数据
+            string Reader = Unicode2String(sr.ReadToEnd());
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            ImageJson it = jss.Deserialize<ImageJson>(Reader);
+            return it;
+        }
         /// <summary>
         /// ImageJson信息
         /// </summary>
