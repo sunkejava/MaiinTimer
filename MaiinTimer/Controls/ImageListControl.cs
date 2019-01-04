@@ -140,7 +140,7 @@ namespace MaiinTimer.Controls
         {
             int thisWidth = this.Width - 5;//减去滚动条宽度
             int zWidth = (int)(thisWidth / 3);
-            int zHeight = (int)(thisWidth / 3 * 0.54);
+            int zHeight = (int)(thisWidth / 3 * 0.57);
             DuiBaseControl baseControl = new DuiBaseControl();
             baseControl.Size = new Size(thisWidth, zHeight);
             baseControl.BackColor = Color.FromArgb(245, 245, 247);

@@ -465,7 +465,7 @@
             this.Panel_Bottom.Borders.TopWidth = 1;
             this.Panel_Bottom.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("Panel_Bottom.Canvas")));
             this.Panel_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panel_Bottom.Location = new System.Drawing.Point(0, 636);
+            this.Panel_Bottom.Location = new System.Drawing.Point(0, 513);
             this.Panel_Bottom.Name = "Panel_Bottom";
             this.Panel_Bottom.Size = new System.Drawing.Size(975, 10);
             this.Panel_Bottom.TabIndex = 5;
@@ -534,7 +534,7 @@
             this.List_Main.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.List_Main.ScrollBarWidth = 10;
             this.List_Main.ShowScrollBar = false;
-            this.List_Main.Size = new System.Drawing.Size(975, 538);
+            this.List_Main.Size = new System.Drawing.Size(975, 435);
             this.List_Main.SmoothScroll = false;
             this.List_Main.TabIndex = 4;
             this.List_Main.Text = "imageListControl1";
@@ -547,7 +547,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(975, 646);
+            this.ClientSize = new System.Drawing.Size(975, 523);
             this.Controls.Add(this.Panel_TypeMess);
             this.Controls.Add(this.Panel_Type);
             this.Controls.Add(this.Panel_Bottom);
