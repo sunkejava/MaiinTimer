@@ -240,7 +240,7 @@ namespace MaiinTimer.Controls
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("获取图片失败，原因为：" + ex.Message);
             }
             return image;
         }

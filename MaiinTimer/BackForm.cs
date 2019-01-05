@@ -317,6 +317,41 @@ namespace MaiinTimer
             return true;
         }
 
+        private bool addImgListItem(string tagId, string startNos)
+        {
+            startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
+            List<DuiBaseControl> cItems = new List<DuiBaseControl>();
+            var result = new Utils.Response<BridImg.ImageJson>();
+            List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
+            if (isSearch)
+            {
+                result.Result = bimg.getImageInfosBySearch(tagId, startNos, pageCount);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(tagId))
+                {
+                    result.Result = bimg.getNewImageInfos(startNos, pageCount);
+                }
+                else
+                {
+                    result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                }
+
+            }
+            for (int i = 0; i < result.Result.data.Count; i++)
+            {
+                int zi = i + 1;
+                imgInfos.Add(result.Result.data[i]);
+                if (zi % 3 == 0)
+                {
+                    List_Main.addImgList(imgInfos);
+                    imgInfos.Clear();
+                }
+            }
+            return true;
+        }
+
         private void skinLine_Update()
         {
             foreach (var itemControl in typeControl.Controls)
