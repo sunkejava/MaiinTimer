@@ -154,7 +154,7 @@ namespace MaiinTimer.Controls
                 //背景图
                 DuiPictureBox dp = new DuiPictureBox();
                 dp.Size = new Size(zWidth - 4, zHeight - 4);
-                dp.BackgroundImage = GetImageByUrl(imgInfo.img_1024_768);
+                dp.BackgroundImage = GetImageByUrl(imgInfo.img_1280_1024);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
                 dp.Location = new Point(2, 2);

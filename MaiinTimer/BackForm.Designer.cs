@@ -541,6 +541,7 @@
             this.List_Main.Ulmul = false;
             this.List_Main.Value = 0D;
             this.List_Main.RefreshListed += new System.EventHandler(this.List_Main_RefreshListed);
+            this.List_Main.ValueChanged += new System.EventHandler(this.List_Main_ValueChanged);
             // 
             // BackForm
             // 

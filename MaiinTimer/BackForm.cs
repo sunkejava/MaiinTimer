@@ -39,7 +39,7 @@ namespace MaiinTimer
         string labelId = "";//选择的标签与类型ID
         string startNo = "0";//开始序号
         string pageCount = "12";//每页或每次调用获取图片的总数
-
+        bool isSearch = false;//是否搜索
         #region 窗体控件事件
         public BackForm()
         {
@@ -120,7 +120,10 @@ namespace MaiinTimer
                             DuiTextBox searchText = citem as DuiTextBox;
                             if (!string.IsNullOrEmpty(searchText.Text) && searchText.Text != "输入关键字进行搜索")
                             {
-                                updateImgList(searchText.Text, "",true);
+                                isSearch = true;
+                                startNo = "0";
+                                labelId = searchText.Text;
+                                updateImgList(searchText.Text, "");
                             }
                             else
                             {
@@ -231,7 +234,8 @@ namespace MaiinTimer
             {
                 labelId = (sender as DuiLabel).Tag.ToString();
                 startNo = "0";
-                updateImgList(labelId, startNo,false);
+                isSearch = false;
+                updateImgList(labelId, startNo);
             }
         }
         private void Dlbe_MouseLeave(object sender, EventArgs e)
@@ -256,7 +260,13 @@ namespace MaiinTimer
         #endregion
 
         #region 自定义事件
-        private bool updateImgList(string tagId,string startNos,bool isSearch)
+        /// <summary>
+        /// 更新列表
+        /// </summary>
+        /// <param name="tagId">类型ID或搜索关键字</param>
+        /// <param name="startNos">开始数</param>
+        /// <returns></returns>
+        private bool updateImgList(string tagId,string startNos)
         {
             startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
             List<DuiBaseControl> cItems = new List<DuiBaseControl>();
@@ -283,7 +293,15 @@ namespace MaiinTimer
             }
             else
             {
-                result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                if (string.IsNullOrEmpty(tagId))
+                {
+                    result.Result = bimg.getNewImageInfos(startNos, pageCount);
+                }
+                else
+                {
+                    result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                }
+                
             }
             
             for (int i = 0; i < result.Result.data.Count; i++)
@@ -660,7 +678,25 @@ namespace MaiinTimer
                 scorllbar.Hide();
             }
         }
+        /// <summary>
+        /// 鼠标滚轮滚动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void List_Main_ValueChanged(object sender, EventArgs e)
+        {
+            if (!scorlling)
+            {
+                scorllbar.Top = (int)(List_Main.Value * (List_Main.Height - scorllbar.Height)) + List_Main.Top;
+            }
+            if (List_Main.Value == 1)
+            {
+                startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
+                updateImgList(labelId,startNo);
+            }
+        }
         #endregion
+
 
     }
 }
