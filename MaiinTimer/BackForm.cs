@@ -316,7 +316,12 @@ namespace MaiinTimer
             }
             return true;
         }
-
+        /// <summary>
+        /// 添加列表信息
+        /// </summary>
+        /// <param name="tagId"></param>
+        /// <param name="startNos"></param>
+        /// <returns></returns>
         private bool addImgListItem(string tagId, string startNos)
         {
             startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
@@ -329,7 +334,7 @@ namespace MaiinTimer
             }
             else
             {
-                if (string.IsNullOrEmpty(tagId))
+                if (string.IsNullOrEmpty(tagId) || tagId == "0")
                 {
                     result.Result = bimg.getNewImageInfos(startNos, pageCount);
                 }
@@ -727,7 +732,7 @@ namespace MaiinTimer
             if (List_Main.Value == 1)
             {
                 startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
-                updateImgList(labelId,startNo);
+                addImgListItem(labelId,startNo);
             }
         }
         #endregion

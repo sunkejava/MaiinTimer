@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace MaiinTimer.Controls
@@ -125,9 +127,63 @@ namespace MaiinTimer.Controls
         /// <param name="e"></param>
         private void Btn_Download_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            throw new NotImplementedException();
+            //下载文件
+            string url = "";
+            string fileName = "";
+            try
+            {
+                WebRequest webreq = WebRequest.Create(url);
+                WebResponse webres = webreq.GetResponse();
+                Stream stream = webres.GetResponseStream();
+
+                Stream fileStream = new FileStream(fileName, FileMode.Create);
+                byte[] bArray = new byte[1024];
+                int size;
+                do
+                {
+                    size = stream.Read(bArray, 0, (int)bArray.Length);
+                    fileStream.Write(bArray, 0, size);
+                } while (size > 0);
+                fileStream.Close();
+                stream.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("下载图片失败，原因为：" + ex.Message);
+            }
         }
-        
+
+        /// <summary>
+        /// 图片点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Dp_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            DuiPictureBox dp = sender as DuiPictureBox;
+            string ImageSavePath = @"D:\Program Files\ImageWallpaper";
+            //设置墙纸
+            try
+            {
+                Bitmap bmpWallpaper;
+                WebRequest webreq = WebRequest.Create(dp.Tag.ToString());
+                WebResponse webres = webreq.GetResponse();
+                Stream stream = webres.GetResponseStream();
+                if (!Directory.Exists(ImageSavePath))
+                {
+                    Directory.CreateDirectory(ImageSavePath);
+                }
+                bmpWallpaper = (Bitmap)Image.FromStream(stream);
+                ImageSavePath = ImageSavePath + "\\" + new Uri(dp.Tag.ToString()).Segments[new Uri(dp.Tag.ToString()).Segments.Length-1];
+                bmpWallpaper.Save(ImageSavePath, ImageFormat.Jpeg);
+                stream.Close();
+                setWallpaperApi(ImageSavePath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("下载图片失败，原因为：" + ex.Message);
+            }
+        }
         #endregion
 
         #region 自定义事件
@@ -154,13 +210,15 @@ namespace MaiinTimer.Controls
                 //背景图
                 DuiPictureBox dp = new DuiPictureBox();
                 dp.Size = new Size(zWidth - 4, zHeight - 4);
-                dp.BackgroundImage = GetImageByUrl(imgInfo.img_1280_1024);
+                dp.Tag = imgInfo.img_1024_768;
+                dp.BackgroundImage = GetImageByUrl(imgInfo.url);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
                 dp.Location = new Point(2, 2);
                 dp.Cursor = System.Windows.Forms.Cursors.Hand;
                 dp.MouseEnter += Dp_MouseEnter;
                 dp.MouseLeave += Dp_MouseLeave;
+                dp.MouseClick += Dp_MouseClick;
                 //图片说明
                 DuiLabel imgTag = new DuiLabel();
                 imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -223,9 +281,19 @@ namespace MaiinTimer.Controls
             GC.Collect();
             return true;
         }
-        #endregion
 
-
+        //利用系统的用户接口设置壁纸
+        [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
+        public static extern int SystemParametersInfo(
+                int uAction,
+                int uParam,
+                string lpvParam,
+                int fuWinIni
+                );
+        public static void setWallpaperApi(string strSavePath)
+        {
+            SystemParametersInfo(20, 1, strSavePath, 1);
+        }
 
         private Image GetImageByUrl(string url)
         {
@@ -254,6 +322,9 @@ namespace MaiinTimer.Controls
                 RefreshListed(this, new EventArgs());
             base.RefreshList();
         }
+        #endregion
+
+
 
         #region 委托事件
         /// <summary>
