@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
@@ -40,13 +41,20 @@ namespace MaiinTimer
         string startNo = "0";//开始序号
         string pageCount = "12";//每页或每次调用获取图片的总数
         bool isSearch = false;//是否搜索
+        Color defaultColor = Color.FromArgb(255, 92, 138);
+        //public Thread t = null;
+        //public delegate void UpdateUI(bool isLoad);//声明一个更新控件信息的委托
+        //public UpdateUI UpdateUIDelegate;
+        //public delegate void AccomplishTask();//声明一个在完成任务时通知主线程的委托
+        //public AccomplishTask TaskCallBack;
+        //delegate void AsynUpdateUI(bool isLoad);
         #region 窗体控件事件
         public BackForm()
         {
             InitializeComponent();
-            layeredPanel_top.BackColor = Color.FromArgb(255, 92, 138);
-            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 138);
-            Panel_Bottom.BackColor = Color.FromArgb(255, 92, 138);
+            layeredPanel_top.BackColor = defaultColor;
+            scorllbar.BackColor = defaultColor;
+            Panel_Bottom.BackColor = defaultColor;
         }
 
         private void BackForm_Load(object sender, EventArgs e)
@@ -73,6 +81,22 @@ namespace MaiinTimer
                     }
                 }
             }
+
+            //加载中控件
+            DuiBaseControl loadBase = new DuiBaseControl();
+            loadBase.Size = List_Main.Size;
+            loadBase.Location = List_Main.Location;
+            loadBase.BackColor = Color.Transparent;
+
+            DuiPictureBox loadGif = new DuiPictureBox();
+            loadGif.Size = new Size(400, 325);
+            loadGif.BackgroundImage = Properties.Resources.loading7;
+            loadGif.BackgroundImageLayout = ImageLayout.Stretch;
+            loadGif.Location = new Point((loadBase.Width - 400) / 2, (loadBase.Height - 325) / 2);
+            loadBase.Controls.Add(loadGif);
+            Panel_load.DUIControls.Add(loadBase);
+            Panel_load.Size = loadBase.Size;
+            Panel_load.Location = loadBase.Location;
             addBackImg();
         }
         /// <summary>
@@ -120,6 +144,7 @@ namespace MaiinTimer
                             DuiTextBox searchText = citem as DuiTextBox;
                             if (!string.IsNullOrEmpty(searchText.Text) && searchText.Text != "输入关键字进行搜索")
                             {
+                                LoadingControl(true);
                                 isSearch = true;
                                 startNo = "0";
                                 labelId = searchText.Text;
@@ -181,23 +206,23 @@ namespace MaiinTimer
             DuiBaseControl bControl = btn.Parent as DuiBaseControl;
             if (btn.Name.Contains("ImageTypeName_"))
             {
-                btn.ForeColor = System.Drawing.Color.FromArgb(255, 92, 138);
+                btn.ForeColor = defaultColor;
                 foreach (var item in bControl.FindControl("ImageTypeLine_" + btn.Tag.ToString()))
                 {
                     if (item is DuiLabel)
                     {
-                        item.BackColor = System.Drawing.Color.FromArgb(255, 92, 138);
+                        item.BackColor = defaultColor;
                     }
                 }
             }
             else
             {
-                btn.BackColor = System.Drawing.Color.FromArgb(255, 92, 138);
+                btn.BackColor = defaultColor;
                 foreach (var item in bControl.FindControl("ImageTypeName_" + btn.Tag.ToString()))
                 {
                     if (item is DuiLabel)
                     {
-                        item.ForeColor = System.Drawing.Color.FromArgb(255, 92, 138);
+                        item.ForeColor = defaultColor;
                     }
                 }
             }
@@ -232,6 +257,7 @@ namespace MaiinTimer
             //!string.IsNullOrEmpty((sender as DuiLabel).Tag.ToString()) &&
             if ((sender as DuiLabel).Tag.ToString() != "999" && (sender as DuiLabel).Tag.ToString() != labelId)
             {
+                LoadingControl(true);
                 labelId = (sender as DuiLabel).Tag.ToString();
                 startNo = "0";
                 isSearch = false;
@@ -314,6 +340,7 @@ namespace MaiinTimer
                     imgInfos.Clear();
                 }
             }
+            LoadingControl(false);
             return true;
         }
         /// <summary>
@@ -324,6 +351,7 @@ namespace MaiinTimer
         /// <returns></returns>
         private bool addImgListItem(string tagId, string startNos)
         {
+            //准备加载下一页图片
             startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
             List<DuiBaseControl> cItems = new List<DuiBaseControl>();
             var result = new Utils.Response<BridImg.ImageJson>();
@@ -354,9 +382,28 @@ namespace MaiinTimer
                     imgInfos.Clear();
                 }
             }
+            LoadingControl(false);
+            //如果为尾页则显示加载完毕
+            if (result.Result.data.Count <= 0)
+            {
+
+            }
+
             return true;
         }
-
+        private bool LoadingControl(bool isLoad)
+        {
+            Panel_load.Visible = isLoad;
+            if (isLoad)
+            {
+                Panel_load.BringToFront();
+            }
+            else
+            {
+                Panel_load.SendToBack();
+            }
+            return true;
+        }
         private void skinLine_Update()
         {
             foreach (var itemControl in typeControl.Controls)
@@ -525,8 +572,8 @@ namespace MaiinTimer
             dLabel1.MouseClick += Dlbe_MouseClick;
             if (imgType.id == 0)
             {
-                dlbe.ForeColor = Color.FromArgb(255, 92, 138);
-                dLabel1.BackColor = Color.FromArgb(255, 92, 138);
+                dlbe.ForeColor = defaultColor;
+                dLabel1.BackColor = defaultColor;
             }
             typeControl.Controls.Add(dlbe);
             typeControl.Controls.Add(dLabel1);
@@ -609,8 +656,9 @@ namespace MaiinTimer
             }
             return ltypeControl;
         }
-        private Boolean addBackImg()
+        private void addBackImg()
         {
+            LoadingControl(true);
             var result = new Utils.Response<BridImg.ImageJson>();
             var rType = new Utils.Response<BridImg.ImgJson>();
             try
@@ -631,6 +679,7 @@ namespace MaiinTimer
                         imgInfos.Clear();
                     }
                 }
+                LoadingControl(false);
             }
             catch (Exception ex)
             {
@@ -638,7 +687,6 @@ namespace MaiinTimer
                 result.Message = ex.Message;
                 throw;
             }
-            return true;
         }
 
         #endregion
@@ -664,7 +712,7 @@ namespace MaiinTimer
         {
             mousetop = scorllbar.PointToClient(MousePosition).Y;
             scorlling = true;
-            scorllbar.BackColor = Color.FromArgb(80, 215, 92, 95);
+            scorllbar.BackColor = defaultColor;
         }
 
         private void scorllbar_MouseEnter(object sender, EventArgs e)
@@ -673,12 +721,12 @@ namespace MaiinTimer
                 scorllbar.Top = List_Main.Top + 2;
             if (scorllbar.Top > (List_Main.Top + List_Main.Height - scorllbar.Height))
                 scorllbar.Top = (List_Main.Top + List_Main.Height - scorllbar.Height);
-            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 58);
+            scorllbar.BackColor = defaultColor;
         }
 
         private void scorllbar_MouseLeave(object sender, EventArgs e)
         {
-            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 138);
+            scorllbar.BackColor = defaultColor;
         }
 
         private void scorllbar_MouseMove(object sender, MouseEventArgs e)
@@ -693,7 +741,7 @@ namespace MaiinTimer
         private void scorllbar_MouseUp(object sender, MouseEventArgs e)
         {
             mousetop = e.Y; scorlling = false;
-            scorllbar.BackColor = Color.FromArgb(100, 255, 92, 138);
+            scorllbar.BackColor = defaultColor;
         }
 
         private void List_Main_RefreshListed(object sender, EventArgs e)
@@ -731,6 +779,7 @@ namespace MaiinTimer
             }
             if (List_Main.Value == 1)
             {
+                LoadingControl(true);
                 startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
                 addImgListItem(labelId,startNo);
             }

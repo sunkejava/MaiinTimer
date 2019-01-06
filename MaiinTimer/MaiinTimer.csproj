@@ -150,5 +150,8 @@
   <ItemGroup>
     <None Include="Resources\skinPanel1.NormlBack.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading7.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
