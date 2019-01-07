@@ -81,23 +81,8 @@ namespace MaiinTimer
                     }
                 }
             }
-
-            //加载中控件
-            DuiBaseControl loadBase = new DuiBaseControl();
-            loadBase.Size = List_Main.Size;
-            loadBase.Location = List_Main.Location;
-            loadBase.BackColor = Color.Transparent;
-
-            DuiPictureBox loadGif = new DuiPictureBox();
-            loadGif.Size = new Size(400, 325);
-            loadGif.BackgroundImage = Properties.Resources.loading7;
-            loadGif.BackgroundImageLayout = ImageLayout.Stretch;
-            loadGif.Location = new Point((loadBase.Width - 400) / 2, (loadBase.Height - 325) / 2);
-            loadBase.Controls.Add(loadGif);
-            Panel_load.DUIControls.Add(loadBase);
-            Panel_load.Size = loadBase.Size;
-            Panel_load.Location = loadBase.Location;
-            addBackImg();
+            Thread thread = new Thread(() => addBackImg());
+            thread.Start();
         }
         /// <summary>
         /// 搜索框获取焦点后事件
@@ -148,7 +133,8 @@ namespace MaiinTimer
                                 isSearch = true;
                                 startNo = "0";
                                 labelId = searchText.Text;
-                                updateImgList(searchText.Text, "");
+                                Thread thread = new Thread(() => updateImgList(searchText.Text, ""));
+                                thread.Start();
                             }
                             else
                             {
@@ -261,7 +247,8 @@ namespace MaiinTimer
                 labelId = (sender as DuiLabel).Tag.ToString();
                 startNo = "0";
                 isSearch = false;
-                updateImgList(labelId, startNo);
+                Thread thread = new Thread(() => updateImgList(labelId, startNo));
+                thread.Start();
             }
         }
         private void Dlbe_MouseLeave(object sender, EventArgs e)
@@ -781,7 +768,8 @@ namespace MaiinTimer
             {
                 LoadingControl(true);
                 startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
-                addImgListItem(labelId,startNo);
+                Thread thread = new Thread(() => addImgListItem(labelId, startNo));
+                thread.Start();
             }
         }
         #endregion
