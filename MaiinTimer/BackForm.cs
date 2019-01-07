@@ -42,12 +42,8 @@ namespace MaiinTimer
         string pageCount = "12";//每页或每次调用获取图片的总数
         bool isSearch = false;//是否搜索
         Color defaultColor = Color.FromArgb(255, 92, 138);
-        //public Thread t = null;
-        //public delegate void UpdateUI(bool isLoad);//声明一个更新控件信息的委托
-        //public UpdateUI UpdateUIDelegate;
-        //public delegate void AccomplishTask();//声明一个在完成任务时通知主线程的委托
-        //public AccomplishTask TaskCallBack;
-        //delegate void AsynUpdateUI(bool isLoad);
+        delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
+        delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         #region 窗体控件事件
         public BackForm()
         {
@@ -81,8 +77,9 @@ namespace MaiinTimer
                     }
                 }
             }
-            Thread thread = new Thread(() => addBackImg());
-            thread.Start();
+            //Thread thread = new Thread(() => addBackImg());
+            //thread.Start();
+            addBackImg();
         }
         /// <summary>
         /// 搜索框获取焦点后事件
@@ -129,7 +126,6 @@ namespace MaiinTimer
                             DuiTextBox searchText = citem as DuiTextBox;
                             if (!string.IsNullOrEmpty(searchText.Text) && searchText.Text != "输入关键字进行搜索")
                             {
-                                LoadingControl(true);
                                 isSearch = true;
                                 startNo = "0";
                                 labelId = searchText.Text;
@@ -243,7 +239,6 @@ namespace MaiinTimer
             //!string.IsNullOrEmpty((sender as DuiLabel).Tag.ToString()) &&
             if ((sender as DuiLabel).Tag.ToString() != "999" && (sender as DuiLabel).Tag.ToString() != labelId)
             {
-                LoadingControl(true);
                 labelId = (sender as DuiLabel).Tag.ToString();
                 startNo = "0";
                 isSearch = false;
@@ -281,6 +276,7 @@ namespace MaiinTimer
         /// <returns></returns>
         private bool updateImgList(string tagId,string startNos)
         {
+            LoadingControl(true);
             startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
             List<DuiBaseControl> cItems = new List<DuiBaseControl>();
             foreach (var item in List_Main.Items)
@@ -338,6 +334,7 @@ namespace MaiinTimer
         /// <returns></returns>
         private bool addImgListItem(string tagId, string startNos)
         {
+            LoadingControl(true);
             //准备加载下一页图片
             startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
             List<DuiBaseControl> cItems = new List<DuiBaseControl>();
@@ -378,18 +375,25 @@ namespace MaiinTimer
 
             return true;
         }
-        private bool LoadingControl(bool isLoad)
+        private void LoadingControl(bool isLoad)
         {
-            Panel_load.Visible = isLoad;
-            if (isLoad)
+            if (this.Panel_load.InvokeRequired)
             {
-                Panel_load.BringToFront();
+                AsynUpdateUI au = new AsynUpdateUI(LoadingControl);
+                this.Invoke(au, new object[] { isLoad });
             }
             else
             {
-                Panel_load.SendToBack();
+                Panel_load.Visible = isLoad;
+                if (isLoad)
+                {
+                    Panel_load.BringToFront();
+                }
+                else
+                {
+                    Panel_load.SendToBack();
+                }
             }
-            return true;
         }
         private void skinLine_Update()
         {
@@ -672,7 +676,7 @@ namespace MaiinTimer
             {
                 result.Code = 500;
                 result.Message = ex.Message;
-                throw;
+                throw ex;
             }
         }
 
@@ -733,24 +737,33 @@ namespace MaiinTimer
 
         private void List_Main_RefreshListed(object sender, EventArgs e)
         {
-            int allheight = 0;
-            for (int i = 0; i < List_Main.Items.Count; i++)
+            if (this.List_Main.InvokeRequired)
             {
-                if (List_Main.Items[i].Visible)
-                    allheight = allheight + List_Main.Items[i].Height;
-            }
-            double pre = (double)List_Main.Height / (double)allheight;
-            if (pre < 1)
-            {
-                if (List_Main.Visible)
-                    scorllbar.Show();
-
-                scorllbar.Height = (int)(pre * (double)List_Main.Height);
-                scorllbar.Top = (int)(List_Main.Value * (List_Main.Height - scorllbar.Height)) + List_Main.Top;
+                AsynScrollUI au = new AsynScrollUI(List_Main_RefreshListed);
+                this.Invoke(au, new object[] { sender,e });
             }
             else
             {
-                scorllbar.Hide();
+                int allheight = 0;
+                for (int i = 0; i < List_Main.Items.Count; i++)
+                {
+                    if (List_Main.Items[i].Visible)
+                        allheight = allheight + List_Main.Items[i].Height;
+                }
+                double pre = (double)List_Main.Height / (double)allheight;
+                if (pre < 1)
+                {
+                    if (List_Main.Visible)
+                        scorllbar.Show();
+
+                    scorllbar.Height = (int)(pre * (double)List_Main.Height);
+                    scorllbar.Top = (int)(List_Main.Value * (List_Main.Height - scorllbar.Height)) + List_Main.Top;
+                }
+                else
+                {
+                    scorllbar.Hide();
+                }
+
             }
         }
         /// <summary>
@@ -766,7 +779,6 @@ namespace MaiinTimer
             }
             if (List_Main.Value == 1)
             {
-                LoadingControl(true);
                 startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
                 Thread thread = new Thread(() => addImgListItem(labelId, startNo));
                 thread.Start();
