@@ -305,12 +305,12 @@ namespace MaiinTimer.Controls
                 Stream stream = webres.GetResponseStream();
                 image = System.Drawing.Image.FromStream(stream);
                 stream.Close();
+                return image;
             }
             catch (Exception ex)
             {
                 throw new Exception("获取图片失败，原因为：" + ex.Message);
             }
-            return image;
         }
 
         /// <summary>
