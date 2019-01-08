@@ -44,6 +44,7 @@ namespace MaiinTimer
         Color defaultColor = Color.FromArgb(255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
+        delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
         #region 窗体控件事件
         public BackForm()
         {
@@ -773,15 +774,23 @@ namespace MaiinTimer
         /// <param name="e"></param>
         private void List_Main_ValueChanged(object sender, EventArgs e)
         {
-            if (!scorlling)
+            if (this.List_Main.InvokeRequired)
             {
-                scorllbar.Top = (int)(List_Main.Value * (List_Main.Height - scorllbar.Height)) + List_Main.Top;
+                AsynScrollUpdateUI au = new AsynScrollUpdateUI(List_Main_ValueChanged);
+                this.Invoke(au, new object[] { sender, e });
             }
-            if (List_Main.Value == 1)
+            else
             {
-                startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
-                Thread thread = new Thread(() => addImgListItem(labelId, startNo));
-                thread.Start();
+                if (!scorlling)
+                {
+                    scorllbar.Top = (int)(List_Main.Value * (List_Main.Height - scorllbar.Height)) + List_Main.Top;
+                }
+                if (List_Main.Value == 1)
+                {
+                    startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
+                    Thread thread = new Thread(() => addImgListItem(labelId, startNo));
+                    thread.Start();
+                }
             }
         }
         #endregion
