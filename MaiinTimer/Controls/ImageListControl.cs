@@ -211,7 +211,7 @@ namespace MaiinTimer.Controls
                 DuiPictureBox dp = new DuiPictureBox();
                 dp.Size = new Size(zWidth - 4, zHeight - 4);
                 dp.Tag = imgInfo.img_1024_768;
-                dp.BackgroundImage = GetImageByUrl(imgInfo.url);
+                dp.BackgroundImage = GetImageByUrl(imgInfo.url, zWidth - 4, zHeight - 4);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
                 dp.Location = new Point(2, 2);
@@ -295,15 +295,29 @@ namespace MaiinTimer.Controls
             SystemParametersInfo(20, 1, strSavePath, 1);
         }
 
-        private Image GetImageByUrl(string url)
+        private Image GetImageByUrl(string url,int zWidth,int zHeight)
         {
             System.Drawing.Image image = null;
             try
             {
                 WebClient wc = new WebClient();
-                string saveUrl = System.AppDomain.CurrentDomain.BaseDirectory + "\\" + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
+                string saveUrl = System.AppDomain.CurrentDomain.BaseDirectory + "\\picTemp\\";
+                if (!Directory.Exists(saveUrl))
+                {
+                    Directory.CreateDirectory(saveUrl);
+                }
+                string rImgPath = System.AppDomain.CurrentDomain.BaseDirectory + "\\picMixTemp\\";
+                if (!Directory.Exists(rImgPath))
+                {
+                    Directory.CreateDirectory(rImgPath);
+                }
+                //下载图片
+                saveUrl = saveUrl + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
+                rImgPath = rImgPath + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
                 wc.DownloadFile(url, saveUrl);
-                image = System.Drawing.Image.FromFile(saveUrl);
+                //缩小图片并加水印
+                PicDeal.MakeThumbnail(saveUrl,rImgPath, zWidth, zHeight, "Cut");
+                image = System.Drawing.Image.FromFile(rImgPath);
                 return image;
             }
             catch (Exception ex)
