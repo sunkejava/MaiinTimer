@@ -300,11 +300,10 @@ namespace MaiinTimer.Controls
             System.Drawing.Image image = null;
             try
             {
-                WebRequest webreq = WebRequest.Create(url);
-                WebResponse webres = webreq.GetResponse();
-                Stream stream = webres.GetResponseStream();
-                image = System.Drawing.Image.FromStream(stream);
-                stream.Close();
+                WebClient wc = new WebClient();
+                string saveUrl = System.AppDomain.CurrentDomain.BaseDirectory + "\\" + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
+                wc.DownloadFile(url, saveUrl);
+                image = System.Drawing.Image.FromFile(saveUrl);
                 return image;
             }
             catch (Exception ex)
