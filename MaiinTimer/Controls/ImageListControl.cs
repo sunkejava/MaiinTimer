@@ -211,7 +211,7 @@ namespace MaiinTimer.Controls
                 DuiPictureBox dp = new DuiPictureBox();
                 dp.Size = new Size(zWidth - 4, zHeight - 4);
                 dp.Tag = imgInfo.img_1024_768;
-                dp.BackgroundImage = GetImageByUrl(imgInfo.url, zWidth - 4, zHeight - 4);
+                dp.BackgroundImage = GetImageByUrl(imgInfo.url_thumb, zWidth - 4, zHeight - 4);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
                 dp.Location = new Point(2, 2);
@@ -298,9 +298,11 @@ namespace MaiinTimer.Controls
         private Image GetImageByUrl(string url,int zWidth,int zHeight)
         {
             System.Drawing.Image image = null;
+            HttpWebRequest req;
+            HttpWebResponse res = null;
             try
             {
-                WebClient wc = new WebClient();
+                System.Uri httpUrl = new System.Uri(url);
                 string saveUrl = System.AppDomain.CurrentDomain.BaseDirectory + "\\picTemp\\";
                 if (!Directory.Exists(saveUrl))
                 {
@@ -311,19 +313,35 @@ namespace MaiinTimer.Controls
                 {
                     Directory.CreateDirectory(rImgPath);
                 }
-                //下载图片
-                saveUrl = saveUrl + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
-                rImgPath = rImgPath + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
-                wc.DownloadFile(url, saveUrl);
+                saveUrl = saveUrl + httpUrl.Segments[httpUrl.Segments.Length - 1];
+                rImgPath = rImgPath + httpUrl.Segments[httpUrl.Segments.Length - 1];
+                //下载原图
+                req = (HttpWebRequest)(WebRequest.Create(httpUrl));
+                req.Timeout = 10000; //设置超时值10秒
+                req.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
+                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8";
+                req.Method = "GET";
+                res = (HttpWebResponse)(req.GetResponse());
+                image = new Bitmap(res.GetResponseStream());//获取图片流                 
+                image.Save(saveUrl);
                 //缩小图片并加水印
-                PicDeal.MakeThumbnail(saveUrl,rImgPath, zWidth, zHeight, "Cut");
+                PicDeal.MakeThumbnail(saveUrl, rImgPath, zWidth, zHeight, "Cut");
+                PicDeal.LetterWatermark(rImgPath, 8, "@sunkejava", Color.White, "");
+                if (image != null)
+                {
+                    image.Dispose();
+                }
                 image = System.Drawing.Image.FromFile(rImgPath);
-                return image;
             }
             catch (Exception ex)
             {
                 throw new Exception("获取图片失败，原因为：" + ex.Message);
             }
+            finally
+            {
+                res.Close();
+            }
+            return image;
         }
 
         /// <summary>
@@ -336,8 +354,6 @@ namespace MaiinTimer.Controls
             base.RefreshList();
         }
         #endregion
-
-
 
         #region 委托事件
         /// <summary>
