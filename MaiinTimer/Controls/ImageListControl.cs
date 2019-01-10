@@ -25,6 +25,7 @@ namespace MaiinTimer.Controls
     {
         
         BridImg bimg = new BridImg();
+        public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
         #region 控件事件
 
         /// <summary>
@@ -211,7 +212,8 @@ namespace MaiinTimer.Controls
                 DuiPictureBox dp = new DuiPictureBox();
                 dp.Size = new Size(zWidth - 4, zHeight - 4);
                 dp.Tag = imgInfo.img_1024_768;
-                dp.BackgroundImage = GetImageByUrl(imgInfo.url_thumb, zWidth - 4, zHeight - 4);
+                getImageByUIrlDelegate newg = new getImageByUIrlDelegate(GetImageByUrl);
+                dp.BackgroundImage = newg(imgInfo.url_thumb, zWidth - 4, zHeight - 4);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
                 dp.Location = new Point(2, 2);
