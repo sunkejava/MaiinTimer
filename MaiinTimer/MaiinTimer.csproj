@@ -143,16 +143,19 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\download.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\seting.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\skinPanel1.NormlBack.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\loading7.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\seting.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

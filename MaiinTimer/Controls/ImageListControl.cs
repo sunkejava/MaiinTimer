@@ -69,6 +69,11 @@ namespace MaiinTimer.Controls
                 DuiButton ldb = (DuiButton)dp.FindControl("btn_Setting_" + strId)[0];
                 ldb.Visible = false;
             }
+            if (dp.FindControl("btn_Sc_" + strId).Count > 0)
+            {
+                DuiButton ldb = (DuiButton)dp.FindControl("btn_Sc_" + strId)[0];
+                ldb.Visible = false;
+            }
         }
         /// <summary>
         /// 图片列表获取焦点后的事件
@@ -109,6 +114,11 @@ namespace MaiinTimer.Controls
             if (dp.FindControl("btn_Setting_" + strId).Count > 0)
             {
                 DuiButton ldb = (DuiButton)dp.FindControl("btn_Setting_" + strId)[0];
+                ldb.Visible = true;
+            }
+            if (dp.FindControl("btn_Sc_" + strId).Count > 0)
+            {
+                DuiButton ldb = (DuiButton)dp.FindControl("btn_Sc_" + strId)[0];
                 ldb.Visible = true;
             }
         }
@@ -212,8 +222,8 @@ namespace MaiinTimer.Controls
                 DuiPictureBox dp = new DuiPictureBox();
                 dp.Size = new Size(zWidth - 4, zHeight - 4);
                 dp.Tag = imgInfo.img_1024_768;
-                getImageByUIrlDelegate newg = new getImageByUIrlDelegate(GetImageByUrl);
-                dp.BackgroundImage = newg(imgInfo.url_thumb, zWidth - 4, zHeight - 4);
+                getImageByUIrlDelegate newg = new getImageByUIrlDelegate(GetImageByUrlDrawLetter);
+                dp.BackgroundImage = newg(imgInfo.url.Replace("__85", "300_161_100"), zWidth - 4, zHeight - 4);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
                 dp.Location = new Point(2, 2);
@@ -224,7 +234,7 @@ namespace MaiinTimer.Controls
                 //图片说明
                 DuiLabel imgTag = new DuiLabel();
                 imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-                imgTag.Size = new Size(zWidth - 4, 20);
+                imgTag.Size = new Size(0, 0);
                 imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
                 imgTag.ForeColor = Color.White;
                 imgTag.TextAlign = ContentAlignment.MiddleCenter;
@@ -235,32 +245,50 @@ namespace MaiinTimer.Controls
                 imgTag.Cursor = System.Windows.Forms.Cursors.Hand;
                 //下载按钮
                 DuiButton btn_Download = new DuiButton();
-                btn_Download.Location = new Point(zWidth - 4 - 60, zHeight - 4 - 20);
-                btn_Download.Size = new Size(20, 20);
+                btn_Download.Location = new Point(zWidth - 24 - 105, zHeight - 5 - 35);
+                btn_Download.Size = new Size(35, 35);
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.NormalImage = Properties.Resources.download;
                 btn_Download.AdaptImage = false;
                 btn_Download.Name = "btn_Download_"+imgInfo.id.ToString();
-                btn_Download.BackColor = Color.Transparent;
+                btn_Download.BackColor = Color.White;
+                btn_Download.Radius = 35;
                 btn_Download.ShowBorder = false;
                 btn_Download.MouseEnter += Dp_MouseEnter;
                 btn_Download.MouseLeave += Dp_MouseLeave;
                 btn_Download.MouseClick += Btn_Download_MouseClick;
                 btn_Download.Visible = false;
+                //收藏按钮
+                DuiButton btn_sc = new DuiButton();
+                btn_sc.Location = new Point(zWidth - 16 - 70, zHeight - 5 - 35);
+                btn_sc.Size = new Size(35, 35);
+                btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
+                btn_sc.NormalImage = Properties.Resources.sc;
+                btn_sc.AdaptImage = false;
+                btn_sc.Name = "btn_Sc_" + imgInfo.id.ToString();
+                btn_sc.BackColor = Color.White;
+                btn_sc.Radius = 35;
+                btn_sc.ShowBorder = false;
+                btn_sc.MouseEnter += Dp_MouseEnter;
+                btn_sc.MouseLeave += Dp_MouseLeave;
+                btn_sc.MouseClick += Btn_Download_MouseClick;
+                btn_sc.Visible = false;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(zWidth - 4 - 20, zHeight - 4 - 20);
-                btn_Setting.Size = new Size(20, 20);
+                btn_Setting.Location = new Point(zWidth - 8 - 35, zHeight - 5 - 35);
+                btn_Setting.Size = new Size(35, 35);
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Setting.NormalImage = Properties.Resources.seting;
                 btn_Setting.AdaptImage = false;
                 btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
-                btn_Setting.BackColor = Color.Transparent;
+                btn_Setting.BackColor = Color.White;
+                btn_Setting.Radius = 35;
                 btn_Setting.ShowBorder = false;
                 btn_Setting.MouseEnter += Dp_MouseEnter;
                 btn_Setting.MouseLeave += Dp_MouseLeave;
                 btn_Setting.MouseClick += Btn_Setting_MouseClick;
                 btn_Setting.Visible = false;
+               
 
                 Borders baseBorder = new Borders(baseControl);
                 baseBorder.BottomWidth = 2;
@@ -272,6 +300,7 @@ namespace MaiinTimer.Controls
                 abaseControl.Controls.Add(dp);
                 abaseControl.Controls.Add(imgTag);
                 abaseControl.Controls.Add(btn_Download);
+                abaseControl.Controls.Add(btn_sc);
                 abaseControl.Controls.Add(btn_Setting);
                 baseControl.Controls.Add(abaseControl);
                 i++;
@@ -296,7 +325,43 @@ namespace MaiinTimer.Controls
         {
             SystemParametersInfo(20, 1, strSavePath, 1);
         }
+        /// <summary>
+        /// 获取图片并添加水印
+        /// </summary>
+        /// <param name="url">图片地址</param>
+        /// <param name="zWidth">宽</param>
+        /// <param name="zHeight">高</param>
+        /// <returns></returns>
+        private Image GetImageByUrlDrawLetter(string url, int zWidth, int zHeight)
+        {
+            //string letter = "@sunkejava";
+            //int fontSize = 8;
+            System.Drawing.Image image = null;
+            try
+            {
+                System.Net.WebRequest webreq = System.Net.WebRequest.Create(url);
+                System.Net.WebResponse webres = webreq.GetResponse();
+                using (System.IO.Stream stream = webres.GetResponseStream())
+                {
+                    image = Image.FromStream(stream);
+                    //Graphics gs = Graphics.FromImage(image);
+                    //Font font = new Font("宋体", fontSize);
+                    //Brush br = new SolidBrush(Color.White);
+                    //gs.DrawString(letter, font, br, zWidth-(fontSize * letter.Length), zHeight-fontSize-5);
+                    //gs.Dispose();
+                    return image;
+                }
+            }
+            catch (Exception ex)
+            {
 
+                throw new Exception("获取图片失败，原因为：" + ex.Message);
+            }
+            finally
+            {
+                //image.Dispose();
+            }
+        }
         private Image GetImageByUrl(string url,int zWidth,int zHeight)
         {
             System.Drawing.Image image = null;
@@ -363,10 +428,6 @@ namespace MaiinTimer.Controls
         /// </summary>
         [Description("列表刷新事件"), Category("自定义事件")]
         public event EventHandler RefreshListed;
-        [Description("列表点击事件"), Category("自定义事件")]
-        public event EventHandler ImgListMouseDown;
-        [Description("分类点击事件"), Category("自定义事件")]
-        public event EventHandler ImgTypeMouseDown;
 
         #endregion
 
