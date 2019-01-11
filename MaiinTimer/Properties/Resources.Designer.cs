@@ -93,6 +93,16 @@ namespace MaiinTimer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap download1 {
+            get {
+                object obj = ResourceManager.GetObject("download1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap loading7 {
             get {
                 object obj = ResourceManager.GetObject("loading7", resourceCulture);
@@ -136,6 +146,16 @@ namespace MaiinTimer.Properties {
         internal static System.Drawing.Bitmap sc {
             get {
                 object obj = ResourceManager.GetObject("sc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap sc1 {
+            get {
+                object obj = ResourceManager.GetObject("sc1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
