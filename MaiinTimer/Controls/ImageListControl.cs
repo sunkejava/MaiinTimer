@@ -51,29 +51,22 @@ namespace MaiinTimer.Controls
                 strId = (sender as DuiPictureBox).Name.Replace("back_", "");
                 dp = (sender as DuiPictureBox).Parent as DuiBaseControl;
             }
-            //显示说明
-            if (dp.FindControl("imgTag_" + strId).Count > 0)
+            //隐藏按钮
+            if (dp.FindControl("btnBaseControl_" + strId).Count > 0)
             {
-                DuiLabel dl = (DuiLabel)dp.FindControl("imgTag_" + strId)[0];
-                //dl.Visible = true;
-                dl.Location = new Point(2, dp.Height - 22);
+                DuiBaseControl ldl = dp.FindControl("btnBaseControl_" + strId)[0];
+                if (!ldl.IsMouseEnter)
+                {
+                    ldl.Visible = false;
+                    //显示说明
+                    if (dp.FindControl("imgTag_" + strId).Count > 0)
+                    {
+                        DuiLabel dl = (DuiLabel)dp.FindControl("imgTag_" + strId)[0];
+                        dl.Visible = true;
+                    }
+                }
             }
-            //隐藏下载与设置按钮
-            if (dp.FindControl("btn_Download_" + strId).Count > 0)
-            {
-                DuiButton ldl = (DuiButton)dp.FindControl("btn_Download_" + strId)[0];
-                ldl.Visible = false;
-            }
-            if (dp.FindControl("btn_Setting_" + strId).Count > 0)
-            {
-                DuiButton ldb = (DuiButton)dp.FindControl("btn_Setting_" + strId)[0];
-                ldb.Visible = false;
-            }
-            if (dp.FindControl("btn_Sc_" + strId).Count > 0)
-            {
-                DuiButton ldb = (DuiButton)dp.FindControl("btn_Sc_" + strId)[0];
-                ldb.Visible = false;
-            }
+            
         }
         /// <summary>
         /// 图片列表获取焦点后的事件
@@ -102,24 +95,14 @@ namespace MaiinTimer.Controls
             if (dp.FindControl("imgTag_" + strId).Count > 0)
             {
                 DuiLabel dl = (DuiLabel)dp.FindControl("imgTag_" + strId)[0];
-                //dl.Visible = false;
-                dl.Location = new Point(2, 2);
+                dl.Visible = false;
+                //dl.Location = new Point(2, 2);
             }
-            //显示下载与设置按钮
-            if (dp.FindControl("btn_Download_" + strId).Count > 0)
+            //显示按钮
+            if (dp.FindControl("btnBaseControl_" + strId).Count > 0)
             {
-                DuiButton ldl = (DuiButton)dp.FindControl("btn_Download_" + strId)[0];
+                DuiBaseControl ldl = dp.FindControl("btnBaseControl_" + strId)[0];
                 ldl.Visible = true;
-            }
-            if (dp.FindControl("btn_Setting_" + strId).Count > 0)
-            {
-                DuiButton ldb = (DuiButton)dp.FindControl("btn_Setting_" + strId)[0];
-                ldb.Visible = true;
-            }
-            if (dp.FindControl("btn_Sc_" + strId).Count > 0)
-            {
-                DuiButton ldb = (DuiButton)dp.FindControl("btn_Sc_" + strId)[0];
-                ldb.Visible = true;
             }
         }
         /// <summary>
@@ -234,18 +217,27 @@ namespace MaiinTimer.Controls
                 //图片说明
                 DuiLabel imgTag = new DuiLabel();
                 imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-                imgTag.Size = new Size(0, 0);
+                if (imgInfo.utag.Length * 9 > zWidth)
+                {
+                    imgTag.Size = new Size(zWidth-2, 10*4);
+                    imgTag.Location = new Point(0, zHeight - 40);
+                }
+                else
+                {
+                    imgTag.Size = new Size(zWidth-2, 10*2);
+                    imgTag.Location = new Point(0, zHeight - 20);
+                }
                 imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
                 imgTag.ForeColor = Color.White;
                 imgTag.TextAlign = ContentAlignment.MiddleCenter;
                 imgTag.BackColor = Color.FromArgb(100, 0, 0, 0);
                 imgTag.Text = imgInfo.utag;
                 imgTag.Name = "imgTag_" + imgInfo.id.ToString();
-                imgTag.Location = new Point(2, zHeight - 22);
+                
                 imgTag.Cursor = System.Windows.Forms.Cursors.Hand;
                 //下载按钮
                 DuiButton btn_Download = new DuiButton();
-                btn_Download.Location = new Point(zWidth - 24 - 90, zHeight - 5 - 30);
+                btn_Download.Location = new Point(zWidth - 24 - 90, 0);
                 btn_Download.Size = new Size(30, 30);
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.AdaptImage = false;
@@ -254,15 +246,14 @@ namespace MaiinTimer.Controls
                 btn_Download.BaseColor = Color.Transparent;
                 btn_Download.Radius = 30;
                 btn_Download.ShowBorder = false;
-                btn_Download.MouseEnter += Dp_MouseEnter;
-                btn_Download.MouseLeave += Dp_MouseLeave;
+                //btn_Download.MouseEnter += Dp_MouseEnter;
+                //btn_Download.MouseLeave += Dp_MouseLeave;
                 btn_Download.MouseClick += Btn_Download_MouseClick;
                 btn_Download.IsPureColor = true;
                 btn_Download.NormalImage = Properties.Resources.download;
-                btn_Download.Visible = false;
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
-                btn_sc.Location = new Point(zWidth - 16 - 60, zHeight - 5 - 30);
+                btn_sc.Location = new Point(zWidth - 16 - 60, 0);
                 btn_sc.Size = new Size(30, 30);
                 btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_sc.AdaptImage = false;
@@ -271,15 +262,14 @@ namespace MaiinTimer.Controls
                 btn_sc.BaseColor = Color.Transparent;
                 btn_sc.Radius = 30;
                 btn_sc.ShowBorder = false;
-                btn_sc.MouseEnter += Dp_MouseEnter;
-                btn_sc.MouseLeave += Dp_MouseLeave;
+                //btn_sc.MouseEnter += Dp_MouseEnter;
+                //btn_sc.MouseLeave += Dp_MouseLeave;
                 btn_sc.MouseClick += Btn_Download_MouseClick;
                 btn_sc.IsPureColor = true;
                 btn_sc.NormalImage = Properties.Resources.sc;
-                btn_sc.Visible = false;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(zWidth - 8 - 30, zHeight - 5 - 30);
+                btn_Setting.Location = new Point(zWidth - 8 - 30, 0);
                 btn_Setting.Size = new Size(30, 30);
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Setting.AdaptImage = false;
@@ -288,13 +278,23 @@ namespace MaiinTimer.Controls
                 btn_Setting.BaseColor = Color.Transparent;
                 btn_Setting.Radius = 30;
                 btn_Setting.ShowBorder = false;
-                btn_Setting.MouseEnter += Dp_MouseEnter;
-                btn_Setting.MouseLeave += Dp_MouseLeave;
+                //btn_Setting.MouseEnter += Dp_MouseEnter;
+                //btn_Setting.MouseLeave += Dp_MouseLeave;
                 btn_Setting.MouseClick += Btn_Setting_MouseClick;
                 btn_Setting.IsPureColor = true;
                 btn_Setting.NormalImage = Properties.Resources.seting;
-                btn_Setting.Visible = false;
-               
+                //按钮控件
+                DuiBaseControl btnBaseControl = new DuiBaseControl();
+                btnBaseControl.Size = new Size(zWidth,30);
+                btnBaseControl.Location = new Point(0,zHeight-30);
+                btnBaseControl.BackColor = Color.Transparent;
+                btnBaseControl.MouseEnter += Dp_MouseEnter;
+                btnBaseControl.MouseLeave += Dp_MouseLeave;
+                btnBaseControl.Controls.Add(btn_Download);
+                btnBaseControl.Controls.Add(btn_sc);
+                btnBaseControl.Controls.Add(btn_Setting);
+                btnBaseControl.Name = "btnBaseControl_"+ imgInfo.id.ToString();
+                btnBaseControl.Visible = false;
 
                 Borders baseBorder = new Borders(baseControl);
                 baseBorder.BottomWidth = 2;
@@ -305,9 +305,7 @@ namespace MaiinTimer.Controls
                 abaseControl.Borders = baseBorder;
                 abaseControl.Controls.Add(dp);
                 abaseControl.Controls.Add(imgTag);
-                abaseControl.Controls.Add(btn_Download);
-                abaseControl.Controls.Add(btn_sc);
-                abaseControl.Controls.Add(btn_Setting);
+                abaseControl.Controls.Add(btnBaseControl);
                 baseControl.Controls.Add(abaseControl);
                 i++;
             }
