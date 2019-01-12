@@ -40,6 +40,10 @@ namespace MaiinTimer.Controls
             if (sender is DuiBaseControl)
             {
                 dp = sender as DuiBaseControl;
+                if (dp.Name.Contains("btnBaseControl_"))
+                {
+                    strId = (dp != null ? dp.Name.Replace("btnBaseControl_", "") : "");
+                }
             }
             if (sender is DuiButton)
             {
@@ -237,14 +241,14 @@ namespace MaiinTimer.Controls
                 imgTag.Cursor = System.Windows.Forms.Cursors.Hand;
                 //下载按钮
                 DuiButton btn_Download = new DuiButton();
-                btn_Download.Location = new Point(zWidth - 24 - 90, 0);
-                btn_Download.Size = new Size(30, 30);
+                btn_Download.Location = new Point(zWidth - 24 - 75, 2);
+                btn_Download.Size = new Size(25, 25);
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.AdaptImage = false;
                 btn_Download.Name = "btn_Download_"+imgInfo.id.ToString();
                 btn_Download.BackColor = Color.Transparent;
                 btn_Download.BaseColor = Color.Transparent;
-                btn_Download.Radius = 30;
+                btn_Download.Radius = 25;
                 btn_Download.ShowBorder = false;
                 //btn_Download.MouseEnter += Dp_MouseEnter;
                 //btn_Download.MouseLeave += Dp_MouseLeave;
@@ -253,14 +257,14 @@ namespace MaiinTimer.Controls
                 btn_Download.NormalImage = Properties.Resources.download;
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
-                btn_sc.Location = new Point(zWidth - 16 - 60, 0);
-                btn_sc.Size = new Size(30, 30);
+                btn_sc.Location = new Point(zWidth - 16 - 50, 2);
+                btn_sc.Size = new Size(25, 25);
                 btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_sc.AdaptImage = false;
                 btn_sc.Name = "btn_Sc_" + imgInfo.id.ToString();
                 btn_sc.BackColor = Color.Transparent;
                 btn_sc.BaseColor = Color.Transparent;
-                btn_sc.Radius = 30;
+                btn_sc.Radius = 25;
                 btn_sc.ShowBorder = false;
                 //btn_sc.MouseEnter += Dp_MouseEnter;
                 //btn_sc.MouseLeave += Dp_MouseLeave;
@@ -269,14 +273,14 @@ namespace MaiinTimer.Controls
                 btn_sc.NormalImage = Properties.Resources.sc;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(zWidth - 8 - 30, 0);
-                btn_Setting.Size = new Size(30, 30);
+                btn_Setting.Location = new Point(zWidth - 8 - 25, 2);
+                btn_Setting.Size = new Size(25, 25);
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Setting.AdaptImage = false;
                 btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
                 btn_Setting.BackColor = Color.Transparent;
                 btn_Setting.BaseColor = Color.Transparent;
-                btn_Setting.Radius = 30;
+                btn_Setting.Radius = 25;
                 btn_Setting.ShowBorder = false;
                 //btn_Setting.MouseEnter += Dp_MouseEnter;
                 //btn_Setting.MouseLeave += Dp_MouseLeave;
@@ -285,9 +289,10 @@ namespace MaiinTimer.Controls
                 btn_Setting.NormalImage = Properties.Resources.seting;
                 //按钮控件
                 DuiBaseControl btnBaseControl = new DuiBaseControl();
-                btnBaseControl.Size = new Size(zWidth,30);
-                btnBaseControl.Location = new Point(0,zHeight-30);
-                btnBaseControl.BackColor = Color.Transparent;
+                btnBaseControl.Size = new Size(zWidth,34);
+                btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
+                btnBaseControl.Location = new Point(0,zHeight-38);
+                btnBaseControl.BackColor = Color.FromArgb(125,0,0,0);
                 btnBaseControl.MouseEnter += Dp_MouseEnter;
                 btnBaseControl.MouseLeave += Dp_MouseLeave;
                 btnBaseControl.Controls.Add(btn_Download);

@@ -266,6 +266,22 @@ namespace MaiinTimer
             List_Main.Refresh();
         }
 
+        /// <summary>
+        /// 热门标签底层控件离开事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TypeControl_MouseLeave(object sender, EventArgs e)
+        {
+            Panel_TypeMess.Visible = false;
+        }
+        /// <summary>
+        /// 热门标签底层控件进入事件
+        /// </summary>
+        private void TypeControl_MouseEnter(object sender, EventArgs e)
+        {
+            Panel_TypeMess.Visible = true;
+        }
         #endregion
 
         #region 自定义事件
@@ -527,10 +543,15 @@ namespace MaiinTimer
             typeControl.BackColor = Color.White;
             typeControl.Size = new Size(this.Width, 35);
             typeControl.Dock = DockStyle.Fill;
+
+            //typeControl.MouseEnter += TypeControl_MouseEnter;
+            //typeControl.MouseLeave += TypeControl_MouseLeave;
+
             Panel_TypeMess.BringToFront();
             Panel_Type.DUIControls.Add(typeControl);
             return true;
         }
+
         /// <summary>
         /// 添加分类
         /// </summary>
@@ -582,7 +603,7 @@ namespace MaiinTimer
         {
             int index = (typeControl.Controls.Count / 3);
             DuiBaseControl ltypeControl = new DuiBaseControl();
-            ltypeControl.Size = new Size(124, tagsList.Count * 24 / 2);
+            ltypeControl.Size = new Size(144, tagsList.Count * 27 / 2);
             ltypeControl.Name = "ImageTypeGrid_" + typeId;
             ltypeControl.Location = new Point(60 * index, 25);
             ltypeControl.Visible = false;
@@ -598,7 +619,7 @@ namespace MaiinTimer
                 dlbea.Size = new Size(60, 20);
                 dlbea.Text = citem.tagName;
                 dlbea.Name = "ImageTypeNameOther_" + citem.tagName;
-                dlbea.Location = new Point(60 * (coli - 1), 21 * (rowi - 1));
+                dlbea.Location = new Point(70 * (coli - 1), 24 * (rowi - 1));
                 dlbea.Cursor = System.Windows.Forms.Cursors.Hand;
                 //dlbea.MouseEnter += skinLine_MouseEnter;
                 //dlbea.MouseLeave += Dlbe_MouseLeave;
