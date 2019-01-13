@@ -41,7 +41,7 @@ namespace MaiinTimer
         string startNo = "0";//开始序号
         string pageCount = "12";//每页或每次调用获取图片的总数
         bool isSearch = false;//是否搜索
-        Color defaultColor = Color.FromArgb(255, 92, 138);
+        Color defaultColor = Color.FromArgb(60, 255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
@@ -249,18 +249,21 @@ namespace MaiinTimer
         }
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
-            skinLine_Update();
-            DuiLabel btn = sender as DuiLabel;
-            DuiBaseControl bControl = btn.Parent as DuiBaseControl;
-            foreach (var item in bControl.FindControl("ImageTypeGrid_" + btn.Tag.ToString()))
+            if (!Panel_TypeMess.Focused)
             {
-                if (item is DuiBaseControl)
+                skinLine_Update();
+                DuiLabel btn = sender as DuiLabel;
+                DuiBaseControl bControl = btn.Parent as DuiBaseControl;
+                foreach (var item in bControl.FindControl("ImageTypeGrid_" + btn.Tag.ToString()))
                 {
-                    Panel_TypeMess.DUIControls.Remove(item);
-                    Panel_TypeMess.Visible = false;
-                    Panel_TypeMess.Size = new Size(0, 0);
-                    Panel_TypeMess.Location = new Point(0, 0);
-                    Panel_TypeMess.Refresh();
+                    if (item is DuiBaseControl)
+                    {
+                        Panel_TypeMess.DUIControls.Remove(item);
+                        Panel_TypeMess.Visible = false;
+                        Panel_TypeMess.Size = new Size(0, 0);
+                        Panel_TypeMess.Location = new Point(0, 0);
+                        Panel_TypeMess.Refresh();
+                    }
                 }
             }
             List_Main.Refresh();

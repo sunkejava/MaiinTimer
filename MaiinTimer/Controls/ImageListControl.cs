@@ -287,12 +287,12 @@ namespace MaiinTimer.Controls
                 btn_Setting.MouseClick += Btn_Setting_MouseClick;
                 btn_Setting.IsPureColor = true;
                 btn_Setting.NormalImage = Properties.Resources.seting;
-                //按钮控件
+                //按钮底层控件
                 DuiBaseControl btnBaseControl = new DuiBaseControl();
-                btnBaseControl.Size = new Size(zWidth,34);
+                btnBaseControl.Size = new Size(zWidth-4,34);
                 btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
                 btnBaseControl.Location = new Point(0,zHeight-38);
-                btnBaseControl.BackColor = Color.FromArgb(125,0,0,0);
+                btnBaseControl.BackColor = Color.Transparent;
                 btnBaseControl.MouseEnter += Dp_MouseEnter;
                 btnBaseControl.MouseLeave += Dp_MouseLeave;
                 btnBaseControl.Controls.Add(btn_Download);
