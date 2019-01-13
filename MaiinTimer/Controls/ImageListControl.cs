@@ -223,13 +223,13 @@ namespace MaiinTimer.Controls
                 imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
                 if (imgInfo.utag.Length * 9 > zWidth)
                 {
-                    imgTag.Size = new Size(zWidth-2, 10*4);
-                    imgTag.Location = new Point(0, zHeight - 40);
+                    imgTag.Size = new Size(zWidth-4, 10*4);
+                    imgTag.Location = new Point(2, zHeight - 40);
                 }
                 else
                 {
-                    imgTag.Size = new Size(zWidth-2, 10*2);
-                    imgTag.Location = new Point(0, zHeight - 20);
+                    imgTag.Size = new Size(zWidth-4, 10*2);
+                    imgTag.Location = new Point(2, zHeight - 20);
                 }
                 imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
                 imgTag.ForeColor = Color.White;

@@ -219,7 +219,7 @@ namespace MaiinTimer
                     newpm.Visible = true;
                     Panel_TypeMess.DUIControls.Add(newpm);
                     Panel_TypeMess.Size = item.Size;
-                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height+item.Location.Y);
+                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height+20);
                     newpm.Location = new Point(0, 0);
                     newpm.Dock = DockStyle.Fill;
                     Panel_TypeMess.Visible = true;
@@ -606,7 +606,15 @@ namespace MaiinTimer
         {
             int index = (typeControl.Controls.Count / 3);
             DuiBaseControl ltypeControl = new DuiBaseControl();
-            ltypeControl.Size = new Size(144, tagsList.Count * 27 / 2);
+            if (tagsList.Count > 0)
+            {
+                ltypeControl.Size = new Size(154, 15 + tagsList.Count * 27 / 2);
+            }
+            else
+            {
+                ltypeControl.Size = new Size(154, 0);
+            }
+            
             ltypeControl.Name = "ImageTypeGrid_" + typeId;
             ltypeControl.Location = new Point(60 * index, 25);
             ltypeControl.Visible = false;
@@ -622,7 +630,7 @@ namespace MaiinTimer
                 dlbea.Size = new Size(60, 20);
                 dlbea.Text = citem.tagName;
                 dlbea.Name = "ImageTypeNameOther_" + citem.tagName;
-                dlbea.Location = new Point(70 * (coli - 1), 24 * (rowi - 1));
+                dlbea.Location = new Point(70 * (coli - 1), 10 + 24 * (rowi - 1));
                 dlbea.Cursor = System.Windows.Forms.Cursors.Hand;
                 //dlbea.MouseEnter += skinLine_MouseEnter;
                 //dlbea.MouseLeave += Dlbe_MouseLeave;
