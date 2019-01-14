@@ -179,7 +179,19 @@ namespace MaiinTimer
             dbSet.AdaptImage = false;
             dbSet.NormalImage = Properties.Resources.my_new_login_btn;
 
-            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet });
+            DuiButton dbSeting = new DuiButton();
+            dbSeting.Size = new Size(40, 40);
+            dbSeting.Radius = 40;
+            dbSeting.Name = "dbSeting";
+            dbSeting.Text = "";
+            dbSeting.Location = new Point(200, 20);
+            dbSeting.AdaptImage = false;
+            dbSeting.BaseColor = Color.FromArgb(10,0,0,0);
+            dbSeting.IsPureColor = false;
+            dbSeting.BackgroundImage = Properties.Resources.download;
+            dbSeting.BackgroundImageLayout = ImageLayout.Center;
+
+            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet, dbSeting });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl });
         }
         #endregion

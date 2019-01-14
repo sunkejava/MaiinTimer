@@ -205,5 +205,8 @@
   <ItemGroup>
     <None Include="Resources\mask_shadow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notification_big_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
