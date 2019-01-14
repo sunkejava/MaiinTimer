@@ -133,11 +133,26 @@
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mask_shadow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mask_shadow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mask_shadow_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mask_shadow_big.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="min0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\min0.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="min1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\min1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mv_edit_no_select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mv_edit_no_select.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="my_new_login_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\my_new_login_btn.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="my_sign_in_btn_pressed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\my_sign_in_btn_pressed.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sc.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

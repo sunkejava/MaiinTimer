@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.layeredPanel_top = new LayeredSkin.Controls.LayeredPanel();
             this.btn_skin = new LayeredSkin.Controls.LayeredButton();
@@ -36,6 +37,8 @@
             this.layeredPanel_skin = new LayeredSkin.Controls.LayeredPanel();
             this.layeredPanel_min = new LayeredSkin.Controls.LayeredPanel();
             this.layeredPanel_close = new LayeredSkin.Controls.LayeredPanel();
+            this.baseControl_main = new LayeredSkin.Controls.LayeredBaseControl();
+            this.timer_time = new System.Windows.Forms.Timer(this.components);
             this.layeredPanel_top.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +63,7 @@
             this.layeredPanel_top.Dock = System.Windows.Forms.DockStyle.Top;
             this.layeredPanel_top.Location = new System.Drawing.Point(0, 0);
             this.layeredPanel_top.Name = "layeredPanel_top";
-            this.layeredPanel_top.Size = new System.Drawing.Size(439, 41);
+            this.layeredPanel_top.Size = new System.Drawing.Size(439, 29);
             this.layeredPanel_top.TabIndex = 1;
             this.layeredPanel_top.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layeredPanel_top_MouseDown);
             // 
@@ -220,12 +223,39 @@
             this.layeredPanel_close.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_close.TabIndex = 6;
             // 
+            // baseControl_main
+            // 
+            this.baseControl_main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.baseControl_main.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.baseControl_main.Borders.BottomWidth = 1;
+            this.baseControl_main.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.baseControl_main.Borders.LeftWidth = 1;
+            this.baseControl_main.Borders.RightColor = System.Drawing.Color.Empty;
+            this.baseControl_main.Borders.RightWidth = 1;
+            this.baseControl_main.Borders.TopColor = System.Drawing.Color.Empty;
+            this.baseControl_main.Borders.TopWidth = 1;
+            this.baseControl_main.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("baseControl_main.Canvas")));
+            this.baseControl_main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.baseControl_main.Location = new System.Drawing.Point(0, 29);
+            this.baseControl_main.Name = "baseControl_main";
+            this.baseControl_main.Size = new System.Drawing.Size(439, 252);
+            this.baseControl_main.TabIndex = 2;
+            this.baseControl_main.Text = "layeredBaseControl1";
+            // 
+            // timer_time
+            // 
+            this.timer_time.Enabled = true;
+            this.timer_time.Interval = 1000;
+            this.timer_time.Tick += new System.EventHandler(this.timer_time_Tick);
+            // 
             // MainForm
             // 
+            this.AnimationType = LayeredSkin.Forms.AnimationTypes.ThreeDTurn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(439, 281);
+            this.Controls.Add(this.baseControl_main);
             this.Controls.Add(this.layeredPanel_top);
             this.Name = "MainForm";
             this.Radius = 15;
@@ -245,6 +275,8 @@
         private LayeredSkin.Controls.LayeredPanel layeredPanel_skin;
         private LayeredSkin.Controls.LayeredPanel layeredPanel_min;
         private LayeredSkin.Controls.LayeredPanel layeredPanel_close;
+        private LayeredSkin.Controls.LayeredBaseControl baseControl_main;
+        private System.Windows.Forms.Timer timer_time;
     }
 }
 

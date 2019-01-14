@@ -113,6 +113,26 @@ namespace MaiinTimer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap mask_shadow {
+            get {
+                object obj = ResourceManager.GetObject("mask_shadow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap mask_shadow_big {
+            get {
+                object obj = ResourceManager.GetObject("mask_shadow_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap min0 {
             get {
                 object obj = ResourceManager.GetObject("min0", resourceCulture);
@@ -126,6 +146,36 @@ namespace MaiinTimer.Properties {
         internal static System.Drawing.Bitmap min1 {
             get {
                 object obj = ResourceManager.GetObject("min1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap mv_edit_no_select {
+            get {
+                object obj = ResourceManager.GetObject("mv_edit_no_select", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap my_new_login_btn {
+            get {
+                object obj = ResourceManager.GetObject("my_new_login_btn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap my_sign_in_btn_pressed {
+            get {
+                object obj = ResourceManager.GetObject("my_sign_in_btn_pressed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
