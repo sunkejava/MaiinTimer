@@ -103,16 +103,6 @@ namespace MaiinTimer.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap loading7 {
-            get {
-                object obj = ResourceManager.GetObject("loading7", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
@@ -216,6 +206,86 @@ namespace MaiinTimer.Properties {
         internal static System.Drawing.Bitmap skinPanel1_NormlBack {
             get {
                 object obj = ResourceManager.GetObject("skinPanel1_NormlBack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_01 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_02 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_03 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_04 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_05 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_05", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_06 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_06", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_07 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_07", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap video_loading_08 {
+            get {
+                object obj = ResourceManager.GetObject("video_loading_08", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

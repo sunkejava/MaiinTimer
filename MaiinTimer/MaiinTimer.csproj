@@ -161,13 +161,34 @@
     <None Include="Resources\seting.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Download %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\download .png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\download1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_loading_07.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

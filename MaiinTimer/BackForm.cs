@@ -78,9 +78,10 @@ namespace MaiinTimer
                     }
                 }
             }
-            //Thread thread = new Thread(() => addBackImg());
-            //thread.Start();
-            addBackImg();
+            Panel_load.BackColor = defaultColor;
+            Thread thread = new Thread(() => addBackImg());
+            thread.Start();
+            //addBackImg();
         }
         /// <summary>
         /// 搜索框获取焦点后事件
@@ -407,6 +408,8 @@ namespace MaiinTimer
                 Panel_load.Visible = isLoad;
                 if (isLoad)
                 {
+                    DuiPictureBox dp = Panel_load.DUIControls[0] as DuiPictureBox;
+                    dp.Images = new Image[] { Properties.Resources.video_loading_01, Properties.Resources.video_loading_02, Properties.Resources.video_loading_03, Properties.Resources.video_loading_04, Properties.Resources.video_loading_05, Properties.Resources.video_loading_06, Properties.Resources.video_loading_07, Properties.Resources.video_loading_08 };
                     Panel_load.BringToFront();
                 }
                 else

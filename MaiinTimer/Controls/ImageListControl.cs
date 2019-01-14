@@ -126,8 +126,9 @@ namespace MaiinTimer.Controls
         private void Btn_Download_MouseClick(object sender, DuiMouseEventArgs e)
         {
             //下载文件
-            string url = "";
-            string fileName = "";
+            DuiButton dbn = sender as DuiButton;
+            string url = dbn.Tag.ToString();
+            string fileName = @"D:\Program Files\ImageWallpaper" + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
             try
             {
                 WebRequest webreq = WebRequest.Create(url);
@@ -144,6 +145,10 @@ namespace MaiinTimer.Controls
                 } while (size > 0);
                 fileStream.Close();
                 stream.Close();
+                if (dbn.Name.Contains("btn_Setting_"))
+                {
+                    setWallpaperApi(fileName);
+                }
             }
             catch (Exception ex)
             {
@@ -255,6 +260,7 @@ namespace MaiinTimer.Controls
                 btn_Download.MouseClick += Btn_Download_MouseClick;
                 btn_Download.IsPureColor = true;
                 btn_Download.NormalImage = Properties.Resources.download;
+                btn_Download.Tag = imgInfo.url;
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
                 btn_sc.Location = new Point(zWidth - 16 - 50, 2);
@@ -281,6 +287,7 @@ namespace MaiinTimer.Controls
                 btn_Setting.BackColor = Color.Transparent;
                 btn_Setting.BaseColor = Color.Transparent;
                 btn_Setting.Radius = 25;
+                btn_Setting.Tag = imgInfo.url;
                 btn_Setting.ShowBorder = false;
                 //btn_Setting.MouseEnter += Dp_MouseEnter;
                 //btn_Setting.MouseLeave += Dp_MouseLeave;
