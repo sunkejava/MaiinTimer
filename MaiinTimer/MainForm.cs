@@ -191,6 +191,19 @@ namespace MaiinTimer
             dbSeting.BackgroundImage = Properties.Resources.download;
             dbSeting.BackgroundImageLayout = ImageLayout.Center;
 
+            Borders baseBorder = new Borders(dbSet);
+            baseBorder.BottomWidth = 2;
+            baseBorder.TopWidth = 2;
+            baseBorder.LeftWidth = 2;
+            baseBorder.RightWidth = 2;
+            baseBorder.LeftColor = Color.White;
+            baseBorder.RightColor = Color.White;
+            baseBorder.TopColor = Color.White;
+            baseBorder.BottomColor = Color.White;
+
+            //dbSeting.Borders = baseBorder;
+            //dbSeting.BorderPath.AddArc(new RectangleF(0, 0, 40, 40),0, 360);
+
             dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet, dbSeting });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl });
         }

@@ -241,7 +241,7 @@ namespace MaiinTimer.Controls
                 imgTag.TextAlign = ContentAlignment.MiddleCenter;
                 //imgTag.BackColor = Color.FromArgb(100, 0, 0, 0);
                 imgTag.BackgroundImage = Properties.Resources.mask_shadow;
-                imgTag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Tile;
+                imgTag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 imgTag.Text = imgInfo.utag;
                 imgTag.Name = "imgTag_" + imgInfo.id.ToString();
                 
