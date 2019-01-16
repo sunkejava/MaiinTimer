@@ -229,12 +229,12 @@ namespace MaiinTimer.Controls
                 if (imgInfo.utag.Length * 9 > zWidth)
                 {
                     imgTag.Size = new Size(zWidth-4, 10*4);
-                    imgTag.Location = new Point(2, zHeight - 44);
+                    imgTag.Location = new Point(2, zHeight - 43);
                 }
                 else
                 {
                     imgTag.Size = new Size(zWidth-4, 10*2);
-                    imgTag.Location = new Point(2, zHeight - 24);
+                    imgTag.Location = new Point(2, zHeight - 23);
                 }
                 imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
                 imgTag.ForeColor = Color.White;
@@ -296,12 +296,12 @@ namespace MaiinTimer.Controls
                 btn_Setting.IsPureColor = true;
                 //按钮底层控件
                 DuiBaseControl btnBaseControl = new DuiBaseControl();
-                btnBaseControl.Size = new Size(zWidth-4,40);
+                btnBaseControl.Size = new Size(zWidth-12,40);
                 btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
-                btnBaseControl.Location = new Point(0,zHeight-48);
+                btnBaseControl.Location = new Point(5,zHeight-48);
                 btnBaseControl.BackColor = Color.Transparent;
                 btnBaseControl.MouseEnter += Dp_MouseEnter;
-                btnBaseControl.MouseLeave += Dp_MouseLeave;
+                //btnBaseControl.MouseLeave += Dp_MouseLeave;
                 btnBaseControl.Controls.Add(btn_Download);
                 btnBaseControl.Controls.Add(btn_sc);
                 btnBaseControl.Controls.Add(btn_Setting);
