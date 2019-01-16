@@ -296,9 +296,9 @@ namespace MaiinTimer.Controls
                 btn_Setting.IsPureColor = true;
                 //按钮底层控件
                 DuiBaseControl btnBaseControl = new DuiBaseControl();
-                btnBaseControl.Size = new Size(zWidth-4,34);
+                btnBaseControl.Size = new Size(zWidth-4,40);
                 btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
-                btnBaseControl.Location = new Point(0,zHeight-38);
+                btnBaseControl.Location = new Point(0,zHeight-48);
                 btnBaseControl.BackColor = Color.Transparent;
                 btnBaseControl.MouseEnter += Dp_MouseEnter;
                 btnBaseControl.MouseLeave += Dp_MouseLeave;
