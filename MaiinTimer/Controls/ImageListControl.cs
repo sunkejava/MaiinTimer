@@ -229,12 +229,12 @@ namespace MaiinTimer.Controls
                 if (imgInfo.utag.Length * 9 > zWidth)
                 {
                     imgTag.Size = new Size(zWidth-4, 10*4);
-                    imgTag.Location = new Point(2, zHeight - 40);
+                    imgTag.Location = new Point(2, zHeight - 44);
                 }
                 else
                 {
                     imgTag.Size = new Size(zWidth-4, 10*2);
-                    imgTag.Location = new Point(2, zHeight - 20);
+                    imgTag.Location = new Point(2, zHeight - 24);
                 }
                 imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
                 imgTag.ForeColor = Color.White;
