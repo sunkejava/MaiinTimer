@@ -256,7 +256,7 @@ namespace MaiinTimer.Controls
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.AdaptImage = false;
                 btn_Download.IsPureColor = true;
-                btn_Download.BaseColor = Color.FromArgb(80, 0, 0, 0);
+                btn_Download.BaseColor = Color.FromArgb(100, 0, 0, 0);
                 btn_Download.BackgroundImage = Properties.Resources.download;
                 btn_Download.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 btn_Download.ShowBorder = false;
@@ -271,7 +271,7 @@ namespace MaiinTimer.Controls
                 btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_sc.AdaptImage = false;
                 btn_sc.Name = "btn_Sc_" + imgInfo.id.ToString();
-                btn_sc.BaseColor = Color.FromArgb(80, 0, 0, 0);
+                btn_sc.BaseColor = Color.FromArgb(100, 0, 0, 0);
                 btn_sc.Radius = 35;
                 btn_sc.ShowBorder = false;
                 btn_sc.BackgroundImage = Properties.Resources.sc;
@@ -286,7 +286,7 @@ namespace MaiinTimer.Controls
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Setting.AdaptImage = false;
                 btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
-                btn_Setting.BaseColor = Color.FromArgb(80, 0, 0, 0);
+                btn_Setting.BaseColor = Color.FromArgb(100, 0, 0, 0);
                 btn_Setting.Radius = 35;
                 btn_Setting.Tag = imgInfo.url;
                 btn_Setting.ShowBorder = false;
