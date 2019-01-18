@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace MaiinTimer.Controls
 {
@@ -213,7 +214,9 @@ namespace MaiinTimer.Controls
                 //背景图
                 DuiPictureBox dp = new DuiPictureBox();
                 dp.Size = new Size(zWidth - 4, zHeight - 4);
-                dp.Tag = imgInfo.img_1024_768;
+                int thisWidthScreen = Screen.PrimaryScreen.Bounds.Width;
+                int thisHeiightScreen = Screen.PrimaryScreen.Bounds.Height;
+                dp.Tag = imgInfo.img_1280_1024;
                 getImageByUIrlDelegate newg = new getImageByUIrlDelegate(GetImageByUrlDrawLetter);
                 dp.BackgroundImage = newg(imgInfo.url.Replace("__85", "300_161_100"), zWidth - 4, zHeight - 4);
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -252,7 +255,7 @@ namespace MaiinTimer.Controls
                 btn_Download.Radius = 35;
                 btn_Download.Name = "btn_Download_" + imgInfo.id.ToString();
                 btn_Download.Text = "";
-                btn_Download.Location = new Point(zWidth - 24 - 105, 2);
+                btn_Download.Location = new Point(zWidth - 36 - 105, 2);
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.AdaptImage = false;
                 btn_Download.IsPureColor = true;
@@ -265,7 +268,7 @@ namespace MaiinTimer.Controls
 
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
-                btn_sc.Location = new Point(zWidth - 16 - 70, 2);
+                btn_sc.Location = new Point(zWidth - 24 - 70, 2);
                 btn_sc.Size = new Size(35, 35);
                 btn_sc.Text = "";
                 btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -280,7 +283,7 @@ namespace MaiinTimer.Controls
                 btn_sc.IsPureColor = true;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(zWidth - 8 - 35, 2);
+                btn_Setting.Location = new Point(zWidth - 12 - 35, 2);
                 btn_Setting.Size = new Size(35, 35);
                 btn_Setting.Text = "";
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -296,7 +299,7 @@ namespace MaiinTimer.Controls
                 btn_Setting.IsPureColor = true;
                 //按钮底层控件
                 DuiBaseControl btnBaseControl = new DuiBaseControl();
-                btnBaseControl.Size = new Size(zWidth-12,40);
+                btnBaseControl.Size = new Size(zWidth-10,40);
                 btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
                 btnBaseControl.Location = new Point(5,zHeight-48);
                 btnBaseControl.BackColor = Color.Transparent;
