@@ -24,7 +24,8 @@ namespace MaiinTimer.Controls
     /// </summary>
     public class ImageListControl : LayeredSkin.Controls.LayeredListBox
     {
-        
+        private IContainer components;
+        private LayeredSkin.Controls.HotKey hotKey1;
         BridImg bimg = new BridImg();
         public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
         #region 控件事件
@@ -129,7 +130,7 @@ namespace MaiinTimer.Controls
             //下载文件
             DuiButton dbn = sender as DuiButton;
             string url = dbn.Tag.ToString();
-            string fileName = @"D:\Program Files\ImageWallpaper" + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
+            string fileName = AppDomain.CurrentDomain.BaseDirectory +@"\ImageWallpaper\" + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
             try
             {
                 WebRequest webreq = WebRequest.Create(url);
@@ -156,7 +157,23 @@ namespace MaiinTimer.Controls
                 throw new Exception("下载图片失败，原因为：" + ex.Message);
             }
         }
-
+        /// <summary>
+        /// 收藏按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Sc_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            DuiButton btn = sender as DuiButton;
+            if (btn.BackgroundImage == Properties.Resources.sc0)
+            {
+                btn.BackgroundImage = Properties.Resources.sc1;
+            }
+            else
+            {
+                btn.BackgroundImage = Properties.Resources.sc0;
+            }
+        }
         /// <summary>
         /// 图片点击事件
         /// </summary>
@@ -165,7 +182,7 @@ namespace MaiinTimer.Controls
         private void Dp_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiPictureBox dp = sender as DuiPictureBox;
-            string ImageSavePath = @"D:\Program Files\ImageWallpaper";
+            string ImageSavePath = AppDomain.CurrentDomain.BaseDirectory + @"\ImageWallpaper";
             //设置墙纸
             try
             {
@@ -279,7 +296,7 @@ namespace MaiinTimer.Controls
                 btn_sc.ShowBorder = false;
                 btn_sc.BackgroundImage = Properties.Resources.sc0;
                 btn_sc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-                btn_sc.MouseClick += Btn_Download_MouseClick;
+                btn_sc.MouseClick += Btn_Sc_MouseClick;
                 btn_sc.IsPureColor = true;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
@@ -448,8 +465,34 @@ namespace MaiinTimer.Controls
         [Description("列表刷新事件"), Category("自定义事件")]
         public event EventHandler RefreshListed;
 
+
         #endregion
 
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.hotKey1 = new LayeredSkin.Controls.HotKey(this.components);
+            this.SuspendLayout();
+            // 
+            // hotKey1
+            // 
+            this.hotKey1.Enabled = false;
+            this.hotKey1.Key = System.Windows.Forms.Keys.None;
+            this.hotKey1.KeyModifier = LayeredSkin.Controls.KeyModifiers.None;
+            this.hotKey1.Tag = null;
+            // 
+            // ImageListControl
+            // 
+            this.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.Borders.BottomWidth = 1;
+            this.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.Borders.LeftWidth = 1;
+            this.Borders.RightColor = System.Drawing.Color.Empty;
+            this.Borders.RightWidth = 1;
+            this.Borders.TopColor = System.Drawing.Color.Empty;
+            this.Borders.TopWidth = 1;
+            this.ResumeLayout(false);
 
+        }
     }
 }
