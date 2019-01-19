@@ -255,12 +255,12 @@ namespace MaiinTimer.Controls
                 btn_Download.Radius = 35;
                 btn_Download.Name = "btn_Download_" + imgInfo.id.ToString();
                 btn_Download.Text = "";
-                btn_Download.Location = new Point(zWidth - 36 - 105, 2);
+                btn_Download.Location = new Point(zWidth - 24 - 105, 2);
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.AdaptImage = false;
                 btn_Download.IsPureColor = true;
-                btn_Download.BaseColor = Color.FromArgb(100, 0, 0, 0);
-                btn_Download.BackgroundImage = Properties.Resources.download;
+                btn_Download.BaseColor = Color.Transparent;
+                btn_Download.BackgroundImage = Properties.Resources.dl;
                 btn_Download.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 btn_Download.ShowBorder = false;
                 btn_Download.MouseClick += Btn_Download_MouseClick;
@@ -268,32 +268,32 @@ namespace MaiinTimer.Controls
 
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
-                btn_sc.Location = new Point(zWidth - 24 - 70, 2);
+                btn_sc.Location = new Point(zWidth - 16 - 70, 2);
                 btn_sc.Size = new Size(35, 35);
                 btn_sc.Text = "";
                 btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_sc.AdaptImage = false;
                 btn_sc.Name = "btn_Sc_" + imgInfo.id.ToString();
-                btn_sc.BaseColor = Color.FromArgb(100, 0, 0, 0);
+                btn_sc.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
                 btn_sc.Radius = 35;
                 btn_sc.ShowBorder = false;
-                btn_sc.BackgroundImage = Properties.Resources.sc;
+                btn_sc.BackgroundImage = Properties.Resources.sc0;
                 btn_sc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 btn_sc.MouseClick += Btn_Download_MouseClick;
                 btn_sc.IsPureColor = true;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(zWidth - 12 - 35, 2);
+                btn_Setting.Location = new Point(zWidth - 8 - 35, 2);
                 btn_Setting.Size = new Size(35, 35);
                 btn_Setting.Text = "";
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Setting.AdaptImage = false;
                 btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
-                btn_Setting.BaseColor = Color.FromArgb(100, 0, 0, 0);
+                btn_Setting.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
                 btn_Setting.Radius = 35;
                 btn_Setting.Tag = imgInfo.url;
                 btn_Setting.ShowBorder = false;
-                btn_Setting.BackgroundImage = Properties.Resources.seting;
+                btn_Setting.BackgroundImage = Properties.Resources.set;
                 btn_Setting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 btn_Setting.MouseClick += Btn_Setting_MouseClick;
                 btn_Setting.IsPureColor = true;
@@ -304,7 +304,7 @@ namespace MaiinTimer.Controls
                 btnBaseControl.Location = new Point(5,zHeight-48);
                 btnBaseControl.BackColor = Color.Transparent;
                 btnBaseControl.MouseEnter += Dp_MouseEnter;
-                //btnBaseControl.MouseLeave += Dp_MouseLeave;
+                btnBaseControl.MouseLeave += Dp_MouseLeave;
                 btnBaseControl.Controls.Add(btn_Download);
                 btnBaseControl.Controls.Add(btn_sc);
                 btnBaseControl.Controls.Add(btn_Setting);

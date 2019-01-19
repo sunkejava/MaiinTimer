@@ -161,12 +161,6 @@
     <None Include="Resources\seting.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\download .png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\download1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\video_loading_08.png" />
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +201,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\notification_big_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sc0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\set.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
