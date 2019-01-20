@@ -130,13 +130,17 @@ namespace MaiinTimer.Controls
             //下载文件
             DuiButton dbn = sender as DuiButton;
             string url = dbn.Tag.ToString().Split('|')[1].ToString();
-            string fileName = AppDomain.CurrentDomain.BaseDirectory +@"\ImageWallpaper\" + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
+            string fileName = AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\";
+            if (!Directory.Exists(fileName))
+            {
+                Directory.CreateDirectory(fileName);
+            }
+            fileName = fileName + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
             try
             {
                 WebRequest webreq = WebRequest.Create(url);
                 WebResponse webres = webreq.GetResponse();
                 Stream stream = webres.GetResponseStream();
-
                 Stream fileStream = new FileStream(fileName, FileMode.Create);
                 byte[] bArray = new byte[1024];
                 int size;
@@ -165,13 +169,15 @@ namespace MaiinTimer.Controls
         private void Btn_Sc_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiButton btn = sender as DuiButton;
-            if (btn.BackgroundImage == Properties.Resources.sc0)
+            if (btn.Tag.ToString().Split('|')[0].ToString() == "收藏")
             {
                 btn.BackgroundImage = Properties.Resources.sc1;
+                btn.Tag = "取消收藏|" +btn.Tag.ToString().Split('|')[1].ToString();
             }
             else
             {
                 btn.BackgroundImage = Properties.Resources.sc0;
+                btn.Tag = "收藏|" + btn.Tag.ToString().Split('|')[1].ToString();
             }
         }
         /// <summary>
@@ -362,7 +368,7 @@ namespace MaiinTimer.Controls
 
         private void Btn_Download_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show(((DuiButton)sender).Tag.ToString().Split('|')[0].ToString()+"壁纸", this, PointToClient(MousePosition).X, PointToClient(MousePosition).Y + 15, 2000);
+            toolTip1.Show(((DuiButton)sender).Tag.ToString().Split('|')[0].ToString() + (((DuiButton)sender).Tag.ToString().Split('|')[0].ToString().Contains("取消") ? "" : "壁纸"), this, PointToClient(MousePosition).X, PointToClient(MousePosition).Y + 15, 2000);
         }
 
         //利用系统的用户接口设置壁纸
