@@ -25,8 +25,8 @@ namespace MaiinTimer.Controls
     public class ImageListControl : LayeredSkin.Controls.LayeredListBox
     {
         private IContainer components;
-        private LayeredSkin.Controls.HotKey hotKey1;
         BridImg bimg = new BridImg();
+        ToolTip toolTip1 = new ToolTip();
         public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
         #region 控件事件
 
@@ -118,7 +118,7 @@ namespace MaiinTimer.Controls
         /// <param name="e"></param>
         private void Btn_Setting_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            throw new NotImplementedException();
+            Btn_Download_MouseClick(sender, e);
         }
         /// <summary>
         /// 下载按钮点击事件
@@ -129,7 +129,7 @@ namespace MaiinTimer.Controls
         {
             //下载文件
             DuiButton dbn = sender as DuiButton;
-            string url = dbn.Tag.ToString();
+            string url = dbn.Tag.ToString().Split('|')[1].ToString();
             string fileName = AppDomain.CurrentDomain.BaseDirectory +@"\ImageWallpaper\" + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
             try
             {
@@ -281,8 +281,9 @@ namespace MaiinTimer.Controls
                 btn_Download.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 btn_Download.ShowBorder = false;
                 btn_Download.MouseClick += Btn_Download_MouseClick;
-                btn_Download.Tag = imgInfo.url;
-
+                btn_Download.Tag = "保存|"+imgInfo.url_thumb;
+                btn_Download.MouseEnter += Btn_Download_MouseEnter;
+                btn_Download.MouseLeave += Btn_Download_MouseLeave;
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
                 btn_sc.Location = new Point(zWidth - 16 - 70, 2);
@@ -298,6 +299,9 @@ namespace MaiinTimer.Controls
                 btn_sc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 btn_sc.MouseClick += Btn_Sc_MouseClick;
                 btn_sc.IsPureColor = true;
+                btn_sc.Tag = "收藏|" + imgInfo.url_thumb;
+                btn_sc.MouseEnter += Btn_Download_MouseEnter;
+                btn_sc.MouseLeave += Btn_Download_MouseLeave;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
                 btn_Setting.Location = new Point(zWidth - 8 - 35, 2);
@@ -308,12 +312,14 @@ namespace MaiinTimer.Controls
                 btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
                 btn_Setting.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
                 btn_Setting.Radius = 35;
-                btn_Setting.Tag = imgInfo.url;
+                btn_Setting.Tag = "设置|" + imgInfo.url_thumb;
                 btn_Setting.ShowBorder = false;
                 btn_Setting.BackgroundImage = Properties.Resources.set;
                 btn_Setting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 btn_Setting.MouseClick += Btn_Setting_MouseClick;
                 btn_Setting.IsPureColor = true;
+                btn_Setting.MouseEnter += Btn_Download_MouseEnter;
+                btn_Setting.MouseLeave += Btn_Download_MouseLeave;
                 //按钮底层控件
                 DuiBaseControl btnBaseControl = new DuiBaseControl();
                 btnBaseControl.Size = new Size(zWidth-10,40);
@@ -349,6 +355,16 @@ namespace MaiinTimer.Controls
             return true;
         }
 
+        private void Btn_Download_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(this);
+        }
+
+        private void Btn_Download_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(((DuiButton)sender).Tag.ToString().Split('|')[0].ToString()+"壁纸", this, PointToClient(MousePosition).X, PointToClient(MousePosition).Y + 15, 2000);
+        }
+
         //利用系统的用户接口设置壁纸
         [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
         public static extern int SystemParametersInfo(
@@ -370,8 +386,8 @@ namespace MaiinTimer.Controls
         /// <returns></returns>
         private Image GetImageByUrlDrawLetter(string url, int zWidth, int zHeight)
         {
-            //string letter = "@sunkejava";
-            //int fontSize = 8;
+            string letter = "@sunkejava";
+            int fontSize = 8;
             System.Drawing.Image image = null;
             try
             {
@@ -380,11 +396,11 @@ namespace MaiinTimer.Controls
                 using (System.IO.Stream stream = webres.GetResponseStream())
                 {
                     image = Image.FromStream(stream);
-                    //Graphics gs = Graphics.FromImage(image);
-                    //Font font = new Font("宋体", fontSize);
-                    //Brush br = new SolidBrush(Color.White);
-                    //gs.DrawString(letter, font, br, zWidth-(fontSize * letter.Length), zHeight-fontSize-5);
-                    //gs.Dispose();
+                    Graphics gs = Graphics.FromImage(image);
+                    Font font = new Font("宋体", fontSize);
+                    Brush br = new SolidBrush(Color.White);
+                    gs.DrawString(letter, font, br, zWidth - (fontSize * letter.Length), zHeight - fontSize - 5);
+                    gs.Dispose();
                     return image;
                 }
             }
@@ -470,16 +486,7 @@ namespace MaiinTimer.Controls
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.hotKey1 = new LayeredSkin.Controls.HotKey(this.components);
             this.SuspendLayout();
-            // 
-            // hotKey1
-            // 
-            this.hotKey1.Enabled = false;
-            this.hotKey1.Key = System.Windows.Forms.Keys.None;
-            this.hotKey1.KeyModifier = LayeredSkin.Controls.KeyModifiers.None;
-            this.hotKey1.Tag = null;
             // 
             // ImageListControl
             // 
