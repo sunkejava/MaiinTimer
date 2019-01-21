@@ -155,6 +155,12 @@ namespace MaiinTimer.Controls
                 {
                     setWallpaperApi(fileName);
                 }
+                else
+                {
+                    MessageForm mfm = new MessageForm();
+                    mfm.ShowDialog(this);
+                    
+                }
             }
             catch (Exception ex)
             {
