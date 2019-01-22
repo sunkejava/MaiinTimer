@@ -45,6 +45,7 @@ namespace MaiinTimer
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
+        int x, y;
         #region 窗体控件事件
         public BackForm()
         {
@@ -224,6 +225,9 @@ namespace MaiinTimer
                     newpm.Location = new Point(0, 0);
                     newpm.Dock = DockStyle.Fill;
                     Panel_TypeMess.Visible = true;
+                    Point ms = Control.MousePosition;
+                    x = ms.X;
+                    y = ms.Y;
                 }
             }
 
@@ -250,7 +254,8 @@ namespace MaiinTimer
         }
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
-            if (!Panel_TypeMess.Focused)
+            Point ms = Control.MousePosition;
+            if (!Panel_TypeMess.Focused && ms.Y < y + 5)
             {
                 skinLine_Update();
                 DuiLabel btn = sender as DuiLabel;
@@ -268,6 +273,21 @@ namespace MaiinTimer
                 }
             }
             List_Main.Refresh();
+        }
+
+        private void dlTag_MouseEnter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dlTag_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dlTag_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -574,6 +594,7 @@ namespace MaiinTimer
             dlbe.Cursor = System.Windows.Forms.Cursors.Hand;
             dlbe.MouseEnter += skinLine_MouseEnter;
             dlbe.MouseLeave += Dlbe_MouseLeave;
+            //dlbe.MouseMove += Dlbe_MouseMove;
             dlbe.TextAlign = ContentAlignment.MiddleCenter;
             dlbe.Tag = imgType.id;
             dlbe.MouseClick += Dlbe_MouseClick;
@@ -598,6 +619,7 @@ namespace MaiinTimer
             typeControl.Controls.Add(dLabel1);
             return true;
         }
+
         /// <summary>
         /// 添加热门标签
         /// </summary>
@@ -635,11 +657,11 @@ namespace MaiinTimer
                 dlbea.Name = "ImageTypeNameOther_" + citem.tagName;
                 dlbea.Location = new Point(70 * (coli - 1), 10 + 24 * (rowi - 1));
                 dlbea.Cursor = System.Windows.Forms.Cursors.Hand;
-                //dlbea.MouseEnter += skinLine_MouseEnter;
-                //dlbea.MouseLeave += Dlbe_MouseLeave;
+                dlbea.MouseEnter += dlTag_MouseEnter;
+                dlbea.MouseLeave += dlTag_MouseLeave;
                 dlbea.TextAlign = ContentAlignment.MiddleCenter;
                 dlbea.Tag = citem.tagName;
-                //dlbea.MouseClick += Dlbe_MouseClick;
+                dlbea.MouseClick += dlTag_MouseClick;
                 ltypeControl.Controls.Add(dlbea);
                 ti++;
             }

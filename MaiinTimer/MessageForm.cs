@@ -23,7 +23,13 @@ namespace MaiinTimer
             if (!string.IsNullOrEmpty(messageStr))
             {
                 layeredLabel1.Text = messageStr;
-                layeredLabel1.Size = new Size();
+                int zHeight = 15;
+                if ((Width - 4)/11 < messageStr.Length)
+                {
+                    zHeight = (int)Math.Ceiling((decimal)(messageStr.Length / ((Width - 4) / 11)));
+                }
+                layeredLabel1.Size = new Size(11*messageStr.Length,zHeight);
+                layeredLabel1.Location = new Point(2,55);
                 layeredLabel2.Visible = false;
             }
             this.BackColor = Color.FromArgb(120,0,0,0);
