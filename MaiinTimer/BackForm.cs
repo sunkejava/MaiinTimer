@@ -255,7 +255,7 @@ namespace MaiinTimer
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
             Point ms = Control.MousePosition;
-            if (!Panel_TypeMess.Focused && ms.Y < y + 5)
+            if (!Panel_TypeMess.Focused && ms.Y < y + 8)
             {
                 skinLine_Update();
                 DuiLabel btn = sender as DuiLabel;
