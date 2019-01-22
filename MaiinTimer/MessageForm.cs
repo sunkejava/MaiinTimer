@@ -20,6 +20,12 @@ namespace MaiinTimer
         }
         private void getDefaultControl()
         {
+            if (!string.IsNullOrEmpty(messageStr))
+            {
+                layeredLabel1.Text = messageStr;
+                layeredLabel1.Size = new Size();
+                layeredLabel2.Visible = false;
+            }
             this.BackColor = Color.FromArgb(120,0,0,0);
             btn_close.Cursor = Cursors.Hand;
             layeredLabel2.Cursor = Cursors.Hand;

@@ -24,7 +24,6 @@ namespace MaiinTimer.Controls
     /// </summary>
     public class ImageListControl : LayeredSkin.Controls.LayeredListBox
     {
-        private IContainer components;
         BridImg bimg = new BridImg();
         ToolTip toolTip1 = new ToolTip();
         public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
@@ -284,7 +283,7 @@ namespace MaiinTimer.Controls
                 btn_Download.Radius = 35;
                 btn_Download.Name = "btn_Download_" + imgInfo.id.ToString();
                 btn_Download.Text = "";
-                btn_Download.Location = new Point(zWidth - 24 - 105, 2);
+                btn_Download.Location = new Point(zWidth - 39 - 105, 2);
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.AdaptImage = false;
                 btn_Download.IsPureColor = true;
@@ -298,7 +297,7 @@ namespace MaiinTimer.Controls
                 btn_Download.MouseLeave += Btn_Download_MouseLeave;
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
-                btn_sc.Location = new Point(zWidth - 16 - 70, 2);
+                btn_sc.Location = new Point(zWidth - 26 - 70, 2);
                 btn_sc.Size = new Size(35, 35);
                 btn_sc.Text = "";
                 btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -316,7 +315,7 @@ namespace MaiinTimer.Controls
                 btn_sc.MouseLeave += Btn_Download_MouseLeave;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(zWidth - 8 - 35, 2);
+                btn_Setting.Location = new Point(zWidth - 13 - 35, 2);
                 btn_Setting.Size = new Size(35, 35);
                 btn_Setting.Text = "";
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
