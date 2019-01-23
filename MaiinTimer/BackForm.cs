@@ -225,12 +225,12 @@ namespace MaiinTimer
                     newpm.Location = new Point(0, 0);
                     newpm.Dock = DockStyle.Fill;
                     Panel_TypeMess.Visible = true;
-                    Point ms = Control.MousePosition;
-                    x = ms.X;
-                    y = ms.Y;
                 }
             }
-
+            Point ms = Control.MousePosition;
+            x = ms.X;
+            y = ms.Y;
+            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
             //NowNum = int.Parse(btn.Tag.ToString());
             //LoadSliderImg(NowNum);
         }
@@ -255,7 +255,8 @@ namespace MaiinTimer
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
             Point ms = Control.MousePosition;
-            if (!Panel_TypeMess.Focused && ms.Y < y + 8)
+            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
+            if (!Panel_TypeMess.Focused && ms.Y < y + 4)
             {
                 skinLine_Update();
                 DuiLabel btn = sender as DuiLabel;
@@ -594,7 +595,7 @@ namespace MaiinTimer
             dlbe.Cursor = System.Windows.Forms.Cursors.Hand;
             dlbe.MouseEnter += skinLine_MouseEnter;
             dlbe.MouseLeave += Dlbe_MouseLeave;
-            //dlbe.MouseMove += Dlbe_MouseMove;
+            dlbe.MouseMove += Dlbe_MouseMove;
             dlbe.TextAlign = ContentAlignment.MiddleCenter;
             dlbe.Tag = imgType.id;
             dlbe.MouseClick += Dlbe_MouseClick;
@@ -618,6 +619,13 @@ namespace MaiinTimer
             typeControl.Controls.Add(dlbe);
             typeControl.Controls.Add(dLabel1);
             return true;
+        }
+
+        private void Dlbe_MouseMove(object sender, DuiMouseEventArgs e)
+        {
+            //throw new NotImplementedException();
+            Point ms = Control.MousePosition;
+            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
         }
 
         /// <summary>

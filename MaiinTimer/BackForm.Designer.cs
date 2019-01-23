@@ -50,6 +50,7 @@
             this.Panel_Type = new LayeredSkin.Controls.LayeredPanel();
             this.Panel_TypeMess = new LayeredSkin.Controls.LayeredPanel();
             this.Panel_load = new LayeredSkin.Controls.LayeredPanel();
+            this.layeredLabel1 = new LayeredSkin.Controls.LayeredLabel();
             this.List_Main = new MaiinTimer.Controls.ImageListControl();
             this.layeredPanel_top.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +67,7 @@
             this.layeredPanel_top.Borders.TopColor = System.Drawing.Color.Empty;
             this.layeredPanel_top.Borders.TopWidth = 1;
             this.layeredPanel_top.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_top.Canvas")));
+            this.layeredPanel_top.Controls.Add(this.layeredLabel1);
             this.layeredPanel_top.Controls.Add(this.BaseControl_Search);
             this.layeredPanel_top.Controls.Add(this.layeredPictureBox2);
             this.layeredPanel_top.Controls.Add(this.layeredPictureBox1);
@@ -591,7 +593,7 @@
             duiLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             duiLabel1.Dock = System.Windows.Forms.DockStyle.None;
             duiLabel1.Enabled = true;
-            duiLabel1.Font = new System.Drawing.Font("幼圆", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            duiLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             duiLabel1.ForeColor = System.Drawing.SystemColors.HighlightText;
             duiLabel1.Height = 50;
             duiLabel1.IsMoveParentPaint = true;
@@ -623,6 +625,25 @@
             this.Panel_load.Size = new System.Drawing.Size(975, 557);
             this.Panel_load.TabIndex = 7;
             this.Panel_load.Visible = false;
+            // 
+            // layeredLabel1
+            // 
+            this.layeredLabel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.layeredLabel1.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.layeredLabel1.Borders.BottomWidth = 1;
+            this.layeredLabel1.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.layeredLabel1.Borders.LeftWidth = 1;
+            this.layeredLabel1.Borders.RightColor = System.Drawing.Color.Empty;
+            this.layeredLabel1.Borders.RightWidth = 1;
+            this.layeredLabel1.Borders.TopColor = System.Drawing.Color.Empty;
+            this.layeredLabel1.Borders.TopWidth = 1;
+            this.layeredLabel1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredLabel1.Canvas")));
+            this.layeredLabel1.HaloSize = 5;
+            this.layeredLabel1.Location = new System.Drawing.Point(161, 12);
+            this.layeredLabel1.Name = "layeredLabel1";
+            this.layeredLabel1.Size = new System.Drawing.Size(240, 20);
+            this.layeredLabel1.TabIndex = 7;
+            this.layeredLabel1.Text = "layeredLabel1";
             // 
             // List_Main
             // 
@@ -700,5 +721,6 @@
         private LayeredSkin.Controls.LayeredPanel Panel_Type;
         private LayeredSkin.Controls.LayeredPanel Panel_TypeMess;
         private LayeredSkin.Controls.LayeredPanel Panel_load;
+        private LayeredSkin.Controls.LayeredLabel layeredLabel1;
     }
 }
