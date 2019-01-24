@@ -240,7 +240,7 @@ namespace MaiinTimer
                             dl.Cursor = Cursors.Hand;
                             dl.MouseEnter += dlTag_MouseEnter;
                             dl.MouseLeave += dlTag_MouseLeave;
-                            dl.MouseClick += dlTag_MouseClick;
+                            //dl.MouseClick += dlTag_MouseClick;
                             newpm.Controls.Add(dl);
                         }
                     }
@@ -290,7 +290,7 @@ namespace MaiinTimer
         {
             Point ms = Control.MousePosition;
             layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
-            if (ms.Y < y + 4 && Panel_TypeMess.DUIControls.Count > 0)
+            if (ms.Y <= y + 4 && Panel_TypeMess.DUIControls.Count > 0)
             {
                 skinLine_Update();
                 Panel_TypeMess.DUIControls.Clear();
@@ -298,7 +298,7 @@ namespace MaiinTimer
                 Panel_TypeMess.Size = new Size(0, 0);
                 Panel_TypeMess.Refresh();
             }
-            List_Main.Refresh();
+            //List_Main.Refresh();
         }
 
         private void dlTag_MouseEnter(object sender, EventArgs e)
@@ -336,14 +336,21 @@ namespace MaiinTimer
         /// <param name="e"></param>
         private void TypeControl_MouseLeave(object sender, EventArgs e)
         {
-            Panel_TypeMess.Visible = false;
+            if (Panel_TypeMess.DUIControls.Count > 0)
+            {
+                skinLine_Update();
+                Panel_TypeMess.DUIControls.Clear();
+                Panel_TypeMess.Visible = false;
+                Panel_TypeMess.Size = new Size(0, 0);
+                Panel_TypeMess.Refresh();
+            }
         }
         /// <summary>
         /// 热门标签底层控件进入事件
         /// </summary>
         private void TypeControl_MouseEnter(object sender, EventArgs e)
         {
-            Panel_TypeMess.Visible = true;
+            //Panel_TypeMess.Visible = true;
         }
         #endregion
 
@@ -731,7 +738,7 @@ namespace MaiinTimer
                 dlbea.Cursor = System.Windows.Forms.Cursors.Hand;
                 dlbea.TextAlign = ContentAlignment.MiddleCenter;
                 dlbea.Tag = typeId + "-" + citem.tagName;
-                //dlbea.MouseClick += dlTag_MouseClick;
+                dlbea.MouseClick += dlTag_MouseClick;
                 ltypeControl.Controls.Add(dlbea);
                 ti++;
             }
