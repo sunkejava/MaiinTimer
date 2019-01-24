@@ -12,7 +12,7 @@ namespace MaiinTimer
 {
     public partial class MessageForm : LayeredForm
     {
-        private string messageStr = "";
+        public  string messageStr = "";
         public MessageForm()
         {
             InitializeComponent();

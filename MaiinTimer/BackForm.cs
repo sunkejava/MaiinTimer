@@ -137,7 +137,10 @@ namespace MaiinTimer
                             }
                             else
                             {
-                                MessageBox.Show("请输入关键字进行搜索");
+                                //MessageBox.Show("请输入关键字进行搜索");
+                                MessageForm mf = new MessageForm();
+                                mf.messageStr = "请输入关键字进行搜索";
+                                mf.ShowDialog();
                             }
                         }
                     }
@@ -184,46 +187,66 @@ namespace MaiinTimer
             layeredPanel_close.BackColor = thisButton.BackColor;
         }
 
-        private void skinLine_MouseEnter(object sender, EventArgs e)
+        private void Dlbe_MouseEnter(object sender, DuiMouseEventArgs e)
         {
             skinLine_Update();
-            DuiLabel btn = sender as DuiLabel;
-            DuiBaseControl bControl = btn.Parent as DuiBaseControl;
-            if (btn.Name.Contains("ImageTypeName_"))
+            DuiBaseControl lbbtn = sender as DuiBaseControl;
+            string vtag = "";
+            foreach (var vitem in lbbtn.Controls)
             {
-                btn.ForeColor = defaultColor;
-                foreach (var item in bControl.FindControl("ImageTypeLine_" + btn.Tag.ToString()))
+                DuiLabel lb = vitem as DuiLabel;
+                vtag = lb.Tag.ToString();
+                if (lb.Name.Contains("ImageTypeName_"))
                 {
-                    if (item is DuiLabel)
-                    {
-                        item.BackColor = defaultColor;
-                    }
+                    lb.ForeColor = defaultColor;
+                }
+                else
+                {
+                    lb.BackColor = defaultColor;
                 }
             }
-            else
+            DuiBaseControl bControl = (sender as DuiBaseControl).Parent as DuiBaseControl;
+            foreach (var item in bControl.FindControl("ImageTypeGrid_" + vtag))
             {
-                btn.BackColor = defaultColor;
-                foreach (var item in bControl.FindControl("ImageTypeName_" + btn.Tag.ToString()))
-                {
-                    if (item is DuiLabel)
-                    {
-                        item.ForeColor = defaultColor;
-                    }
-                }
-            }
-            foreach (var item in bControl.FindControl("ImageTypeGrid_" + btn.Tag.ToString()))
-            {
+                //深度复制过来使用部分事件失效
+                //DuiBaseControl newpm = new DuiBaseControl();
+                //if (item is DuiBaseControl && item.Controls.Count > 0)
+                //{
+                //    //深度复制对象
+                //    newpm = Utils.CloneObject<DuiBaseControl,DuiBaseControl>.Trans(item);
+                //    newpm.Visible = true;
+                //    newpm.Location = new Point(0, 0);
+                //    newpm.Dock = DockStyle.Fill;
+                //    Panel_TypeMess.DUIControls.Add(newpm);
+                //    Panel_TypeMess.Size = item.Size;
+                //    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height);                    
+                //    Panel_TypeMess.Visible = true;
+                //}
                 DuiBaseControl newpm = new DuiBaseControl();
-                if (item is DuiBaseControl)
+                if (item is DuiBaseControl && item.Controls.Count > 0)
                 {
-                    //深度复制对象
-                    newpm = Utils.CloneObject<DuiBaseControl,DuiBaseControl>.Trans(item);
+                    newpm.Size = item.Size;
                     newpm.Visible = true;
+                    newpm.Location = new Point(0, 0);
+                    newpm.BackColor = item.BackColor;
+                    newpm.Borders = item.Borders;
+                    newpm.ShowBorder = item.ShowBorder;
+                    foreach (var vitem in item.Controls)
+                    {
+                        if (vitem is DuiLabel)
+                        {
+                            DuiLabel dl = vitem as DuiLabel;
+                            dl.Cursor = Cursors.Hand;
+                            dl.MouseEnter += dlTag_MouseEnter;
+                            dl.MouseLeave += dlTag_MouseLeave;
+                            dl.MouseClick += dlTag_MouseClick;
+                            newpm.Controls.Add(dl);
+                        }
+                    }
+                    newpm.Dock = DockStyle.Fill;
                     Panel_TypeMess.DUIControls.Add(newpm);
                     Panel_TypeMess.Size = item.Size;
-                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height+20);
-                    newpm.Location = new Point(0, 0);
-                    newpm.Dock = DockStyle.Fill;
+                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height);
                     Panel_TypeMess.Visible = true;
                 }
             }
@@ -233,6 +256,15 @@ namespace MaiinTimer
             layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
             //NowNum = int.Parse(btn.Tag.ToString());
             //LoadSliderImg(NowNum);
+            Panel_Type.Refresh();
+        }
+
+        private void Dlbe_MouseMove(object sender, DuiMouseEventArgs e)
+        {
+            Point ms = Control.MousePosition;
+            x = ms.X;
+            y = ms.Y;
+            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
         }
 
         /// <summary>
@@ -256,34 +288,29 @@ namespace MaiinTimer
         {
             Point ms = Control.MousePosition;
             layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
-            if (!Panel_TypeMess.Focused && ms.Y < y + 4)
+            if (ms.Y < y + 4)
             {
                 skinLine_Update();
-                DuiLabel btn = sender as DuiLabel;
-                DuiBaseControl bControl = btn.Parent as DuiBaseControl;
-                foreach (var item in bControl.FindControl("ImageTypeGrid_" + btn.Tag.ToString()))
-                {
-                    if (item is DuiBaseControl)
-                    {
-                        Panel_TypeMess.DUIControls.Remove(item);
-                        Panel_TypeMess.Visible = false;
-                        Panel_TypeMess.Size = new Size(0, 0);
-                        Panel_TypeMess.Location = new Point(0, 0);
-                        Panel_TypeMess.Refresh();
-                    }
-                }
+                Panel_TypeMess.DUIControls.Clear();
+                Panel_TypeMess.Visible = false;
+                Panel_TypeMess.Size = new Size(0, 0);
+                Panel_TypeMess.Refresh();
             }
             List_Main.Refresh();
         }
 
         private void dlTag_MouseEnter(object sender, EventArgs e)
         {
-            
+            DuiLabel dlb = sender as DuiLabel;
+            dlb.ForeColor = defaultColor;
+            layeredLabel2.Text = dlb.ForeColor.ToString();
         }
 
         private void dlTag_MouseLeave(object sender, EventArgs e)
         {
-
+            DuiLabel dlb = sender as DuiLabel;
+            dlb.ForeColor = System.Drawing.Color.Black;
+            layeredLabel2.Text = dlb.ForeColor.ToString();
         }
 
         private void dlTag_MouseClick(object sender, DuiMouseEventArgs e)
@@ -443,15 +470,21 @@ namespace MaiinTimer
         {
             foreach (var itemControl in typeControl.Controls)
             {
-                if (itemControl is DuiLabel)
+                if (itemControl is DuiBaseControl)
                 {
-                    if ((itemControl as DuiLabel).Name.Contains("ImageTypeLine_") && (itemControl as DuiLabel).Tag.ToString() != labelId)
+                    foreach (var vitem in (itemControl as DuiBaseControl).Controls)
                     {
-                        (itemControl as DuiLabel).BackColor = System.Drawing.Color.Silver;
-                    }
-                    if ((itemControl as DuiLabel).Name.Contains("ImageTypeName_") && (itemControl as DuiLabel).Tag.ToString() != labelId)
-                    {
-                        (itemControl as DuiLabel).ForeColor = System.Drawing.Color.Black;
+                        if (vitem is DuiLabel)
+                        {
+                            if ((vitem as DuiLabel).Name.Contains("ImageTypeLine_") && (vitem as DuiLabel).Tag.ToString() != labelId)
+                            {
+                                (vitem as DuiLabel).BackColor = System.Drawing.Color.Silver;
+                            }
+                            if ((vitem as DuiLabel).Name.Contains("ImageTypeName_") && (vitem as DuiLabel).Tag.ToString() != labelId)
+                            {
+                                (vitem as DuiLabel).ForeColor = System.Drawing.Color.Black;
+                            }
+                        }
                     }
                 }
             }
@@ -586,15 +619,13 @@ namespace MaiinTimer
         /// <returns></returns>
         private Boolean addTypeLable(BridImg.ImageType imgType)
         {
-            int i = (typeControl.Controls.Count/3);
+            int i = (typeControl.Controls.Count/2);
             DuiLabel dlbe = new DuiLabel();
             dlbe.Size = new Size(60, 20);
             dlbe.Text = imgType.name;
             dlbe.Name = "ImageTypeName_" + imgType.id.ToString();
-            dlbe.Location = new Point(61 * i, 5);
+            dlbe.Location = new Point(0, 5);
             dlbe.Cursor = System.Windows.Forms.Cursors.Hand;
-            dlbe.MouseEnter += skinLine_MouseEnter;
-            dlbe.MouseLeave += Dlbe_MouseLeave;
             dlbe.MouseMove += Dlbe_MouseMove;
             dlbe.TextAlign = ContentAlignment.MiddleCenter;
             dlbe.Tag = imgType.id;
@@ -606,26 +637,24 @@ namespace MaiinTimer
             dLabel1.Size = new Size(60, 2);
             dLabel1.BackColor = System.Drawing.Color.Silver;
             dLabel1.Height = 2;
-            dLabel1.MouseEnter += skinLine_MouseEnter;
-            dLabel1.MouseLeave += Dlbe_MouseLeave;
             dLabel1.Tag = imgType.id;
-            dLabel1.Location = new Point(61 * i, 30);
+            dLabel1.Location = new Point(0,30);
             dLabel1.MouseClick += Dlbe_MouseClick;
+
+            DuiBaseControl dlbControl = new DuiBaseControl();
+            dlbControl.Size = new Size(60,35);
+            dlbControl.Location = new Point(61 * i, 0);
+            dlbControl.MouseMove += Dlbe_MouseEnter;
+            //dlbControl.MouseEnter += Dlbe_MouseEnter;
+            dlbControl.MouseLeave += Dlbe_MouseLeave;
+            dlbControl.Controls.AddRange(new DuiBaseControl[] { dlbe,dLabel1});
             if (imgType.id == 0)
             {
                 dlbe.ForeColor = defaultColor;
                 dLabel1.BackColor = defaultColor;
             }
-            typeControl.Controls.Add(dlbe);
-            typeControl.Controls.Add(dLabel1);
+            typeControl.Controls.Add(dlbControl);
             return true;
-        }
-
-        private void Dlbe_MouseMove(object sender, DuiMouseEventArgs e)
-        {
-            //throw new NotImplementedException();
-            Point ms = Control.MousePosition;
-            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
         }
 
         /// <summary>
@@ -637,7 +666,7 @@ namespace MaiinTimer
         /// <returns></returns>
         private DuiBaseControl addHotTagControl(List<BridImg.tagItem> tagsList,string typeId)
         {
-            int index = (typeControl.Controls.Count / 3);
+            int index = ((typeControl.Controls.Count-1) / 2);
             DuiBaseControl ltypeControl = new DuiBaseControl();
             if (tagsList.Count > 0)
             {
@@ -651,7 +680,7 @@ namespace MaiinTimer
             ltypeControl.Name = "ImageTypeGrid_" + typeId;
             ltypeControl.Location = new Point(60 * index, 25);
             ltypeControl.Visible = false;
-            ltypeControl.BackColor = Color.White;
+            ltypeControl.BackColor = Color.White;//Color.FromArgb(defaultColor.R,defaultColor.G,defaultColor.B);
             int rowi = 1;
             int coli = 1;
             int ti = 1;
@@ -683,13 +712,13 @@ namespace MaiinTimer
         /// <returns></returns>
         private DuiBaseControl addNoHotTagControl(List<BridImg.ImageType> typeList, string typeId)
         {
-            int index = (typeControl.Controls.Count / 3);
+            int index = ((typeControl.Controls.Count-1) / 2);
             DuiBaseControl ltypeControl = new DuiBaseControl();
             ltypeControl.Size = new Size(124, typeList.Count * 32 / 2);
             ltypeControl.Name = "ImageTypeGrid_" + typeId;
             ltypeControl.Location = new Point(60 * (index-1), 25);
             ltypeControl.Visible = false;
-            ltypeControl.BackColor = Color.White;
+            ltypeControl.BackColor = Color.White; //Color.FromArgb(defaultColor.R, defaultColor.G, defaultColor.B);
             int rowi = 1;
             int coli = 1;
             int ti = 1;
@@ -724,18 +753,18 @@ namespace MaiinTimer
                 //添加分类控件
                 addImgType(rType.Result);
                 //添加详细信息
-                List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
-                result.Result = bimg.getNewImageInfos(startNo, pageCount);
-                for (int i = 0; i < result.Result.data.Count; i++)
-                {
-                    int zi = i + 1;
-                    imgInfos.Add(result.Result.data[i]);
-                    if (zi % 3 == 0)
-                    {
-                        List_Main.addImgList(imgInfos);
-                        imgInfos.Clear();
-                    }
-                }
+                //List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
+                //result.Result = bimg.getNewImageInfos(startNo, pageCount);
+                //for (int i = 0; i < result.Result.data.Count; i++)
+                //{
+                //    int zi = i + 1;
+                //    imgInfos.Add(result.Result.data[i]);
+                //    if (zi % 3 == 0)
+                //    {
+                //        List_Main.addImgList(imgInfos);
+                //        imgInfos.Clear();
+                //    }
+                //}
                 LoadingControl(false);
             }
             catch (Exception ex)

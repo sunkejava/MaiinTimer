@@ -38,6 +38,7 @@
             LayeredSkin.DirectUI.DuiLabel duiLabel1 = new LayeredSkin.DirectUI.DuiLabel();
             System.Drawing.StringFormat stringFormat3 = new System.Drawing.StringFormat();
             this.layeredPanel_top = new LayeredSkin.Controls.LayeredPanel();
+            this.layeredLabel1 = new LayeredSkin.Controls.LayeredLabel();
             this.BaseControl_Search = new LayeredSkin.Controls.LayeredBaseControl();
             this.layeredPictureBox2 = new LayeredSkin.Controls.LayeredPictureBox();
             this.layeredPictureBox1 = new LayeredSkin.Controls.LayeredPictureBox();
@@ -50,7 +51,7 @@
             this.Panel_Type = new LayeredSkin.Controls.LayeredPanel();
             this.Panel_TypeMess = new LayeredSkin.Controls.LayeredPanel();
             this.Panel_load = new LayeredSkin.Controls.LayeredPanel();
-            this.layeredLabel1 = new LayeredSkin.Controls.LayeredLabel();
+            this.layeredLabel2 = new LayeredSkin.Controls.LayeredLabel();
             this.List_Main = new MaiinTimer.Controls.ImageListControl();
             this.layeredPanel_top.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +68,7 @@
             this.layeredPanel_top.Borders.TopColor = System.Drawing.Color.Empty;
             this.layeredPanel_top.Borders.TopWidth = 1;
             this.layeredPanel_top.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_top.Canvas")));
+            this.layeredPanel_top.Controls.Add(this.layeredLabel2);
             this.layeredPanel_top.Controls.Add(this.layeredLabel1);
             this.layeredPanel_top.Controls.Add(this.BaseControl_Search);
             this.layeredPanel_top.Controls.Add(this.layeredPictureBox2);
@@ -81,6 +83,26 @@
             this.layeredPanel_top.Size = new System.Drawing.Size(975, 41);
             this.layeredPanel_top.TabIndex = 0;
             this.layeredPanel_top.MouseDown += new System.Windows.Forms.MouseEventHandler(this.layeredPanel_top_MouseDown);
+            // 
+            // layeredLabel1
+            // 
+            this.layeredLabel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.layeredLabel1.Borders.BottomColor = System.Drawing.Color.Transparent;
+            this.layeredLabel1.Borders.BottomWidth = 1;
+            this.layeredLabel1.Borders.LeftColor = System.Drawing.Color.Transparent;
+            this.layeredLabel1.Borders.LeftWidth = 1;
+            this.layeredLabel1.Borders.RightColor = System.Drawing.Color.Transparent;
+            this.layeredLabel1.Borders.RightWidth = 1;
+            this.layeredLabel1.Borders.TopColor = System.Drawing.Color.Transparent;
+            this.layeredLabel1.Borders.TopWidth = 1;
+            this.layeredLabel1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredLabel1.Canvas")));
+            this.layeredLabel1.HaloSize = 5;
+            this.layeredLabel1.Location = new System.Drawing.Point(161, 12);
+            this.layeredLabel1.Name = "layeredLabel1";
+            this.layeredLabel1.Size = new System.Drawing.Size(240, 20);
+            this.layeredLabel1.TabIndex = 7;
+            this.layeredLabel1.Text = "layeredLabel1";
+            this.layeredLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BaseControl_Search
             // 
@@ -626,24 +648,25 @@
             this.Panel_load.TabIndex = 7;
             this.Panel_load.Visible = false;
             // 
-            // layeredLabel1
+            // layeredLabel2
             // 
-            this.layeredLabel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.layeredLabel1.Borders.BottomColor = System.Drawing.Color.Empty;
-            this.layeredLabel1.Borders.BottomWidth = 1;
-            this.layeredLabel1.Borders.LeftColor = System.Drawing.Color.Empty;
-            this.layeredLabel1.Borders.LeftWidth = 1;
-            this.layeredLabel1.Borders.RightColor = System.Drawing.Color.Empty;
-            this.layeredLabel1.Borders.RightWidth = 1;
-            this.layeredLabel1.Borders.TopColor = System.Drawing.Color.Empty;
-            this.layeredLabel1.Borders.TopWidth = 1;
-            this.layeredLabel1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredLabel1.Canvas")));
-            this.layeredLabel1.HaloSize = 5;
-            this.layeredLabel1.Location = new System.Drawing.Point(161, 12);
-            this.layeredLabel1.Name = "layeredLabel1";
-            this.layeredLabel1.Size = new System.Drawing.Size(240, 20);
-            this.layeredLabel1.TabIndex = 7;
-            this.layeredLabel1.Text = "layeredLabel1";
+            this.layeredLabel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.layeredLabel2.Borders.BottomColor = System.Drawing.Color.Transparent;
+            this.layeredLabel2.Borders.BottomWidth = 1;
+            this.layeredLabel2.Borders.LeftColor = System.Drawing.Color.Transparent;
+            this.layeredLabel2.Borders.LeftWidth = 1;
+            this.layeredLabel2.Borders.RightColor = System.Drawing.Color.Transparent;
+            this.layeredLabel2.Borders.RightWidth = 1;
+            this.layeredLabel2.Borders.TopColor = System.Drawing.Color.Transparent;
+            this.layeredLabel2.Borders.TopWidth = 1;
+            this.layeredLabel2.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredLabel2.Canvas")));
+            this.layeredLabel2.HaloSize = 5;
+            this.layeredLabel2.Location = new System.Drawing.Point(652, 12);
+            this.layeredLabel2.Name = "layeredLabel2";
+            this.layeredLabel2.Size = new System.Drawing.Size(261, 20);
+            this.layeredLabel2.TabIndex = 8;
+            this.layeredLabel2.Text = "layeredLabel2";
+            this.layeredLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // List_Main
             // 
@@ -722,5 +745,6 @@
         private LayeredSkin.Controls.LayeredPanel Panel_TypeMess;
         private LayeredSkin.Controls.LayeredPanel Panel_load;
         private LayeredSkin.Controls.LayeredLabel layeredLabel1;
+        private LayeredSkin.Controls.LayeredLabel layeredLabel2;
     }
 }
