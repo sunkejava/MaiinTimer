@@ -247,14 +247,13 @@ namespace MaiinTimer
                     newpm.Dock = DockStyle.Fill;
                     Panel_TypeMess.DUIControls.Add(newpm);
                     Panel_TypeMess.Size = item.Size;
-                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height);
+                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height-5);
                     Panel_TypeMess.Visible = true;
                 }
             }
             Point ms = Control.MousePosition;
             x = ms.X;
             y = ms.Y;
-            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
             //NowNum = int.Parse(btn.Tag.ToString());
             //LoadSliderImg(NowNum);
             Panel_Type.Refresh();
@@ -265,7 +264,6 @@ namespace MaiinTimer
             Point ms = Control.MousePosition;
             x = ms.X;
             y = ms.Y;
-            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
         }
 
         /// <summary>
@@ -289,8 +287,7 @@ namespace MaiinTimer
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
             Point ms = Control.MousePosition;
-            layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
-            if (ms.Y <= y + 4 && Panel_TypeMess.DUIControls.Count > 0)
+            if (ms.Y < y + 4 && Panel_TypeMess.DUIControls.Count > 0)
             {
                 skinLine_Update();
                 Panel_TypeMess.DUIControls.Clear();
@@ -305,14 +302,12 @@ namespace MaiinTimer
         {
             DuiLabel dlb = sender as DuiLabel;
             dlb.ForeColor = defaultColor;
-            layeredLabel2.Text = dlb.ForeColor.ToString();
         }
 
         private void dlTag_MouseLeave(object sender, EventArgs e)
         {
             DuiLabel dlb = sender as DuiLabel;
             dlb.ForeColor = System.Drawing.Color.Black;
-            layeredLabel2.Text = dlb.ForeColor.ToString();
         }
 
         private void dlTag_MouseClick(object sender, DuiMouseEventArgs e)

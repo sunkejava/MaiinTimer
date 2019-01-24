@@ -123,6 +123,8 @@
             this.Controls.Add(this.layeredLabel2);
             this.Controls.Add(this.layeredLabel1);
             this.Name = "MessageForm";
+            this.Radius = 15;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "";
             this.ResumeLayout(false);
