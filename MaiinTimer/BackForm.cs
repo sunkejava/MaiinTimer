@@ -37,9 +37,10 @@ namespace MaiinTimer
         private int mousetop = 0;
         BridImg bimg = new BridImg();
         DuiBaseControl typeControl = new DuiBaseControl();
-        string labelId = "";//选择的标签与类型ID
+        string labelId = "";//类型ID
         string startNo = "0";//开始序号
         string pageCount = "12";//每页或每次调用获取图片的总数
+        string hotTagName = "";//热门标签
         bool isSearch = false;//是否搜索
         Color defaultColor = Color.FromArgb(125, 255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
@@ -205,7 +206,7 @@ namespace MaiinTimer
                     lb.BackColor = defaultColor;
                 }
             }
-            DuiBaseControl bControl = (sender as DuiBaseControl).Parent as DuiBaseControl;
+            DuiBaseControl bControl = lbbtn.Parent as DuiBaseControl;
             foreach (var item in bControl.FindControl("ImageTypeGrid_" + vtag))
             {
                 //深度复制过来使用部分事件失效
@@ -222,9 +223,9 @@ namespace MaiinTimer
                 //    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height);                    
                 //    Panel_TypeMess.Visible = true;
                 //}
-                DuiBaseControl newpm = new DuiBaseControl();
-                if (item is DuiBaseControl && item.Controls.Count > 0)
+                if (item is DuiBaseControl && item.Controls.Count > 0 && Panel_TypeMess.DUIControls.Count <= 0)
                 {
+                    DuiBaseControl newpm = new DuiBaseControl();
                     newpm.Size = item.Size;
                     newpm.Visible = true;
                     newpm.Location = new Point(0, 0);
@@ -279,6 +280,7 @@ namespace MaiinTimer
             {
                 labelId = (sender as DuiLabel).Tag.ToString();
                 startNo = "0";
+                hotTagName = "";
                 isSearch = false;
                 Thread thread = new Thread(() => updateImgList(labelId, startNo));
                 thread.Start();
@@ -288,7 +290,7 @@ namespace MaiinTimer
         {
             Point ms = Control.MousePosition;
             layeredLabel1.Text = "进入时x:" + x.ToString() + ";进入时y:" + y.ToString() + ms.ToString();
-            if (ms.Y < y + 4)
+            if (ms.Y < y + 4 && Panel_TypeMess.DUIControls.Count > 0)
             {
                 skinLine_Update();
                 Panel_TypeMess.DUIControls.Clear();
@@ -315,7 +317,16 @@ namespace MaiinTimer
 
         private void dlTag_MouseClick(object sender, DuiMouseEventArgs e)
         {
-
+            DuiLabel dlb = sender as DuiLabel;
+            if (!String.IsNullOrEmpty(dlb.Tag.ToString()))
+            {
+                labelId = dlb.Tag.ToString().Split('-')[0];
+                hotTagName = dlb.Tag.ToString().Split('-')[1];
+                startNo = "0";
+                isSearch = false;
+                Thread thread = new Thread(() => updateImgList(labelId, startNo, hotTagName));
+                thread.Start();
+            }
         }
 
         /// <summary>
@@ -344,6 +355,11 @@ namespace MaiinTimer
         /// <param name="startNos">开始数</param>
         /// <returns></returns>
         private bool updateImgList(string tagId,string startNos)
+        {
+            return updateImgList(tagId,startNo,"");
+        }
+
+        private bool updateImgList(string tagId, string startNos,string tagName)
         {
             LoadingControl(true);
             startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
@@ -377,11 +393,18 @@ namespace MaiinTimer
                 }
                 else
                 {
-                    result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                    if (string.IsNullOrEmpty(tagName))
+                    {
+                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                    }
+                    else
+                    {
+                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount,tagName);
+                    }
                 }
-                
+
             }
-            
+
             for (int i = 0; i < result.Result.data.Count; i++)
             {
                 int zi = i + 1;
@@ -403,6 +426,11 @@ namespace MaiinTimer
         /// <returns></returns>
         private bool addImgListItem(string tagId, string startNos)
         {
+            return addImgListItem(tagId, startNos,"");
+        }
+
+        private bool addImgListItem(string tagId, string startNos,string tagName)
+        {
             LoadingControl(true);
             //准备加载下一页图片
             startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
@@ -421,7 +449,14 @@ namespace MaiinTimer
                 }
                 else
                 {
-                    result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                    if (string.IsNullOrEmpty(tagName))
+                    {
+                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                    }
+                    else
+                    {
+                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount,tagName);
+                    }
                 }
 
             }
@@ -694,11 +729,9 @@ namespace MaiinTimer
                 dlbea.Name = "ImageTypeNameOther_" + citem.tagName;
                 dlbea.Location = new Point(70 * (coli - 1), 10 + 24 * (rowi - 1));
                 dlbea.Cursor = System.Windows.Forms.Cursors.Hand;
-                dlbea.MouseEnter += dlTag_MouseEnter;
-                dlbea.MouseLeave += dlTag_MouseLeave;
                 dlbea.TextAlign = ContentAlignment.MiddleCenter;
-                dlbea.Tag = citem.tagName;
-                dlbea.MouseClick += dlTag_MouseClick;
+                dlbea.Tag = typeId + "-" + citem.tagName;
+                //dlbea.MouseClick += dlTag_MouseClick;
                 ltypeControl.Controls.Add(dlbea);
                 ti++;
             }
@@ -753,18 +786,18 @@ namespace MaiinTimer
                 //添加分类控件
                 addImgType(rType.Result);
                 //添加详细信息
-                //List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
-                //result.Result = bimg.getNewImageInfos(startNo, pageCount);
-                //for (int i = 0; i < result.Result.data.Count; i++)
-                //{
-                //    int zi = i + 1;
-                //    imgInfos.Add(result.Result.data[i]);
-                //    if (zi % 3 == 0)
-                //    {
-                //        List_Main.addImgList(imgInfos);
-                //        imgInfos.Clear();
-                //    }
-                //}
+                List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
+                result.Result = bimg.getNewImageInfos(startNo, pageCount);
+                for (int i = 0; i < result.Result.data.Count; i++)
+                {
+                    int zi = i + 1;
+                    imgInfos.Add(result.Result.data[i]);
+                    if (zi % 3 == 0)
+                    {
+                        List_Main.addImgList(imgInfos);
+                        imgInfos.Clear();
+                    }
+                }
                 LoadingControl(false);
             }
             catch (Exception ex)
@@ -882,7 +915,7 @@ namespace MaiinTimer
                 if (List_Main.Value == 1)
                 {
                     startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
-                    Thread thread = new Thread(() => addImgListItem(labelId, startNo));
+                    Thread thread = new Thread(() => addImgListItem(labelId, startNo,hotTagName));
                     thread.Start();
                 }
             }
