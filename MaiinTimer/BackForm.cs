@@ -42,6 +42,7 @@ namespace MaiinTimer
         string pageCount = "12";//每页或每次调用获取图片的总数
         string hotTagName = "";//热门标签
         bool isSearch = false;//是否搜索
+        string nCount = "0";//当前类型可获取的图片总数
         Color defaultColor = Color.FromArgb(125, 255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
@@ -133,7 +134,7 @@ namespace MaiinTimer
                                 isSearch = true;
                                 startNo = "0";
                                 labelId = searchText.Text;
-                                Thread thread = new Thread(() => updateImgList(searchText.Text, ""));
+                                Thread thread = new Thread(() => updateImgList(searchText.Text, startNo));
                                 thread.Start();
                             }
                             else
@@ -376,62 +377,70 @@ namespace MaiinTimer
 
         private bool updateImgList(string tagId, string startNos,string tagName)
         {
-            LoadingControl(true);
-            startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
-            List<DuiBaseControl> cItems = new List<DuiBaseControl>();
-            foreach (var item in List_Main.Items)
+            try
             {
-                if (item is DuiBaseControl)
+                LoadingControl(true);
+                startNos = (string.IsNullOrEmpty(startNos) ? "0" : startNos);
+                List<DuiBaseControl> cItems = new List<DuiBaseControl>();
+                foreach (var item in List_Main.Items)
                 {
-                    if ((item as DuiBaseControl).Name.Contains("imgListBaseControl_"))
+                    if (item is DuiBaseControl)
                     {
-                        cItems.Add((item as DuiBaseControl));
+                        if ((item as DuiBaseControl).Name.Contains("imgListBaseControl_"))
+                        {
+                            cItems.Add((item as DuiBaseControl));
+                        }
                     }
                 }
-            }
-            foreach (var item in cItems)
-            {
-                List_Main.Items.Remove(item);
-            }
-            cItems.Clear();
-            var result = new Utils.Response<BridImg.ImageJson>();
-            List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
-            if (isSearch)
-            {
-                result.Result = bimg.getImageInfosBySearch(tagId, startNos, pageCount);
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(tagId))
+                foreach (var item in cItems)
                 {
-                    result.Result = bimg.getNewImageInfos(startNos, pageCount);
+                    List_Main.Items.Remove(item);
+                }
+                cItems.Clear();
+                var result = new Utils.Response<BridImg.ImageJson>();
+                List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
+                if (isSearch)
+                {
+                    result.Result = bimg.getImageInfosBySearch(tagId, startNos, pageCount);
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(tagName))
+                    if (string.IsNullOrEmpty(tagId))
                     {
-                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                        result.Result = bimg.getNewImageInfos(startNos, pageCount);
                     }
                     else
                     {
-                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount,tagName);
+                        if (string.IsNullOrEmpty(tagName))
+                        {
+                            result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
+                        }
+                        else
+                        {
+                            result.Result = bimg.getImageInfos(tagId, startNos, pageCount, tagName);
+                        }
+                    }
+
+                }
+                nCount = result.Result.total.ToString();
+                for (int i = 0; i < result.Result.data.Count; i++)
+                {
+                    int zi = i + 1;
+                    imgInfos.Add(result.Result.data[i]);
+                    if (zi % 3 == 0)
+                    {
+                        List_Main.addImgList(imgInfos);
+                        imgInfos.Clear();
                     }
                 }
-
+                LoadingControl(false);
+                return true;
             }
-
-            for (int i = 0; i < result.Result.data.Count; i++)
+            catch (Exception ex)
             {
-                int zi = i + 1;
-                imgInfos.Add(result.Result.data[i]);
-                if (zi % 3 == 0)
-                {
-                    List_Main.addImgList(imgInfos);
-                    imgInfos.Clear();
-                }
+                throw new Exception("加载图片失败,原因为："+ex.Message);
             }
-            LoadingControl(false);
-            return true;
+            
         }
         /// <summary>
         /// 添加列表信息
@@ -475,23 +484,18 @@ namespace MaiinTimer
                 }
 
             }
+            nCount = result.Result.total.ToString();
             for (int i = 0; i < result.Result.data.Count; i++)
             {
                 int zi = i + 1;
                 imgInfos.Add(result.Result.data[i]);
-                if (zi % 3 == 0)
+                if (zi % 3 == 0 || zi== result.Result.data.Count)
                 {
                     List_Main.addImgList(imgInfos);
                     imgInfos.Clear();
                 }
             }
             LoadingControl(false);
-            //如果为尾页则显示加载完毕
-            if (result.Result.data.Count <= 0)
-            {
-
-            }
-
             return true;
         }
         private void LoadingControl(bool isLoad)
@@ -929,9 +933,17 @@ namespace MaiinTimer
                 }
                 if (List_Main.Value == 1)
                 {
-                    startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
-                    Thread thread = new Thread(() => addImgListItem(labelId, startNo ,hotTagName));
-                    thread.Start();
+                    //如果为尾页则显示加载完毕
+                    if ((int.Parse(startNo) + int.Parse(pageCount)) >= int.Parse(nCount))
+                    {
+                        
+                    }
+                    else
+                    {
+                        startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
+                        Thread thread = new Thread(() => addImgListItem(labelId, startNo, hotTagName));
+                        thread.Start();
+                    }
                 }
             }
         }

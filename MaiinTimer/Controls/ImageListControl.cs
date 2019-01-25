@@ -396,7 +396,25 @@ namespace MaiinTimer.Controls
             GC.Collect();
             return true;
         }
-        //利用系统的用户接口设置壁纸
+        /// <summary>
+        /// 添加底线控件
+        /// </summary>
+        /// <returns></returns>
+        public bool addIsEndLine()
+        {
+            try
+            {
+                //待实现动态底线显示，提示已加载至尾部
+
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("底线绘制失败，原因为：" + e.Message);
+            }
+        }
+        #region 利用系统接口设置壁纸
         [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
         public static extern int SystemParametersInfo(
                 int uAction,
@@ -408,6 +426,8 @@ namespace MaiinTimer.Controls
         {
             SystemParametersInfo(20, 1, strSavePath, 1);
         }
+        #endregion
+
         /// <summary>
         /// 获取图片并添加水印
         /// </summary>
@@ -417,8 +437,9 @@ namespace MaiinTimer.Controls
         /// <returns></returns>
         private Image GetImageByUrlDrawLetter(string url, int zWidth, int zHeight)
         {
-            string letter = "@sunkejava";
-            int fontSize = 8;
+            //去除添加水印操作，部分索引格式像素图片报错
+            //string letter = "@sunkejava";
+            //int fontSize = 8;
             System.Drawing.Image image = null;
             try
             {
@@ -427,11 +448,11 @@ namespace MaiinTimer.Controls
                 using (System.IO.Stream stream = webres.GetResponseStream())
                 {
                     image = Image.FromStream(stream);
-                    Graphics gs = Graphics.FromImage(image);
-                    Font font = new Font("宋体", fontSize);
-                    Brush br = new SolidBrush(Color.White);
-                    gs.DrawString(letter, font, br, zWidth - (fontSize * letter.Length), zHeight - fontSize - 5);
-                    gs.Dispose();
+                    //Graphics gs = Graphics.FromImage(image);
+                    //Font font = new Font("宋体", fontSize);
+                    //Brush br = new SolidBrush(Color.White);
+                    //gs.DrawString(letter, font, br, zWidth - (fontSize * letter.Length), zHeight - fontSize - 5);
+                    //gs.Dispose();
                     return image;
                 }
             }
