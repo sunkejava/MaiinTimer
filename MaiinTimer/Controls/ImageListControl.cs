@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MaiinTimer.Controls
@@ -26,6 +27,8 @@ namespace MaiinTimer.Controls
     {
         BridImg bimg = new BridImg();
         ToolTip toolTip1 = new ToolTip();
+        int x, y;//记录鼠标进入控件时的位置
+        Color defaultColor = Color.FromArgb(125, 255, 92, 138);
         public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
         #region 控件事件
 
@@ -36,42 +39,45 @@ namespace MaiinTimer.Controls
         /// <param name="e"></param>
         private void Dp_MouseLeave(object sender, EventArgs e)
         {
-            DuiBaseControl dp = null;
-            string strId = "";
-            if (sender is DuiBaseControl)
+            Point ms = Control.MousePosition;
+            if (ms.Y != y || (ms.X != x))
             {
-                dp = sender as DuiBaseControl;
-                if (dp.Name.Contains("btnBaseControl_"))
+                DuiBaseControl dp = null;
+                string strId = "";
+                if (sender is DuiBaseControl)
                 {
-                    strId = (dp != null ? dp.Name.Replace("btnBaseControl_", "") : "");
-                }
-            }
-            if (sender is DuiButton)
-            {
-                dp = (sender as DuiButton).Parent as DuiBaseControl;
-                strId = (sender as DuiButton).Name.Replace("btn_Download_", "").Replace("btn_Setting_", "");
-            }
-            if (sender is DuiPictureBox)
-            {
-                strId = (sender as DuiPictureBox).Name.Replace("back_", "");
-                dp = (sender as DuiPictureBox).Parent as DuiBaseControl;
-            }
-            //隐藏按钮
-            if (dp.FindControl("btnBaseControl_" + strId).Count > 0)
-            {
-                DuiBaseControl ldl = dp.FindControl("btnBaseControl_" + strId)[0];
-                if (!ldl.IsMouseEnter)
-                {
-                    ldl.Visible = false;
-                    //显示说明
-                    if (dp.FindControl("imgTag_" + strId).Count > 0)
+                    dp = sender as DuiBaseControl;
+                    if (dp.Name.Contains("btnBaseControl_"))
                     {
-                        DuiLabel dl = (DuiLabel)dp.FindControl("imgTag_" + strId)[0];
-                        dl.Visible = true;
+                        strId = (dp != null ? dp.Name.Replace("btnBaseControl_", "") : "");
+                    }
+                }
+                if (sender is DuiButton)
+                {
+                    dp = (sender as DuiButton).Parent as DuiBaseControl;
+                    strId = (sender as DuiButton).Name.Replace("btn_Download_", "").Replace("btn_Setting_", "");
+                }
+                if (sender is DuiPictureBox)
+                {
+                    strId = (sender as DuiPictureBox).Name.Replace("back_", "");
+                    dp = (sender as DuiPictureBox).Parent as DuiBaseControl;
+                }
+                //隐藏按钮
+                if (dp.FindControl("btnBaseControl_" + strId).Count > 0)
+                {
+                    DuiBaseControl ldl = dp.FindControl("btnBaseControl_" + strId)[0];
+                    if (!ldl.IsMouseEnter)
+                    {
+                        ldl.Visible = false;
+                        //显示说明
+                        if (dp.FindControl("imgTag_" + strId).Count > 0)
+                        {
+                            DuiLabel dl = (DuiLabel)dp.FindControl("imgTag_" + strId)[0];
+                            dl.Visible = true;
+                        }
                     }
                 }
             }
-            
         }
         /// <summary>
         /// 图片列表获取焦点后的事件
@@ -80,6 +86,9 @@ namespace MaiinTimer.Controls
         /// <param name="e"></param>
         private void Dp_MouseEnter(object sender, EventArgs e)
         {
+            Point ms = Control.MousePosition;
+            x = ms.X;
+            y = ms.Y;
             DuiBaseControl dp = null;
             string strId = "";
             if (sender is DuiBaseControl)
@@ -152,7 +161,8 @@ namespace MaiinTimer.Controls
                 stream.Close();
                 if (dbn.Name.Contains("btn_Setting_"))
                 {
-                    setWallpaperApi(fileName);
+                    Thread thread = new Thread(() => setWallpaperApi(fileName));
+                    thread.Start();
                 }
                 else
                 {
@@ -166,6 +176,18 @@ namespace MaiinTimer.Controls
                 throw new Exception("下载图片失败，原因为：" + ex.Message);
             }
         }
+
+        private void Btn_Download_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(this);
+        }
+
+        private void Btn_Download_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(((DuiButton)sender).Tag.ToString().Split('|')[0].ToString() + (((DuiButton)sender).Tag.ToString().Split('|')[0].ToString().Contains("取消") ? "" : "壁纸"), this, PointToClient(MousePosition).X, PointToClient(MousePosition).Y + 15, 2000);
+        }
+
+
         /// <summary>
         /// 收藏按钮点击事件
         /// </summary>
@@ -216,6 +238,13 @@ namespace MaiinTimer.Controls
                 throw new Exception("下载图片失败，原因为：" + ex.Message);
             }
         }
+
+        private void BtnBaseControl_MouseMove(object sender, DuiMouseEventArgs e)
+        {
+            Point ms = Control.MousePosition;
+            x = ms.X;
+            y = ms.Y;
+        }
         #endregion
 
         #region 自定义事件
@@ -250,10 +279,10 @@ namespace MaiinTimer.Controls
                 dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 dp.Name = "back_" + imgInfo.id.ToString();
                 dp.Location = new Point(2, 2);
-                dp.Cursor = System.Windows.Forms.Cursors.Hand;
+                //dp.Cursor = System.Windows.Forms.Cursors.Hand;
                 dp.MouseEnter += Dp_MouseEnter;
                 dp.MouseLeave += Dp_MouseLeave;
-                dp.MouseClick += Dp_MouseClick;
+                //dp.MouseClick += Dp_MouseClick;
                 //图片说明
                 DuiLabel imgTag = new DuiLabel();
                 imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
@@ -275,7 +304,8 @@ namespace MaiinTimer.Controls
                 imgTag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 imgTag.Text = imgInfo.utag;
                 imgTag.Name = "imgTag_" + imgInfo.id.ToString();
-                
+                imgTag.MouseLeave += Dp_MouseLeave;
+
                 imgTag.Cursor = System.Windows.Forms.Cursors.Hand;
                 //下载按钮
                 DuiButton btn_Download = new DuiButton();
@@ -283,7 +313,7 @@ namespace MaiinTimer.Controls
                 btn_Download.Radius = 35;
                 btn_Download.Name = "btn_Download_" + imgInfo.id.ToString();
                 btn_Download.Text = "";
-                btn_Download.Location = new Point(zWidth - 39 - 105, 2);
+                btn_Download.Location = new Point(0, 0);
                 btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
                 btn_Download.AdaptImage = false;
                 btn_Download.IsPureColor = true;
@@ -297,7 +327,7 @@ namespace MaiinTimer.Controls
                 btn_Download.MouseLeave += Btn_Download_MouseLeave;
                 //收藏按钮
                 DuiButton btn_sc = new DuiButton();
-                btn_sc.Location = new Point(zWidth - 26 - 70, 2);
+                btn_sc.Location = new Point(35, 0);
                 btn_sc.Size = new Size(35, 35);
                 btn_sc.Text = "";
                 btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -315,7 +345,7 @@ namespace MaiinTimer.Controls
                 btn_sc.MouseLeave += Btn_Download_MouseLeave;
                 //设置按钮
                 DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(zWidth - 13 - 35, 2);
+                btn_Setting.Location = new Point(70, 0);
                 btn_Setting.Size = new Size(35, 35);
                 btn_Setting.Text = "";
                 btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -333,12 +363,13 @@ namespace MaiinTimer.Controls
                 btn_Setting.MouseLeave += Btn_Download_MouseLeave;
                 //按钮底层控件
                 DuiBaseControl btnBaseControl = new DuiBaseControl();
-                btnBaseControl.Size = new Size(zWidth-10,40);
+                btnBaseControl.Size = new Size(zWidth/3,35);
                 btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
-                btnBaseControl.Location = new Point(5,zHeight-48);
+                btnBaseControl.Location = new Point(zWidth / 3 * 2 - 12,zHeight - 52);
                 btnBaseControl.BackColor = Color.Transparent;
-                btnBaseControl.MouseEnter += Dp_MouseEnter;
+                //btnBaseControl.MouseEnter += Dp_MouseEnter;
                 btnBaseControl.MouseLeave += Dp_MouseLeave;
+                btnBaseControl.MouseMove += BtnBaseControl_MouseMove;
                 btnBaseControl.Controls.Add(btn_Download);
                 btnBaseControl.Controls.Add(btn_sc);
                 btnBaseControl.Controls.Add(btn_Setting);
@@ -365,17 +396,6 @@ namespace MaiinTimer.Controls
             GC.Collect();
             return true;
         }
-
-        private void Btn_Download_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(this);
-        }
-
-        private void Btn_Download_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.Show(((DuiButton)sender).Tag.ToString().Split('|')[0].ToString() + (((DuiButton)sender).Tag.ToString().Split('|')[0].ToString().Contains("取消") ? "" : "壁纸"), this, PointToClient(MousePosition).X, PointToClient(MousePosition).Y + 15, 2000);
-        }
-
         //利用系统的用户接口设置壁纸
         [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
         public static extern int SystemParametersInfo(

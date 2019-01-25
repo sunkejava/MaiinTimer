@@ -46,7 +46,7 @@ namespace MaiinTimer
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
-        int x, y;
+        int x, y;//记录鼠标进入控件时的位置
         #region 窗体控件事件
         public BackForm()
         {
@@ -287,7 +287,7 @@ namespace MaiinTimer
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
             Point ms = Control.MousePosition;
-            if (ms.Y < y + 4 && Panel_TypeMess.DUIControls.Count > 0)
+            if ((ms.Y < y || (ms.Y >= y && ms.X != x)) && Panel_TypeMess.DUIControls.Count > 0)
             {
                 skinLine_Update();
                 Panel_TypeMess.DUIControls.Clear();
@@ -295,7 +295,7 @@ namespace MaiinTimer
                 Panel_TypeMess.Size = new Size(0, 0);
                 Panel_TypeMess.Refresh();
             }
-            //List_Main.Refresh();
+            List_Main.Refresh();
         }
 
         private void dlTag_MouseEnter(object sender, EventArgs e)
@@ -313,14 +313,27 @@ namespace MaiinTimer
         private void dlTag_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiLabel dlb = sender as DuiLabel;
-            if (!String.IsNullOrEmpty(dlb.Tag.ToString()))
+            string tidsStr = dlb.Tag.ToString();
+            if (!String.IsNullOrEmpty(tidsStr))
             {
-                labelId = dlb.Tag.ToString().Split('-')[0];
-                hotTagName = dlb.Tag.ToString().Split('-')[1];
-                startNo = "0";
-                isSearch = false;
-                Thread thread = new Thread(() => updateImgList(labelId, startNo, hotTagName));
-                thread.Start();
+                if (tidsStr.Contains("-"))
+                {
+                    labelId = dlb.Tag.ToString().Split('-')[0];
+                    hotTagName = dlb.Tag.ToString().Split('-')[1];
+                    startNo = "0";
+                    isSearch = false;
+                    Thread thread = new Thread(() => updateImgList(labelId, startNo, hotTagName));
+                    thread.Start();
+                }
+                else
+                {
+                    labelId = (sender as DuiLabel).Tag.ToString();
+                    startNo = "0";
+                    hotTagName = "";
+                    isSearch = false;
+                    Thread thread = new Thread(() => updateImgList(labelId, startNo));
+                    thread.Start();
+                }
             }
         }
 
@@ -771,7 +784,7 @@ namespace MaiinTimer
                 //dlbea.MouseLeave += Dlbe_MouseLeave;
                 dlbea.TextAlign = ContentAlignment.MiddleCenter;
                 dlbea.Tag = citem.id;
-                //dlbea.MouseClick += Dlbe_MouseClick;
+                dlbea.MouseClick += Dlbe_MouseClick;
                 ltypeControl.Controls.Add(dlbea);
                 ti++;
             }
@@ -917,7 +930,7 @@ namespace MaiinTimer
                 if (List_Main.Value == 1)
                 {
                     startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
-                    Thread thread = new Thread(() => addImgListItem(labelId, startNo,hotTagName));
+                    Thread thread = new Thread(() => addImgListItem(labelId, startNo ,hotTagName));
                     thread.Start();
                 }
             }
