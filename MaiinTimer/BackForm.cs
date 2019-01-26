@@ -280,6 +280,7 @@ namespace MaiinTimer
                 labelId = (sender as DuiLabel).Tag.ToString();
                 startNo = "0";
                 hotTagName = "";
+                nCount = "0";
                 isSearch = false;
                 Thread thread = new Thread(() => updateImgList(labelId, startNo));
                 thread.Start();
@@ -405,7 +406,7 @@ namespace MaiinTimer
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(tagId))
+                    if (string.IsNullOrEmpty(tagId) || tagId == "0")
                     {
                         result.Result = bimg.getNewImageInfos(startNos, pageCount);
                     }
@@ -473,7 +474,7 @@ namespace MaiinTimer
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(tagName))
+                    if (string.IsNullOrEmpty(tagName) || tagId == "0")
                     {
                         result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
                     }
@@ -934,7 +935,7 @@ namespace MaiinTimer
                 if (List_Main.Value == 1)
                 {
                     //如果为尾页则显示加载完毕
-                    if ((int.Parse(startNo) + int.Parse(pageCount)) >= int.Parse(nCount))
+                    if ((int.Parse(startNo) + int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0")
                     {
                         
                     }
