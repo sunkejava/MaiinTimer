@@ -286,7 +286,8 @@ namespace MaiinTimer.Controls
                 //图片说明
                 DuiLabel imgTag = new DuiLabel();
                 imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-                if (imgInfo.utag.Length * 9 > zWidth)
+                string ingTxt = (string.IsNullOrEmpty(imgInfo.utag) ? "" : imgInfo.utag);
+                if (ingTxt.Length * 9 > zWidth)
                 {
                     imgTag.Size = new Size(zWidth-4, 10*4);
                     imgTag.Location = new Point(2, zHeight - 43);

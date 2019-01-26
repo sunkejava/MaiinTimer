@@ -428,10 +428,11 @@ namespace MaiinTimer
                 {
                     int zi = i + 1;
                     imgInfos.Add(result.Result.data[i]);
-                    if (zi % 3 == 0)
+                    if (zi % 3 == 0 || zi == result.Result.data.Count)
                     {
                         List_Main.addImgList(imgInfos);
                         imgInfos.Clear();
+                        List_Main.RefreshList();
                     }
                 }
                 LoadingControl(false);
@@ -474,7 +475,7 @@ namespace MaiinTimer
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(tagName) || tagId == "0")
+                    if (string.IsNullOrEmpty(tagName))
                     {
                         result.Result = bimg.getImageInfos(tagId, startNos, pageCount);
                     }
@@ -494,6 +495,7 @@ namespace MaiinTimer
                 {
                     List_Main.addImgList(imgInfos);
                     imgInfos.Clear();
+                    List_Main.RefreshList();
                 }
             }
             LoadingControl(false);
@@ -812,10 +814,11 @@ namespace MaiinTimer
                 {
                     int zi = i + 1;
                     imgInfos.Add(result.Result.data[i]);
-                    if (zi % 3 == 0)
+                    if (zi % 3 == 0 || zi == result.Result.data.Count)
                     {
                         List_Main.addImgList(imgInfos);
                         imgInfos.Clear();
+                        List_Main.RefreshList();
                     }
                 }
                 LoadingControl(false);
