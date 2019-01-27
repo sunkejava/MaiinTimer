@@ -81,6 +81,12 @@ namespace MaiinTimer
                     }
                 }
             }
+            //添加默认字段
+            labelId = "0";
+            startNo = "0";
+            hotTagName = "";
+            nCount = "0";
+            isSearch = false;
             Panel_load.BackColor = defaultColor;
             Thread thread = new Thread(() => addBackImg());
             thread.Start();
@@ -288,6 +294,15 @@ namespace MaiinTimer
         }
         private void Dlbe_MouseLeave(object sender, EventArgs e)
         {
+            DuiBaseControl lbbtn = sender as DuiBaseControl;
+            foreach (var vitem in lbbtn.Controls)
+            {
+                DuiLabel lb = vitem as DuiLabel;
+                if (lb.Text == "4K专区")
+                {
+                    skinLine_Update();
+                }
+            }
             Point ms = Control.MousePosition;
             if ((ms.Y < y || (ms.Y >= y && ms.X != x)) && Panel_TypeMess.DUIControls.Count > 0)
             {
@@ -810,6 +825,7 @@ namespace MaiinTimer
                 //添加详细信息
                 List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
                 result.Result = bimg.getNewImageInfos(startNo, pageCount);
+                nCount = result.Result.total.ToString();
                 for (int i = 0; i < result.Result.data.Count; i++)
                 {
                     int zi = i + 1;
