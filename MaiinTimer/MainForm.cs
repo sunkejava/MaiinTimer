@@ -225,6 +225,7 @@ namespace MaiinTimer
             cbr.Value = 35;
             cbr.BackColor = Color.Transparent;
             cbr.DoingText = "进度条";
+            cbr.CompleteText = "已完成";
             cbr.Color = Color.HotPink;
             cbr.Location = new Point(120,95);
 
