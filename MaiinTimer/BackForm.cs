@@ -43,7 +43,7 @@ namespace MaiinTimer
         string hotTagName = "";//热门标签
         bool isSearch = false;//是否搜索
         string nCount = "0";//当前类型可获取的图片总数
-        Color defaultColor = Color.FromArgb(125, 255, 92, 138);
+        Color defaultColor = Color.FromArgb(255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
@@ -87,7 +87,7 @@ namespace MaiinTimer
             hotTagName = "";
             nCount = "0";
             isSearch = false;
-            Panel_load.BackColor = defaultColor;
+            Panel_load.BackColor = Color.FromArgb(125,defaultColor.R, defaultColor.G, defaultColor.B);
             Thread thread = new Thread(() => addBackImg());
             thread.Start();
             //addBackImg();

@@ -236,6 +236,7 @@
             this.baseControl_main.Borders.TopWidth = 1;
             this.baseControl_main.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("baseControl_main.Canvas")));
             this.baseControl_main.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.baseControl_main.ForeColor = System.Drawing.Color.Transparent;
             this.baseControl_main.Location = new System.Drawing.Point(0, 29);
             this.baseControl_main.Name = "baseControl_main";
             this.baseControl_main.Size = new System.Drawing.Size(439, 252);

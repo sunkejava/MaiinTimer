@@ -10,15 +10,17 @@ using System.Windows.Forms;
 using LayeredSkin.Forms;
 using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
+using MaiinTimer.Controls;
 
 namespace MaiinTimer
 {
     public partial class MainForm : LayeredForm
     {
-        Color defaultColor = Color.FromArgb(60, 255, 92, 138);
+        Color defaultColor = Color.FromArgb(255, 92, 138);
         DuiLabel dlbnowTime = new DuiLabel();//当前时间
         Cursor defaultCursor = Cursors.Hand;
-        
+        CircularProgressBarEx cbr = new CircularProgressBarEx();
+        Timer timer = new Timer();
         #region 窗体事件
         [DllImport("user32.dll", EntryPoint = "SendMessageA")]
         private static extern int SendMessage(int hwnd, int wMsg, int wParam, int lParam);
@@ -36,7 +38,22 @@ namespace MaiinTimer
         {
             layeredPanel_top.BackColor = defaultColor;
             baseControl_main.BackColor = defaultColor;
+            timer.Interval = 100;
+            timer.Tick += Timer_Tick;
+            timer.Enabled = true;
             addBaseControl();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (cbr.Value < 100)
+            {
+                cbr.Value++;
+            }
+            //else
+            //{
+            //    cbr.Value = 0;
+            //}
         }
         #endregion
 
@@ -203,9 +220,16 @@ namespace MaiinTimer
 
             //dbSeting.Borders = baseBorder;
             //dbSeting.BorderPath.AddArc(new RectangleF(0, 0, 40, 40),0, 360);
+            //添加进度条
+            cbr.Size = new Size(120, 160);
+            cbr.Value = 35;
+            cbr.BackColor = Color.Transparent;
+            cbr.DoingText = "进度条";
+            cbr.Color = Color.HotPink;
+            cbr.Location = new Point(120,95);
 
             dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet, dbSeting });
-            baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl });
+            baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl, cbr });
         }
         #endregion
 
