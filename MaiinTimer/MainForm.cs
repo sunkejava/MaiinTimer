@@ -79,8 +79,6 @@ namespace MaiinTimer
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            //this.Animation.Effect = new LayeredSkin.Animations.GradualCurtainEffect();
-            //this.Animation.Asc = true;
             this.Close();
         }
 
@@ -136,6 +134,23 @@ namespace MaiinTimer
                 }
             }
             
+        }
+
+        private void timer_time_Tick(object sender, EventArgs e)
+        {
+            dlbnowTime.Text = "当前时间：" + DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void DbSet_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            if (cbr.Value < 100)
+            {
+                cbr.Value++;
+            }
+            else
+            {
+                cbr.Value = 0;
+            }
         }
         #endregion
 
@@ -195,6 +210,7 @@ namespace MaiinTimer
             dbSet.Location = new Point(50,35);
             dbSet.AdaptImage = false;
             dbSet.NormalImage = Properties.Resources.my_new_login_btn;
+            dbSet.MouseClick += DbSet_MouseClick;
 
             DuiButton dbSeting = new DuiButton();
             dbSeting.Size = new Size(40, 40);
@@ -221,22 +237,19 @@ namespace MaiinTimer
             //dbSeting.Borders = baseBorder;
             //dbSeting.BorderPath.AddArc(new RectangleF(0, 0, 40, 40),0, 360);
             //添加进度条
-            cbr.Size = new Size(120, 160);
+            cbr.Size = new Size(120, 150);
             cbr.Value = 35;
             cbr.BackColor = Color.Transparent;
             cbr.DoingText = "进度条";
             cbr.CompleteText = "已完成";
             cbr.Color = Color.HotPink;
-            cbr.Location = new Point(120,95);
+            cbr.Location = new Point(10,98);
 
             dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet, dbSeting });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl, cbr });
         }
+
         #endregion
 
-        private void timer_time_Tick(object sender, EventArgs e)
-        {
-           dlbnowTime.Text = "当前时间：" + DateTime.Now.ToString("HH:mm:ss");
-        }
     }
 }

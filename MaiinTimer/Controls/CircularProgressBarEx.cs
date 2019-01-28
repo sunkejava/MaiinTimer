@@ -15,6 +15,7 @@ namespace MaiinTimer.Controls
         private string completeText = "";
         private string doingText = "";
 
+        [Description("进度"), Category("自定义属性")]
         public int Value
         {
             get { return this.circularProgressBar.Value; }
@@ -25,6 +26,7 @@ namespace MaiinTimer.Controls
             }
         }
 
+        [Description("进度条背景色"), Category("自定义属性")]
         public Color Color
         {
             get { return this.circularProgressBar.MainColor; }
@@ -36,6 +38,7 @@ namespace MaiinTimer.Controls
         }
 
         [LocalizableAttribute(true)]
+        [Description("完成后提示文字"),Category("自定义属性")]
         public string CompleteText
         {
             get { return completeText; }
@@ -47,6 +50,7 @@ namespace MaiinTimer.Controls
         }
 
         [LocalizableAttribute(true)]
+        [Description("进行中提示文字"), Category("自定义属性")]
         public string DoingText
         {
             get { return doingText; }
@@ -69,12 +73,12 @@ namespace MaiinTimer.Controls
             if (this.Value == 100)
             {
                 SizeF size = e.Graphics.MeasureString(this.completeText, new Font("微软雅黑", 12F));
-                e.Graphics.DrawString(this.completeText, new Font("微软雅黑", 12F), new SolidBrush(Color.Gray), new Point(this.Width / 2 - (int)size.Width / 2 - 1, this.Height - (int)size.Height - 5));
+                e.Graphics.DrawString(this.completeText, new Font("微软雅黑", 12F), new SolidBrush(Color.White), new Point(this.Width / 2 - (int)size.Width / 2 - 1, this.Height - (int)size.Height - 5));
             }
             else
             {
                 SizeF size = e.Graphics.MeasureString(this.doingText, new Font("微软雅黑", 12F));
-                e.Graphics.DrawString(this.doingText, new Font("微软雅黑", 12F), new SolidBrush(Color.Gray), new Point(this.Width / 2 - (int)size.Width / 2 - 1, this.Height - (int)size.Height - 5));
+                e.Graphics.DrawString(this.doingText, new Font("微软雅黑", 12F), new SolidBrush(Color.White), new Point(this.Width / 2 - (int)size.Width / 2 - 1, this.Height - (int)size.Height - 5));
             }
 
         }

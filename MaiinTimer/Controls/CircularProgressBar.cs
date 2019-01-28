@@ -83,7 +83,7 @@ namespace MaiinTimer.Controls
                 e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
                 if (this.value == 100)
                 {
-                    //e.Graphics.FillEllipse(new SolidBrush(this.mainColor), new Rectangle(new Point(e.ClipRectangle.X + circularWidth / 2, e.ClipRectangle.Y + circularWidth / 2), new Size(e.ClipRectangle.Width - 1 - circularWidth, e.ClipRectangle.Height - 1 - circularWidth)));
+                    e.Graphics.FillEllipse(new SolidBrush(this.mainColor), new Rectangle(new Point(e.ClipRectangle.X + circularWidth / 2, e.ClipRectangle.Y + circularWidth / 2), new Size(e.ClipRectangle.Width - 1 - circularWidth, e.ClipRectangle.Height - 1 - circularWidth)));
                 }
                 using (Pen p = new Pen(Brushes.LightGray, circularWidth))
                 {
@@ -110,13 +110,13 @@ namespace MaiinTimer.Controls
                 {
                     SizeF size = e.Graphics.MeasureString(this.value.ToString(), new Font("黑体", 15F, System.Drawing.FontStyle.Bold));
                     e.Graphics.DrawString(this.value.ToString(), new Font("黑体", 15F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.White), new Point(this.Width / 2 - (int)size.Width / 2 - 1, this.Height / 2 - (int)size.Height / 2 + 2));
-                    e.Graphics.DrawString("%", new Font("华文新魏", 9F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.White), new Point(this.Width / 2 + (int)size.Width / 2 - 4, this.Height / 2 - (int)size.Height + 14));
+                    e.Graphics.DrawString("%", new Font("华文新魏", 9F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.White), new Point(this.Width / 2 + (int)size.Width / 2 - 4, this.Height / 2 - (int)size.Height + 18));
                 }
                 else
                 {
                     SizeF size = e.Graphics.MeasureString(this.value.ToString(), new Font("黑体", 15F, System.Drawing.FontStyle.Bold));
-                    e.Graphics.DrawString(this.value.ToString(), new Font("黑体", 15F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.DimGray), new Point(this.Width / 2 - (int)size.Width / 2 - 1, this.Height / 2 - (int)size.Height / 2 + 2));
-                    e.Graphics.DrawString("%", new Font("华文新魏", 9F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.DimGray), new Point(this.Width / 2 + (int)size.Width / 2 - 4, this.Height / 2 - (int)size.Height + 14));
+                    e.Graphics.DrawString(this.value.ToString(), new Font("黑体", 15F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.White), new Point(this.Width / 2 - (int)size.Width / 2 - 1, this.Height / 2 - (int)size.Height / 2 + 2));
+                    e.Graphics.DrawString("%", new Font("华文新魏", 9F, System.Drawing.FontStyle.Bold), new SolidBrush(Color.White), new Point(this.Width / 2 + (int)size.Width / 2 - 4, this.Height / 2 - (int)size.Height + 18));
                 }
             }
             catch { }
