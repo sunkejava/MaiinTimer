@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using LayeredSkin.Forms;
 using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
+using LayeredSkin.Animations;
 using MaiinTimer.Controls;
 
 namespace MaiinTimer
@@ -143,6 +144,7 @@ namespace MaiinTimer
 
         private void DbSet_MouseClick(object sender, DuiMouseEventArgs e)
         {
+            DuiButton dbSet = sender as DuiButton;
             if (cbr.Value < 100)
             {
                 cbr.Value++;
@@ -151,6 +153,11 @@ namespace MaiinTimer
             {
                 cbr.Value = 0;
             }
+            //if (LayeredSkin.NativeMethods.AnimateWindow(dbSet.Handle, 300, LayeredSkin.WindowMessages.AW_BLEND | LayeredSkin.WindowMessages.AW_HIDE))
+            //{
+            //    LayeredSkin.NativeMethods.AnimateWindow(dbSet.Handle, 300, LayeredSkin.WindowMessages.AW_BLEND | LayeredSkin.WindowMessages.AW_ACTIVATE);
+            //}
+            //Utils.AnimationControl.ShowControl(dbSet,true, AnchorStyles.Bottom);
         }
         #endregion
 

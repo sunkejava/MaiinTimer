@@ -255,7 +255,8 @@ namespace MaiinTimer
                     Panel_TypeMess.DUIControls.Add(newpm);
                     Panel_TypeMess.Size = item.Size;
                     Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height-5);
-                    Panel_TypeMess.Visible = true;
+                    //Panel_TypeMess.Visible = true;
+                    Utils.AnimationControl.ShowControl(Panel_TypeMess, true,AnchorStyles.Right);
                 }
             }
             Point ms = Control.MousePosition;
@@ -308,9 +309,10 @@ namespace MaiinTimer
             {
                 skinLine_Update();
                 Panel_TypeMess.DUIControls.Clear();
-                Panel_TypeMess.Visible = false;
-                Panel_TypeMess.Size = new Size(0, 0);
-                Panel_TypeMess.Refresh();
+                //Panel_TypeMess.Visible = false;
+                Utils.AnimationControl.ShowControl(Panel_TypeMess, false, AnchorStyles.Left);
+                //Panel_TypeMess.Size = new Size(0, 0);
+                //Panel_TypeMess.Refresh();
             }
             List_Main.Refresh();
         }
