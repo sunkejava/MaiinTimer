@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace MaiinTimer.Utils
 {
+    /// <summary>
+    /// DuiBaseControl动画类
+    /// </summary>
     public static class AnimationDuiBaseControl
     {
         private static readonly int MoveStep = 25;
