@@ -218,6 +218,8 @@ namespace MaiinTimer
             dbSet.AdaptImage = false;
             dbSet.NormalImage = Properties.Resources.my_new_login_btn;
             dbSet.MouseClick += DbSet_MouseClick;
+            dbSet.MouseMove += DbSet_MouseMove;
+            dbSet.MouseLeave += DbSet_MouseLeave;
 
             DuiButton dbSeting = new DuiButton();
             dbSeting.Size = new Size(40, 40);
@@ -243,6 +245,20 @@ namespace MaiinTimer
 
             //dbSeting.Borders = baseBorder;
             //dbSeting.BorderPath.AddArc(new RectangleF(0, 0, 40, 40),0, 360);
+            DuiBaseControl dbtest = new DuiBaseControl();
+            dbtest.Name = "Test_DuiBaseControl";
+            dbtest.Size = new Size(150, 30);
+            dbtest.Location = new Point(150, 80);
+            dbtest.BackColor = Color.White;
+            
+
+            DuiLabel dllod = new DuiLabel();
+            dllod.Text = "正在加载中";
+            dllod.Location = new Point(10, 5);
+            dllod.Size = new Size(130, 20);
+            dllod.TextAlign = ContentAlignment.MiddleCenter;
+
+            dbtest.Controls.Add(dllod);
             //添加进度条
             cbr.Size = new Size(120, 150);
             cbr.Value = 35;
@@ -252,8 +268,38 @@ namespace MaiinTimer
             cbr.Color = Color.HotPink;
             cbr.Location = new Point(10,98);
 
-            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet, dbSeting });
+            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet, dbSeting,dbtest });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl, cbr });
+        }
+
+        private void DbSet_MouseLeave(object sender, EventArgs e)
+        {
+            DuiButton db = sender as DuiButton;
+            DuiBaseControl pd = db.Parent as DuiBaseControl;
+            foreach (var item in pd.FindControl("Test_DuiBaseControl"))
+            {
+                if (item is DuiBaseControl)
+                {
+                    DuiBaseControl ds = item as DuiBaseControl;
+                    //Utils.AnimationDuiBaseControl.ShowControl(ds, false, AnchorStyles.Bottom);
+                }
+            }
+            this.Refresh();
+        }
+
+        private void DbSet_MouseMove(object sender, DuiMouseEventArgs e)
+        {
+            DuiButton db = sender as DuiButton;
+            DuiBaseControl pd = db.Parent as DuiBaseControl;
+            foreach (var item in pd.FindControl("Test_DuiBaseControl"))
+            {
+                if (item is DuiBaseControl)
+                {
+                    DuiBaseControl ds = item as DuiBaseControl;
+                    //Utils.AnimationDuiBaseControl.ShowControl(ds, true, AnchorStyles.Bottom);
+                }
+            }
+            this.Refresh();
         }
 
         #endregion
