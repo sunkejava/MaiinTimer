@@ -207,20 +207,20 @@ namespace MaiinTimer
             dlblx.Font = new Font("微软雅黑", 13, FontStyle.Regular);
             dlblx.Size = new Size(35 * dlb.Text.Length, 20);
             dlblx.TextAlign = ContentAlignment.MiddleCenter;
-            dlblx.Location = new Point(25, 15);
+            dlblx.Location = new Point(0, 15);
 
             DuiTextBox dlTime = new DuiTextBox();
             dlTime.Size = new Size(70,5);
             dlTime.Location = new Point(75, 15);
             dlTime.Text = DateTime.Now.Hour.ToString();
             dlTime.Top = 15;
-
+            
             DuiButton dbSet = new DuiButton();
             dbSet.Size = new Size(100, 25);
             dbSet.Radius = 20;
             dbSet.Name = "setTime";
             dbSet.Text = "设置定时";
-            dbSet.Location = new Point(50,15);
+            dbSet.Location = new Point(150,15);
             dbSet.AdaptImage = false;
             dbSet.NormalImage = Properties.Resources.my_new_login_btn;
             dbSet.MouseClick += DbSet_MouseClick;
@@ -274,7 +274,7 @@ namespace MaiinTimer
             cbr.Color = Color.HotPink;
             cbr.Location = new Point(10,98);
 
-            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dbSet, dbSeting,dbtest });
+            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx,dlTime, dbSet, dbSeting,dbtest });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl, cbr });
         }
 
