@@ -207,14 +207,20 @@ namespace MaiinTimer
             dlblx.Font = new Font("微软雅黑", 13, FontStyle.Regular);
             dlblx.Size = new Size(35 * dlb.Text.Length, 20);
             dlblx.TextAlign = ContentAlignment.MiddleCenter;
-            dlblx.Location = new Point(25, 35);
+            dlblx.Location = new Point(25, 15);
+
+            DuiTextBox dlTime = new DuiTextBox();
+            dlTime.Size = new Size(70,5);
+            dlTime.Location = new Point(75, 15);
+            dlTime.Text = DateTime.Now.Hour.ToString();
+            dlTime.Top = 15;
 
             DuiButton dbSet = new DuiButton();
             dbSet.Size = new Size(100, 25);
             dbSet.Radius = 20;
             dbSet.Name = "setTime";
             dbSet.Text = "设置定时";
-            dbSet.Location = new Point(50,35);
+            dbSet.Location = new Point(50,15);
             dbSet.AdaptImage = false;
             dbSet.NormalImage = Properties.Resources.my_new_login_btn;
             dbSet.MouseClick += DbSet_MouseClick;
