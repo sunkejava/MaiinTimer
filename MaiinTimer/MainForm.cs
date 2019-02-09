@@ -210,8 +210,8 @@ namespace MaiinTimer
             dlblx.Location = new Point(0, 15);
 
             DuiTextBox dlTime = new DuiTextBox();
-            dlTime.Size = new Size(70,5);
-            dlTime.Location = new Point(0, 20);
+            dlTime.Size = new Size(70,20);
+            dlTime.Location = new Point(90, 15);
             dlTime.Text = DateTime.Now.Hour.ToString();
             dlTime.Top = 15;
             
