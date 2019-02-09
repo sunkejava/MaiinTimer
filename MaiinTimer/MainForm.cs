@@ -211,7 +211,7 @@ namespace MaiinTimer
 
             DuiTextBox dlTime = new DuiTextBox();
             dlTime.Size = new Size(70,5);
-            dlTime.Location = new Point(75, 15);
+            dlTime.Location = new Point(0, 20);
             dlTime.Text = DateTime.Now.Hour.ToString();
             dlTime.Top = 15;
             
