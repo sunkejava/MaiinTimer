@@ -200,20 +200,20 @@ namespace MaiinTimer
             //定时信息
             DuiBaseControl dbTimerControl = new DuiBaseControl();
             dbTimerControl.Size = new Size(340,120);
-            dbTimerControl.Location = new Point(50,36);
+            dbTimerControl.Location = new Point(25,36);
 
             DuiLabel dlblx = new DuiLabel();
             dlblx.Text = "当 ";
             dlblx.Font = new Font("微软雅黑", 13, FontStyle.Regular);
-            dlblx.Size = new Size(35 * dlb.Text.Length, 20);
+            dlblx.Size = new Size(35 * dlblx.Text.Length, 20);
             dlblx.TextAlign = ContentAlignment.MiddleCenter;
-            dlblx.Location = new Point(0, 15);
+            dlblx.Location = new Point(-15,25);
 
             DuiTextBox dlTime = new DuiTextBox();
             dlTime.Size = new Size(70,20);
-            dlTime.Location = new Point(90, 15);
+            dlTime.Location = new Point(90, 25);
             dlTime.Text = DateTime.Now.Hour.ToString();
-            dlTime.Top = 15;
+            dlTime.Margin = new Padding(5,10,5,10);
             
             DuiButton dbSet = new DuiButton();
             dbSet.Size = new Size(100, 25);
@@ -274,7 +274,7 @@ namespace MaiinTimer
             cbr.Color = Color.HotPink;
             cbr.Location = new Point(10,98);
 
-            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx,dlTime, dbSet, dbSeting,dbtest });
+            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dlTime, dbSet, dbSeting,dbtest });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl, cbr });
         }
 
