@@ -13,11 +13,22 @@ namespace MaiinTimer
     public partial class MessageForm : LayeredForm
     {
         public  string messageStr = "";
+        Timer tm;
         public MessageForm()
         {
             InitializeComponent();
             getDefaultControl();
         }
+        /// <summary>
+        /// 定时事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tm_Tick(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void getDefaultControl()
         {
             if (!string.IsNullOrEmpty(messageStr))
@@ -50,6 +61,14 @@ namespace MaiinTimer
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void MessageForm_Load(object sender, EventArgs e)
+        {
+            tm = new Timer();
+            tm.Interval = 2000;
+            tm.Enabled = true;
+            tm.Tick += Tm_Tick;
         }
     }
 }
