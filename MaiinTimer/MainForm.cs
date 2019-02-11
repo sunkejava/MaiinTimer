@@ -209,9 +209,9 @@ namespace MaiinTimer
             dlblx.TextAlign = ContentAlignment.MiddleCenter;
             dlblx.Location = new Point(-15,25);
 
-            DuiTextBox dlTime = new DuiTextBox();
+            DuiComboBox dlTime = new DuiComboBox();
             dlTime.Size = new Size(70,20);
-            dlTime.Location = new Point(90, 25);
+            dlTime.Location = new Point(65, 25);
             dlTime.Text = DateTime.Now.Hour.ToString();
             dlTime.Margin = new Padding(5,10,5,10);
             
@@ -220,24 +220,12 @@ namespace MaiinTimer
             dbSet.Radius = 20;
             dbSet.Name = "setTime";
             dbSet.Text = "设置定时";
-            dbSet.Location = new Point(150,15);
+            dbSet.Location = new Point(150,25);
             dbSet.AdaptImage = false;
             dbSet.NormalImage = Properties.Resources.my_new_login_btn;
             dbSet.MouseClick += DbSet_MouseClick;
             dbSet.MouseMove += DbSet_MouseMove;
             dbSet.MouseLeave += DbSet_MouseLeave;
-
-            DuiButton dbSeting = new DuiButton();
-            dbSeting.Size = new Size(40, 40);
-            dbSeting.Radius = 40;
-            dbSeting.Name = "dbSeting";
-            dbSeting.Text = "";
-            dbSeting.Location = new Point(200, 20);
-            dbSeting.AdaptImage = false;
-            dbSeting.BaseColor = Color.FromArgb(10,0,0,0);
-            dbSeting.IsPureColor = false;
-            dbSeting.BackgroundImage = Properties.Resources.download;
-            dbSeting.BackgroundImageLayout = ImageLayout.Center;
 
             Borders baseBorder = new Borders(dbSet);
             baseBorder.BottomWidth = 2;
@@ -274,7 +262,7 @@ namespace MaiinTimer
             cbr.Color = Color.HotPink;
             cbr.Location = new Point(10,98);
 
-            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dlTime, dbSet, dbSeting,dbtest });
+            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dlTime, dbSet, dbtest });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl, cbr });
         }
 
