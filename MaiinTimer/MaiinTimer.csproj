@@ -76,6 +76,7 @@
     <Compile Include="Controls\ImageListControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\NumberControl.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImageListControl.resx">
       <DependentUpon>ImageListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NumberControl.resx">
+      <DependentUpon>NumberControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
