@@ -406,13 +406,63 @@ namespace MaiinTimer.Controls
             try
             {
                 //待实现动态底线显示，提示已加载至尾部
-
+                DuiBaseControl abaseControl = new DuiBaseControl();
+                abaseControl.Size = new Size(this.Width-5, this.Height);
+                abaseControl.Location = new Point(0, 0);
+                abaseControl.Name = "back_Null";
+                //背景图
+                DuiPictureBox dp = new DuiPictureBox();
+                dp.Size = new Size(510,109);
+                dp.BackgroundImage = Properties.Resources.bnull;
+                dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                dp.Name = "back_pnull";
+                dp.Location = new Point(2, 2);
+                abaseControl.Controls.Add(dp);
+                Items.Add(abaseControl);
+                //更新列表
+                RefreshList();
+                GC.Collect();
                 return true;
             }
             catch (Exception e)
             {
 
                 throw new Exception("底线绘制失败，原因为：" + e.Message);
+            }
+        }
+
+        public bool addIsNull()
+        {
+            try
+            {
+                this.BackColor = Color.White;
+                DuiBaseControl abaseControl = new DuiBaseControl();
+                abaseControl.Size = new Size(this.Width - 5, this.Height);
+                abaseControl.Location = new Point(0, 0);
+                abaseControl.Name = "imgListBaseControl_backnull";
+                Items.Add(abaseControl);
+                //更新列表
+                RefreshList();
+                GC.Collect();
+                //背景图
+                DuiPictureBox dp = new DuiPictureBox();
+                dp.Size = new Size(510, 109);
+                dp.BackgroundImage = Properties.Resources.bnull;
+                dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                dp.Name = "back_pnull";
+                dp.Location = new Point((this.Width - 5 - 510)/2, (this.Height - 2 - 109) / 2);
+                abaseControl.Controls.Add(dp);
+                
+                Items.Add(abaseControl);
+                //更新列表
+                RefreshList();
+                GC.Collect();
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("未搜索到内容，原因为：" + e.Message);
             }
         }
         #region 利用系统接口设置壁纸

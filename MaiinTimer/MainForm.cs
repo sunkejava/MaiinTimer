@@ -214,7 +214,15 @@ namespace MaiinTimer
             dlTime.Location = new Point(65, 25);
             dlTime.Text = DateTime.Now.Hour.ToString();
             dlTime.Margin = new Padding(5,10,5,10);
-            
+
+            NumberControl dlHour = new NumberControl();
+            dlHour.MaxNumber = 24;
+            dlHour.MinNumber = 0;
+            dlHour.AutoCSize = new Size(50,30);
+            dlHour.Location = new Point(35, 25);
+            dlHour.Value = DateTime.Now.Hour;
+            dlHour.Margin = new Padding(5, 10, 5, 10);
+
             DuiButton dbSet = new DuiButton();
             dbSet.Size = new Size(100, 25);
             dbSet.Radius = 20;
@@ -262,7 +270,7 @@ namespace MaiinTimer
             cbr.Color = Color.HotPink;
             cbr.Location = new Point(10,98);
 
-            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dlTime, dbSet, dbtest });
+            dbTimerControl.Controls.AddRange(new DuiBaseControl[] { dlblx, dlHour, dbSet, dbtest });
             baseControl_main.DUIControls.AddRange(new DuiBaseControl[] { dlb, dcb, dcba, dlbnowTime,dbTimerControl, cbr });
         }
 

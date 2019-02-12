@@ -13,6 +13,7 @@ namespace MaiinTimer.Controls
     {
         private int maxNumber = 12;
         private int minNumber = 0;
+        private int avalue = 5;
         private Size autoSize = new Size(100,20);
         [Description("最大值"), Category("自定义属性")]
         public int MaxNumber {
@@ -31,6 +32,11 @@ namespace MaiinTimer.Controls
             get { return autoSize; }
             set { autoSize = value; }
         }
+        [Description("默认值"), Category("自定义属性")]
+        public int Value {
+            get { return avalue; }
+            set { avalue = value; }
+        }
         public NumberControl()
         {
             InitializeComponent();
@@ -40,16 +46,17 @@ namespace MaiinTimer.Controls
         {
             this.Size = autoSize;
             DuiTextBox Texts = new DuiTextBox();
-            Texts.Size = this.Size;
+            Texts.Size = autoSize;
             Texts.Location = new Point(0, 0);
             Texts.KeyPress += Texts_KeyPress;
+            Texts.Text = avalue.ToString();
 
             DuiButton btn_up = new DuiButton();
             btn_up.Size = new Size(26, 15);
             btn_up.Radius = 5;
             btn_up.Name = "btn_Up";
             btn_up.Text = "";
-            btn_up.Location = new Point(this.Width-15, 0);
+            btn_up.Location = new Point(autoSize.Width-15, 0);
             btn_up.Cursor = System.Windows.Forms.Cursors.Hand;
             btn_up.AdaptImage = false;
             btn_up.IsPureColor = true;
@@ -64,7 +71,7 @@ namespace MaiinTimer.Controls
             btn_down.Radius = 5;
             btn_down.Name = "btn_down";
             btn_down.Text = "";
-            btn_down.Location = new Point(this.Width - 15, 15);
+            btn_down.Location = new Point(autoSize.Width - 15, 15);
             btn_down.Cursor = System.Windows.Forms.Cursors.Hand;
             btn_down.AdaptImage = false;
             btn_down.IsPureColor = true;
