@@ -290,7 +290,7 @@ namespace MaiinTimer
                 if (item is DuiBaseControl)
                 {
                     DuiBaseControl ds = item as DuiBaseControl;
-                    //Utils.AnimationDuiBaseControl.ShowControl(ds, true, AnchorStyles.Bottom);
+                    
                 }
             }
             this.Refresh();
