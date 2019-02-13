@@ -42,6 +42,7 @@ namespace MaiinTimer
         string pageCount = "12";//每页或每次调用获取图片的总数
         string hotTagName = "";//热门标签
         bool isSearch = false;//是否搜索
+        bool isEnd = false;//是否为页尾
         string nCount = "0";//当前类型可获取的图片总数
         Color defaultColor = Color.FromArgb(255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
@@ -964,11 +965,17 @@ namespace MaiinTimer
                     //如果为尾页则显示加载完毕
                     if ((int.Parse(startNo) + int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0")
                     {
-                        
+                        if (!isEnd)
+                        {
+                            isEnd = true;
+                            List_Main.addIsEndLine();
+                            List_Main.RefreshList();
+                        }
                     }
                     else
                     {
                         startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
+                        isEnd = false;
                         Thread thread = new Thread(() => addImgListItem(labelId, startNo, hotTagName));
                         thread.Start();
                     }

@@ -407,7 +407,7 @@ namespace MaiinTimer.Controls
             {
                 //待实现动态底线显示，提示已加载至尾部
                 DuiBaseControl abaseControl = new DuiBaseControl();
-                abaseControl.Size = new Size(this.Width-5, this.Height);
+                abaseControl.Size = new Size(this.Width-5, 40);
                 abaseControl.Location = new Point(0, 0);
                 abaseControl.Name = "imgListBaseControl_backup";
                 //背景图
@@ -415,7 +415,7 @@ namespace MaiinTimer.Controls
                 dt.Size = new Size(350,35);
                 dt.Text = "啊哦，已经是最后一页了！";
                 dt.Location = new Point((this.Width - 5 - 350) / 2,2);
-                dt.Font = new Font("微软雅黑", 25F, FontStyle.Regular);
+                dt.Font = new Font("微软雅黑", 10F, FontStyle.Regular);
                 abaseControl.Controls.Add(dt);
                 Items.Add(abaseControl);
                 //更新列表
