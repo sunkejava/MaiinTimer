@@ -409,15 +409,14 @@ namespace MaiinTimer.Controls
                 DuiBaseControl abaseControl = new DuiBaseControl();
                 abaseControl.Size = new Size(this.Width-5, this.Height);
                 abaseControl.Location = new Point(0, 0);
-                abaseControl.Name = "back_Null";
+                abaseControl.Name = "imgListBaseControl_backup";
                 //背景图
-                DuiPictureBox dp = new DuiPictureBox();
-                dp.Size = new Size(510,109);
-                dp.BackgroundImage = Properties.Resources.bnull;
-                dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-                dp.Name = "back_pnull";
-                dp.Location = new Point(2, 2);
-                abaseControl.Controls.Add(dp);
+                DuiTextBox dt = new DuiTextBox();
+                dt.Size = new Size(350,35);
+                dt.Text = "啊哦，已经是最后一页了！";
+                dt.Location = new Point((this.Width - 5 - 350) / 2,2);
+                dt.Font = new Font("微软雅黑", 25F, FontStyle.Regular);
+                abaseControl.Controls.Add(dt);
                 Items.Add(abaseControl);
                 //更新列表
                 RefreshList();
