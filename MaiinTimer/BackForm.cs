@@ -522,6 +522,15 @@ namespace MaiinTimer
                     List_Main.RefreshList();
                 }
             }
+            if (int.Parse(startNos) + int.Parse(pageCount) >= int.Parse(nCount))
+            {
+                if (!isEnd)
+                {
+                    List_Main.addIsEndLine();
+                    List_Main.RefreshList();
+                }
+               
+            }
             LoadingControl(false);
             return true;
         }
@@ -963,14 +972,9 @@ namespace MaiinTimer
                 if (List_Main.Value == 1)
                 {
                     //如果为尾页则显示加载完毕
-                    if ((int.Parse(startNo) + int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0")
+                    if ((int.Parse(startNo)+ int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0" && startNo != "0")
                     {
-                        if (!isEnd)
-                        {
-                            isEnd = true;
-                            List_Main.addIsEndLine();
-                            List_Main.RefreshList();
-                        }
+                        
                     }
                     else
                     {

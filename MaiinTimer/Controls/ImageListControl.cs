@@ -410,12 +410,14 @@ namespace MaiinTimer.Controls
                 abaseControl.Size = new Size(this.Width-5, 40);
                 abaseControl.Location = new Point(0, 0);
                 abaseControl.Name = "imgListBaseControl_backup";
-                //背景图
-                DuiTextBox dt = new DuiTextBox();
+                
+                DuiLabel dt = new DuiLabel();
                 dt.Size = new Size(350,35);
                 dt.Text = "啊哦，已经是最后一页了！";
                 dt.Location = new Point((this.Width - 5 - 350) / 2,2);
-                dt.Font = new Font("微软雅黑", 10F, FontStyle.Regular);
+                dt.Font = new Font("微软雅黑", 15F, FontStyle.Regular);
+                dt.ForeColor = Color.DarkCyan;
+                this.BackColor = Color.White;
                 abaseControl.Controls.Add(dt);
                 Items.Add(abaseControl);
                 //更新列表
