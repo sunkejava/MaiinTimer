@@ -43,6 +43,7 @@ namespace MaiinTimer
         string hotTagName = "";//热门标签
         bool isSearch = false;//是否搜索
         bool isEnd = false;//是否为页尾
+        bool isLoadData = false;//是否正在加载数据
         string nCount = "0";//当前类型可获取的图片总数
         Color defaultColor = Color.FromArgb(255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
@@ -522,16 +523,8 @@ namespace MaiinTimer
                     List_Main.RefreshList();
                 }
             }
-            if (int.Parse(startNos) + int.Parse(pageCount) >= int.Parse(nCount))
-            {
-                if (!isEnd)
-                {
-                    List_Main.addIsEndLine();
-                    List_Main.RefreshList();
-                }
-               
-            }
             LoadingControl(false);
+            isLoadData = false;
             return true;
         }
         private void LoadingControl(bool isLoad)
@@ -972,12 +965,18 @@ namespace MaiinTimer
                 if (List_Main.Value == 1)
                 {
                     //如果为尾页则显示加载完毕
-                    if ((int.Parse(startNo)+ int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0" && startNo != "0")
+                    if ((int.Parse(startNo)+ int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0" && startNo != "0" && !isLoadData)
                     {
-                        
+                        if (!isEnd)
+                        {
+                            List_Main.addIsEndLine();
+                            List_Main.RefreshList();
+                            isEnd = true;
+                        }
                     }
                     else
                     {
+                        isLoadData = true;
                         startNo = (int.Parse(startNo) + int.Parse(pageCount)).ToString();
                         isEnd = false;
                         Thread thread = new Thread(() => addImgListItem(labelId, startNo, hotTagName));
