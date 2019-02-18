@@ -45,7 +45,7 @@ namespace MaiinTimer
         bool isEnd = false;//是否为页尾
         bool isLoadData = false;//是否正在加载数据
         string nCount = "0";//当前类型可获取的图片总数
-        Color defaultColor = Color.FromArgb(255, 92, 138);
+        Color defaultColor = Color.FromArgb(105,255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件

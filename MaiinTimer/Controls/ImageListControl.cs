@@ -29,6 +29,8 @@ namespace MaiinTimer.Controls
         ToolTip toolTip1 = new ToolTip();
         int x, y;//记录鼠标进入控件时的位置
         Color defaultColor = Color.FromArgb(125, 255, 92, 138);
+        int cheight = 0;
+        EllipseControl ctEnd = null;
         public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
         #region 控件事件
 
@@ -406,20 +408,30 @@ namespace MaiinTimer.Controls
             try
             {
                 //待实现动态底线显示，提示已加载至尾部
-                DuiBaseControl abaseControl = new DuiBaseControl();
-                abaseControl.Size = new Size(this.Width-5, 40);
-                abaseControl.Location = new Point(0, 0);
-                abaseControl.Name = "imgListBaseControl_backup";
-                
-                DuiLabel dt = new DuiLabel();
-                dt.Size = new Size(350,35);
-                dt.Text = "啊哦，已经是最后一页了！";
-                dt.Location = new Point((this.Width - 5 - 350) / 2,2);
-                dt.Font = new Font("微软雅黑", 15F, FontStyle.Regular);
-                dt.ForeColor = Color.DarkCyan;
-                this.BackColor = Color.White;
-                abaseControl.Controls.Add(dt);
-                Items.Add(abaseControl);
+                //DuiBaseControl abaseControl = new DuiBaseControl();
+                //abaseControl.Size = new Size(this.Width-5, 40);
+                //abaseControl.Location = new Point(0, 0);
+                //abaseControl.Name = "imgListBaseControl_backup";
+
+                //DuiLabel dt = new DuiLabel();
+                //dt.Size = new Size(350,35);
+                //dt.Text = "啊哦，已经是最后一页了！";
+                //dt.Location = new Point((this.Width - 5 - 350) / 2,2);
+                //dt.Font = new Font("微软雅黑", 15F, FontStyle.Regular);
+                //dt.ForeColor = Color.DarkCyan;
+                //this.BackColor = Color.White;
+                //abaseControl.Controls.Add(dt);
+                ctEnd = new EllipseControl();
+                ctEnd.Size = new Size(this.Width-5,50);
+                ctEnd.Location = new Point(0, 0);
+                ctEnd.Name = "imgListBaseControl_backup";
+                ctEnd.StrValue = "啊哦，已经是最后一页了！";
+                cheight = 35;
+                System.Windows.Forms.Timer ctm = new System.Windows.Forms.Timer();
+                ctm.Interval = 50;
+                ctm.Enabled = true;
+                ctm.Tick += Ctm_Tick;
+                Items.Add(ctEnd);
                 //更新列表
                 RefreshList();
                 GC.Collect();
@@ -429,6 +441,25 @@ namespace MaiinTimer.Controls
             {
 
                 throw new Exception("底线绘制失败，原因为：" + e.Message);
+            }
+        }
+
+        private void Ctm_Tick(object sender, EventArgs e)
+        {
+            if (cheight >= 10)
+            {
+                //ctEnd.Visible = true;
+                ctEnd.CenterPotion = new Point(ctEnd.CenterPotion.X, cheight);
+                cheight = cheight - 5;
+                //ctEnd.Refresh();
+            }
+            else
+            {
+                System.Windows.Forms.Timer tm = sender as System.Windows.Forms.Timer;
+                tm.Enabled = false;
+                cheight = ctEnd.Height;
+                //ctEnd.Visible = false;
+                //ctEnd.Refresh();
             }
         }
 

@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Controls\CircularProgressBar.cs" />
     <Compile Include="Controls\CircularProgressBarEx.cs" />
+    <Compile Include="Controls\EllipseControl.cs" />
     <Compile Include="Controls\ImageListControl.cs">
       <SubType>Component</SubType>
     </Compile>
