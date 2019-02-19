@@ -44,6 +44,8 @@ namespace MaiinTimer
         bool isSearch = false;//是否搜索
         bool isEnd = false;//是否为页尾
         bool isLoadData = false;//是否正在加载数据
+        int cheight = 0;
+        EllipseControl ctEnd = new EllipseControl();
         string nCount = "0";//当前类型可获取的图片总数
         Color defaultColor = Color.FromArgb(105,255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
@@ -969,8 +971,27 @@ namespace MaiinTimer
                     {
                         if (!isEnd)
                         {
-                            List_Main.addIsEndLine();
-                            List_Main.RefreshList();
+                            //List_Main.addIsEndLine();
+                            //List_Main.RefreshList();
+                            int zHeight = 80;
+                            ctEnd.Size = new Size(List_Main.Width - 5, zHeight);
+                            ctEnd.Location = new Point(List_Main.Left, 77+557-zHeight);
+                            ctEnd.Name = "backControlC";//"imgListBaseControl_backup";
+                            ctEnd.StrValue = "啊哦，已经是最后一页了！";
+                            panel_ctEndLine.Size = ctEnd.Size;
+                            panel_ctEndLine.Location = ctEnd.Location;
+                            panel_ctEndLine.BringToFront();
+                            if (!panel_ctEndLine.Controls.Contains(panel_ctEndLine))
+                            {
+                                panel_ctEndLine.Controls.Add(ctEnd);
+                            }
+                            panel_ctEndLine.Visible = true;
+                            cheight = zHeight - 15;
+                            System.Windows.Forms.Timer ctm = new System.Windows.Forms.Timer();
+                            ctm.Interval = 50;
+                            ctm.Enabled = true;
+                            ctm.Tick += Ctm_Tick;
+                            //GC.Collect();
                             isEnd = true;
                         }
                     }
@@ -983,6 +1004,27 @@ namespace MaiinTimer
                         thread.Start();
                     }
                 }
+            }
+        }
+
+        private void Ctm_Tick(object sender, EventArgs e)
+        {
+            if (cheight >= 10)
+            {
+                ctEnd.Visible = true;
+                ctEnd.CenterPotion = new Point(ctEnd.CenterPotion.X, cheight);
+                cheight = cheight - 5;
+                ctEnd.Refresh();
+            }
+            else
+            {
+                System.Windows.Forms.Timer tm = sender as System.Windows.Forms.Timer;
+                tm.Enabled = false;
+                cheight = ctEnd.Height;
+                ctEnd.Visible = false;
+                isEnd = false;
+                panel_ctEndLine.Visible = false;
+                ctEnd.Refresh();
             }
         }
         #endregion

@@ -433,7 +433,7 @@ namespace MaiinTimer.Controls
                 ctm.Interval = 50;
                 ctm.Enabled = true;
                 ctm.Tick += Ctm_Tick;
-                Items.Add(ctEnd);
+                //Items.Add(ctEnd);
                 //更新列表
                 RefreshList();
                 GC.Collect();

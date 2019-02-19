@@ -29,7 +29,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using LayeredSkin.DirectUI;
+using LayeredSkin.Controls;
 
 namespace MaiinTimer.Controls
 {
@@ -37,7 +37,7 @@ namespace MaiinTimer.Controls
     /// 根据三点画圆
     /// SK  2018-02-14
     /// </summary>
-    public partial class EllipseControl : DuiBaseControl
+    public partial class EllipseControl : LayeredBaseControl
     {
         private Point leftPotion = new Point(0, 0);
         private Point rightPotion = new Point(0, 0);
@@ -112,7 +112,7 @@ namespace MaiinTimer.Controls
             leftPotion = new Point(0, this.Height);
             rightPotion = new Point(this.Width, this.Height);
             centerPotion = new Point(this.Width / 2, 5);
-            //base.Refresh();
+            base.Refresh();
         }
         protected override void OnPaint(PaintEventArgs ce)
         {
