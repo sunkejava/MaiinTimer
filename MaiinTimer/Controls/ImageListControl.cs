@@ -420,13 +420,15 @@ namespace MaiinTimer.Controls
                 //dt.Font = new Font("微软雅黑", 15F, FontStyle.Regular);
                 //dt.ForeColor = Color.DarkCyan;
                 //this.BackColor = Color.White;
+                int zHeight = 80;
                 //abaseControl.Controls.Add(dt);
                 ctEnd = new EllipseControl();
-                ctEnd.Size = new Size(this.Width-5,50);
+                ctEnd.Size = new Size(this.Width-5, zHeight);
                 ctEnd.Location = new Point(0, 0);
-                ctEnd.Name = "imgListBaseControl_backup";
+                ctEnd.Name = "backControlC";//"imgListBaseControl_backup";
                 ctEnd.StrValue = "啊哦，已经是最后一页了！";
-                cheight = 35;
+                
+                cheight = zHeight-15;
                 System.Windows.Forms.Timer ctm = new System.Windows.Forms.Timer();
                 ctm.Interval = 50;
                 ctm.Enabled = true;
@@ -439,7 +441,6 @@ namespace MaiinTimer.Controls
             }
             catch (Exception e)
             {
-
                 throw new Exception("底线绘制失败，原因为：" + e.Message);
             }
         }
@@ -448,7 +449,7 @@ namespace MaiinTimer.Controls
         {
             if (cheight >= 10)
             {
-                //ctEnd.Visible = true;
+                ctEnd.Visible = true;
                 ctEnd.CenterPotion = new Point(ctEnd.CenterPotion.X, cheight);
                 cheight = cheight - 5;
                 //ctEnd.Refresh();
@@ -458,7 +459,7 @@ namespace MaiinTimer.Controls
                 System.Windows.Forms.Timer tm = sender as System.Windows.Forms.Timer;
                 tm.Enabled = false;
                 cheight = ctEnd.Height;
-                //ctEnd.Visible = false;
+                ctEnd.Visible = false;
                 //ctEnd.Refresh();
             }
         }

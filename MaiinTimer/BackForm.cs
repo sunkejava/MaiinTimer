@@ -962,7 +962,7 @@ namespace MaiinTimer
                 {
                     scorllbar.Top = (int)(List_Main.Value * (List_Main.Height - scorllbar.Height)) + List_Main.Top;
                 }
-                if (List_Main.Value == 1)
+                if (List_Main.Value == 1 && !isLoadData)
                 {
                     //如果为尾页则显示加载完毕
                     if ((int.Parse(startNo)+ int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0" && startNo != "0" && !isLoadData)
