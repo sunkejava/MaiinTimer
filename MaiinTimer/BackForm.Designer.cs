@@ -528,7 +528,6 @@
             this.Panel_load.Borders.TopColor = System.Drawing.Color.Empty;
             this.Panel_load.Borders.TopWidth = 1;
             this.Panel_load.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("Panel_load.Canvas")));
-            this.Panel_load.Controls.Add(this.panel_ctEndLine);
             this.Panel_load.Dock = System.Windows.Forms.DockStyle.Fill;
             duiPictureBox1.AutoPlay = true;
             duiPictureBox1.AutoSize = false;
@@ -718,6 +717,7 @@
             this.ClientSize = new System.Drawing.Size(975, 644);
             this.Controls.Add(this.Panel_load);
             this.Controls.Add(this.Panel_TypeMess);
+            this.Controls.Add(this.panel_ctEndLine);
             this.Controls.Add(this.Panel_Type);
             this.Controls.Add(this.Panel_Bottom);
             this.Controls.Add(this.scorllbar);

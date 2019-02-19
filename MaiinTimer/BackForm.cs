@@ -980,7 +980,7 @@ namespace MaiinTimer
                             ctEnd.StrValue = "啊哦，已经是最后一页了！";
                             panel_ctEndLine.Size = ctEnd.Size;
                             panel_ctEndLine.Location = ctEnd.Location;
-                            panel_ctEndLine.BringToFront();
+                            //panel_ctEndLine.BringToFront();
                             if (!panel_ctEndLine.Controls.Contains(panel_ctEndLine))
                             {
                                 panel_ctEndLine.Controls.Add(ctEnd);
@@ -1015,16 +1015,18 @@ namespace MaiinTimer
                 ctEnd.CenterPotion = new Point(ctEnd.CenterPotion.X, cheight);
                 cheight = cheight - 5;
                 ctEnd.Refresh();
+                panel_ctEndLine.Refresh();
             }
             else
             {
                 System.Windows.Forms.Timer tm = sender as System.Windows.Forms.Timer;
                 tm.Enabled = false;
                 cheight = ctEnd.Height;
-                ctEnd.Visible = false;
+                //ctEnd.Visible = false;
                 isEnd = false;
                 panel_ctEndLine.Visible = false;
                 ctEnd.Refresh();
+                panel_ctEndLine.Refresh();
             }
         }
         #endregion
