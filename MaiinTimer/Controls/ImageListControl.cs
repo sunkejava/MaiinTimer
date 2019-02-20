@@ -146,36 +146,8 @@ namespace MaiinTimer.Controls
                 Directory.CreateDirectory(fileName);
             }
             fileName = fileName + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
-            try
-            {
-                WebRequest webreq = WebRequest.Create(url);
-                WebResponse webres = webreq.GetResponse();
-                Stream stream = webres.GetResponseStream();
-                Stream fileStream = new FileStream(fileName, FileMode.Create);
-                byte[] bArray = new byte[1024];
-                int size;
-                do
-                {
-                    size = stream.Read(bArray, 0, (int)bArray.Length);
-                    fileStream.Write(bArray, 0, size);
-                } while (size > 0);
-                fileStream.Close();
-                stream.Close();
-                if (dbn.Name.Contains("btn_Setting_"))
-                {
-                    Thread thread = new Thread(() => setWallpaperApi(fileName));
-                    thread.Start();
-                }
-                else
-                {
-                    MessageForm mfm = new MessageForm();
-                    mfm.Show(this);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("下载图片失败，原因为：" + ex.Message);
-            }
+            Thread thread = new Thread(() => DownloaImage(fileName,url,dbn.Name));
+            thread.Start();
         }
 
         private void Btn_Download_MouseLeave(object sender, EventArgs e)
@@ -598,6 +570,39 @@ namespace MaiinTimer.Controls
             return image;
         }
 
+        public void DownloaImage(string fileName,string url,string btnName)
+        {
+            try
+            {
+                WebRequest webreq = WebRequest.Create(url);
+                WebResponse webres = webreq.GetResponse();
+                Stream stream = webres.GetResponseStream();
+                Stream fileStream = new FileStream(fileName, FileMode.Create);
+                byte[] bArray = new byte[1024];
+                int size;
+                do
+                {
+                    size = stream.Read(bArray, 0, (int)bArray.Length);
+                    fileStream.Write(bArray, 0, size);
+                } while (size > 0);
+                fileStream.Close();
+                stream.Close();
+                if (btnName.Contains("btn_Setting_"))
+                {
+                    Thread thread = new Thread(() => setWallpaperApi(fileName));
+                    thread.Start();
+                }
+                else
+                {
+                    MessageForm mfm = new MessageForm();
+                    mfm.Show(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("下载图片失败，原因为：" + ex.Message);
+            }
+        } 
         /// <summary>
         /// 列表刷新
         /// </summary>

@@ -66,7 +66,7 @@ namespace MaiinTimer
         private void MessageForm_Load(object sender, EventArgs e)
         {
             tm = new Timer();
-            tm.Interval = 2000;
+            tm.Interval = 3500;
             tm.Enabled = true;
             tm.Tick += Tm_Tick;
         }
