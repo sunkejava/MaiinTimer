@@ -169,8 +169,7 @@ namespace MaiinTimer.Controls
                 else
                 {
                     MessageForm mfm = new MessageForm();
-                    mfm.ShowDialog(this);
-                    
+                    mfm.Show(this);
                 }
             }
             catch (Exception ex)
