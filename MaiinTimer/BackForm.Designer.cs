@@ -590,22 +590,22 @@
             duiLabel1.Borders.TopColor = System.Drawing.Color.Empty;
             duiLabel1.Borders.TopWidth = 1;
             duiLabel1.CanFocus = true;
-            duiLabel1.ClientRectangle = new System.Drawing.Rectangle(387, 300, 200, 50);
+            duiLabel1.ClientRectangle = new System.Drawing.Rectangle(238, 300, 500, 50);
             duiLabel1.CurrentCursor = System.Windows.Forms.Cursors.Default;
             duiLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             duiLabel1.Dock = System.Windows.Forms.DockStyle.None;
             duiLabel1.Enabled = true;
-            duiLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            duiLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             duiLabel1.ForeColor = System.Drawing.SystemColors.HighlightText;
             duiLabel1.Height = 50;
             duiLabel1.IsMoveParentPaint = true;
-            duiLabel1.Left = 387;
-            duiLabel1.Location = new System.Drawing.Point(387, 300);
+            duiLabel1.Left = 238;
+            duiLabel1.Location = new System.Drawing.Point(238, 300);
             duiLabel1.Margin = new System.Windows.Forms.Padding(0);
             duiLabel1.Name = "load_text";
             duiLabel1.ParentInvalidate = true;
             duiLabel1.ShowBorder = true;
-            duiLabel1.Size = new System.Drawing.Size(200, 50);
+            duiLabel1.Size = new System.Drawing.Size(500, 50);
             stringFormat3.Alignment = System.Drawing.StringAlignment.Center;
             stringFormat3.HotkeyPrefix = System.Drawing.Text.HotkeyPrefix.None;
             stringFormat3.LineAlignment = System.Drawing.StringAlignment.Center;
@@ -618,7 +618,7 @@
             duiLabel1.TextPadding = 0;
             duiLabel1.Top = 300;
             duiLabel1.Visible = true;
-            duiLabel1.Width = 200;
+            duiLabel1.Width = 500;
             this.Panel_load.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
             duiPictureBox1,
             duiLabel1});
@@ -641,11 +641,11 @@
             this.panel_ctEndLine.Borders.TopWidth = 1;
             this.panel_ctEndLine.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("panel_ctEndLine.Canvas")));
             this.panel_ctEndLine.Controls.Add(this.ellipseControl1);
-            this.panel_ctEndLine.Location = new System.Drawing.Point(12, 525);
+            this.panel_ctEndLine.Location = new System.Drawing.Point(12, 448);
             this.panel_ctEndLine.Name = "panel_ctEndLine";
             this.panel_ctEndLine.Size = new System.Drawing.Size(897, 30);
+            this.panel_ctEndLine.Visible = true;
             this.panel_ctEndLine.TabIndex = 1;
-            this.panel_ctEndLine.Visible = false;
             // 
             // ellipseControl1
             // 
@@ -717,12 +717,12 @@
             this.ClientSize = new System.Drawing.Size(975, 644);
             this.Controls.Add(this.Panel_load);
             this.Controls.Add(this.Panel_TypeMess);
-            this.Controls.Add(this.panel_ctEndLine);
             this.Controls.Add(this.Panel_Type);
             this.Controls.Add(this.Panel_Bottom);
             this.Controls.Add(this.scorllbar);
             this.Controls.Add(this.layeredPanel_top);
             this.Controls.Add(this.List_Main);
+            this.Controls.Add(this.panel_ctEndLine);
             this.Name = "BackForm";
             this.Radius = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -226,149 +226,155 @@ namespace MaiinTimer.Controls
         /// </summary>
         /// <param name="imgInfos"></param>
         /// <returns></returns>
-        public bool addImgList(List<BridImg.ImageInfo> imgInfos)
+        public Boolean AddImgList(List<BridImg.ImageInfo> imgInfos)
         {
-            int thisWidth = this.Width - 5;//减去滚动条宽度
-            int zWidth = (int)(thisWidth / 3);
-            int zHeight = (int)(thisWidth / 3 * 0.57);
-            DuiBaseControl baseControl = new DuiBaseControl();
-            baseControl.Size = new Size(thisWidth, zHeight);
-            baseControl.BackColor = Color.FromArgb(245, 245, 247);
-            int i = 0;
-            foreach (var imgInfo in imgInfos)
-            {
-                DuiBaseControl abaseControl = new DuiBaseControl();
-                abaseControl.Size = new Size(zWidth, zHeight);
-                abaseControl.Location = new Point(i * zWidth, 0);
-                abaseControl.Name = "back_" + imgInfo.id.ToString();
-                //背景图
-                DuiPictureBox dp = new DuiPictureBox();
-                dp.Size = new Size(zWidth - 4, zHeight - 4);
-                int thisWidthScreen = Screen.PrimaryScreen.Bounds.Width;
-                int thisHeiightScreen = Screen.PrimaryScreen.Bounds.Height;
-                dp.Tag = imgInfo.img_1280_1024;
-                getImageByUIrlDelegate newg = new getImageByUIrlDelegate(GetImageByUrlDrawLetter);
-                dp.BackgroundImage = newg(imgInfo.url.Replace("__85", "300_161_100"), zWidth - 4, zHeight - 4);
-                dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-                dp.Name = "back_" + imgInfo.id.ToString();
-                dp.Location = new Point(2, 2);
-                //dp.Cursor = System.Windows.Forms.Cursors.Hand;
-                dp.MouseEnter += Dp_MouseEnter;
-                dp.MouseLeave += Dp_MouseLeave;
-                //dp.MouseClick += Dp_MouseClick;
-                //图片说明
-                DuiLabel imgTag = new DuiLabel();
-                imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-                string ingTxt = (string.IsNullOrEmpty(imgInfo.utag) ? "" : imgInfo.utag);
-                if (ingTxt.Length * 9 > zWidth)
+                if (imgInfos.Count == 0)
                 {
-                    imgTag.Size = new Size(zWidth-4, 10*4);
-                    imgTag.Location = new Point(2, zHeight - 43);
+                    return false;
                 }
-                else
+                int thisWidth = this.Width - 5;//减去滚动条宽度
+                int zWidth = (int)(thisWidth / 3);
+                int zHeight = (int)(thisWidth / 3 * 0.57);
+                DuiBaseControl baseControl = new DuiBaseControl();
+                baseControl.Size = new Size(thisWidth, zHeight);
+                baseControl.BackColor = Color.FromArgb(245, 245, 247);
+                int i = 0;
+                string baseID = "0";
+                foreach (var imgInfo in imgInfos)
                 {
-                    imgTag.Size = new Size(zWidth-4, 10*2);
-                    imgTag.Location = new Point(2, zHeight - 23);
+                    baseID = imgInfo.id.ToString();
+                    DuiBaseControl abaseControl = new DuiBaseControl();
+                    abaseControl.Size = new Size(zWidth, zHeight);
+                    abaseControl.Location = new Point(i * zWidth, 0);
+                    abaseControl.Name = "back_" + imgInfo.id.ToString();
+                    //背景图
+                    DuiPictureBox dp = new DuiPictureBox();
+                    dp.Size = new Size(zWidth - 4, zHeight - 4);
+                    int thisWidthScreen = Screen.PrimaryScreen.Bounds.Width;
+                    int thisHeiightScreen = Screen.PrimaryScreen.Bounds.Height;
+                    dp.Tag = imgInfo.img_1280_1024;
+                    getImageByUIrlDelegate newg = new getImageByUIrlDelegate(GetImageByUrlDrawLetter);
+                    dp.BackgroundImage = newg(imgInfo.url.Replace("__85", "300_161_100"), zWidth - 4, zHeight - 4);
+                    dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    dp.Name = "back_" + imgInfo.id.ToString();
+                    dp.Location = new Point(2, 2);
+                    //dp.Cursor = System.Windows.Forms.Cursors.Hand;
+                    dp.MouseEnter += Dp_MouseEnter;
+                    dp.MouseLeave += Dp_MouseLeave;
+                    //dp.MouseClick += Dp_MouseClick;
+                    //图片说明
+                    DuiLabel imgTag = new DuiLabel();
+                    imgTag.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+                    string ingTxt = (string.IsNullOrEmpty(imgInfo.utag) ? "" : imgInfo.utag);
+                    if (ingTxt.Length * 9 > zWidth)
+                    {
+                        imgTag.Size = new Size(zWidth-4, 10*4);
+                        imgTag.Location = new Point(2, zHeight - 43);
+                    }
+                    else
+                    {
+                        imgTag.Size = new Size(zWidth-4, 10*2);
+                        imgTag.Location = new Point(2, zHeight - 23);
+                    }
+                    imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
+                    imgTag.ForeColor = Color.White;
+                    imgTag.TextAlign = ContentAlignment.MiddleCenter;
+                    //imgTag.BackColor = Color.FromArgb(100, 0, 0, 0);
+                    imgTag.BackgroundImage = Properties.Resources.mask_shadow;
+                    imgTag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+                    imgTag.Text = imgInfo.utag;
+                    imgTag.Name = "imgTag_" + imgInfo.id.ToString();
+                    imgTag.MouseLeave += Dp_MouseLeave;
+
+                    imgTag.Cursor = System.Windows.Forms.Cursors.Hand;
+                    //下载按钮
+                    DuiButton btn_Download = new DuiButton();
+                    btn_Download.Size = new Size(35, 35);
+                    btn_Download.Radius = 35;
+                    btn_Download.Name = "btn_Download_" + imgInfo.id.ToString();
+                    btn_Download.Text = "";
+                    btn_Download.Location = new Point(0, 0);
+                    btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
+                    btn_Download.AdaptImage = false;
+                    btn_Download.IsPureColor = true;
+                    btn_Download.BaseColor = Color.Transparent;
+                    btn_Download.BackgroundImage = Properties.Resources.dl;
+                    btn_Download.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    btn_Download.ShowBorder = false;
+                    btn_Download.MouseClick += Btn_Download_MouseClick;
+                    btn_Download.Tag = "保存|"+imgInfo.url_thumb;
+                    btn_Download.MouseEnter += Btn_Download_MouseEnter;
+                    btn_Download.MouseLeave += Btn_Download_MouseLeave;
+                    //收藏按钮
+                    DuiButton btn_sc = new DuiButton();
+                    btn_sc.Location = new Point(35, 0);
+                    btn_sc.Size = new Size(35, 35);
+                    btn_sc.Text = "";
+                    btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
+                    btn_sc.AdaptImage = false;
+                    btn_sc.Name = "btn_Sc_" + imgInfo.id.ToString();
+                    btn_sc.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
+                    btn_sc.Radius = 35;
+                    btn_sc.ShowBorder = false;
+                    btn_sc.BackgroundImage = Properties.Resources.sc0;
+                    btn_sc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    btn_sc.MouseClick += Btn_Sc_MouseClick;
+                    btn_sc.IsPureColor = true;
+                    btn_sc.Tag = "收藏|" + imgInfo.url_thumb;
+                    btn_sc.MouseEnter += Btn_Download_MouseEnter;
+                    btn_sc.MouseLeave += Btn_Download_MouseLeave;
+                    //设置按钮
+                    DuiButton btn_Setting = new DuiButton();
+                    btn_Setting.Location = new Point(70, 0);
+                    btn_Setting.Size = new Size(35, 35);
+                    btn_Setting.Text = "";
+                    btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
+                    btn_Setting.AdaptImage = false;
+                    btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
+                    btn_Setting.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
+                    btn_Setting.Radius = 35;
+                    btn_Setting.Tag = "设置|" + imgInfo.url_thumb;
+                    btn_Setting.ShowBorder = false;
+                    btn_Setting.BackgroundImage = Properties.Resources.set;
+                    btn_Setting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    btn_Setting.MouseClick += Btn_Setting_MouseClick;
+                    btn_Setting.IsPureColor = true;
+                    btn_Setting.MouseEnter += Btn_Download_MouseEnter;
+                    btn_Setting.MouseLeave += Btn_Download_MouseLeave;
+                    //按钮底层控件
+                    DuiBaseControl btnBaseControl = new DuiBaseControl();
+                    btnBaseControl.Size = new Size(zWidth/3,35);
+                    btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
+                    btnBaseControl.Location = new Point(zWidth / 3 * 2 - 12,zHeight - 52);
+                    btnBaseControl.BackColor = Color.Transparent;
+                    //btnBaseControl.MouseEnter += Dp_MouseEnter;
+                    btnBaseControl.MouseLeave += Dp_MouseLeave;
+                    btnBaseControl.MouseMove += BtnBaseControl_MouseMove;
+                    btnBaseControl.Controls.Add(btn_Download);
+                    btnBaseControl.Controls.Add(btn_sc);
+                    btnBaseControl.Controls.Add(btn_Setting);
+                    btnBaseControl.Name = "btnBaseControl_"+ imgInfo.id.ToString();
+                    btnBaseControl.Visible = false;
+
+                    Borders baseBorder = new Borders(baseControl);
+                    baseBorder.BottomWidth = 2;
+                    baseBorder.TopWidth = 2;
+                    baseBorder.LeftWidth = 2;
+                    baseBorder.RightWidth = 2;
+
+                    abaseControl.Borders = baseBorder;
+                    abaseControl.Controls.Add(dp);
+                    abaseControl.Controls.Add(imgTag);
+                    abaseControl.Controls.Add(btnBaseControl);
+                    baseControl.Controls.Add(abaseControl);
+                    i++;
                 }
-                imgTag.Font = new Font("微软雅黑", 9F, FontStyle.Regular);
-                imgTag.ForeColor = Color.White;
-                imgTag.TextAlign = ContentAlignment.MiddleCenter;
-                //imgTag.BackColor = Color.FromArgb(100, 0, 0, 0);
-                imgTag.BackgroundImage = Properties.Resources.mask_shadow;
-                imgTag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-                imgTag.Text = imgInfo.utag;
-                imgTag.Name = "imgTag_" + imgInfo.id.ToString();
-                imgTag.MouseLeave += Dp_MouseLeave;
-
-                imgTag.Cursor = System.Windows.Forms.Cursors.Hand;
-                //下载按钮
-                DuiButton btn_Download = new DuiButton();
-                btn_Download.Size = new Size(35, 35);
-                btn_Download.Radius = 35;
-                btn_Download.Name = "btn_Download_" + imgInfo.id.ToString();
-                btn_Download.Text = "";
-                btn_Download.Location = new Point(0, 0);
-                btn_Download.Cursor = System.Windows.Forms.Cursors.Hand;
-                btn_Download.AdaptImage = false;
-                btn_Download.IsPureColor = true;
-                btn_Download.BaseColor = Color.Transparent;
-                btn_Download.BackgroundImage = Properties.Resources.dl;
-                btn_Download.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-                btn_Download.ShowBorder = false;
-                btn_Download.MouseClick += Btn_Download_MouseClick;
-                btn_Download.Tag = "保存|"+imgInfo.url_thumb;
-                btn_Download.MouseEnter += Btn_Download_MouseEnter;
-                btn_Download.MouseLeave += Btn_Download_MouseLeave;
-                //收藏按钮
-                DuiButton btn_sc = new DuiButton();
-                btn_sc.Location = new Point(35, 0);
-                btn_sc.Size = new Size(35, 35);
-                btn_sc.Text = "";
-                btn_sc.Cursor = System.Windows.Forms.Cursors.Hand;
-                btn_sc.AdaptImage = false;
-                btn_sc.Name = "btn_Sc_" + imgInfo.id.ToString();
-                btn_sc.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
-                btn_sc.Radius = 35;
-                btn_sc.ShowBorder = false;
-                btn_sc.BackgroundImage = Properties.Resources.sc0;
-                btn_sc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-                btn_sc.MouseClick += Btn_Sc_MouseClick;
-                btn_sc.IsPureColor = true;
-                btn_sc.Tag = "收藏|" + imgInfo.url_thumb;
-                btn_sc.MouseEnter += Btn_Download_MouseEnter;
-                btn_sc.MouseLeave += Btn_Download_MouseLeave;
-                //设置按钮
-                DuiButton btn_Setting = new DuiButton();
-                btn_Setting.Location = new Point(70, 0);
-                btn_Setting.Size = new Size(35, 35);
-                btn_Setting.Text = "";
-                btn_Setting.Cursor = System.Windows.Forms.Cursors.Hand;
-                btn_Setting.AdaptImage = false;
-                btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
-                btn_Setting.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
-                btn_Setting.Radius = 35;
-                btn_Setting.Tag = "设置|" + imgInfo.url_thumb;
-                btn_Setting.ShowBorder = false;
-                btn_Setting.BackgroundImage = Properties.Resources.set;
-                btn_Setting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-                btn_Setting.MouseClick += Btn_Setting_MouseClick;
-                btn_Setting.IsPureColor = true;
-                btn_Setting.MouseEnter += Btn_Download_MouseEnter;
-                btn_Setting.MouseLeave += Btn_Download_MouseLeave;
-                //按钮底层控件
-                DuiBaseControl btnBaseControl = new DuiBaseControl();
-                btnBaseControl.Size = new Size(zWidth/3,35);
-                btnBaseControl.Cursor = System.Windows.Forms.Cursors.Hand;
-                btnBaseControl.Location = new Point(zWidth / 3 * 2 - 12,zHeight - 52);
-                btnBaseControl.BackColor = Color.Transparent;
-                //btnBaseControl.MouseEnter += Dp_MouseEnter;
-                btnBaseControl.MouseLeave += Dp_MouseLeave;
-                btnBaseControl.MouseMove += BtnBaseControl_MouseMove;
-                btnBaseControl.Controls.Add(btn_Download);
-                btnBaseControl.Controls.Add(btn_sc);
-                btnBaseControl.Controls.Add(btn_Setting);
-                btnBaseControl.Name = "btnBaseControl_"+ imgInfo.id.ToString();
-                btnBaseControl.Visible = false;
-
-                Borders baseBorder = new Borders(baseControl);
-                baseBorder.BottomWidth = 2;
-                baseBorder.TopWidth = 2;
-                baseBorder.LeftWidth = 2;
-                baseBorder.RightWidth = 2;
-
-                abaseControl.Borders = baseBorder;
-                abaseControl.Controls.Add(dp);
-                abaseControl.Controls.Add(imgTag);
-                abaseControl.Controls.Add(btnBaseControl);
-                baseControl.Controls.Add(abaseControl);
-                i++;
-            }
-            baseControl.Name = "imgListBaseControl_" + imgInfos[0].id.ToString();
-            Items.Add(baseControl);
-            //更新列表
-            RefreshList();
-            GC.Collect();
-            return true;
+                baseControl.Name = "imgListBaseControl_" + baseID;
+                Items.Add(baseControl);
+                //更新列表
+                RefreshList();
+                GC.Collect();
+                return true;
         }
         /// <summary>
         /// 添加底线控件

@@ -49,6 +49,7 @@ namespace MaiinTimer
         string nCount = "0";//当前类型可获取的图片总数
         Color defaultColor = Color.FromArgb(105,255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
+        delegate void AsynUpdateloadPageText(string nowPage, string countPage);
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
         int x, y;//记录鼠标进入控件时的位置
@@ -445,22 +446,19 @@ namespace MaiinTimer
 
                 }
                 nCount = result.Result.total.ToString();
+                loadPageTextUpdate((Math.Floor((decimal.Parse(startNos) + decimal.Parse(pageCount)) / decimal.Parse(pageCount))).ToString(), (Math.Ceiling(decimal.Parse(nCount) / decimal.Parse(pageCount))).ToString());
                 for (int i = 0; i < result.Result.data.Count; i++)
                 {
                     int zi = i + 1;
                     imgInfos.Add(result.Result.data[i]);
                     if (zi % 3 == 0 || zi == result.Result.data.Count)
                     {
-                        List_Main.addImgList(imgInfos);
-                        imgInfos.Clear();
+                        //Thread imgThread = new Thread(() => addImgListThread(imgInfos));
+                        //imgThread.Start();
+                        List_Main.AddImgList(imgInfos);
                         List_Main.RefreshList();
+                        imgInfos.Clear();
                     }
-                }
-                if (result.Result.data.Count <= 0)
-                {
-                    List_Main.addIsNull();
-                    imgInfos.Clear();
-                    List_Main.RefreshList();
                 }
                 LoadingControl(false);
                 return true;
@@ -514,20 +512,28 @@ namespace MaiinTimer
 
             }
             nCount = result.Result.total.ToString();
+            loadPageTextUpdate((Math.Floor((decimal.Parse(startNos)+ decimal.Parse(pageCount)) / decimal.Parse(pageCount))).ToString(), (Math.Ceiling(decimal.Parse(nCount) / decimal.Parse(pageCount))).ToString());
             for (int i = 0; i < result.Result.data.Count; i++)
             {
                 int zi = i + 1;
                 imgInfos.Add(result.Result.data[i]);
                 if (zi % 3 == 0 || zi== result.Result.data.Count)
                 {
-                    List_Main.addImgList(imgInfos);
-                    imgInfos.Clear();
+                    //Thread imgThread = new Thread(() => addImgListThread(imgInfos));
+                    //imgThread.Start();
+                    List_Main.AddImgList(imgInfos);
                     List_Main.RefreshList();
+                    imgInfos.Clear();
                 }
             }
             LoadingControl(false);
             isLoadData = false;
             return true;
+        }
+        private void addImgListThread(List<BridImg.ImageInfo> imgInfos)
+        {
+            List_Main.AddImgList(imgInfos);
+            List_Main.RefreshList();
         }
         private void LoadingControl(bool isLoad)
         {
@@ -549,6 +555,20 @@ namespace MaiinTimer
                 {
                     Panel_load.SendToBack();
                 }
+            }
+        }
+
+        private void loadPageTextUpdate(string nowPage,string countPage)
+        {
+            if (this.Panel_load.InvokeRequired)
+            {
+                AsynUpdateloadPageText au = new AsynUpdateloadPageText(loadPageTextUpdate);
+                this.Invoke(au, new object[] { nowPage, countPage });
+            }
+            else
+            {
+                DuiLabel dpText = Panel_load.DUIControls[1] as DuiLabel;
+                dpText.Text = "正在加载第 " + nowPage + "/" + countPage + ", 请稍后......";
             }
         }
         private void skinLine_Update()
@@ -839,15 +859,18 @@ namespace MaiinTimer
                 List<BridImg.ImageInfo> imgInfos = new List<BridImg.ImageInfo>();
                 result.Result = bimg.getNewImageInfos(startNo, pageCount);
                 nCount = result.Result.total.ToString();
+                loadPageTextUpdate((Math.Floor((decimal.Parse(startNo) + decimal.Parse(pageCount)) / decimal.Parse(pageCount))).ToString(), (Math.Ceiling(decimal.Parse(nCount) / decimal.Parse(pageCount))).ToString());
                 for (int i = 0; i < result.Result.data.Count; i++)
                 {
                     int zi = i + 1;
                     imgInfos.Add(result.Result.data[i]);
                     if (zi % 3 == 0 || zi == result.Result.data.Count)
                     {
-                        List_Main.addImgList(imgInfos);
-                        imgInfos.Clear();
+                        //Thread imgThread = new Thread(() => addImgListThread(imgInfos));
+                        //imgThread.Start();
+                        List_Main.AddImgList(imgInfos);
                         List_Main.RefreshList();
+                        imgInfos.Clear();
                     }
                 }
                 LoadingControl(false);
@@ -971,16 +994,36 @@ namespace MaiinTimer
                     {
                         if (!isEnd)
                         {
-                            //List_Main.addIsEndLine();
-                            //List_Main.RefreshList();
                             int zHeight = 80;
-                            ctEnd.Size = new Size(List_Main.Width - 5, zHeight);
-                            ctEnd.Location = new Point(List_Main.Left, 77+557-zHeight);
-                            ctEnd.Name = "backControlC";//"imgListBaseControl_backup";
+
+                            ctEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+                            ctEnd.Borders.BottomColor = System.Drawing.Color.Empty;
+                            ctEnd.Borders.BottomWidth = 1;
+                            ctEnd.Borders.LeftColor = System.Drawing.Color.Empty;
+                            ctEnd.Borders.LeftWidth = 1;
+                            ctEnd.Borders.RightColor = System.Drawing.Color.Empty;
+                            ctEnd.Borders.RightWidth = 1;
+                            ctEnd.Borders.TopColor = System.Drawing.Color.Empty;
+                            ctEnd.Borders.TopWidth = 1;
+                            ctEnd.Canvas = ((System.Drawing.Bitmap)((new System.ComponentModel.ComponentResourceManager(typeof(BackForm))).GetObject("ellipseControl1.Canvas")));
+                            ctEnd.CenterPotion = new System.Drawing.Point(448, 5);
+                            ctEnd.Dock = System.Windows.Forms.DockStyle.Fill;
+                            ctEnd.IsShowPotion = false;
+                            ctEnd.LeftPotion = new System.Drawing.Point(0, 30);
+                            ctEnd.Location = new System.Drawing.Point(0, 0);
+                            ctEnd.Name = "backControlC";
+                            ctEnd.RightPotion = new System.Drawing.Point(List_Main.Width - 5, zHeight /2);
+                            ctEnd.Size = new System.Drawing.Size(List_Main.Width - 5, zHeight);
                             ctEnd.StrValue = "啊哦，已经是最后一页了！";
+                            ctEnd.TabIndex = 0;
+                            ctEnd.Text = "ellipseControl1";
+                            ctEnd.Visible = true;
+
                             panel_ctEndLine.Size = ctEnd.Size;
-                            panel_ctEndLine.Location = ctEnd.Location;
-                            //panel_ctEndLine.BringToFront();
+                            panel_ctEndLine.Location = new Point(List_Main.Left, 77 + 557 - zHeight);
+                            panel_ctEndLine.BackColor = Color.White;
+                            ctEnd.Location = new Point(0,0);
+                            panel_ctEndLine.BringToFront();
                             if (!panel_ctEndLine.Controls.Contains(panel_ctEndLine))
                             {
                                 panel_ctEndLine.Controls.Add(ctEnd);
@@ -991,7 +1034,7 @@ namespace MaiinTimer
                             ctm.Interval = 50;
                             ctm.Enabled = true;
                             ctm.Tick += Ctm_Tick;
-                            //GC.Collect();
+                            GC.Collect();
                             isEnd = true;
                         }
                     }
@@ -1011,6 +1054,7 @@ namespace MaiinTimer
         {
             if (cheight >= 10)
             {
+                panel_ctEndLine.Visible = true;
                 ctEnd.Visible = true;
                 ctEnd.CenterPotion = new Point(ctEnd.CenterPotion.X, cheight);
                 cheight = cheight - 5;
