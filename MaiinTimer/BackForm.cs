@@ -45,7 +45,7 @@ namespace MaiinTimer
         bool isEnd = false;//是否为页尾
         bool isLoadData = false;//是否正在加载数据
         int cheight = 0;
-        EllipseControl ctEnd = new EllipseControl();
+        EllipseControl ctEnd = new MaiinTimer.Controls.EllipseControl();
         string nCount = "0";//当前类型可获取的图片总数
         Color defaultColor = Color.FromArgb(105,255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
@@ -1021,13 +1021,14 @@ namespace MaiinTimer
 
                             panel_ctEndLine.Size = ctEnd.Size;
                             panel_ctEndLine.Location = new Point(List_Main.Left, 77 + 557 - zHeight);
-                            panel_ctEndLine.BackColor = Color.White;
+                            //panel_ctEndLine.BackColor = Color.White;
                             ctEnd.Location = new Point(0,0);
                             panel_ctEndLine.BringToFront();
                             if (!panel_ctEndLine.Controls.Contains(panel_ctEndLine))
                             {
                                 panel_ctEndLine.Controls.Add(ctEnd);
                             }
+                            panel_ctEndLine.Refresh();
                             panel_ctEndLine.Visible = true;
                             cheight = zHeight - 15;
                             System.Windows.Forms.Timer ctm = new System.Windows.Forms.Timer();

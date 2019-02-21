@@ -51,10 +51,8 @@
             this.Panel_TypeMess = new LayeredSkin.Controls.LayeredPanel();
             this.Panel_load = new LayeredSkin.Controls.LayeredPanel();
             this.panel_ctEndLine = new LayeredSkin.Controls.LayeredPanel();
-            this.ellipseControl1 = new MaiinTimer.Controls.EllipseControl();
             this.List_Main = new MaiinTimer.Controls.ImageListControl();
             this.layeredPanel_top.SuspendLayout();
-            this.Panel_load.SuspendLayout();
             this.panel_ctEndLine.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -640,36 +638,10 @@
             this.panel_ctEndLine.Borders.TopColor = System.Drawing.Color.Empty;
             this.panel_ctEndLine.Borders.TopWidth = 1;
             this.panel_ctEndLine.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("panel_ctEndLine.Canvas")));
-            this.panel_ctEndLine.Controls.Add(this.ellipseControl1);
             this.panel_ctEndLine.Location = new System.Drawing.Point(12, 448);
             this.panel_ctEndLine.Name = "panel_ctEndLine";
             this.panel_ctEndLine.Size = new System.Drawing.Size(897, 30);
-            this.panel_ctEndLine.Visible = true;
             this.panel_ctEndLine.TabIndex = 1;
-            // 
-            // ellipseControl1
-            // 
-            this.ellipseControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ellipseControl1.Borders.BottomColor = System.Drawing.Color.Empty;
-            this.ellipseControl1.Borders.BottomWidth = 1;
-            this.ellipseControl1.Borders.LeftColor = System.Drawing.Color.Empty;
-            this.ellipseControl1.Borders.LeftWidth = 1;
-            this.ellipseControl1.Borders.RightColor = System.Drawing.Color.Empty;
-            this.ellipseControl1.Borders.RightWidth = 1;
-            this.ellipseControl1.Borders.TopColor = System.Drawing.Color.Empty;
-            this.ellipseControl1.Borders.TopWidth = 1;
-            this.ellipseControl1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("ellipseControl1.Canvas")));
-            this.ellipseControl1.CenterPotion = new System.Drawing.Point(448, 5);
-            this.ellipseControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ellipseControl1.IsShowPotion = false;
-            this.ellipseControl1.LeftPotion = new System.Drawing.Point(0, 30);
-            this.ellipseControl1.Location = new System.Drawing.Point(0, 0);
-            this.ellipseControl1.Name = "ellipseControl1";
-            this.ellipseControl1.RightPotion = new System.Drawing.Point(897, 30);
-            this.ellipseControl1.Size = new System.Drawing.Size(897, 30);
-            this.ellipseControl1.StrValue = "我是有底线的";
-            this.ellipseControl1.TabIndex = 0;
-            this.ellipseControl1.Text = "ellipseControl1";
             // 
             // List_Main
             // 
@@ -729,7 +701,6 @@
             this.Text = "";
             this.Load += new System.EventHandler(this.BackForm_Load);
             this.layeredPanel_top.ResumeLayout(false);
-            this.Panel_load.ResumeLayout(false);
             this.panel_ctEndLine.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -752,6 +723,5 @@
         private LayeredSkin.Controls.LayeredPanel Panel_TypeMess;
         private LayeredSkin.Controls.LayeredPanel Panel_load;
         private LayeredSkin.Controls.LayeredPanel panel_ctEndLine;
-        private Controls.EllipseControl ellipseControl1;
     }
 }
