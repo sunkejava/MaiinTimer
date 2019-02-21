@@ -995,7 +995,10 @@ namespace MaiinTimer
                         if (!isEnd)
                         {
                             int zHeight = 80;
-
+                            if (!panel_ctEndLine.Controls.Contains(panel_ctEndLine))
+                            {
+                                panel_ctEndLine.Controls.Add(ctEnd);
+                            }
                             ctEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
                             ctEnd.Borders.BottomColor = System.Drawing.Color.Empty;
                             ctEnd.Borders.BottomWidth = 1;
@@ -1007,7 +1010,7 @@ namespace MaiinTimer
                             ctEnd.Borders.TopWidth = 1;
                             ctEnd.Canvas = ((System.Drawing.Bitmap)((new System.ComponentModel.ComponentResourceManager(typeof(BackForm))).GetObject("ellipseControl1.Canvas")));
                             ctEnd.CenterPotion = new System.Drawing.Point(448, 5);
-                            ctEnd.Dock = System.Windows.Forms.DockStyle.Fill;
+                            ///ctEnd.Dock = System.Windows.Forms.DockStyle.Fill;
                             ctEnd.IsShowPotion = false;
                             ctEnd.LeftPotion = new System.Drawing.Point(0, 30);
                             ctEnd.Location = new System.Drawing.Point(0, 0);
@@ -1015,7 +1018,7 @@ namespace MaiinTimer
                             ctEnd.RightPotion = new System.Drawing.Point(List_Main.Width - 5, zHeight /2);
                             ctEnd.Size = new System.Drawing.Size(List_Main.Width - 5, zHeight);
                             ctEnd.StrValue = "啊哦，已经是最后一页了！";
-                            ctEnd.TabIndex = 0;
+                            ctEnd.TabIndex = 1;
                             ctEnd.Text = "ellipseControl1";
                             ctEnd.Visible = true;
 
@@ -1024,10 +1027,6 @@ namespace MaiinTimer
                             //panel_ctEndLine.BackColor = Color.White;
                             ctEnd.Location = new Point(0,0);
                             panel_ctEndLine.BringToFront();
-                            if (!panel_ctEndLine.Controls.Contains(panel_ctEndLine))
-                            {
-                                panel_ctEndLine.Controls.Add(ctEnd);
-                            }
                             panel_ctEndLine.Refresh();
                             panel_ctEndLine.Visible = true;
                             cheight = zHeight - 15;

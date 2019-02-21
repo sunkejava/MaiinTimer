@@ -688,13 +688,13 @@
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(975, 644);
             this.Controls.Add(this.Panel_load);
+            this.Controls.Add(this.panel_ctEndLine);
             this.Controls.Add(this.Panel_TypeMess);
             this.Controls.Add(this.Panel_Type);
             this.Controls.Add(this.Panel_Bottom);
             this.Controls.Add(this.scorllbar);
             this.Controls.Add(this.layeredPanel_top);
             this.Controls.Add(this.List_Main);
-            this.Controls.Add(this.panel_ctEndLine);
             this.Name = "BackForm";
             this.Radius = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
