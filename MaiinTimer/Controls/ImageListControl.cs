@@ -594,14 +594,19 @@ namespace MaiinTimer.Controls
                 }
                 else
                 {
-                    MessageForm mfm = new MessageForm();
-                    mfm.Show(this);
+                    MethodInvoker methInvo = new MethodInvoker(showMessageForm);
+                    BeginInvoke(methInvo);
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception("下载图片失败，原因为：" + ex.Message);
             }
+        }
+        private void showMessageForm()
+        {
+            MessageForm mfm = new MessageForm();
+            mfm.Show(this);
         } 
         /// <summary>
         /// 列表刷新
