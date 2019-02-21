@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using LayeredSkin.Forms;
 
-namespace MaiinTimer
+namespace BridImage
 {
     public partial class MessageForm : LayeredForm
     {

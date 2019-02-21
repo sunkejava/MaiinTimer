@@ -1,4 +1,4 @@
-﻿namespace MaiinTimer
+﻿namespace BridImage
 {
     partial class MessageForm
     {
@@ -98,12 +98,12 @@
             this.btn_close.ControlState = LayeredSkin.Controls.ControlStates.Normal;
             this.btn_close.HaloColor = System.Drawing.Color.Transparent;
             this.btn_close.HaloSize = 5;
-            this.btn_close.HoverImage = global::MaiinTimer.Properties.Resources.close;
+            this.btn_close.HoverImage = global::BridImage.Properties.Resources.close;
             this.btn_close.IsPureColor = false;
             this.btn_close.Location = new System.Drawing.Point(341, 1);
             this.btn_close.Name = "btn_close";
-            this.btn_close.NormalImage = global::MaiinTimer.Properties.Resources.close;
-            this.btn_close.PressedImage = global::MaiinTimer.Properties.Resources.close;
+            this.btn_close.NormalImage = global::BridImage.Properties.Resources.close;
+            this.btn_close.PressedImage = global::BridImage.Properties.Resources.close;
             this.btn_close.Radius = 18;
             this.btn_close.ShowBorder = true;
             this.btn_close.Size = new System.Drawing.Size(18, 18);

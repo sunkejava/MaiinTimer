@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace MaiinTimer
+namespace BridImage
 {
     static class Program
     {

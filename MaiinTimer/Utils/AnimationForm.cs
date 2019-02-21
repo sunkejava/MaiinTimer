@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MaiinTimer.Utils
+namespace BridImage.Utils
 {
     public class Win32
     {

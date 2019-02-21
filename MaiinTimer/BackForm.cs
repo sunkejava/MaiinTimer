@@ -13,10 +13,10 @@ using System.Windows.Forms;
 using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
 using LayeredSkin.Forms;
-using MaiinTimer.Controls;
-using MaiinTimer.Utils;
+using BridImage.Controls;
+using BridImage.Utils;
 
-namespace MaiinTimer
+namespace BridImage
 {
     public partial class BackForm : LayeredForm
     {
@@ -45,7 +45,7 @@ namespace MaiinTimer
         bool isEnd = false;//是否为页尾
         bool isLoadData = false;//是否正在加载数据
         int cheight = 0;
-        EllipseControl ctEnd = new MaiinTimer.Controls.EllipseControl();
+        EllipseControl ctEnd = new BridImage.Controls.EllipseControl();
         string nCount = "0";//当前类型可获取的图片总数
         Color defaultColor = Color.FromArgb(105,255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
@@ -548,7 +548,7 @@ namespace MaiinTimer
                 if (isLoad)
                 {
                     DuiPictureBox dp = Panel_load.DUIControls[0] as DuiPictureBox;
-                    dp.Images = new Image[] { Properties.Resources.video_loading_01, Properties.Resources.video_loading_02, Properties.Resources.video_loading_03, Properties.Resources.video_loading_04, Properties.Resources.video_loading_05, Properties.Resources.video_loading_06, Properties.Resources.video_loading_07, Properties.Resources.video_loading_08 };
+                    dp.Images = new Image[] { BridImage.Properties.Resources.video_loading_01, BridImage.Properties.Resources.video_loading_02, BridImage.Properties.Resources.video_loading_03, BridImage.Properties.Resources.video_loading_04, BridImage.Properties.Resources.video_loading_05, BridImage.Properties.Resources.video_loading_06, BridImage.Properties.Resources.video_loading_07, BridImage.Properties.Resources.video_loading_08 };
                     Panel_load.BringToFront();
                 }
                 else

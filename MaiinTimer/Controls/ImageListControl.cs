@@ -1,5 +1,5 @@
 ﻿using LayeredSkin.DirectUI;
-using MaiinTimer.Utils;
+using BridImage.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace MaiinTimer.Controls
+namespace BridImage.Controls
 {
     /// <summary>
     /// 类    名: ImageListControl.cs

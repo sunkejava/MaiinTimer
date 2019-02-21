@@ -11,9 +11,9 @@ using LayeredSkin.Forms;
 using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
 using LayeredSkin.Animations;
-using MaiinTimer.Controls;
+using BridImage.Controls;
 
-namespace MaiinTimer
+namespace BridImage
 {
     public partial class MainForm : LayeredForm
     {

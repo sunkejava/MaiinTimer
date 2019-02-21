@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace MaiinTimer.Utils
+namespace BridImage.Utils
 {
     public static class CloneObject<TIn, TOut>
     {

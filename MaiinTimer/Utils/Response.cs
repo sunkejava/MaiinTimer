@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MaiinTimer.Utils
+namespace BridImage.Utils
 {
     public class Response
     {

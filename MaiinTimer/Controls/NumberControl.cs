@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using LayeredSkin.DirectUI;
 
-namespace MaiinTimer.Controls
+namespace BridImage.Controls
 {
     public partial class NumberControl : DuiBaseControl
     {

@@ -7,7 +7,7 @@ using System.Drawing;
 using System.ComponentModel;
 using LayeredSkin.DirectUI;
 
-namespace MaiinTimer.Controls
+namespace BridImage.Controls
 {
     public class CircularProgressBarEx : DuiBaseControl
     {

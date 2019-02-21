@@ -6,7 +6,7 @@ using System.Text;
 using LayeredSkin.DirectUI;
 using System.Windows.Forms;
 
-namespace MaiinTimer.Utils
+namespace BridImage.Utils
 {
     /// <summary>
     /// DuiBaseControl动画类

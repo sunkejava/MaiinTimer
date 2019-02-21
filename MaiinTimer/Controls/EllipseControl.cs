@@ -31,7 +31,7 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using LayeredSkin.Controls;
 
-namespace MaiinTimer.Controls
+namespace BridImage.Controls
 {
     /// <summary>
     /// 根据三点画圆

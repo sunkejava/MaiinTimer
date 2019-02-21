@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("MaiinTimer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("小鸟壁纸")]
+[assembly: AssemblyDescription("壁纸下载设置工具")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("MaiinTimer")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2018")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("DeclineAberdeen")]
+[assembly: AssemblyProduct("360小鸟壁纸")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2019 By SUNKE")]
+[assembly: AssemblyTrademark("DeclineAberdeen")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 会使此程序集中的类型

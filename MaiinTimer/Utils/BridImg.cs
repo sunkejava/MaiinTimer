@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 
-namespace MaiinTimer.Utils
+namespace BridImage.Utils
 {
     /// <summary>
     /// 小鸟壁纸

@@ -1,4 +1,4 @@
-﻿namespace MaiinTimer
+﻿namespace BridImage
 {
     partial class MainForm
     {
@@ -84,12 +84,12 @@
             this.btn_skin.ControlState = LayeredSkin.Controls.ControlStates.Normal;
             this.btn_skin.HaloColor = System.Drawing.Color.Transparent;
             this.btn_skin.HaloSize = 5;
-            this.btn_skin.HoverImage = global::MaiinTimer.Properties.Resources.skin1;
+            this.btn_skin.HoverImage = global::BridImage.Properties.Resources.skin1;
             this.btn_skin.IsPureColor = true;
             this.btn_skin.Location = new System.Drawing.Point(352, 7);
             this.btn_skin.Name = "btn_skin";
-            this.btn_skin.NormalImage = global::MaiinTimer.Properties.Resources.skin0;
-            this.btn_skin.PressedImage = global::MaiinTimer.Properties.Resources.skin1;
+            this.btn_skin.NormalImage = global::BridImage.Properties.Resources.skin0;
+            this.btn_skin.PressedImage = global::BridImage.Properties.Resources.skin1;
             this.btn_skin.Radius = 0;
             this.btn_skin.ShowBorder = true;
             this.btn_skin.Size = new System.Drawing.Size(16, 16);
@@ -119,12 +119,12 @@
             this.btn_close.ControlState = LayeredSkin.Controls.ControlStates.Normal;
             this.btn_close.HaloColor = System.Drawing.Color.Transparent;
             this.btn_close.HaloSize = 5;
-            this.btn_close.HoverImage = global::MaiinTimer.Properties.Resources.close1;
+            this.btn_close.HoverImage = global::BridImage.Properties.Resources.close1;
             this.btn_close.IsPureColor = true;
             this.btn_close.Location = new System.Drawing.Point(417, 7);
             this.btn_close.Name = "btn_close";
-            this.btn_close.NormalImage = global::MaiinTimer.Properties.Resources.close0;
-            this.btn_close.PressedImage = global::MaiinTimer.Properties.Resources.close1;
+            this.btn_close.NormalImage = global::BridImage.Properties.Resources.close0;
+            this.btn_close.PressedImage = global::BridImage.Properties.Resources.close1;
             this.btn_close.Radius = 0;
             this.btn_close.ShowBorder = true;
             this.btn_close.Size = new System.Drawing.Size(16, 16);
@@ -154,12 +154,12 @@
             this.btn_min.ControlState = LayeredSkin.Controls.ControlStates.Normal;
             this.btn_min.HaloColor = System.Drawing.Color.Transparent;
             this.btn_min.HaloSize = 5;
-            this.btn_min.HoverImage = global::MaiinTimer.Properties.Resources.min1;
+            this.btn_min.HoverImage = global::BridImage.Properties.Resources.min1;
             this.btn_min.IsPureColor = true;
             this.btn_min.Location = new System.Drawing.Point(384, 7);
             this.btn_min.Name = "btn_min";
-            this.btn_min.NormalImage = global::MaiinTimer.Properties.Resources.min0;
-            this.btn_min.PressedImage = global::MaiinTimer.Properties.Resources.min1;
+            this.btn_min.NormalImage = global::BridImage.Properties.Resources.min0;
+            this.btn_min.PressedImage = global::BridImage.Properties.Resources.min1;
             this.btn_min.Radius = 0;
             this.btn_min.ShowBorder = true;
             this.btn_min.Size = new System.Drawing.Size(16, 16);

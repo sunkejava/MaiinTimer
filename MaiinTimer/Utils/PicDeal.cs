@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Drawing2D;
 
-namespace MaiinTimer.Utils
+namespace BridImage.Utils
 {
 
     /// <summary>
