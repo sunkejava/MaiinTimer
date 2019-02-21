@@ -13,6 +13,9 @@ namespace BridImage
         [STAThread]
         static void Main()
         {
+            //加载需要的dll文件
+            Utils.LoadResourceDll.RegistDLL();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new BackForm());

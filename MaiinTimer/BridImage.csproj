@@ -119,6 +119,7 @@
     <Compile Include="Utils\AnimationForm.cs" />
     <Compile Include="Utils\BridImg.cs" />
     <Compile Include="Utils\CloneObject.cs" />
+    <Compile Include="Utils\LoadResourceDll.cs" />
     <Compile Include="Utils\PicDeal.cs" />
     <Compile Include="Utils\Response.cs" />
     <EmbeddedResource Include="BackForm.resx">
