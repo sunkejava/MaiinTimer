@@ -53,7 +53,6 @@
             this.panel_ctEndLine = new LayeredSkin.Controls.LayeredPanel();
             this.List_Main = new BridImage.Controls.ImageListControl();
             this.layeredPanel_top.SuspendLayout();
-            this.panel_ctEndLine.SuspendLayout();
             this.SuspendLayout();
             // 
             // layeredPanel_top
@@ -695,13 +694,13 @@
             this.Controls.Add(this.scorllbar);
             this.Controls.Add(this.layeredPanel_top);
             this.Controls.Add(this.List_Main);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BackForm";
             this.Radius = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "";
             this.Load += new System.EventHandler(this.BackForm_Load);
             this.layeredPanel_top.ResumeLayout(false);
-            this.panel_ctEndLine.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

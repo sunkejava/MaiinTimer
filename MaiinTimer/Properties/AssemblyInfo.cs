@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("小鸟壁纸")]
-[assembly: AssemblyDescription("壁纸下载设置工具")]
+[assembly: AssemblyDescription("360小鸟壁纸下载工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DeclineAberdeen")]
 [assembly: AssemblyProduct("360小鸟壁纸")]
