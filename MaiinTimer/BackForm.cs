@@ -47,7 +47,7 @@ namespace BridImage
         int cheight = 0;
         EllipseControl ctEnd = new BridImage.Controls.EllipseControl();
         string nCount = "0";//当前类型可获取的图片总数
-        Color defaultColor = Color.FromArgb(105,255, 92, 138);
+        Color defaultColor = Color.FromArgb(255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynUpdateloadPageText(string nowPage, string countPage);
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
