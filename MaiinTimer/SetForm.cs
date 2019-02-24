@@ -27,21 +27,28 @@ namespace BridImage
             {
                 LayeredLabel lb = sender as LayeredLabel;
                 recoverDefaultStyle(lb);
+                lb.ForeColor = defaultColor;
                 switch (lb.Name)
                 {
                     case "btn_cg":
                         btn_point.Location = new Point(btn_point.Location.X, btn_cg.Location.Y + 6);
+                        layeredPanel_cg.Visible = true;
                         layeredPanel_cg.BringToFront();
                         break;
                     case "btn_xzsz":
                         btn_point.Location = new Point(btn_point.Location.X, btn_xzsz.Location.Y + 6);
+                        layeredPanel_xzsz.Visible = true;
                         layeredPanel_xzsz.BringToFront();
                         break;
                     case "btn_qhbz":
                         btn_point.Location = new Point(btn_point.Location.X, btn_qhbz.Location.Y + 6);
+                        layeredPanel_qhbz.Visible = true;
+                        layeredPanel_qhbz.BringToFront();
                         break;
                     case "btn_gy":
                         btn_point.Location = new Point(btn_point.Location.X, btn_gy.Location.Y + 6);
+                        layeredPanel_gy.Visible = true;
+                        layeredPanel_gy.BringToFront();
                         break;
                     case "":
                         break;
@@ -112,21 +119,33 @@ namespace BridImage
                     btn_xzsz.ForeColor = SystemColors.ControlText;
                     btn_qhbz.ForeColor = SystemColors.ControlText;
                     btn_gy.ForeColor = SystemColors.ControlText;
+                    layeredPanel_xzsz.Visible = false;
+                    layeredPanel_qhbz.Visible = false;
+                    layeredPanel_gy.Visible = false;
                     break;
                 case "btn_xzsz":
                     btn_cg.ForeColor = SystemColors.ControlText;
                     btn_qhbz.ForeColor = SystemColors.ControlText;
                     btn_gy.ForeColor = SystemColors.ControlText;
+                    layeredPanel_cg.Visible = false;
+                    layeredPanel_qhbz.Visible = false;
+                    layeredPanel_gy.Visible = false;
                     break;
                 case "btn_qhbz":
                     btn_cg.ForeColor = SystemColors.ControlText;
                     btn_xzsz.ForeColor = SystemColors.ControlText;
                     btn_gy.ForeColor = SystemColors.ControlText;
+                    layeredPanel_cg.Visible = false;
+                    layeredPanel_xzsz.Visible = false;
+                    layeredPanel_gy.Visible = false;
                     break;
                 case "btn_gy":
                     btn_cg.ForeColor = SystemColors.ControlText;
                     btn_xzsz.ForeColor = SystemColors.ControlText;
                     btn_qhbz.ForeColor = SystemColors.ControlText;
+                    layeredPanel_cg.Visible = false;
+                    layeredPanel_xzsz.Visible = false;
+                    layeredPanel_qhbz.Visible = false;
                     break;
                 default:
                     break;
