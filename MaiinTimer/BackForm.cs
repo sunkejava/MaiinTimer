@@ -175,7 +175,8 @@ namespace BridImage
 
         private void btn_set_Click(object sender, EventArgs e)
         {
-
+            SetForm sf = new SetForm(defaultColor);
+            sf.Show();
         }
 
         private void btn_skin_Click(object sender, EventArgs e)
