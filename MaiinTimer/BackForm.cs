@@ -172,6 +172,17 @@ namespace BridImage
             this.WindowState = FormWindowState.Minimized;
         }
 
+
+        private void btn_set_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_skin_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btn_min_MouseDown(object sender, MouseEventArgs e)
         {
             LayeredButton thisButton = sender as LayeredButton;
@@ -186,6 +197,12 @@ namespace BridImage
                 case "btn_min":
                     layeredPanel_min.BackColor = Color.FromArgb(100,234, 234, 234);
                     break;
+                case "btn_set":
+                    layeredPanel_Set.BackColor = Color.FromArgb(100, 234, 234, 234);
+                    break;
+                case "btn_skin":
+                    layeredPanel_skin.BackColor = Color.FromArgb(100, 234, 234, 234);
+                    break;
                 default:
                     layeredPanel_close.BackColor = Color.FromArgb(255, 88, 88);
                     break;
@@ -198,6 +215,8 @@ namespace BridImage
             thisButton.BackColor = Color.Transparent;
             layeredPanel_min.BackColor = thisButton.BackColor;
             layeredPanel_close.BackColor = thisButton.BackColor;
+            layeredPanel_Set.BackColor = thisButton.BackColor;
+            layeredPanel_skin.BackColor = thisButton.BackColor;
         }
 
         private void Dlbe_MouseEnter(object sender, DuiMouseEventArgs e)

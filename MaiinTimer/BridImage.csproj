@@ -178,9 +178,6 @@
     <None Include="Resources\skinPanel1.NormlBack.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\loading7.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\download.png" />
   </ItemGroup>
   <ItemGroup>
@@ -217,22 +214,10 @@
     <None Include="Resources\video_loading_07.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\my_new_login_btn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\my_sign_in_btn_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mv_edit_no_select.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\mask_shadow_big.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mask_shadow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\notification_big_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sc0.png" />
@@ -270,6 +255,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="log32.ico" />
+    <None Include="Resources\set0.png" />
+    <None Include="Resources\set1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

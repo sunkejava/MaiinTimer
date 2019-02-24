@@ -178,6 +178,12 @@
   <data name="set" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\set.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="set0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\set0.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="set1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\set1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="seting" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\seting.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
