@@ -9,11 +9,14 @@ using System.Windows.Forms;
 using LayeredSkin.Forms;
 using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
+using BridImage.Utils;
+
 namespace BridImage
 {
     public partial class SetForm : LayeredForm
     {
         private Color defaultColor = Color.OrangeRed;
+        PropertsUtils pes = new PropertsUtils();
         public SetForm(Color bc)
         {
             InitializeComponent();
