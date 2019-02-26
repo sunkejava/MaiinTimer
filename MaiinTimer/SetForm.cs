@@ -19,7 +19,8 @@ namespace BridImage
         PropertsUtils pes = new PropertsUtils();
         #region 设置相关控件
         //常规控件
-
+        DuiCheckBox Ck_AutoStart = null;
+        //DuiRadioButton RadioButton_CloseMode = null;
         //切换壁纸控件
         DuiCheckBox Ck_IsSwitchWallpaper = null;
         DuiTextBox TextBox_InterValTime = null;
@@ -95,82 +96,36 @@ namespace BridImage
             layeredPanel_close.BackColor = thisButton.BackColor;
         }
 
-        #endregion
-
-        #region 自定义事件
-        private void setDefaultStyle()
+        /// <summary>
+        /// 关闭模式选择事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RadioButton_CloseMode_CheckedChanged(object sender, EventArgs e)
         {
-            this.BackColor = defaultColor;
-            btn_point.BackColor = defaultColor;
-            btn_cg.ForeColor = defaultColor;
-            layeredPanel_cg.BringToFront();
-            //常规界面相关处理
-            foreach (DuiBaseControl item in layeredPanel_cg.DUIControls)
-            {
-                switch (item.Name)
-                {
-                    case "ck_qd":
-                        DuiCheckBox dc = item as DuiCheckBox;
-                        dc.CheckRectColor = pes.BackColor;
-                        break;
-                    case "rd_min":
-                    case "rd_close":
-                        DuiRadioButton drb = item as DuiRadioButton;
-                        drb.CheckRectColor = pes.BackColor;
-                        break;
-                    case "":
-
-                        break;
-                    default:
-                        break;
-                }
-            }
-            //壁纸切换界面相关处理
-            foreach (DuiBaseControl item in layeredPanel_qhbz.DUIControls)
-            {
-                switch (item.Name)
-                {
-                    case "ck_qd":
-                        Ck_IsSwitchWallpaper = item as DuiCheckBox;
-                        Ck_IsSwitchWallpaper.CheckRectColor = pes.BackColor;
-                        Ck_IsSwitchWallpaper.Checked = pes.IsSwitchWallpaper;
-                        Ck_IsSwitchWallpaper.CheckedChanged += Ck_IsSwitchWallpaper_CheckedChanged;
-                        break;
-                    case "db_timedw":
-                        ComboBox_InterValTimeUnit = item as DuiComboBox;
-                        ComboBox_InterValTimeUnit.BackColor = pes.BackColor;
-                        break;
-                    case "tb_timeStr":
-                        TextBox_InterValTime = item as DuiTextBox;
-                        if (pes.InterValTime < 60)
-                        {
-                            TextBox_InterValTime.Text = pes.InterValTime.ToString();
-                            ComboBox_InterValTimeUnit.Text = "秒";
-                        } else if (pes.InterValTime < 3600)
-                        {
-                            TextBox_InterValTime.Text = (pes.InterValTime / 60 ).ToString();
-                            ComboBox_InterValTimeUnit.Text = "分";
-                        }
-                        else
-                        {
-                            TextBox_InterValTime.Text = (pes.InterValTime / 60 / 60).ToString();
-                            ComboBox_InterValTimeUnit.Text = "时";
-                        }
-                        TextBox_InterValTime.TextChanged += TextBox_InterValTime_TextChanged;
-                        break;
-                    default:
-                        if (item is DuiButton && item.Name.Contains("btn_"))
-                        {
-                            Button_SwitchWallpaperType = item as DuiButton;
-                            Button_SwitchWallpaperType.MouseClick += Button_SwitchWallpaperType_MouseClick;
-                        }
-                        break;
-                }
-            }
-            //下载设置界面相关处理
-
+            DuiRadioButton cdr = sender as DuiRadioButton;
+            pes.CloseMode = "isClose";
+        }
+        private void RadioButton_MinMode_CheckedChanged(object sender, EventArgs e)
+        {
+            DuiRadioButton cdr = sender as DuiRadioButton;
+            pes.CloseMode = "isMin";
+        }
+        /// <summary>
+        /// 是否选择开机启动事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ck_AutoStart_CheckedChanged(object sender, EventArgs e)
+        {
+            pes.AutoStart = Ck_AutoStart.Checked;
         }
 
+        /// <summary>
+        /// 壁纸切换类型按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_SwitchWallpaperType_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiButton cdb = sender as DuiButton;
@@ -215,9 +170,137 @@ namespace BridImage
         /// <param name="e"></param>
         private void Ck_IsSwitchWallpaper_CheckedChanged(object sender, EventArgs e)
         {
-            pes.IsSwitchWallpaper =  Ck_IsSwitchWallpaper.Checked;
+            pes.IsSwitchWallpaper = Ck_IsSwitchWallpaper.Checked;
         }
 
+        /// <summary>
+        /// 壁纸切换时间间隔单位事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ComboBox_InterValTimeUnit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ComboBox_InterValTimeUnit.SelectedIndex == 0)
+            {
+                ComboBox_InterValTimeUnit.Text = "秒";
+            }
+            else if (ComboBox_InterValTimeUnit.SelectedIndex == 1)
+            {
+                ComboBox_InterValTimeUnit.Text = "分";
+            }
+            else
+            {
+                ComboBox_InterValTimeUnit.Text = "时";
+            }
+        }
+
+        #endregion
+
+        #region 自定义事件
+        private void setDefaultStyle()
+        {
+            this.BackColor = defaultColor;
+            btn_point.BackColor = defaultColor;
+            btn_cg.ForeColor = defaultColor;
+            layeredPanel_cg.BringToFront();
+            //常规界面相关处理
+            foreach (DuiBaseControl item in layeredPanel_cg.DUIControls)
+            {
+                switch (item.Name)
+                {
+                    case "ck_qd":
+                        Ck_AutoStart = item as DuiCheckBox;
+                        Ck_AutoStart.CheckRectColor = pes.BackColor;
+                        Ck_AutoStart.CheckedChanged += Ck_AutoStart_CheckedChanged;
+                        Ck_AutoStart.Checked = pes.AutoStart;
+                        break;
+                    case "rd_min":
+                        DuiRadioButton RadioButton_MinMode = item as DuiRadioButton;
+                        RadioButton_MinMode.CheckRectColor = pes.BackColor;
+                        RadioButton_MinMode.CheckedChanged += RadioButton_MinMode_CheckedChanged;
+                        if ((pes.CloseMode == "isMin"))
+                        {
+                            (item as DuiRadioButton).Checked = true;
+                        }
+                        else
+                        {
+                            (item as DuiRadioButton).Checked = false;
+                        }
+                        break;
+                    case "rd_close":
+                        DuiRadioButton RadioButton_CloseMode = item as DuiRadioButton;
+                        RadioButton_CloseMode.CheckRectColor = pes.BackColor;
+                        RadioButton_CloseMode.CheckedChanged += RadioButton_CloseMode_CheckedChanged;
+                        if ((pes.CloseMode == "isClose"))
+                        {
+                            (item as DuiRadioButton).Checked = true;
+                        }
+                        else
+                        {
+                            (item as DuiRadioButton).Checked = false;
+                        }
+                        break;
+                    case "":
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //壁纸切换界面相关处理
+            foreach (DuiBaseControl item in layeredPanel_qhbz.DUIControls)
+            {
+                switch (item.Name)
+                {
+                    case "ck_qd":
+                        Ck_IsSwitchWallpaper = item as DuiCheckBox;
+                        Ck_IsSwitchWallpaper.CheckRectColor = pes.BackColor;
+                        Ck_IsSwitchWallpaper.Checked = pes.IsSwitchWallpaper;
+                        Ck_IsSwitchWallpaper.CheckedChanged += Ck_IsSwitchWallpaper_CheckedChanged;
+                        break;
+                    case "db_timedw":
+                        ComboBox_InterValTimeUnit = item as DuiComboBox;
+                        ComboBox_InterValTimeUnit.BackColor = pes.BackColor;
+                        ComboBox_InterValTimeUnit.SelectedIndexChanged += ComboBox_InterValTimeUnit_SelectedIndexChanged;
+                        if (pes.InterValTime < 60)
+                        {
+                            TextBox_InterValTime.Text = pes.InterValTime.ToString();
+                            ComboBox_InterValTimeUnit.Text = "秒";
+                        }
+                        else if (pes.InterValTime < 3600)
+                        {
+                            TextBox_InterValTime.Text = (pes.InterValTime / 60).ToString();
+                            ComboBox_InterValTimeUnit.Text = "分";
+                        }
+                        else
+                        {
+                            TextBox_InterValTime.Text = (pes.InterValTime / 60 / 60).ToString();
+                            ComboBox_InterValTimeUnit.Text = "时";
+                        }
+                        break;
+                    case "tb_timeStr":
+                        TextBox_InterValTime = item as DuiTextBox;
+                        TextBox_InterValTime.TextChanged += TextBox_InterValTime_TextChanged;
+                        break;
+                    default:
+                        if (item is DuiButton && item.Name.Contains("btn_"))
+                        {
+                            Button_SwitchWallpaperType = item as DuiButton;
+                            Button_SwitchWallpaperType.MouseClick += Button_SwitchWallpaperType_MouseClick;
+                            foreach (var WallpaperType in pes.SwitchWallpaperTypes)
+                            {
+                                if (item.Name.Replace("btn_", "") == WallpaperType.ToString())
+                                {
+                                    Button_SwitchWallpaperType.BackColor = pes.BackColor;
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            //下载设置界面相关处理
+
+        }
         private void recoverDefaultStyle(LayeredLabel dl)
         {
             switch (dl.Name)

@@ -2161,7 +2161,7 @@
             duiButton3.Left = 30;
             duiButton3.Location = new System.Drawing.Point(30, 130);
             duiButton3.Margin = new System.Windows.Forms.Padding(0);
-            duiButton3.Name = "btn_new";
+            duiButton3.Name = "btn_99";
             duiButton3.NormalImage = null;
             duiButton3.ParentInvalidate = true;
             duiButton3.PressedImage = null;
@@ -2215,7 +2215,7 @@
             duiButton4.Left = 90;
             duiButton4.Location = new System.Drawing.Point(90, 130);
             duiButton4.Margin = new System.Windows.Forms.Padding(0);
-            duiButton4.Name = "btn_4k";
+            duiButton4.Name = "btn_36";
             duiButton4.NormalImage = null;
             duiButton4.ParentInvalidate = true;
             duiButton4.PressedImage = null;
@@ -2269,7 +2269,7 @@
             duiButton5.Left = 150;
             duiButton5.Location = new System.Drawing.Point(150, 130);
             duiButton5.Margin = new System.Windows.Forms.Padding(0);
-            duiButton5.Name = "btn_meinv";
+            duiButton5.Name = "btn_6";
             duiButton5.NormalImage = null;
             duiButton5.ParentInvalidate = true;
             duiButton5.PressedImage = null;
@@ -2323,7 +2323,7 @@
             duiButton6.Left = 210;
             duiButton6.Location = new System.Drawing.Point(210, 130);
             duiButton6.Margin = new System.Windows.Forms.Padding(0);
-            duiButton6.Name = "btn_aq";
+            duiButton6.Name = "btn_30";
             duiButton6.NormalImage = null;
             duiButton6.ParentInvalidate = true;
             duiButton6.PressedImage = null;
@@ -2377,7 +2377,7 @@
             duiButton7.Left = 270;
             duiButton7.Location = new System.Drawing.Point(270, 130);
             duiButton7.Margin = new System.Windows.Forms.Padding(0);
-            duiButton7.Name = "btn_fj";
+            duiButton7.Name = "btn_9";
             duiButton7.NormalImage = null;
             duiButton7.ParentInvalidate = true;
             duiButton7.PressedImage = null;
@@ -2431,7 +2431,7 @@
             duiButton8.Left = 330;
             duiButton8.Location = new System.Drawing.Point(330, 130);
             duiButton8.Margin = new System.Windows.Forms.Padding(0);
-            duiButton8.Name = "btn_dm";
+            duiButton8.Name = "btn_26";
             duiButton8.NormalImage = null;
             duiButton8.ParentInvalidate = true;
             duiButton8.PressedImage = null;
@@ -2485,7 +2485,7 @@
             duiButton9.Left = 30;
             duiButton9.Location = new System.Drawing.Point(30, 155);
             duiButton9.Margin = new System.Windows.Forms.Padding(0);
-            duiButton9.Name = "btn_mc";
+            duiButton9.Name = "btn_14";
             duiButton9.NormalImage = null;
             duiButton9.ParentInvalidate = true;
             duiButton9.PressedImage = null;
@@ -2539,7 +2539,7 @@
             duiButton10.Left = 90;
             duiButton10.Location = new System.Drawing.Point(90, 155);
             duiButton10.Margin = new System.Windows.Forms.Padding(0);
-            duiButton10.Name = "btn_mx";
+            duiButton10.Name = "btn_11";
             duiButton10.NormalImage = null;
             duiButton10.ParentInvalidate = true;
             duiButton10.PressedImage = null;
@@ -2593,7 +2593,7 @@
             duiButton11.Left = 150;
             duiButton11.Location = new System.Drawing.Point(150, 155);
             duiButton11.Margin = new System.Windows.Forms.Padding(0);
-            duiButton11.Name = "btn_yx";
+            duiButton11.Name = "btn_5";
             duiButton11.NormalImage = null;
             duiButton11.ParentInvalidate = true;
             duiButton11.PressedImage = null;
@@ -2647,7 +2647,7 @@
             duiButton12.Left = 210;
             duiButton12.Location = new System.Drawing.Point(210, 155);
             duiButton12.Margin = new System.Windows.Forms.Padding(0);
-            duiButton12.Name = "btn_qc";
+            duiButton12.Name = "btn_12";
             duiButton12.NormalImage = null;
             duiButton12.ParentInvalidate = true;
             duiButton12.PressedImage = null;
@@ -2701,7 +2701,7 @@
             duiButton13.Left = 270;
             duiButton13.Location = new System.Drawing.Point(270, 155);
             duiButton13.Margin = new System.Windows.Forms.Padding(0);
-            duiButton13.Name = "btn_ys";
+            duiButton13.Name = "btn_7";
             duiButton13.NormalImage = null;
             duiButton13.ParentInvalidate = true;
             duiButton13.PressedImage = null;
@@ -2755,7 +2755,7 @@
             duiButton14.Left = 330;
             duiButton14.Location = new System.Drawing.Point(330, 155);
             duiButton14.Margin = new System.Windows.Forms.Padding(0);
-            duiButton14.Name = "btn_ty";
+            duiButton14.Name = "btn_35";
             duiButton14.NormalImage = null;
             duiButton14.ParentInvalidate = true;
             duiButton14.PressedImage = null;
@@ -2769,7 +2769,7 @@
             duiButton14.StringFormat = stringFormat31;
             duiButton14.SuspendInvalidate = false;
             duiButton14.Tag = null;
-            duiButton14.Text = "体育";
+            duiButton14.Text = "文字";
             duiButton14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             duiButton14.TextPadding = 0;
             duiButton14.Top = 155;
