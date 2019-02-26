@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
@@ -24,7 +25,7 @@ namespace BridImage.Utils
         private string cachePath = "";
         private bool isSwitchWallpaper = true;
         private int interValTime = 30;
-        private string switchWallpaperTypes = "";
+        private ArrayList switchWallpaperTypes = new ArrayList();
         private Color backColor = Color.FromArgb(255, 92, 138);
         private string opacity = "1";
         public PropertsUtils()
@@ -36,7 +37,7 @@ namespace BridImage.Utils
             this.cachePath = GetAppConfig("cachePath");
             this.isSwitchWallpaper = Boolean.Parse(GetAppConfig("isSwitchWallpaper"));
             this.interValTime = int.Parse(GetAppConfig("interValTime"));
-            this.switchWallpaperTypes = GetAppConfig("switchWallpaperTypes");
+            this.switchWallpaperTypes = new ArrayList(GetAppConfig("switchWallpaperTypes").Split(','));
             this.backColor = Color.FromArgb(int.Parse(GetAppConfig("backColor")));
             this.opacity = GetAppConfig("opacity");
         }
@@ -99,7 +100,7 @@ namespace BridImage.Utils
         /// <summary>
         /// 壁纸切换类型集合
         /// </summary>
-        public string SwitchWallpaperTypes
+        public ArrayList SwitchWallpaperTypes
         {
             get { return switchWallpaperTypes; }
             set { switchWallpaperTypes = value; }
@@ -175,7 +176,7 @@ namespace BridImage.Utils
             UpdateAppConfig("cachePath", cachePath);
             UpdateAppConfig("isSwitchWallpaper", isSwitchWallpaper.ToString());
             UpdateAppConfig("interValTime", interValTime.ToString());
-            UpdateAppConfig("switchWallpaperTypes", switchWallpaperTypes);
+            UpdateAppConfig("switchWallpaperTypes", string.Join(",", (string[])switchWallpaperTypes.ToArray(typeof(string))));
             UpdateAppConfig("backColor", backColor.ToArgb().ToString());
             UpdateAppConfig("opacity", opacity.ToString());
         }

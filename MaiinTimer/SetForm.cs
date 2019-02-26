@@ -17,6 +17,17 @@ namespace BridImage
     {
         private Color defaultColor = Color.OrangeRed;
         PropertsUtils pes = new PropertsUtils();
+        #region 设置相关控件
+        //常规控件
+
+        //切换壁纸控件
+        DuiCheckBox Ck_IsSwitchWallpaper = null;
+        DuiTextBox TextBox_InterValTime = null;
+        DuiComboBox ComboBox_InterValTimeUnit = null;
+        DuiButton Button_SwitchWallpaperType = null;
+        //下载设置控件
+        //关于控件
+        #endregion
         public SetForm(Color bc)
         {
             InitializeComponent();
@@ -62,6 +73,7 @@ namespace BridImage
 
         private void btn_close_Click(object sender, EventArgs e)
         {
+            pes.saveConfig();
             this.Close();
         }
 
@@ -92,18 +104,19 @@ namespace BridImage
             btn_point.BackColor = defaultColor;
             btn_cg.ForeColor = defaultColor;
             layeredPanel_cg.BringToFront();
+            //常规界面相关处理
             foreach (DuiBaseControl item in layeredPanel_cg.DUIControls)
             {
                 switch (item.Name)
                 {
                     case "ck_qd":
                         DuiCheckBox dc = item as DuiCheckBox;
-                        dc.CheckRectColor = defaultColor;
+                        dc.CheckRectColor = pes.BackColor;
                         break;
                     case "rd_min":
                     case "rd_close":
                         DuiRadioButton drb = item as DuiRadioButton;
-                        drb.CheckRectColor = defaultColor;
+                        drb.CheckRectColor = pes.BackColor;
                         break;
                     case "":
 
@@ -112,6 +125,97 @@ namespace BridImage
                         break;
                 }
             }
+            //壁纸切换界面相关处理
+            foreach (DuiBaseControl item in layeredPanel_qhbz.DUIControls)
+            {
+                switch (item.Name)
+                {
+                    case "ck_qd":
+                        Ck_IsSwitchWallpaper = item as DuiCheckBox;
+                        Ck_IsSwitchWallpaper.CheckRectColor = pes.BackColor;
+                        Ck_IsSwitchWallpaper.Checked = pes.IsSwitchWallpaper;
+                        Ck_IsSwitchWallpaper.CheckedChanged += Ck_IsSwitchWallpaper_CheckedChanged;
+                        break;
+                    case "db_timedw":
+                        ComboBox_InterValTimeUnit = item as DuiComboBox;
+                        ComboBox_InterValTimeUnit.BackColor = pes.BackColor;
+                        break;
+                    case "tb_timeStr":
+                        TextBox_InterValTime = item as DuiTextBox;
+                        if (pes.InterValTime < 60)
+                        {
+                            TextBox_InterValTime.Text = pes.InterValTime.ToString();
+                            ComboBox_InterValTimeUnit.Text = "秒";
+                        } else if (pes.InterValTime < 3600)
+                        {
+                            TextBox_InterValTime.Text = (pes.InterValTime / 60 ).ToString();
+                            ComboBox_InterValTimeUnit.Text = "分";
+                        }
+                        else
+                        {
+                            TextBox_InterValTime.Text = (pes.InterValTime / 60 / 60).ToString();
+                            ComboBox_InterValTimeUnit.Text = "时";
+                        }
+                        TextBox_InterValTime.TextChanged += TextBox_InterValTime_TextChanged;
+                        break;
+                    default:
+                        if (item is DuiButton && item.Name.Contains("btn_"))
+                        {
+                            Button_SwitchWallpaperType = item as DuiButton;
+                            Button_SwitchWallpaperType.MouseClick += Button_SwitchWallpaperType_MouseClick;
+                        }
+                        break;
+                }
+            }
+            //下载设置界面相关处理
+
+        }
+
+        private void Button_SwitchWallpaperType_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            DuiButton cdb = sender as DuiButton;
+            if (cdb.BaseColor == pes.BackColor)
+            {
+                cdb.BaseColor = Color.Transparent;
+                pes.SwitchWallpaperTypes.Remove(cdb.Tag);
+            }
+            else
+            {
+                cdb.BaseColor = pes.BackColor;
+                pes.SwitchWallpaperTypes.Add(cdb.Tag);
+            }
+        }
+
+        /// <summary>
+        /// 切换时间间隔变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_InterValTime_TextChanged(object sender, EventArgs e)
+        {
+            int interVal = int.Parse(TextBox_InterValTime.Text);
+            switch (ComboBox_InterValTimeUnit.Text)
+            {
+                case "秒":
+                    pes.InterValTime = interVal;
+                    break;
+                case "分":
+                    pes.InterValTime = interVal * 60;
+                    break;
+                default:
+                    pes.InterValTime = interVal * 60 * 60;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 自动切换壁纸启动设置事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ck_IsSwitchWallpaper_CheckedChanged(object sender, EventArgs e)
+        {
+            pes.IsSwitchWallpaper =  Ck_IsSwitchWallpaper.Checked;
         }
 
         private void recoverDefaultStyle(LayeredLabel dl)
