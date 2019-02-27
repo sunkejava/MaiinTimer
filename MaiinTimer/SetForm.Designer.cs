@@ -1857,7 +1857,7 @@
             duiComboBox1.Borders.TopColor = System.Drawing.Color.Empty;
             duiComboBox1.Borders.TopWidth = 1;
             duiComboBox1.CanFocus = true;
-            duiComboBox1.ClientRectangle = new System.Drawing.Rectangle(175, 70, 40, 20);
+            duiComboBox1.ClientRectangle = new System.Drawing.Rectangle(175, 73, 40, 20);
             duiComboBox1.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
             duiComboBox1.CurrentCursor = System.Windows.Forms.Cursors.Default;
             duiComboBox1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -2047,7 +2047,7 @@
             duiLabel14,
             duiLabel15});
             duiComboBox1.Left = 175;
-            duiComboBox1.Location = new System.Drawing.Point(175, 70);
+            duiComboBox1.Location = new System.Drawing.Point(175, 73);
             duiComboBox1.Margin = new System.Windows.Forms.Padding(0);
             duiComboBox1.Name = "db_timedw";
             duiComboBox1.NormalImage = null;
@@ -2066,7 +2066,7 @@
             duiComboBox1.Tag = null;
             duiComboBox1.Text = "";
             duiComboBox1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            duiComboBox1.TextPadding = 3;
+            duiComboBox1.TextPadding = 0;
             // 
             // 
             // 
@@ -2081,7 +2081,7 @@
             duiComboBox1.ToolStripDropDown.Size = new System.Drawing.Size(44, 66);
             duiComboBox1.ToolStripDropDown.Text = "S";
             duiComboBox1.ToolStripDropDown.WhereIsResizeGrid = LayeredSkin.ResizeGridLocation.BottomRight;
-            duiComboBox1.Top = 70;
+            duiComboBox1.Top = 73;
             duiComboBox1.Visible = true;
             duiComboBox1.Width = 40;
             duiLabel16.AutoSize = false;
@@ -3351,11 +3351,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(503, 323);
+            this.Controls.Add(this.layeredPanel_xzsz);
             this.Controls.Add(this.layeredPanel_qhbz);
             this.Controls.Add(this.layeredPanel_gy);
             this.Controls.Add(this.layeredPanel_cg);
             this.Controls.Add(this.layeredPanel_close);
-            this.Controls.Add(this.layeredPanel_xzsz);
             this.Controls.Add(this.btn_gy);
             this.Controls.Add(this.btn_qhbz);
             this.Controls.Add(this.btn_xzsz);

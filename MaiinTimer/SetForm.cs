@@ -20,14 +20,22 @@ namespace BridImage
         #region 设置相关控件
         //常规控件
         DuiCheckBox Ck_AutoStart = null;
-        //DuiRadioButton RadioButton_CloseMode = null;
+        DuiRadioButton RadioButton_CloseMode = null;
         //切换壁纸控件
         DuiCheckBox Ck_IsSwitchWallpaper = null;
         DuiTextBox TextBox_InterValTime = null;
         DuiComboBox ComboBox_InterValTimeUnit = null;
         DuiButton Button_SwitchWallpaperType = null;
         //下载设置控件
+        DuiRadioButton RadioButton_picSize = null;
+        DuiLabel lb_downloadPath = null;
+        DuiButton btn_selectDownloadPath = null;
+        DuiLabel lb_cachePath = null;
+        DuiButton btn_selectCachePath = null;
+        DuiLabel lb_nowCacheSize = null;
+        DuiLabel lb_clearCache = null;
         //关于控件
+
         #endregion
         public SetForm(Color bc)
         {
@@ -143,6 +151,10 @@ namespace BridImage
             else
             {
                 cdb.BaseColor = pes.BackColor;
+                if (pes.SwitchWallpaperTypes.Contains(""))
+                {
+                    pes.SwitchWallpaperTypes.Remove("");
+                }
                 pes.SwitchWallpaperTypes.Add(cdb.Name.Replace("btn_",""));
             }
         }
@@ -207,6 +219,96 @@ namespace BridImage
             }    
         }
 
+        /// <summary>
+        /// 下载路径变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Lb_downloadPath_Invalidated(object sender, InvalidateEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lb_downloadPath.Text))
+            {
+                pes.DownloadPath = lb_downloadPath.Text;
+            }
+        }
+        /// <summary>
+        /// 缓存路径变化事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Lb_cachePath_Invalidated(object sender, InvalidateEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lb_cachePath.Text))
+            {
+                pes.CachePath = lb_cachePath.Text;
+            }
+        }
+
+        /// <summary>
+        /// 清理缓存事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Lb_clearCache_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 选择下载目录事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_selectDownloadPath_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 选择缓存目录事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_selectCachePath_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// 选择图片分辨率事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RadioButton_picSize_CheckedChanged(object sender, EventArgs e)
+        {
+            DuiRadioButton cdr = sender as DuiRadioButton;
+            if (cdr.Checked)
+            {
+                switch (cdr.Name)
+                {
+                    case "rd_SizeForThumb":
+                        pes.PicSize = "default";
+                        break;
+                    case "rd_SizeFor1600900":
+                        pes.PicSize = "1600900";
+                        break;
+                    case "rd_SizeFor1440900":
+                        pes.PicSize = "1440900";
+                        break;
+                    case "rd_SizeFor12801024":
+                        pes.PicSize = "12801024";
+                        break;
+                    case "rd_SizeFor1024768":
+                        pes.PicSize = "1024768";
+                        break;
+                    case "rd_SizeFor1280800":
+                        pes.PicSize = "1280800";
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+        }
+
         #endregion
 
         #region 自定义事件
@@ -229,7 +331,7 @@ namespace BridImage
                         break;
                     case "rd_min":
                     case "rd_close":
-                        DuiRadioButton RadioButton_CloseMode = item as DuiRadioButton;
+                        RadioButton_CloseMode = item as DuiRadioButton;
                         RadioButton_CloseMode.CheckRectColor = pes.BackColor;
                         RadioButton_CloseMode.CheckedChanged += RadioButton_CloseMode_CheckedChanged;
                         if ((pes.CloseMode == "isClose") && RadioButton_CloseMode.Name == "rd_close")
@@ -302,8 +404,61 @@ namespace BridImage
                 }
             }
             //下载设置界面相关处理
-
+            foreach (DuiBaseControl item in layeredPanel_xzsz.DUIControls)
+            {
+                switch (item.Name)
+                {
+                    case "rd_SizeForThumb":
+                    case "rd_SizeFor1600900":
+                    case "rd_SizeFor1440900":
+                    case "rd_SizeFor12801024":
+                    case "rd_SizeFor1024768":
+                    case "rd_SizeFor1280800":
+                        RadioButton_picSize = item as DuiRadioButton;
+                        RadioButton_picSize.CheckRectColor = pes.BackColor;
+                        RadioButton_picSize.CheckedChanged += RadioButton_picSize_CheckedChanged;
+                        if ("rd_SizeFor" + pes.PicSize == item.Name)
+                        {
+                            RadioButton_picSize.Checked = true;
+                        }
+                        else
+                        {
+                            RadioButton_picSize.Checked = false;
+                        }
+                        break;
+                    case "lb_downloadPath":
+                        lb_downloadPath = item as DuiLabel;
+                        lb_downloadPath.BackColor = pes.BackColor;
+                        lb_downloadPath.Text = pes.DownloadPath;
+                        lb_downloadPath.Invalidated += Lb_downloadPath_Invalidated;
+                        break;
+                    case "btn_selectDownloadPath":
+                        btn_selectDownloadPath = item as DuiButton;
+                        btn_selectDownloadPath.MouseClick += Btn_selectDownloadPath_MouseClick;
+                        break;
+                    case "lb_cachePath":
+                        lb_cachePath = item as DuiLabel;
+                        lb_cachePath.BackColor = pes.BackColor;
+                        lb_cachePath.Text = pes.CachePath;
+                        lb_cachePath.Invalidated += Lb_cachePath_Invalidated;
+                        break;
+                    case "btn_selectCachePath":
+                        btn_selectCachePath = item as DuiButton;
+                        btn_selectCachePath.MouseClick += Btn_selectCachePath_MouseClick;
+                        break;
+                    case "lb_nowCacheSize":
+                        lb_nowCacheSize = item as DuiLabel;
+                        break;
+                    case "lb_clearCache":
+                        lb_clearCache = item as DuiLabel;
+                        lb_clearCache.MouseClick += Lb_clearCache_MouseClick;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
+
         private void recoverDefaultStyle(LayeredLabel dl)
         {
             switch (dl.Name)
