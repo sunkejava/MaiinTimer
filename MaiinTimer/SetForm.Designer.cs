@@ -2064,12 +2064,13 @@
             duiComboBox1.StringFormat = stringFormat18;
             duiComboBox1.SuspendInvalidate = false;
             duiComboBox1.Tag = null;
-            duiComboBox1.Text = "秒";
+            duiComboBox1.Text = "";
             duiComboBox1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             duiComboBox1.TextPadding = 3;
             // 
             // 
             // 
+            duiComboBox1.ToolStripDropDown.BackColor = System.Drawing.Color.Transparent;
             duiComboBox1.ToolStripDropDown.BorderColor = System.Drawing.Color.DarkGray;
             duiComboBox1.ToolStripDropDown.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             duiComboBox1.ToolStripDropDown.MinimumSize = new System.Drawing.Size(0, 0);
@@ -2078,6 +2079,7 @@
             duiComboBox1.ToolStripDropDown.ResizeGridColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             duiComboBox1.ToolStripDropDown.ResizeGridSize = new System.Drawing.Size(16, 16);
             duiComboBox1.ToolStripDropDown.Size = new System.Drawing.Size(44, 66);
+            duiComboBox1.ToolStripDropDown.Text = "S";
             duiComboBox1.ToolStripDropDown.WhereIsResizeGrid = LayeredSkin.ResizeGridLocation.BottomRight;
             duiComboBox1.Top = 70;
             duiComboBox1.Visible = true;

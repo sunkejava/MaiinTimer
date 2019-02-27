@@ -104,12 +104,18 @@ namespace BridImage
         private void RadioButton_CloseMode_CheckedChanged(object sender, EventArgs e)
         {
             DuiRadioButton cdr = sender as DuiRadioButton;
-            pes.CloseMode = "isClose";
-        }
-        private void RadioButton_MinMode_CheckedChanged(object sender, EventArgs e)
-        {
-            DuiRadioButton cdr = sender as DuiRadioButton;
-            pes.CloseMode = "isMin";
+            if (cdr.Name == "rd_min" && cdr.Checked)
+            {
+                pes.CloseMode = "isMin";
+            }
+            else if (cdr.Name == "rd_close" && cdr.Checked)
+            {
+                pes.CloseMode = "isClose";
+            }
+            else
+            {
+
+            }
         }
         /// <summary>
         /// 是否选择开机启动事件
@@ -132,12 +138,12 @@ namespace BridImage
             if (cdb.BaseColor == pes.BackColor)
             {
                 cdb.BaseColor = Color.Transparent;
-                pes.SwitchWallpaperTypes.Remove(cdb.Tag);
+                pes.SwitchWallpaperTypes.Remove(cdb.Name.Replace("btn_", ""));
             }
             else
             {
                 cdb.BaseColor = pes.BackColor;
-                pes.SwitchWallpaperTypes.Add(cdb.Tag);
+                pes.SwitchWallpaperTypes.Add(cdb.Name.Replace("btn_",""));
             }
         }
 
@@ -148,18 +154,21 @@ namespace BridImage
         /// <param name="e"></param>
         private void TextBox_InterValTime_TextChanged(object sender, EventArgs e)
         {
-            int interVal = int.Parse(TextBox_InterValTime.Text);
-            switch (ComboBox_InterValTimeUnit.Text)
+            if (!string.IsNullOrEmpty(TextBox_InterValTime.Text))
             {
-                case "秒":
-                    pes.InterValTime = interVal;
-                    break;
-                case "分":
-                    pes.InterValTime = interVal * 60;
-                    break;
-                default:
-                    pes.InterValTime = interVal * 60 * 60;
-                    break;
+                int interVal = int.Parse(TextBox_InterValTime.Text);
+                switch (ComboBox_InterValTimeUnit.SelectedIndex)
+                {
+                    case 0:
+                        pes.InterValTime = interVal;
+                        break;
+                    case 1:
+                        pes.InterValTime = interVal * 60;
+                        break;
+                    default:
+                        pes.InterValTime = interVal * 60 * 60;
+                        break;
+                }
             }
         }
 
@@ -180,18 +189,22 @@ namespace BridImage
         /// <param name="e"></param>
         private void ComboBox_InterValTimeUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ComboBox_InterValTimeUnit.SelectedIndex == 0)
+            if (!string.IsNullOrEmpty(TextBox_InterValTime.Text))
             {
-                ComboBox_InterValTimeUnit.Text = "秒";
-            }
-            else if (ComboBox_InterValTimeUnit.SelectedIndex == 1)
-            {
-                ComboBox_InterValTimeUnit.Text = "分";
-            }
-            else
-            {
-                ComboBox_InterValTimeUnit.Text = "时";
-            }
+                int interVal = int.Parse(TextBox_InterValTime.Text);
+                if (ComboBox_InterValTimeUnit.SelectedIndex == 0)
+                {
+                    pes.InterValTime = interVal;
+                }
+                else if (ComboBox_InterValTimeUnit.SelectedIndex == 1)
+                {
+                    pes.InterValTime = interVal * 60;
+                }
+                else
+                {
+                    pes.InterValTime = interVal * 60 * 60;
+                }
+            }    
         }
 
         #endregion
@@ -215,23 +228,15 @@ namespace BridImage
                         Ck_AutoStart.Checked = pes.AutoStart;
                         break;
                     case "rd_min":
-                        DuiRadioButton RadioButton_MinMode = item as DuiRadioButton;
-                        RadioButton_MinMode.CheckRectColor = pes.BackColor;
-                        RadioButton_MinMode.CheckedChanged += RadioButton_MinMode_CheckedChanged;
-                        if ((pes.CloseMode == "isMin"))
-                        {
-                            (item as DuiRadioButton).Checked = true;
-                        }
-                        else
-                        {
-                            (item as DuiRadioButton).Checked = false;
-                        }
-                        break;
                     case "rd_close":
                         DuiRadioButton RadioButton_CloseMode = item as DuiRadioButton;
                         RadioButton_CloseMode.CheckRectColor = pes.BackColor;
                         RadioButton_CloseMode.CheckedChanged += RadioButton_CloseMode_CheckedChanged;
-                        if ((pes.CloseMode == "isClose"))
+                        if ((pes.CloseMode == "isClose") && RadioButton_CloseMode.Name == "rd_close")
+                        {
+                            (item as DuiRadioButton).Checked = true;
+                        }
+                        else if ((pes.CloseMode == "isMin") && RadioButton_CloseMode.Name == "rd_min")
                         {
                             (item as DuiRadioButton).Checked = true;
                         }
@@ -264,23 +269,21 @@ namespace BridImage
                         ComboBox_InterValTimeUnit.SelectedIndexChanged += ComboBox_InterValTimeUnit_SelectedIndexChanged;
                         if (pes.InterValTime < 60)
                         {
-                            TextBox_InterValTime.Text = pes.InterValTime.ToString();
-                            ComboBox_InterValTimeUnit.Text = "秒";
+                            ComboBox_InterValTimeUnit.SelectedIndex = 0;
                         }
                         else if (pes.InterValTime < 3600)
                         {
-                            TextBox_InterValTime.Text = (pes.InterValTime / 60).ToString();
-                            ComboBox_InterValTimeUnit.Text = "分";
+                            ComboBox_InterValTimeUnit.SelectedIndex = 1;
                         }
                         else
                         {
-                            TextBox_InterValTime.Text = (pes.InterValTime / 60 / 60).ToString();
-                            ComboBox_InterValTimeUnit.Text = "时";
+                            ComboBox_InterValTimeUnit.SelectedIndex = 2;
                         }
                         break;
                     case "tb_timeStr":
                         TextBox_InterValTime = item as DuiTextBox;
-                        TextBox_InterValTime.TextChanged += TextBox_InterValTime_TextChanged;
+                        TextBox_InterValTime.BackColor = pes.BackColor;
+                        TextBox_InterValTime.Invalidated += TextBox_InterValTime_TextChanged;
                         break;
                     default:
                         if (item is DuiButton && item.Name.Contains("btn_"))
