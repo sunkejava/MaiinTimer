@@ -1793,7 +1793,7 @@
             duiTextBox1.Borders.BottomColor = System.Drawing.Color.Transparent;
             duiTextBox1.Borders.BottomWidth = 1;
             duiTextBox1.Borders.LeftColor = System.Drawing.Color.Transparent;
-            duiTextBox1.Borders.LeftWidth = 1;
+            duiTextBox1.Borders.LeftWidth = 3;
             duiTextBox1.Borders.RightColor = System.Drawing.Color.Transparent;
             duiTextBox1.Borders.RightWidth = 1;
             duiTextBox1.Borders.TopColor = System.Drawing.Color.Transparent;
@@ -1801,7 +1801,7 @@
             duiTextBox1.CanFocus = true;
             duiTextBox1.CaretColor = System.Drawing.SystemColors.ControlText;
             duiTextBox1.CaretIndex = 0;
-            duiTextBox1.ClientRectangle = new System.Drawing.Rectangle(145, 75, 30, 20);
+            duiTextBox1.ClientRectangle = new System.Drawing.Rectangle(145, 73, 30, 20);
             duiTextBox1.CurrentCursor = System.Windows.Forms.Cursors.Default;
             duiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             duiTextBox1.Dock = System.Windows.Forms.DockStyle.None;
@@ -1812,7 +1812,7 @@
             duiTextBox1.IsInsert = true;
             duiTextBox1.IsMoveParentPaint = true;
             duiTextBox1.Left = 145;
-            duiTextBox1.Location = new System.Drawing.Point(145, 75);
+            duiTextBox1.Location = new System.Drawing.Point(145, 73);
             duiTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 0, 0);
             duiTextBox1.Multiline = false;
             duiTextBox1.Name = "tb_timeStr";
@@ -1834,7 +1834,7 @@
             duiTextBox1.Tag = null;
             duiTextBox1.Text = "30";
             duiTextBox1.TextRenderMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            duiTextBox1.Top = 75;
+            duiTextBox1.Top = 73;
             duiTextBox1.Visible = true;
             duiTextBox1.Width = 30;
             duiComboBox1.AdaptImage = true;
@@ -1857,7 +1857,7 @@
             duiComboBox1.Borders.TopColor = System.Drawing.Color.Empty;
             duiComboBox1.Borders.TopWidth = 1;
             duiComboBox1.CanFocus = true;
-            duiComboBox1.ClientRectangle = new System.Drawing.Rectangle(175, 73, 40, 20);
+            duiComboBox1.ClientRectangle = new System.Drawing.Rectangle(175, 72, 40, 20);
             duiComboBox1.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
             duiComboBox1.CurrentCursor = System.Windows.Forms.Cursors.Default;
             duiComboBox1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -2047,7 +2047,7 @@
             duiLabel14,
             duiLabel15});
             duiComboBox1.Left = 175;
-            duiComboBox1.Location = new System.Drawing.Point(175, 73);
+            duiComboBox1.Location = new System.Drawing.Point(175, 72);
             duiComboBox1.Margin = new System.Windows.Forms.Padding(0);
             duiComboBox1.Name = "db_timedw";
             duiComboBox1.NormalImage = null;
@@ -2081,7 +2081,7 @@
             duiComboBox1.ToolStripDropDown.Size = new System.Drawing.Size(44, 66);
             duiComboBox1.ToolStripDropDown.Text = "S";
             duiComboBox1.ToolStripDropDown.WhereIsResizeGrid = LayeredSkin.ResizeGridLocation.BottomRight;
-            duiComboBox1.Top = 73;
+            duiComboBox1.Top = 72;
             duiComboBox1.Visible = true;
             duiComboBox1.Width = 40;
             duiLabel16.AutoSize = false;
@@ -3351,8 +3351,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(503, 323);
-            this.Controls.Add(this.layeredPanel_xzsz);
             this.Controls.Add(this.layeredPanel_qhbz);
+            this.Controls.Add(this.layeredPanel_xzsz);
             this.Controls.Add(this.layeredPanel_gy);
             this.Controls.Add(this.layeredPanel_cg);
             this.Controls.Add(this.layeredPanel_close);

@@ -260,7 +260,20 @@ namespace BridImage
         /// <param name="e"></param>
         private void Btn_selectDownloadPath_MouseClick(object sender, DuiMouseEventArgs e)
         {
-
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.Description = "请选择下载目录";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    lb_downloadPath.Text = "请选择缓存保存目录";
+                }
+                else
+                {
+                    lb_downloadPath.Text = dialog.SelectedPath;
+                }
+                
+            }
         }
         /// <summary>
         /// 选择缓存目录事件
@@ -269,7 +282,19 @@ namespace BridImage
         /// <param name="e"></param>
         private void Btn_selectCachePath_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.Description = "请选择缓存目录";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    lb_cachePath.Text = "请选择缓存保存目录";
+                }
+                else
+                {
+                    lb_cachePath.Text = dialog.SelectedPath;
+                }
+            }
         }
 
         /// <summary>
@@ -385,6 +410,7 @@ namespace BridImage
                     case "tb_timeStr":
                         TextBox_InterValTime = item as DuiTextBox;
                         TextBox_InterValTime.BackColor = pes.BackColor;
+                        TextBox_InterValTime.AutoHeight = true;
                         TextBox_InterValTime.Invalidated += TextBox_InterValTime_TextChanged;
                         break;
                     default:
@@ -430,6 +456,7 @@ namespace BridImage
                         lb_downloadPath = item as DuiLabel;
                         lb_downloadPath.BackColor = pes.BackColor;
                         lb_downloadPath.Text = pes.DownloadPath;
+                        lb_downloadPath.TextAlign = ContentAlignment.MiddleLeft;
                         lb_downloadPath.Invalidated += Lb_downloadPath_Invalidated;
                         break;
                     case "btn_selectDownloadPath":
@@ -440,6 +467,7 @@ namespace BridImage
                         lb_cachePath = item as DuiLabel;
                         lb_cachePath.BackColor = pes.BackColor;
                         lb_cachePath.Text = pes.CachePath;
+                        lb_cachePath.TextAlign = ContentAlignment.MiddleLeft;
                         lb_cachePath.Invalidated += Lb_cachePath_Invalidated;
                         break;
                     case "btn_selectCachePath":
