@@ -35,7 +35,11 @@ namespace BridImage
         DuiLabel lb_nowCacheSize = null;
         DuiLabel lb_clearCache = null;
         //关于控件
-
+        DuiLabel lb_ver = null;
+        DuiButton btn_update = null;
+        DuiButton btn_sendyj = null;
+        DuiLabel lb_mxnr1 = null;
+        DuiLabel lb_zzemail = null;
         #endregion
         public SetForm(Color bc)
         {
@@ -334,6 +338,42 @@ namespace BridImage
             }
         }
 
+        /// <summary>
+        /// 邮箱点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Lb_zzemail_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            
+        }
+        /// <summary>
+        /// 鸣谢内容点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Lb_mxnr1_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            
+        }
+        /// <summary>
+        /// 发送意见
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_sendyj_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            
+        }
+        /// <summary>
+        /// 更新按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_update_MouseClick(object sender, DuiMouseEventArgs e)
+        {
+            
+        }
         #endregion
 
         #region 自定义事件
@@ -351,6 +391,7 @@ namespace BridImage
                     case "ck_qd":
                         Ck_AutoStart = item as DuiCheckBox;
                         Ck_AutoStart.CheckRectColor = pes.BackColor;
+                        Ck_AutoStart.CheckFlagColor = pes.BackColor;
                         Ck_AutoStart.CheckedChanged += Ck_AutoStart_CheckedChanged;
                         Ck_AutoStart.Checked = pes.AutoStart;
                         break;
@@ -358,6 +399,7 @@ namespace BridImage
                     case "rd_close":
                         RadioButton_CloseMode = item as DuiRadioButton;
                         RadioButton_CloseMode.CheckRectColor = pes.BackColor;
+                        RadioButton_CloseMode.CheckFlagColor = pes.BackColor;
                         RadioButton_CloseMode.CheckedChanged += RadioButton_CloseMode_CheckedChanged;
                         if ((pes.CloseMode == "isClose") && RadioButton_CloseMode.Name == "rd_close")
                         {
@@ -387,6 +429,7 @@ namespace BridImage
                     case "ck_qd":
                         Ck_IsSwitchWallpaper = item as DuiCheckBox;
                         Ck_IsSwitchWallpaper.CheckRectColor = pes.BackColor;
+                        Ck_IsSwitchWallpaper.CheckFlagColor = pes.BackColor;
                         Ck_IsSwitchWallpaper.Checked = pes.IsSwitchWallpaper;
                         Ck_IsSwitchWallpaper.CheckedChanged += Ck_IsSwitchWallpaper_CheckedChanged;
                         break;
@@ -441,9 +484,10 @@ namespace BridImage
                     case "rd_SizeFor1024768":
                     case "rd_SizeFor1280800":
                         RadioButton_picSize = item as DuiRadioButton;
+                        RadioButton_picSize.CheckFlagColor = pes.BackColor;
                         RadioButton_picSize.CheckRectColor = pes.BackColor;
                         RadioButton_picSize.CheckedChanged += RadioButton_picSize_CheckedChanged;
-                        if ("rd_SizeFor" + pes.PicSize == item.Name)
+                        if ("rd_SizeFor" + (pes.PicSize == "default" ? "Thumb" : pes.PicSize) == item.Name)
                         {
                             RadioButton_picSize.Checked = true;
                         }
@@ -480,6 +524,37 @@ namespace BridImage
                     case "lb_clearCache":
                         lb_clearCache = item as DuiLabel;
                         lb_clearCache.MouseClick += Lb_clearCache_MouseClick;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //关于界面相关处理
+            foreach (DuiBaseControl item in layeredPanel_gy.DUIControls)
+            {
+                switch (item.Name)
+                {
+                    case "lb_ver":
+                        lb_ver = item as DuiLabel;
+                        
+                        break;
+                    case "btn_update":
+                        btn_update = item as DuiButton;
+                        btn_update.BaseColor = pes.BackColor;
+                        btn_update.MouseClick += Btn_update_MouseClick;
+                        break;
+                    case "btn_sendyj":
+                        btn_sendyj = item as DuiButton;
+                        btn_sendyj.BaseColor = pes.BackColor;
+                        btn_sendyj.MouseClick += Btn_sendyj_MouseClick;
+                        break;
+                    case "lb_mxnr1":
+                        lb_mxnr1 = item as DuiLabel;
+                        lb_mxnr1.MouseClick += Lb_mxnr1_MouseClick;
+                        break;
+                    case "lb_zzemail":
+                        lb_zzemail = item as DuiLabel;
+                        lb_zzemail.MouseClick += Lb_zzemail_MouseClick;
                         break;
                     default:
                         break;
