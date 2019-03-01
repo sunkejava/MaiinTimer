@@ -39,6 +39,7 @@ namespace BridImage
         DuiButton btn_update = null;
         DuiButton btn_sendyj = null;
         DuiLabel lb_mxnr1 = null;
+        DuiLabel lb_mxnr2 = null;
         DuiLabel lb_zzemail = null;
         #endregion
         public SetForm(Color bc)
@@ -355,7 +356,17 @@ namespace BridImage
         /// <param name="e"></param>
         private void Lb_mxnr1_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://bbs.cskin.net/");
+            DuiLabel cdl = sender as DuiLabel;
+            string wsite = "";
+            if (cdl.Name == "lb_mxnr2")
+            {
+                wsite = "www.52pojie.cn";
+            }
+            else
+            {
+                wsite = "bbs.cskin.net";
+            }
+            System.Diagnostics.Process.Start(wsite);
         }
         /// <summary>
         /// 发送意见
@@ -559,6 +570,11 @@ namespace BridImage
                         lb_mxnr1 = item as DuiLabel;
                         lb_mxnr1.Cursor = System.Windows.Forms.Cursors.Hand;
                         lb_mxnr1.MouseClick += Lb_mxnr1_MouseClick;
+                        break;
+                    case "lb_mxnr2":
+                        lb_mxnr2 = item as DuiLabel;
+                        lb_mxnr2.Cursor = System.Windows.Forms.Cursors.Hand;
+                        lb_mxnr2.MouseClick += Lb_mxnr1_MouseClick;
                         break;
                     case "lb_zzemail":
                         lb_zzemail = item as DuiLabel;
