@@ -28,6 +28,7 @@ namespace BridImage.Utils
         private ArrayList switchWallpaperTypes = new ArrayList();
         private Color backColor = Color.FromArgb(255, 92, 138);
         private string opacity = "1";
+        private string verNo = "当前版本：1.2.0（201903011615）";
         public PropertsUtils()
         {
             this.autoStart = Boolean.Parse(GetAppConfig("autoStart"));
@@ -121,6 +122,22 @@ namespace BridImage.Utils
             get { return opacity; }
             set { opacity = value; }
         }
+        /// <summary>
+        /// 版本号
+        /// </summary>
+        public string VerNo
+        {
+            get
+            {
+                return verNo;
+            }
+
+            set
+            {
+                verNo = value;
+            }
+        }
+
         /// <summary>
         /// 根据Key值获取value值
         /// </summary>

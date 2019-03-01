@@ -345,7 +345,8 @@ namespace BridImage
         /// <param name="e"></param>
         private void Lb_zzemail_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            
+            string sEmailMSG = "mailto:" + "declineaberdeen@foxmail.com" + "?subject=小鸟壁纸邮箱链接&body=请输入联系来意！";
+            System.Diagnostics.Process.Start(sEmailMSG);
         }
         /// <summary>
         /// 鸣谢内容点击事件
@@ -354,7 +355,7 @@ namespace BridImage
         /// <param name="e"></param>
         private void Lb_mxnr1_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            
+            System.Diagnostics.Process.Start("http://bbs.cskin.net/");
         }
         /// <summary>
         /// 发送意见
@@ -460,6 +461,7 @@ namespace BridImage
                         if (item is DuiButton && item.Name.Contains("btn_"))
                         {
                             Button_SwitchWallpaperType = item as DuiButton;
+                            Button_SwitchWallpaperType.Cursor = System.Windows.Forms.Cursors.Hand;
                             Button_SwitchWallpaperType.MouseClick += Button_SwitchWallpaperType_MouseClick;
                             foreach (var WallpaperType in pes.SwitchWallpaperTypes)
                             {
@@ -505,6 +507,7 @@ namespace BridImage
                         break;
                     case "btn_selectDownloadPath":
                         btn_selectDownloadPath = item as DuiButton;
+                        btn_selectDownloadPath.Cursor = System.Windows.Forms.Cursors.Hand;
                         btn_selectDownloadPath.MouseClick += Btn_selectDownloadPath_MouseClick;
                         break;
                     case "lb_cachePath":
@@ -516,6 +519,7 @@ namespace BridImage
                         break;
                     case "btn_selectCachePath":
                         btn_selectCachePath = item as DuiButton;
+                        btn_selectCachePath.Cursor = System.Windows.Forms.Cursors.Hand;
                         btn_selectCachePath.MouseClick += Btn_selectCachePath_MouseClick;
                         break;
                     case "lb_nowCacheSize":
@@ -523,6 +527,7 @@ namespace BridImage
                         break;
                     case "lb_clearCache":
                         lb_clearCache = item as DuiLabel;
+                        lb_clearCache.Cursor = System.Windows.Forms.Cursors.Hand;
                         lb_clearCache.MouseClick += Lb_clearCache_MouseClick;
                         break;
                     default:
@@ -536,24 +541,28 @@ namespace BridImage
                 {
                     case "lb_ver":
                         lb_ver = item as DuiLabel;
-                        
+                        lb_ver.Text = pes.VerNo;
                         break;
                     case "btn_update":
                         btn_update = item as DuiButton;
+                        btn_update.Cursor = System.Windows.Forms.Cursors.Hand;
                         btn_update.BaseColor = pes.BackColor;
                         btn_update.MouseClick += Btn_update_MouseClick;
                         break;
                     case "btn_sendyj":
                         btn_sendyj = item as DuiButton;
+                        btn_sendyj.Cursor = System.Windows.Forms.Cursors.Hand;
                         btn_sendyj.BaseColor = pes.BackColor;
                         btn_sendyj.MouseClick += Btn_sendyj_MouseClick;
                         break;
                     case "lb_mxnr1":
                         lb_mxnr1 = item as DuiLabel;
+                        lb_mxnr1.Cursor = System.Windows.Forms.Cursors.Hand;
                         lb_mxnr1.MouseClick += Lb_mxnr1_MouseClick;
                         break;
                     case "lb_zzemail":
                         lb_zzemail = item as DuiLabel;
+                        lb_zzemail.Cursor = System.Windows.Forms.Cursors.Hand;
                         lb_zzemail.MouseClick += Lb_zzemail_MouseClick;
                         break;
                     default:
