@@ -2925,7 +2925,7 @@
             duiButton15.Borders.TopColor = System.Drawing.Color.Empty;
             duiButton15.Borders.TopWidth = 1;
             duiButton15.CanFocus = true;
-            duiButton15.ClientRectangle = new System.Drawing.Rectangle(240, 50, 60, 20);
+            duiButton15.ClientRectangle = new System.Drawing.Rectangle(240, 47, 60, 20);
             duiButton15.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
             duiButton15.CurrentCursor = System.Windows.Forms.Cursors.Default;
             duiButton15.Cursor = System.Windows.Forms.Cursors.Default;
@@ -2938,7 +2938,7 @@
             duiButton15.IsMoveParentPaint = true;
             duiButton15.IsPureColor = false;
             duiButton15.Left = 240;
-            duiButton15.Location = new System.Drawing.Point(240, 50);
+            duiButton15.Location = new System.Drawing.Point(240, 47);
             duiButton15.Margin = new System.Windows.Forms.Padding(0);
             duiButton15.Name = "btn_update";
             duiButton15.NormalImage = null;
@@ -2956,8 +2956,8 @@
             duiButton15.Tag = null;
             duiButton15.Text = "检查更新";
             duiButton15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            duiButton15.TextPadding = 2;
-            duiButton15.Top = 50;
+            duiButton15.TextPadding = 0;
+            duiButton15.Top = 47;
             duiButton15.Visible = true;
             duiButton15.Width = 60;
             duiButton16.AdaptImage = false;
@@ -2979,7 +2979,7 @@
             duiButton16.Borders.TopColor = System.Drawing.Color.Empty;
             duiButton16.Borders.TopWidth = 1;
             duiButton16.CanFocus = true;
-            duiButton16.ClientRectangle = new System.Drawing.Rectangle(320, 50, 60, 20);
+            duiButton16.ClientRectangle = new System.Drawing.Rectangle(320, 47, 60, 20);
             duiButton16.ControlState = LayeredSkin.DirectUI.ControlStates.Normal;
             duiButton16.CurrentCursor = System.Windows.Forms.Cursors.Default;
             duiButton16.Cursor = System.Windows.Forms.Cursors.Default;
@@ -2992,7 +2992,7 @@
             duiButton16.IsMoveParentPaint = true;
             duiButton16.IsPureColor = false;
             duiButton16.Left = 320;
-            duiButton16.Location = new System.Drawing.Point(320, 50);
+            duiButton16.Location = new System.Drawing.Point(320, 47);
             duiButton16.Margin = new System.Windows.Forms.Padding(0);
             duiButton16.Name = "btn_sendyj";
             duiButton16.NormalImage = null;
@@ -3010,8 +3010,8 @@
             duiButton16.Tag = null;
             duiButton16.Text = "意见反馈";
             duiButton16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            duiButton16.TextPadding = 2;
-            duiButton16.Top = 50;
+            duiButton16.TextPadding = 0;
+            duiButton16.Top = 47;
             duiButton16.Visible = true;
             duiButton16.Width = 60;
             duiLabel19.AutoSize = false;

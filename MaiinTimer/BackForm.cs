@@ -150,9 +150,7 @@ namespace BridImage
                             }
                             else
                             {
-                                //MessageBox.Show("请输入关键字进行搜索");
-                                MessageForm mf = new MessageForm();
-                                mf.messageStr = "请输入关键字进行搜索";
+                                MessageForm mf = new MessageForm("请输入关键字进行搜索");
                                 mf.ShowDialog();
                             }
                         }

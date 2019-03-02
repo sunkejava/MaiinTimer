@@ -611,7 +611,7 @@ namespace BridImage.Controls
         }
         private void showMessageForm()
         {
-            MessageForm mfm = new MessageForm();
+            MessageForm mfm = new MessageForm("");
             mfm.Show(this);
         } 
         /// <summary>

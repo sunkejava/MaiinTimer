@@ -12,11 +12,12 @@ namespace BridImage
 {
     public partial class MessageForm : LayeredForm
     {
-        public  string messageStr = "";
+        private  string messageStr = "";
         Timer tm;
-        public MessageForm()
+        public MessageForm(string msg)
         {
             InitializeComponent();
+            messageStr = msg;
             getDefaultControl();
         }
         /// <summary>
@@ -34,13 +35,14 @@ namespace BridImage
             if (!string.IsNullOrEmpty(messageStr))
             {
                 layeredLabel1.Text = messageStr;
-                int zHeight = 15;
-                if ((Width - 4) / 11 < messageStr.Length)
-                {
-                    zHeight = (int)Math.Ceiling((decimal)(messageStr.Length / ((Width - 4) / 11)));
-                }
-                layeredLabel1.Size = new Size(11 * messageStr.Length, zHeight);
-                layeredLabel1.Location = new Point(2, 55);
+                //int zHeight = 15;
+                //if ((Width - 4) / 11 < messageStr.Length)
+                //{
+                //    zHeight = (int)Math.Ceiling((decimal)(messageStr.Length / ((Width - 4) / 11)));
+                //}
+                layeredLabel1.Size = new Size(Width-10,Height-20);
+                layeredLabel1.Location = new Point(5, 15);
+                layeredLabel1.TextAlign = ContentAlignment.MiddleCenter;
                 layeredLabel2.Visible = false;
             }
             else

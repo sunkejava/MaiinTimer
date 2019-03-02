@@ -384,7 +384,20 @@ namespace BridImage
         /// <param name="e"></param>
         private void Btn_update_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            
+            GetVersion gv = new GetVersion();
+            Entity.VerEntity cv = gv.getVer();
+            if (!lb_ver.Text.Equals(cv.Ver))
+            {
+                //执行更新操作
+
+            }
+            else
+            {
+                //提示不需要更新
+                string messageStr = lb_ver.Text + "已是最新版本，无需更新！";
+                MessageForm mf = new MessageForm(messageStr);
+                mf.Show();
+            }
         }
         #endregion
 

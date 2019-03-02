@@ -100,6 +100,7 @@
     <Compile Include="Controls\ImageListControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entity\VerEntity.cs" />
     <Compile Include="MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +121,7 @@
     <Compile Include="Utils\AnimationForm.cs" />
     <Compile Include="Utils\BridImg.cs" />
     <Compile Include="Utils\CloneObject.cs" />
+    <Compile Include="Utils\GetVersion.cs" />
     <Compile Include="Utils\LoadResourceDll.cs" />
     <Compile Include="Utils\PicDeal.cs" />
     <Compile Include="Utils\PropertsUtils.cs" />
@@ -146,7 +148,9 @@
     <EmbeddedResource Include="SetForm.resx">
       <DependentUpon>SetForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
