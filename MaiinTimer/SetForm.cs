@@ -360,11 +360,11 @@ namespace BridImage
             string wsite = "";
             if (cdl.Name == "lb_mxnr2")
             {
-                wsite = "www.52pojie.cn";
+                wsite = "http://www.52pojie.cn";
             }
             else
             {
-                wsite = "bbs.cskin.net";
+                wsite = "http://bbs.cskin.net";
             }
             System.Diagnostics.Process.Start(wsite);
         }
@@ -478,7 +478,7 @@ namespace BridImage
                             {
                                 if (item.Name.Replace("btn_", "") == WallpaperType.ToString())
                                 {
-                                    Button_SwitchWallpaperType.BackColor = pes.BackColor;
+                                    Button_SwitchWallpaperType.BaseColor = pes.BackColor;
                                 }
                             }
                         }

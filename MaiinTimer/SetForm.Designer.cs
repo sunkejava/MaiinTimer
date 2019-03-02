@@ -148,7 +148,7 @@
             this.jdt_menu.AdaptImage = true;
             this.jdt_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.jdt_menu.BackImage = null;
-            this.jdt_menu.BackLineColor = System.Drawing.Color.Gray;
+            this.jdt_menu.BackLineColor = System.Drawing.Color.DarkGray;
             this.jdt_menu.Borders.BottomColor = System.Drawing.Color.Empty;
             this.jdt_menu.Borders.BottomWidth = 1;
             this.jdt_menu.Borders.LeftColor = System.Drawing.Color.Empty;
