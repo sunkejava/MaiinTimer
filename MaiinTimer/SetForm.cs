@@ -375,7 +375,8 @@ namespace BridImage
         /// <param name="e"></param>
         private void Btn_sendyj_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            
+            SendYjForm yjF = new SendYjForm();
+            yjF.Show();
         }
         /// <summary>
         /// 更新按钮事件

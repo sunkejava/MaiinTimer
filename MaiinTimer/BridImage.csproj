@@ -109,6 +109,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendYjForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SendYjForm.Designer.cs">
+      <DependentUpon>SendYjForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SetForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,7 @@
     <Compile Include="Utils\AnimationForm.cs" />
     <Compile Include="Utils\BridImg.cs" />
     <Compile Include="Utils\CloneObject.cs" />
+    <Compile Include="Utils\EmailEntity.cs" />
     <Compile Include="Utils\GetVersion.cs" />
     <Compile Include="Utils\LoadResourceDll.cs" />
     <Compile Include="Utils\PicDeal.cs" />
@@ -145,6 +152,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SendYjForm.resx">
+      <DependentUpon>SendYjForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SetForm.resx">
       <DependentUpon>SetForm.cs</DependentUpon>
     </EmbeddedResource>
