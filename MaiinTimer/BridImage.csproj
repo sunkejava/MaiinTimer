@@ -94,6 +94,9 @@
     <Compile Include="BackForm.Designer.cs">
       <DependentUpon>BackForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ColorSkinControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\EllipseControl.cs">
       <SubType>Component</SubType>
     </Compile>

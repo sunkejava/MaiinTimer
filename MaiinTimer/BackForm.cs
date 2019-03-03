@@ -480,6 +480,12 @@ namespace BridImage
                         imgInfos.Clear();
                     }
                 }
+                if (result.Result.data.Count <= 0)
+                {
+                    List_Main.addIsNull();
+                    imgInfos.Clear();
+                    List_Main.RefreshList();
+                }
                 LoadingControl(false);
                 return true;
             }
