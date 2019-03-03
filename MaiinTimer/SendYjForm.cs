@@ -44,6 +44,8 @@ namespace BridImage
 
         private void SendYjForm_Load(object sender, EventArgs e)
         {
+            this.BackColor = pes.BackColor;
+            btn_send.BaseColor = pes.BackColor;
             foreach (DuiBaseControl item in panel_main.DUIControls)
             {
                 switch (item.Name)

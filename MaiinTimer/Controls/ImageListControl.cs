@@ -29,6 +29,7 @@ namespace BridImage.Controls
         ToolTip toolTip1 = new ToolTip();
         int x, y;//记录鼠标进入控件时的位置
         Color defaultColor = Color.FromArgb(125, 255, 92, 138);
+        PropertsUtils pes = new PropertsUtils();
         int cheight = 0;
         EllipseControl ctEnd = null;
         public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
@@ -140,7 +141,16 @@ namespace BridImage.Controls
             //下载文件
             DuiButton dbn = sender as DuiButton;
             string url = dbn.Tag.ToString().Split('|')[1].ToString();
-            string fileName = AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\";
+            string fileName = "";
+            if (string.IsNullOrEmpty(pes.DownloadPath))
+            {
+                fileName = AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\";
+            }
+            else
+            {
+                fileName = pes.DownloadPath + @"ImageWallpaper\";
+            }
+            
             if (!Directory.Exists(fileName))
             {
                 Directory.CreateDirectory(fileName);
@@ -188,7 +198,16 @@ namespace BridImage.Controls
         private void Dp_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiPictureBox dp = sender as DuiPictureBox;
-            string ImageSavePath = AppDomain.CurrentDomain.BaseDirectory + @"\ImageWallpaper";
+            string ImageSavePath = "";
+            if (string.IsNullOrEmpty(pes.CachePath))
+            {
+                ImageSavePath = AppDomain.CurrentDomain.BaseDirectory + @"\ImageWallpaper";
+            }
+            else
+            {
+                ImageSavePath = pes.CachePath + @"\ImageWallpaper";
+            }
+            
             //设置墙纸
             try
             {
@@ -650,6 +669,7 @@ namespace BridImage.Controls
             this.Borders.TopColor = System.Drawing.Color.Empty;
             this.Borders.TopWidth = 1;
             this.ResumeLayout(false);
+            defaultColor = pes.BackColor;
 
         }
     }

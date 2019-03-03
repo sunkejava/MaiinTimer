@@ -15,7 +15,6 @@ namespace BridImage
 {
     public partial class SetForm : LayeredForm
     {
-        private Color defaultColor = Color.OrangeRed;
         PropertsUtils pes = new PropertsUtils();
         #region 设置相关控件
         //常规控件
@@ -42,10 +41,9 @@ namespace BridImage
         DuiLabel lb_mxnr2 = null;
         DuiLabel lb_zzemail = null;
         #endregion
-        public SetForm(Color bc)
+        public SetForm()
         {
             InitializeComponent();
-            defaultColor = bc;
             setDefaultStyle();
         }
         #region 控件事件
@@ -55,7 +53,7 @@ namespace BridImage
             {
                 LayeredLabel lb = sender as LayeredLabel;
                 recoverDefaultStyle(lb);
-                lb.ForeColor = defaultColor;
+                lb.ForeColor = pes.BackColor;
                 switch (lb.Name)
                 {
                     case "btn_cg":
@@ -97,16 +95,14 @@ namespace BridImage
             thisButton.BackColor = Color.FromArgb(255, 92, 125);
         }
 
-        private void btn_close_MouseHover(object sender, EventArgs e)
+        private void layeredPanel_close_MouseEnter(object sender, EventArgs e)
         {
-            layeredPanel_close.BackColor = Color.FromArgb(255, 88, 88);      
+            layeredPanel_close.BackColor = Color.FromArgb(255, 88, 88);
         }
 
-        private void btn_close_MouseLeave(object sender, EventArgs e)
+        private void layeredPanel_close_MouseLeave(object sender, EventArgs e)
         {
-            LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.Transparent;
-            layeredPanel_close.BackColor = thisButton.BackColor;
+            layeredPanel_close.BackColor = Color.Transparent;
         }
 
         /// <summary>
@@ -405,9 +401,9 @@ namespace BridImage
         #region 自定义事件
         private void setDefaultStyle()
         {
-            this.BackColor = defaultColor;
-            btn_point.BackColor = defaultColor;
-            btn_cg.ForeColor = defaultColor;
+            this.BackColor = pes.BackColor;
+            btn_point.BackColor = pes.BackColor;
+            btn_cg.ForeColor = pes.BackColor;
             layeredPanel_cg.BringToFront();
             //常规界面相关处理
             foreach (DuiBaseControl item in layeredPanel_cg.DUIControls)
@@ -643,6 +639,5 @@ namespace BridImage
         }
 
         #endregion
-
     }
 }

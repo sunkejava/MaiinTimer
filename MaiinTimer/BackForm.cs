@@ -52,6 +52,7 @@ namespace BridImage
         delegate void AsynUpdateloadPageText(string nowPage, string countPage);
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
+        PropertsUtils pes = new PropertsUtils();
         int x, y;//记录鼠标进入控件时的位置
         #region 窗体控件事件
         public BackForm()
@@ -64,6 +65,7 @@ namespace BridImage
 
         private void BackForm_Load(object sender, EventArgs e)
         {
+            defaultColor = pes.BackColor;
             foreach (var item in BaseControl_Search.DUIControls)
             {
                 if (item is DuiButton)
@@ -173,7 +175,7 @@ namespace BridImage
 
         private void btn_set_Click(object sender, EventArgs e)
         {
-            SetForm sf = new SetForm(defaultColor);
+            SetForm sf = new SetForm();
             sf.Show();
         }
 
