@@ -29,7 +29,7 @@ namespace BridImage.Controls
         ToolTip toolTip1 = new ToolTip();
         int x, y;//记录鼠标进入控件时的位置
         Color defaultColor = Color.FromArgb(125, 255, 92, 138);
-        PropertsUtils pes = new PropertsUtils();
+        PropertsUtils pes = null;
         int cheight = 0;
         EllipseControl ctEnd = null;
         public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
@@ -669,6 +669,7 @@ namespace BridImage.Controls
             this.Borders.TopColor = System.Drawing.Color.Empty;
             this.Borders.TopWidth = 1;
             this.ResumeLayout(false);
+            pes = new PropertsUtils();
             defaultColor = pes.BackColor;
 
         }

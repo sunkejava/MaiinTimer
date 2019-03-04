@@ -94,8 +94,11 @@
     <Compile Include="BackForm.Designer.cs">
       <DependentUpon>BackForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ColorSkinControl.cs">
-      <SubType>Component</SubType>
+    <Compile Include="colorSkin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="colorSkin.Designer.cs">
+      <DependentUpon>colorSkin.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\EllipseControl.cs">
       <SubType>Component</SubType>
@@ -138,6 +141,9 @@
     <Compile Include="Utils\Response.cs" />
     <EmbeddedResource Include="BackForm.resx">
       <DependentUpon>BackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="colorSkin.resx">
+      <DependentUpon>colorSkin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImageListControl.resx">
       <DependentUpon>ImageListControl.cs</DependentUpon>
@@ -285,6 +291,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="log32.ico" />
+    <None Include="Resources\BackgroundImage.png" />
+    <None Include="Resources\pl_playmod_bg.png" />
     <None Include="Resources\set0.png" />
     <None Include="Resources\set1.png" />
   </ItemGroup>

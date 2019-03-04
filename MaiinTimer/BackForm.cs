@@ -181,28 +181,37 @@ namespace BridImage
 
         private void btn_skin_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btn_min_MouseDown(object sender, MouseEventArgs e)
-        {
-            LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.FromArgb(255, 92, 125);
+            colorSkin cs = new colorSkin();
+            cs.Show();
+            cs.Location = new Point(layeredPanel_skin.Left + 65, 32 + layeredPanel_skin.Top);
         }
 
         private void btn_min_MouseHover(object sender, EventArgs e)
         {
+            LayeredPanel thisButton = sender as LayeredPanel;
+            switch (thisButton.Name)
+            {
+                case "layeredPanel_close":
+                    thisButton.BackColor = Color.FromArgb(255, 88, 88);
+                    break;
+                default:
+                    thisButton.BackColor = Color.FromArgb(100, 234, 234, 234);
+                    break;
+            }
+        }
+        private void btn_skin_MouseEnter(object sender, EventArgs e)
+        {
             LayeredButton thisButton = sender as LayeredButton;
             switch (thisButton.Name)
             {
-                case "btn_min":
-                    layeredPanel_min.BackColor = Color.FromArgb(100,234, 234, 234);
+                case "btn_skin":
+                    layeredPanel_skin.BackColor = Color.FromArgb(100, 234, 234, 234);
                     break;
                 case "btn_set":
                     layeredPanel_Set.BackColor = Color.FromArgb(100, 234, 234, 234);
                     break;
-                case "btn_skin":
-                    layeredPanel_skin.BackColor = Color.FromArgb(100, 234, 234, 234);
+                case "btn_min":
+                    layeredPanel_min.BackColor = Color.FromArgb(100, 234, 234, 234);
                     break;
                 default:
                     layeredPanel_close.BackColor = Color.FromArgb(255, 88, 88);
@@ -212,7 +221,7 @@ namespace BridImage
 
         private void btn_min_MouseLeave(object sender, EventArgs e)
         {
-            LayeredButton thisButton = sender as LayeredButton;
+            LayeredPanel thisButton = sender as LayeredPanel;
             thisButton.BackColor = Color.Transparent;
             layeredPanel_min.BackColor = thisButton.BackColor;
             layeredPanel_close.BackColor = thisButton.BackColor;
