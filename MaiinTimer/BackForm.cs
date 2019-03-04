@@ -47,25 +47,29 @@ namespace BridImage
         int cheight = 0;
         EllipseControl ctEnd = new BridImage.Controls.EllipseControl();
         string nCount = "0";//当前类型可获取的图片总数
-        Color defaultColor = Color.FromArgb(255, 92, 138);
+        public Color defaultColor = Color.FromArgb(255, 92, 138);
         delegate void AsynUpdateUI(bool isLoad);//委托更新加载控件显示
         delegate void AsynUpdateloadPageText(string nowPage, string countPage);
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
-        PropertsUtils pes = new PropertsUtils();
+        public PropertsUtils pes = new PropertsUtils();
         int x, y;//记录鼠标进入控件时的位置
         #region 窗体控件事件
         public BackForm()
         {
+            defaultColor = pes.BackColor;
             InitializeComponent();
+            setSkinStyle();
+        }
+        public void setSkinStyle()
+        {
             layeredPanel_top.BackColor = defaultColor;
             scorllbar.BackColor = defaultColor;
             Panel_Bottom.BackColor = defaultColor;
+            Panel_load.BackColor = Color.FromArgb(125, defaultColor.R, defaultColor.G, defaultColor.B);
         }
-
         private void BackForm_Load(object sender, EventArgs e)
         {
-            defaultColor = pes.BackColor;
             foreach (var item in BaseControl_Search.DUIControls)
             {
                 if (item is DuiButton)
@@ -94,7 +98,6 @@ namespace BridImage
             hotTagName = "";
             nCount = "0";
             isSearch = false;
-            Panel_load.BackColor = Color.FromArgb(125,defaultColor.R, defaultColor.G, defaultColor.B);
             Thread thread = new Thread(() => addBackImg());
             thread.Start();
             //addBackImg();
@@ -181,9 +184,9 @@ namespace BridImage
 
         private void btn_skin_Click(object sender, EventArgs e)
         {
-            colorSkin cs = new colorSkin();
+            colorSkin cs = new colorSkin(this);
             cs.Show();
-            cs.Location = new Point(layeredPanel_skin.Left + 65, 32 + layeredPanel_skin.Top);
+            cs.Location = new Point(Left + 500, 25 + Top);
         }
 
         private void btn_min_MouseHover(object sender, EventArgs e)
