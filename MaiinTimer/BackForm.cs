@@ -178,7 +178,7 @@ namespace BridImage
 
         private void btn_set_Click(object sender, EventArgs e)
         {
-            SetForm sf = new SetForm();
+            SetForm sf = new SetForm(pes);
             sf.Show();
         }
 

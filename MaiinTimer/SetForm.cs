@@ -15,7 +15,7 @@ namespace BridImage
 {
     public partial class SetForm : LayeredForm
     {
-        PropertsUtils pes = new PropertsUtils();
+        PropertsUtils pes = null;
         #region 设置相关控件
         //常规控件
         DuiCheckBox Ck_AutoStart = null;
@@ -41,8 +41,9 @@ namespace BridImage
         DuiLabel lb_mxnr2 = null;
         DuiLabel lb_zzemail = null;
         #endregion
-        public SetForm()
+        public SetForm(PropertsUtils cps)
         {
+            pes = cps;
             InitializeComponent();
             setDefaultStyle();
         }
@@ -371,7 +372,7 @@ namespace BridImage
         /// <param name="e"></param>
         private void Btn_sendyj_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            SendYjForm yjF = new SendYjForm();
+            SendYjForm yjF = new SendYjForm(pes);
             yjF.Show();
         }
         /// <summary>

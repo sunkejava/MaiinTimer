@@ -17,13 +17,14 @@ namespace BridImage
         DuiRadioButton dr_fklx = null;
         DuiTextBox tb_fkyj = null;
         DuiTextBox tb_lxfs = null;
-        PropertsUtils pes = new PropertsUtils();
+        PropertsUtils pes = null;
         DuiLabel dl_yjlen = null;
         //相关信息
         string msgTitle = "";
 
-        public SendYjForm()
+        public SendYjForm(PropertsUtils cps)
         {
+            pes = cps;
             InitializeComponent();
         }
 
