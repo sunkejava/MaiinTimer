@@ -34,6 +34,7 @@
             this.tkb_skin = new LayeredSkin.Controls.LayeredTrackBar();
             this.layeredLabel7 = new LayeredSkin.Controls.LayeredLabel();
             this.layeredPictureBox2 = new LayeredSkin.Controls.LayeredPictureBox();
+            this.btn_skinclose = new LayeredSkin.Controls.LayeredButton();
             this.SuspendLayout();
             // 
             // base_main
@@ -157,6 +158,39 @@
             this.layeredPictureBox2.TabIndex = 67;
             this.layeredPictureBox2.Text = "layeredPictureBox2";
             // 
+            // btn_skinclose
+            // 
+            this.btn_skinclose.AdaptImage = true;
+            this.btn_skinclose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_skinclose.BaseColor = System.Drawing.Color.Transparent;
+            this.btn_skinclose.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.btn_skinclose.Borders.BottomWidth = 1;
+            this.btn_skinclose.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.btn_skinclose.Borders.LeftWidth = 1;
+            this.btn_skinclose.Borders.RightColor = System.Drawing.Color.Empty;
+            this.btn_skinclose.Borders.RightWidth = 1;
+            this.btn_skinclose.Borders.TopColor = System.Drawing.Color.Empty;
+            this.btn_skinclose.Borders.TopWidth = 1;
+            this.btn_skinclose.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("btn_skinclose.Canvas")));
+            this.btn_skinclose.ControlState = LayeredSkin.Controls.ControlStates.Normal;
+            this.btn_skinclose.HaloColor = System.Drawing.Color.White;
+            this.btn_skinclose.HaloSize = 5;
+            this.btn_skinclose.HoverImage = global::BridImage.Properties.Resources.close1;
+            this.btn_skinclose.IsPureColor = false;
+            this.btn_skinclose.Location = new System.Drawing.Point(524, 8);
+            this.btn_skinclose.Name = "btn_skinclose";
+            this.btn_skinclose.NormalImage = global::BridImage.Properties.Resources.close1;
+            this.btn_skinclose.PressedImage = global::BridImage.Properties.Resources.close0;
+            this.btn_skinclose.Radius = 10;
+            this.btn_skinclose.ShowBorder = true;
+            this.btn_skinclose.Size = new System.Drawing.Size(16, 16);
+            this.btn_skinclose.TabIndex = 69;
+            this.btn_skinclose.Text = "layeredButton5";
+            this.btn_skinclose.TextLocationOffset = new System.Drawing.Point(0, 0);
+            this.btn_skinclose.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            this.btn_skinclose.TextShowMode = LayeredSkin.TextShowModes.None;
+            this.btn_skinclose.Click += new System.EventHandler(this.btn_skinclose_Click);
+            // 
             // colorSkin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -165,6 +199,7 @@
             this.BackgroundImage = global::BridImage.Properties.Resources.BackgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(553, 208);
+            this.Controls.Add(this.btn_skinclose);
             this.Controls.Add(this.lb_skintr);
             this.Controls.Add(this.tkb_skin);
             this.Controls.Add(this.layeredLabel7);
@@ -174,6 +209,7 @@
             this.Name = "colorSkin";
             this.Radius = 15;
             this.Text = "";
+            this.Deactivate += new System.EventHandler(this.colorSkin_Deactivate);
             this.ResumeLayout(false);
 
         }
@@ -185,5 +221,6 @@
         private LayeredSkin.Controls.LayeredTrackBar tkb_skin;
         private LayeredSkin.Controls.LayeredLabel layeredLabel7;
         private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox2;
+        private LayeredSkin.Controls.LayeredButton btn_skinclose;
     }
 }

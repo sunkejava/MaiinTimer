@@ -47,5 +47,15 @@ namespace BridImage
             cpes.pes.BackColor = dlc.BackColor;
             cpes.setSkinStyle();
         }
+
+        private void colorSkin_Deactivate(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_skinclose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

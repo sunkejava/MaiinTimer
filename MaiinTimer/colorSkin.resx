@@ -260,6 +260,15 @@
         D8UnC2GPGRmyS+I4jjf+AL4bSIDXZPL9AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btn_skinclose.Canvas" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACXSURBVDhPpZIxCoAwDEU9l5OLk1M3D+2iNxF1bcyHfKhY
+        NcEHgTbkfVptIyJTzrltgsDRmrFIWlskxGQ4iQ13iJ64u8iEIRiw1o1HmVjIUQsp5MFadSzkchLd9y6Z
+        YJAhJh9umTBEaw/LoAhYwwGUcQX3xyOlbK1/f4B8hrzJpAipv0Kt+FPWxeiVCWbNSdgsEZnAEZHpBLTj
+        M2sRAvTmAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAABILAAASCwAAAAAAAAAA
