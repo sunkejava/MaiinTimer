@@ -44,6 +44,7 @@ namespace BridImage
         {
             DuiLabel dlc = sender as DuiLabel;
             cpes.defaultColor = dlc.BackColor;
+            cpes.pes.BackColor = dlc.BackColor;
             cpes.setSkinStyle();
         }
     }
