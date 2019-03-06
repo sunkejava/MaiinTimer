@@ -111,6 +111,7 @@
             this.tkb_skin.TabIndex = 65;
             this.tkb_skin.Text = "layeredTrackBar1";
             this.tkb_skin.Value = 0.6D;
+            this.tkb_skin.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tkb_skin_MouseUp);
             // 
             // layeredLabel7
             // 

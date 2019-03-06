@@ -57,12 +57,12 @@ namespace BridImage
         #region 窗体控件事件
         public BackForm()
         {
-            defaultColor = pes.BackColor;
             InitializeComponent();
             setSkinStyle();
         }
         public void setSkinStyle()
         {
+            defaultColor = pes.BackColor;
             layeredPanel_top.BackColor = defaultColor;
             scorllbar.BackColor = defaultColor;
             Panel_Bottom.BackColor = defaultColor;

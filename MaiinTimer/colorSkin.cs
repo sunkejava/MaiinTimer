@@ -23,11 +23,13 @@ namespace BridImage
 
         public void Init()
         {
-            int[,] colorArray = { { 253, 177, 174 }, { 212, 170, 224 }, { 253, 208, 234 }, { 253, 202, 178 }, { 233, 122, 124 }, { 254, 178, 195 }, { 251, 180, 121 }, { 216, 194, 236 }, { 236, 218, 235 }, { 178, 216, 252 }, { 184, 242, 140 }, { 139, 226, 217 }, { 215, 225, 230 }, { 212, 156, 185 }, { 235, 170, 182 }, { 177, 196, 252 }, { 243, 113, 171 }, { 35, 212, 254 }, { 60, 242, 177 }, { 252, 163, 113 }, { 49, 108, 156 }, { 202, 228, 231 }, { 101, 224, 222 }, { 65, 225, 211 } };
+            //int[,] colorArray = { { 253, 177, 174 }, { 212, 170, 224 }, { 253, 208, 234 }, { 253, 202, 178 }, { 233, 122, 124 }, { 254, 178, 195 }, { 251, 180, 121 }, { 216, 194, 236 }, { 236, 218, 235 }, { 178, 216, 252 }, { 184, 242, 140 }, { 139, 226, 217 }, { 215, 225, 230 }, { 212, 156, 185 }, { 235, 170, 182 }, { 177, 196, 252 }, { 243, 113, 171 }, { 35, 212, 254 }, { 60, 242, 177 }, { 252, 163, 113 }, { 49, 108, 156 }, { 202, 228, 231 }, { 101, 224, 222 }, { 65, 225, 211 } };
+            Color[] colorArray = { Color.FromArgb(30,30,30),Color.Crimson,Color.OrangeRed,Color.FromArgb(236,109,113),Color.DarkOrange,Color.FromArgb(44, 169, 225),Color.FromArgb(0, 123, 180),Color.LightSeaGreen,Color.MediumSeaGreen,Color.Chartreuse,Color.GreenYellow, Color.YellowGreen,Color.Gold, Color.FromArgb(224, 224, 224),Color.FromArgb(231, 96, 158),Color.FromArgb(170, 76, 143),Color.DarkOrchid,Color.SlateBlue,Color.SteelBlue,Color.Teal,Color.MediumAquamarine,Color.FromArgb(56, 180, 139),Color.ForestGreen,Color.DarkGreen };
             for (int i = 1; i <= 24; i++)
             {
                 DuiLabel dlc = new DuiLabel();
-                dlc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(colorArray[i - 1, 0])))), ((int)(((byte)(colorArray[i - 1, 1])))), ((int)(((byte)(colorArray[i - 1, 2])))));
+                //dlc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(colorArray[i - 1, 0])))), ((int)(((byte)(colorArray[i - 1, 1])))), ((int)(((byte)(colorArray[i - 1, 2])))));
+                dlc.BackColor = colorArray[i - 1];
                 dlc.Width = (Width - 18) / 12;
                 dlc.Height = (base_main.Height - 8) / 2;
                 dlc.Name = "color" + i.ToString();
@@ -43,8 +45,8 @@ namespace BridImage
         private void Dlc_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiLabel dlc = sender as DuiLabel;
-            cpes.defaultColor = dlc.BackColor;
-            cpes.pes.BackColor = dlc.BackColor;
+            //cpes.defaultColor = Color.FromArgb((int)(255 * (1 - tkb_skin.Value)), dlc.BackColor); 
+            cpes.pes.BackColor = Color.FromArgb((int)(255 * (1 - tkb_skin.Value)), dlc.BackColor);
             cpes.setSkinStyle();
         }
 
@@ -56,6 +58,13 @@ namespace BridImage
         private void btn_skinclose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void tkb_skin_MouseUp(object sender, MouseEventArgs e)
+        {
+            lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
+            cpes.pes.BackColor = Color.FromArgb((int)(255 * (1 - tkb_skin.Value)), cpes.pes.BackColor);
+            cpes.setSkinStyle();
         }
     }
 }
