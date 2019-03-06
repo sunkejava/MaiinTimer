@@ -107,10 +107,10 @@
             this.layeredPanel_skin.Controls.Add(this.btn_skin);
             this.layeredPanel_skin.Location = new System.Drawing.Point(849, 0);
             this.layeredPanel_skin.Name = "layeredPanel_skin";
-            this.layeredPanel_skin.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
-            this.layeredPanel_skin.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.layeredPanel_skin.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_skin.TabIndex = 8;
+            this.layeredPanel_skin.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
+            this.layeredPanel_skin.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 
             // btn_skin
             // 
@@ -146,8 +146,6 @@
             this.btn_skin.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_skin.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_skin.Click += new System.EventHandler(this.btn_skin_Click);
-            //this.btn_skin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_min_MouseDown);
-            //this.btn_skin.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.btn_skin.MouseEnter += new System.EventHandler(this.btn_skin_MouseEnter);
             // 
             // layeredPanel_Set
@@ -168,10 +166,10 @@
             this.layeredPanel_Set.Controls.Add(this.btn_set);
             this.layeredPanel_Set.Location = new System.Drawing.Point(879, 0);
             this.layeredPanel_Set.Name = "layeredPanel_Set";
-            this.layeredPanel_Set.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
-            this.layeredPanel_Set.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.layeredPanel_Set.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_Set.TabIndex = 7;
+            this.layeredPanel_Set.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
+            this.layeredPanel_Set.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 
             // btn_set
             // 
@@ -207,8 +205,6 @@
             this.btn_set.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_set.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_set.Click += new System.EventHandler(this.btn_set_Click);
-            //this.btn_set.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_min_MouseDown);
-            //this.btn_set.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.btn_set.MouseEnter += new System.EventHandler(this.btn_skin_MouseEnter);
             // 
             // BaseControl_Search
@@ -480,8 +476,6 @@
             this.btn_close.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_close.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            //this.btn_close.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_min_MouseDown);
-            //this.btn_close.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.btn_close.MouseEnter += new System.EventHandler(this.btn_skin_MouseEnter);
             // 
             // btn_min
@@ -518,8 +512,6 @@
             this.btn_min.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_min.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_min.Click += new System.EventHandler(this.btn_min_Click);
-            //this.btn_min.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_min_MouseDown);
-            //this.btn_min.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.btn_min.MouseEnter += new System.EventHandler(this.btn_skin_MouseEnter);
             // 
             // layeredPanel_close
@@ -539,10 +531,10 @@
             this.layeredPanel_close.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_close.Canvas")));
             this.layeredPanel_close.Location = new System.Drawing.Point(943, 0);
             this.layeredPanel_close.Name = "layeredPanel_close";
-            this.layeredPanel_close.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
-            this.layeredPanel_close.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.layeredPanel_close.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_close.TabIndex = 5;
+            this.layeredPanel_close.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
+            this.layeredPanel_close.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 
             // layeredPanel_min
             // 
@@ -561,10 +553,10 @@
             this.layeredPanel_min.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredPanel_min.Canvas")));
             this.layeredPanel_min.Location = new System.Drawing.Point(911, 0);
             this.layeredPanel_min.Name = "layeredPanel_min";
-            this.layeredPanel_min.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
-            this.layeredPanel_min.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             this.layeredPanel_min.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_min.TabIndex = 6;
+            this.layeredPanel_min.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
+            this.layeredPanel_min.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 
             // scorllbar
             // 
@@ -818,7 +810,7 @@
             this.AnimationType = LayeredSkin.Forms.AnimationTypes.ThreeDTurn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.ClientSize = new System.Drawing.Size(975, 644);
             this.Controls.Add(this.Panel_load);
             this.Controls.Add(this.panel_ctEndLine);

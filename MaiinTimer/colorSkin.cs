@@ -40,13 +40,16 @@ namespace BridImage
                 dlc.MouseClick += Dlc_MouseClick;
                 base_main.DUIControls.Add(dlc);
             }
+            tkb_skin.Value = Double.Parse(cpes.pes.Opacity);
+            lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
         }
 
         private void Dlc_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiLabel dlc = sender as DuiLabel;
             //cpes.defaultColor = Color.FromArgb((int)(255 * (1 - tkb_skin.Value)), dlc.BackColor); 
-            cpes.pes.BackColor = Color.FromArgb((int)(255 * (1 - tkb_skin.Value)), dlc.BackColor);
+            cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), dlc.BackColor);
+            cpes.pes.Opacity = tkb_skin.Value.ToString();
             cpes.setSkinStyle();
         }
 
@@ -63,7 +66,16 @@ namespace BridImage
         private void tkb_skin_MouseUp(object sender, MouseEventArgs e)
         {
             lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
-            cpes.pes.BackColor = Color.FromArgb((int)(255 * (1 - tkb_skin.Value)), cpes.pes.BackColor);
+            cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), cpes.pes.BackColor.R, cpes.pes.BackColor.G, cpes.pes.BackColor.B);
+            cpes.pes.Opacity = tkb_skin.Value.ToString();
+            cpes.setSkinStyle();
+        }
+
+        private void tkb_skin_ValueChanged(object sender, EventArgs e)
+        {
+            lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
+            cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), cpes.pes.BackColor.R, cpes.pes.BackColor.G, cpes.pes.BackColor.B);
+            cpes.pes.Opacity = tkb_skin.Value.ToString();
             cpes.setSkinStyle();
         }
     }

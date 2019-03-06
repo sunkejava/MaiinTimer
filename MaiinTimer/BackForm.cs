@@ -63,6 +63,7 @@ namespace BridImage
         public void setSkinStyle()
         {
             defaultColor = pes.BackColor;
+            this.BackColor = Color.FromArgb(125, defaultColor.R, defaultColor.G, defaultColor.B);
             layeredPanel_top.BackColor = defaultColor;
             scorllbar.BackColor = defaultColor;
             Panel_Bottom.BackColor = defaultColor;
@@ -167,6 +168,7 @@ namespace BridImage
 
         private void btn_close_Click(object sender, EventArgs e)
         {
+            pes.saveConfig();  
             this.Close();
         }
 

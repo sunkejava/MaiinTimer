@@ -117,7 +117,7 @@ namespace BridImage.Utils
         /// <summary>
         /// 透明度
         /// </summary>
-        public string Opacity1
+        public string Opacity
         {
             get { return opacity; }
             set { opacity = value; }
