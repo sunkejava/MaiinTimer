@@ -24,7 +24,7 @@ namespace BridImage
         DuiCheckBox Ck_IsSwitchWallpaper = null;
         DuiTextBox TextBox_InterValTime = null;
         DuiComboBox ComboBox_InterValTimeUnit = null;
-        DuiButton Button_SwitchWallpaperType = null;
+        //DuiButton Button_SwitchWallpaperType = null;
         //下载设置控件
         DuiRadioButton RadioButton_picSize = null;
         DuiLabel lb_downloadPath = null;
@@ -54,7 +54,7 @@ namespace BridImage
             {
                 LayeredLabel lb = sender as LayeredLabel;
                 recoverDefaultStyle(lb);
-                lb.ForeColor = pes.BackColor;
+                lb.ForeColor = Color.FromArgb(155,pes.BackColor);
                 switch (lb.Name)
                 {
                     case "btn_cg":
@@ -88,12 +88,6 @@ namespace BridImage
         {
             pes.saveConfig();
             this.Close();
-        }
-
-        private void btn_close_MouseDown(object sender, MouseEventArgs e)
-        {
-            LayeredButton thisButton = sender as LayeredButton;
-            thisButton.BackColor = Color.FromArgb(255, 92, 125);
         }
 
         private void layeredPanel_close_MouseEnter(object sender, EventArgs e)
@@ -145,20 +139,25 @@ namespace BridImage
         private void Button_SwitchWallpaperType_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiButton cdb = sender as DuiButton;
-            if (cdb.BaseColor == pes.BackColor)
+            if (bool.Parse(cdb.Tag.ToString()))
             {
                 cdb.BaseColor = Color.Transparent;
+                cdb.BackgroundImage = Properties.Resources.btn_n;
+                cdb.Tag = false.ToString();
                 pes.SwitchWallpaperTypes.Remove(cdb.Name.Replace("btn_", ""));
             }
             else
             {
-                cdb.BaseColor = pes.BackColor;
+                //cdb.BaseColor = pes.BackColor;
                 if (pes.SwitchWallpaperTypes.Contains(""))
                 {
                     pes.SwitchWallpaperTypes.Remove("");
                 }
-                pes.SwitchWallpaperTypes.Add(cdb.Name.Replace("btn_",""));
+                cdb.BackgroundImage = Properties.Resources.btn_select_n;
+                cdb.Tag = true.ToString();
+                pes.SwitchWallpaperTypes.Add(cdb.Name.Replace("btn_", ""));
             }
+            cdb.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         /// <summary>
@@ -402,9 +401,9 @@ namespace BridImage
         #region 自定义事件
         private void setDefaultStyle()
         {
-            this.BackColor = pes.BackColor;
-            btn_point.BackColor = pes.BackColor;
-            btn_cg.ForeColor = pes.BackColor;
+            this.BackColor = Color.FromArgb(125, pes.BackColor);
+            btn_point.BaseColor = Color.Red;
+            btn_cg.ForeColor = Color.FromArgb(155, pes.BackColor);
             layeredPanel_cg.BringToFront();
             //常规界面相关处理
             foreach (DuiBaseControl item in layeredPanel_cg.DUIControls)
@@ -413,16 +412,16 @@ namespace BridImage
                 {
                     case "ck_qd":
                         Ck_AutoStart = item as DuiCheckBox;
-                        Ck_AutoStart.CheckRectColor = pes.BackColor;
-                        Ck_AutoStart.CheckFlagColor = pes.BackColor;
+                        Ck_AutoStart.CheckRectColor = Color.FromArgb(155, pes.BackColor);
+                        Ck_AutoStart.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
                         Ck_AutoStart.CheckedChanged += Ck_AutoStart_CheckedChanged;
                         Ck_AutoStart.Checked = pes.AutoStart;
                         break;
                     case "rd_min":
                     case "rd_close":
                         RadioButton_CloseMode = item as DuiRadioButton;
-                        RadioButton_CloseMode.CheckRectColor = pes.BackColor;
-                        RadioButton_CloseMode.CheckFlagColor = pes.BackColor;
+                        RadioButton_CloseMode.CheckRectColor = Color.FromArgb(155, pes.BackColor);
+                        RadioButton_CloseMode.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
                         RadioButton_CloseMode.CheckedChanged += RadioButton_CloseMode_CheckedChanged;
                         if ((pes.CloseMode == "isClose") && RadioButton_CloseMode.Name == "rd_close")
                         {
@@ -451,14 +450,14 @@ namespace BridImage
                 {
                     case "ck_qd":
                         Ck_IsSwitchWallpaper = item as DuiCheckBox;
-                        Ck_IsSwitchWallpaper.CheckRectColor = pes.BackColor;
-                        Ck_IsSwitchWallpaper.CheckFlagColor = pes.BackColor;
+                        Ck_IsSwitchWallpaper.CheckRectColor = Color.FromArgb(155, pes.BackColor);
+                        Ck_IsSwitchWallpaper.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
                         Ck_IsSwitchWallpaper.Checked = pes.IsSwitchWallpaper;
                         Ck_IsSwitchWallpaper.CheckedChanged += Ck_IsSwitchWallpaper_CheckedChanged;
                         break;
                     case "db_timedw":
                         ComboBox_InterValTimeUnit = item as DuiComboBox;
-                        ComboBox_InterValTimeUnit.BackColor = pes.BackColor;
+                        ComboBox_InterValTimeUnit.BackColor = Color.FromArgb(155, pes.BackColor);
                         ComboBox_InterValTimeUnit.SelectedIndexChanged += ComboBox_InterValTimeUnit_SelectedIndexChanged;
                         if (pes.InterValTime < 60)
                         {
@@ -475,23 +474,29 @@ namespace BridImage
                         break;
                     case "tb_timeStr":
                         TextBox_InterValTime = item as DuiTextBox;
-                        TextBox_InterValTime.BackColor = pes.BackColor;
+                        TextBox_InterValTime.BackColor = Color.FromArgb(155, pes.BackColor);
                         TextBox_InterValTime.AutoHeight = true;
                         TextBox_InterValTime.Invalidated += TextBox_InterValTime_TextChanged;
                         break;
                     default:
                         if (item is DuiButton && item.Name.Contains("btn_"))
                         {
-                            Button_SwitchWallpaperType = item as DuiButton;
+                            DuiButton Button_SwitchWallpaperType = item as DuiButton;
                             Button_SwitchWallpaperType.Cursor = System.Windows.Forms.Cursors.Hand;
                             Button_SwitchWallpaperType.MouseClick += Button_SwitchWallpaperType_MouseClick;
+                            Button_SwitchWallpaperType.BaseColor = Color.Transparent;
+                            Button_SwitchWallpaperType.BackgroundImage = Properties.Resources.btn_n;
+                            Button_SwitchWallpaperType.IsPureColor = false;
+                            Button_SwitchWallpaperType.Tag = false.ToString();
                             foreach (var WallpaperType in pes.SwitchWallpaperTypes)
                             {
                                 if (item.Name.Replace("btn_", "") == WallpaperType.ToString())
                                 {
-                                    Button_SwitchWallpaperType.BaseColor = pes.BackColor;
+                                    Button_SwitchWallpaperType.Tag = true.ToString();
+                                    Button_SwitchWallpaperType.BackgroundImage = Properties.Resources.btn_select_n;
                                 }
                             }
+                            Button_SwitchWallpaperType.BackgroundImageLayout = ImageLayout.Stretch;
                         }
                         break;
                 }
@@ -508,8 +513,8 @@ namespace BridImage
                     case "rd_SizeFor1024768":
                     case "rd_SizeFor1280800":
                         RadioButton_picSize = item as DuiRadioButton;
-                        RadioButton_picSize.CheckFlagColor = pes.BackColor;
-                        RadioButton_picSize.CheckRectColor = pes.BackColor;
+                        RadioButton_picSize.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
+                        RadioButton_picSize.CheckRectColor = Color.FromArgb(155, pes.BackColor);
                         RadioButton_picSize.CheckedChanged += RadioButton_picSize_CheckedChanged;
                         if ("rd_SizeFor" + (pes.PicSize == "default" ? "Thumb" : pes.PicSize) == item.Name)
                         {
@@ -522,7 +527,7 @@ namespace BridImage
                         break;
                     case "lb_downloadPath":
                         lb_downloadPath = item as DuiLabel;
-                        lb_downloadPath.BackColor = pes.BackColor;
+                        lb_downloadPath.BackColor = Color.FromArgb(155, pes.BackColor);
                         lb_downloadPath.Text = pes.DownloadPath;
                         lb_downloadPath.TextAlign = ContentAlignment.MiddleLeft;
                         lb_downloadPath.Invalidated += Lb_downloadPath_Invalidated;
@@ -534,7 +539,7 @@ namespace BridImage
                         break;
                     case "lb_cachePath":
                         lb_cachePath = item as DuiLabel;
-                        lb_cachePath.BackColor = pes.BackColor;
+                        lb_cachePath.BackColor = Color.FromArgb(155, pes.BackColor);
                         lb_cachePath.Text = pes.CachePath;
                         lb_cachePath.TextAlign = ContentAlignment.MiddleLeft;
                         lb_cachePath.Invalidated += Lb_cachePath_Invalidated;
@@ -568,13 +573,13 @@ namespace BridImage
                     case "btn_update":
                         btn_update = item as DuiButton;
                         btn_update.Cursor = System.Windows.Forms.Cursors.Hand;
-                        btn_update.BaseColor = pes.BackColor;
+                        btn_update.BaseColor = Color.FromArgb(155, pes.BackColor);
                         btn_update.MouseClick += Btn_update_MouseClick;
                         break;
                     case "btn_sendyj":
                         btn_sendyj = item as DuiButton;
                         btn_sendyj.Cursor = System.Windows.Forms.Cursors.Hand;
-                        btn_sendyj.BaseColor = pes.BackColor;
+                        btn_sendyj.BaseColor = Color.FromArgb(155, pes.BackColor);
                         btn_sendyj.MouseClick += Btn_sendyj_MouseClick;
                         break;
                     case "lb_mxnr1":

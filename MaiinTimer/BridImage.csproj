@@ -164,6 +164,9 @@
     <EmbeddedResource Include="SendYjForm.resx">
       <DependentUpon>SendYjForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SetForm.resx">
+      <DependentUpon>SetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
