@@ -68,6 +68,7 @@ namespace BridImage
             scorllbar.BackColor = defaultColor;
             Panel_Bottom.BackColor = defaultColor;
             Panel_load.BackColor = Color.FromArgb(125, defaultColor.R, defaultColor.G, defaultColor.B);
+            List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)
         {

@@ -640,6 +640,8 @@ namespace BridImage.Controls
         {
             if (RefreshListed != null)
                 RefreshListed(this, new EventArgs());
+            pes = new PropertsUtils();
+            defaultColor = pes.BackColor;
             base.RefreshList();
         }
         #endregion
@@ -669,8 +671,6 @@ namespace BridImage.Controls
             this.Borders.TopColor = System.Drawing.Color.Empty;
             this.Borders.TopWidth = 1;
             this.ResumeLayout(false);
-            pes = new PropertsUtils();
-            defaultColor = pes.BackColor;
 
         }
     }

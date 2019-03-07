@@ -51,7 +51,7 @@
             this.base_main.Borders.TopColor = System.Drawing.Color.Empty;
             this.base_main.Borders.TopWidth = 1;
             this.base_main.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("base_main.Canvas")));
-            this.base_main.Location = new System.Drawing.Point(0, 30);
+            this.base_main.Location = new System.Drawing.Point(0, 37);
             this.base_main.Name = "base_main";
             this.base_main.Size = new System.Drawing.Size(553, 82);
             this.base_main.TabIndex = 0;
@@ -179,7 +179,7 @@
             this.btn_skinclose.HaloSize = 5;
             this.btn_skinclose.HoverImage = global::BridImage.Properties.Resources.close1;
             this.btn_skinclose.IsPureColor = false;
-            this.btn_skinclose.Location = new System.Drawing.Point(524, 8);
+            this.btn_skinclose.Location = new System.Drawing.Point(524, 16);
             this.btn_skinclose.Name = "btn_skinclose";
             this.btn_skinclose.NormalImage = global::BridImage.Properties.Resources.close1;
             this.btn_skinclose.PressedImage = global::BridImage.Properties.Resources.close0;

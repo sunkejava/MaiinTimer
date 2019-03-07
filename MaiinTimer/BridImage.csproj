@@ -164,9 +164,6 @@
     <EmbeddedResource Include="SendYjForm.resx">
       <DependentUpon>SendYjForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetForm.resx">
-      <DependentUpon>SetForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -291,6 +288,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="log32.ico" />
+    <None Include="Resources\btn_select_n.png" />
+    <None Include="Resources\btn_p.png" />
+    <None Include="Resources\btn_n.png" />
+    <None Include="Resources\btn_select_p.png" />
     <None Include="Resources\BackgroundImage.png" />
     <None Include="Resources\pl_playmod_bg.png" />
     <None Include="Resources\set0.png" />
