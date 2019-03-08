@@ -109,6 +109,7 @@
             this.layeredPanel_skin.Name = "layeredPanel_skin";
             this.layeredPanel_skin.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_skin.TabIndex = 8;
+            this.layeredPanel_skin.Click += new System.EventHandler(this.btn_skin_Click);
             this.layeredPanel_skin.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
             this.layeredPanel_skin.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 
@@ -168,6 +169,7 @@
             this.layeredPanel_Set.Name = "layeredPanel_Set";
             this.layeredPanel_Set.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_Set.TabIndex = 7;
+            this.layeredPanel_Set.Click += new System.EventHandler(this.btn_set_Click);
             this.layeredPanel_Set.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
             this.layeredPanel_Set.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 
@@ -533,6 +535,7 @@
             this.layeredPanel_close.Name = "layeredPanel_close";
             this.layeredPanel_close.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_close.TabIndex = 5;
+            this.layeredPanel_close.Click += new System.EventHandler(this.btn_close_Click);
             this.layeredPanel_close.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
             this.layeredPanel_close.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 
@@ -555,6 +558,7 @@
             this.layeredPanel_min.Name = "layeredPanel_min";
             this.layeredPanel_min.Size = new System.Drawing.Size(32, 29);
             this.layeredPanel_min.TabIndex = 6;
+            this.layeredPanel_min.Click += new System.EventHandler(this.btn_min_Click);
             this.layeredPanel_min.MouseEnter += new System.EventHandler(this.btn_min_MouseHover);
             this.layeredPanel_min.MouseLeave += new System.EventHandler(this.btn_min_MouseLeave);
             // 

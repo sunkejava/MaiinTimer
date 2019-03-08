@@ -35,6 +35,22 @@
             this.layeredLabel7 = new LayeredSkin.Controls.LayeredLabel();
             this.layeredPictureBox2 = new LayeredSkin.Controls.LayeredPictureBox();
             this.btn_skinclose = new LayeredSkin.Controls.LayeredButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // base_main
@@ -51,9 +67,9 @@
             this.base_main.Borders.TopColor = System.Drawing.Color.Empty;
             this.base_main.Borders.TopWidth = 1;
             this.base_main.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("base_main.Canvas")));
-            this.base_main.Location = new System.Drawing.Point(0, 37);
+            this.base_main.Location = new System.Drawing.Point(0, 15);
             this.base_main.Name = "base_main";
-            this.base_main.Size = new System.Drawing.Size(553, 82);
+            this.base_main.Size = new System.Drawing.Size(553, 73);
             this.base_main.TabIndex = 0;
             this.base_main.Text = "layeredBaseControl1";
             // 
@@ -72,7 +88,7 @@
             this.lb_skintr.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.lb_skintr.ForeColor = System.Drawing.Color.White;
             this.lb_skintr.HaloSize = 5;
-            this.lb_skintr.Location = new System.Drawing.Point(511, 177);
+            this.lb_skintr.Location = new System.Drawing.Point(526, 146);
             this.lb_skintr.Name = "lb_skintr";
             this.lb_skintr.Size = new System.Drawing.Size(29, 19);
             this.lb_skintr.TabIndex = 68;
@@ -95,9 +111,9 @@
             this.tkb_skin.Borders.TopColor = System.Drawing.Color.Empty;
             this.tkb_skin.Borders.TopWidth = 1;
             this.tkb_skin.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("tkb_skin.Canvas")));
-            this.tkb_skin.ControlRectangle = new System.Drawing.Rectangle(5, 5, 113, 0);
+            this.tkb_skin.ControlRectangle = new System.Drawing.Rectangle(5, 5, 103, 0);
             this.tkb_skin.LineWidth = 2;
-            this.tkb_skin.Location = new System.Drawing.Point(390, 181);
+            this.tkb_skin.Location = new System.Drawing.Point(415, 150);
             this.tkb_skin.MouseCanControl = true;
             this.tkb_skin.Name = "tkb_skin";
             this.tkb_skin.Orientation = LayeredSkin.Controls.Orientations.Horizontal;
@@ -105,7 +121,7 @@
             this.tkb_skin.PointImageHover = null;
             this.tkb_skin.PointImagePressed = null;
             this.tkb_skin.PointState = LayeredSkin.Controls.ControlStates.Normal;
-            this.tkb_skin.Size = new System.Drawing.Size(123, 10);
+            this.tkb_skin.Size = new System.Drawing.Size(113, 10);
             this.tkb_skin.SurfaceImage = null;
             this.tkb_skin.SurfaceLineColor = System.Drawing.Color.White;
             this.tkb_skin.TabIndex = 65;
@@ -129,9 +145,9 @@
             this.layeredLabel7.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.layeredLabel7.ForeColor = System.Drawing.Color.White;
             this.layeredLabel7.HaloSize = 5;
-            this.layeredLabel7.Location = new System.Drawing.Point(335, 177);
+            this.layeredLabel7.Location = new System.Drawing.Point(364, 146);
             this.layeredLabel7.Name = "layeredLabel7";
-            this.layeredLabel7.Size = new System.Drawing.Size(63, 19);
+            this.layeredLabel7.Size = new System.Drawing.Size(56, 19);
             this.layeredLabel7.TabIndex = 66;
             this.layeredLabel7.Text = "透明度：";
             this.layeredLabel7.TextRenderMode = System.Drawing.Text.TextRenderingHint.AntiAlias;
@@ -153,7 +169,7 @@
             this.layeredPictureBox2.Images = new System.Drawing.Image[] {
         ((System.Drawing.Image)(((System.Drawing.Image)(resources.GetObject("layeredPictureBox2.Images")))))};
             this.layeredPictureBox2.Interval = 100;
-            this.layeredPictureBox2.Location = new System.Drawing.Point(309, 177);
+            this.layeredPictureBox2.Location = new System.Drawing.Point(341, 146);
             this.layeredPictureBox2.MultiImageAnimation = false;
             this.layeredPictureBox2.Name = "layeredPictureBox2";
             this.layeredPictureBox2.Size = new System.Drawing.Size(28, 21);
@@ -177,21 +193,107 @@
             this.btn_skinclose.ControlState = LayeredSkin.Controls.ControlStates.Normal;
             this.btn_skinclose.HaloColor = System.Drawing.Color.White;
             this.btn_skinclose.HaloSize = 5;
-            this.btn_skinclose.HoverImage = global::BridImage.Properties.Resources.close1;
+            this.btn_skinclose.HoverImage = global::BridImage.Properties.Resources.close;
             this.btn_skinclose.IsPureColor = false;
-            this.btn_skinclose.Location = new System.Drawing.Point(524, 16);
+            this.btn_skinclose.Location = new System.Drawing.Point(525, 0);
             this.btn_skinclose.Name = "btn_skinclose";
-            this.btn_skinclose.NormalImage = global::BridImage.Properties.Resources.close1;
-            this.btn_skinclose.PressedImage = global::BridImage.Properties.Resources.close0;
+            this.btn_skinclose.NormalImage = global::BridImage.Properties.Resources.close;
+            this.btn_skinclose.PressedImage = global::BridImage.Properties.Resources.close;
             this.btn_skinclose.Radius = 10;
             this.btn_skinclose.ShowBorder = true;
-            this.btn_skinclose.Size = new System.Drawing.Size(16, 16);
+            this.btn_skinclose.Size = new System.Drawing.Size(18, 18);
             this.btn_skinclose.TabIndex = 69;
             this.btn_skinclose.Text = "layeredButton5";
             this.btn_skinclose.TextLocationOffset = new System.Drawing.Point(0, 0);
             this.btn_skinclose.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
             this.btn_skinclose.TextShowMode = LayeredSkin.TextShowModes.None;
             this.btn_skinclose.Click += new System.EventHandler(this.btn_skinclose_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(13, 89);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(130, 80);
+            this.panel1.TabIndex = 70;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 33);
+            this.pictureBox1.TabIndex = 36;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.White;
+            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(347, 89);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(64, 38);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox6.TabIndex = 76;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(277, 89);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(64, 39);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 75;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(211, 131);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(64, 38);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 74;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(211, 89);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(64, 39);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 73;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(145, 131);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(63, 38);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 72;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(145, 89);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(63, 39);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 71;
+            this.pictureBox2.TabStop = false;
             // 
             // colorSkin
             // 
@@ -200,7 +302,14 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = global::BridImage.Properties.Resources.BackgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(553, 208);
+            this.ClientSize = new System.Drawing.Size(553, 174);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_skinclose);
             this.Controls.Add(this.lb_skintr);
             this.Controls.Add(this.tkb_skin);
@@ -212,6 +321,14 @@
             this.Radius = 15;
             this.Text = "";
             this.Deactivate += new System.EventHandler(this.colorSkin_Deactivate);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -224,5 +341,13 @@
         private LayeredSkin.Controls.LayeredLabel layeredLabel7;
         private LayeredSkin.Controls.LayeredPictureBox layeredPictureBox2;
         private LayeredSkin.Controls.LayeredButton btn_skinclose;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

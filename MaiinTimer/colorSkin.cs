@@ -30,13 +30,13 @@ namespace BridImage
                 DuiLabel dlc = new DuiLabel();
                 //dlc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(colorArray[i - 1, 0])))), ((int)(((byte)(colorArray[i - 1, 1])))), ((int)(((byte)(colorArray[i - 1, 2])))));
                 dlc.BackColor = colorArray[i - 1];
-                dlc.Width = (Width - 18) / 12;
-                dlc.Height = (base_main.Height - 8) / 2;
+                dlc.Width = (Width - 44) / 12;
+                dlc.Height = (base_main.Height - 14) / 2;
                 dlc.Name = "color" + i.ToString();
                 //根据循环数判断当前行及列
                 int ColorColNum = (i % 12 == 0 ? 12 : i % 12);
                 int ColorRowNum = (i - i % 12) / 12 + (i % 12 == 0 ? 0 : 1);
-                dlc.Location = new Point(13 + ((ColorColNum - 1) * dlc.Width), 2 * (ColorRowNum) + ((ColorRowNum - 1) * dlc.Height));
+                dlc.Location = new Point(13 + ((ColorColNum - 1) * dlc.Width)+ColorColNum*2, 4 * (ColorRowNum) + ((ColorRowNum - 1) * dlc.Height));
                 dlc.MouseClick += Dlc_MouseClick;
                 base_main.DUIControls.Add(dlc);
             }
