@@ -15,7 +15,7 @@ namespace BridImage
 {
     public partial class SetForm : LayeredForm
     {
-        PropertsUtils pes = null;
+        BackForm pes = null;
         #region 设置相关控件
         //常规控件
         DuiCheckBox Ck_AutoStart = null;
@@ -40,8 +40,9 @@ namespace BridImage
         DuiLabel lb_mxnr1 = null;
         DuiLabel lb_mxnr2 = null;
         DuiLabel lb_zzemail = null;
+        public Image BackImg = null;
         #endregion
-        public SetForm(PropertsUtils cps)
+        public SetForm(BackForm cps)
         {
             pes = cps;
             InitializeComponent();
@@ -86,7 +87,7 @@ namespace BridImage
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            pes.saveConfig();
+            pes.pes.saveConfig();
             this.Close();
         }
 
@@ -110,11 +111,11 @@ namespace BridImage
             DuiRadioButton cdr = sender as DuiRadioButton;
             if (cdr.Name == "rd_min" && cdr.Checked)
             {
-                pes.CloseMode = "isMin";
+                pes.pes.CloseMode = "isMin";
             }
             else if (cdr.Name == "rd_close" && cdr.Checked)
             {
-                pes.CloseMode = "isClose";
+                pes.pes.CloseMode = "isClose";
             }
             else
             {
@@ -128,7 +129,7 @@ namespace BridImage
         /// <param name="e"></param>
         private void Ck_AutoStart_CheckedChanged(object sender, EventArgs e)
         {
-            pes.AutoStart = Ck_AutoStart.Checked;
+            pes.pes.AutoStart = Ck_AutoStart.Checked;
         }
 
         /// <summary>
@@ -144,18 +145,18 @@ namespace BridImage
                 cdb.BaseColor = Color.Transparent;
                 cdb.BackgroundImage = Properties.Resources.btn_n;
                 cdb.Tag = false.ToString();
-                pes.SwitchWallpaperTypes.Remove(cdb.Name.Replace("btn_", ""));
+                pes.pes.SwitchWallpaperTypes.Remove(cdb.Name.Replace("btn_", ""));
             }
             else
             {
                 //cdb.BaseColor = pes.BackColor;
-                if (pes.SwitchWallpaperTypes.Contains(""))
+                if (pes.pes.SwitchWallpaperTypes.Contains(""))
                 {
-                    pes.SwitchWallpaperTypes.Remove("");
+                    pes.pes.SwitchWallpaperTypes.Remove("");
                 }
                 cdb.BackgroundImage = Properties.Resources.btn_select_n;
                 cdb.Tag = true.ToString();
-                pes.SwitchWallpaperTypes.Add(cdb.Name.Replace("btn_", ""));
+                pes.pes.SwitchWallpaperTypes.Add(cdb.Name.Replace("btn_", ""));
             }
             cdb.BackgroundImageLayout = ImageLayout.Stretch;
         }
@@ -173,13 +174,13 @@ namespace BridImage
                 switch (ComboBox_InterValTimeUnit.SelectedIndex)
                 {
                     case 0:
-                        pes.InterValTime = interVal;
+                        pes.pes.InterValTime = interVal;
                         break;
                     case 1:
-                        pes.InterValTime = interVal * 60;
+                        pes.pes.InterValTime = interVal * 60;
                         break;
                     default:
-                        pes.InterValTime = interVal * 60 * 60;
+                        pes.pes.InterValTime = interVal * 60 * 60;
                         break;
                 }
             }
@@ -192,7 +193,7 @@ namespace BridImage
         /// <param name="e"></param>
         private void Ck_IsSwitchWallpaper_CheckedChanged(object sender, EventArgs e)
         {
-            pes.IsSwitchWallpaper = Ck_IsSwitchWallpaper.Checked;
+            pes.pes.IsSwitchWallpaper = Ck_IsSwitchWallpaper.Checked;
         }
 
         /// <summary>
@@ -207,15 +208,15 @@ namespace BridImage
                 int interVal = int.Parse(TextBox_InterValTime.Text);
                 if (ComboBox_InterValTimeUnit.SelectedIndex == 0)
                 {
-                    pes.InterValTime = interVal;
+                    pes.pes.InterValTime = interVal;
                 }
                 else if (ComboBox_InterValTimeUnit.SelectedIndex == 1)
                 {
-                    pes.InterValTime = interVal * 60;
+                    pes.pes.InterValTime = interVal * 60;
                 }
                 else
                 {
-                    pes.InterValTime = interVal * 60 * 60;
+                    pes.pes.InterValTime = interVal * 60 * 60;
                 }
             }    
         }
@@ -229,7 +230,7 @@ namespace BridImage
         {
             if (!string.IsNullOrEmpty(lb_downloadPath.Text))
             {
-                pes.DownloadPath = lb_downloadPath.Text;
+                pes.pes.DownloadPath = lb_downloadPath.Text;
             }
         }
         /// <summary>
@@ -241,7 +242,7 @@ namespace BridImage
         {
             if (!string.IsNullOrEmpty(lb_cachePath.Text))
             {
-                pes.CachePath = lb_cachePath.Text;
+                pes.pes.CachePath = lb_cachePath.Text;
             }
         }
 
@@ -311,22 +312,22 @@ namespace BridImage
                 switch (cdr.Name)
                 {
                     case "rd_SizeForThumb":
-                        pes.PicSize = "default";
+                        pes.pes.PicSize = "default";
                         break;
                     case "rd_SizeFor1600900":
-                        pes.PicSize = "1600900";
+                        pes.pes.PicSize = "1600900";
                         break;
                     case "rd_SizeFor1440900":
-                        pes.PicSize = "1440900";
+                        pes.pes.PicSize = "1440900";
                         break;
                     case "rd_SizeFor12801024":
-                        pes.PicSize = "12801024";
+                        pes.pes.PicSize = "12801024";
                         break;
                     case "rd_SizeFor1024768":
-                        pes.PicSize = "1024768";
+                        pes.pes.PicSize = "1024768";
                         break;
                     case "rd_SizeFor1280800":
-                        pes.PicSize = "1280800";
+                        pes.pes.PicSize = "1280800";
                         break;
                     default:
                         break;
@@ -374,6 +375,7 @@ namespace BridImage
             SendYjForm yjF = new SendYjForm(pes);
             yjF.Show();
         }
+
         /// <summary>
         /// 更新按钮事件
         /// </summary>
@@ -402,6 +404,10 @@ namespace BridImage
         private void setDefaultStyle()
         {
             this.BackColor = Color.FromArgb(125, pes.BackColor);
+            if (pes.BackGroundSkin != null)
+            {
+                BackGroundSkin = pes.BackGroundSkin;
+            }
             btn_point.BaseColor = Color.Red;
             btn_cg.ForeColor = Color.FromArgb(155, pes.BackColor);
             layeredPanel_cg.BringToFront();
@@ -415,7 +421,7 @@ namespace BridImage
                         Ck_AutoStart.CheckRectColor = Color.FromArgb(155, pes.BackColor);
                         Ck_AutoStart.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
                         Ck_AutoStart.CheckedChanged += Ck_AutoStart_CheckedChanged;
-                        Ck_AutoStart.Checked = pes.AutoStart;
+                        Ck_AutoStart.Checked = pes.pes.AutoStart;
                         break;
                     case "rd_min":
                     case "rd_close":
@@ -423,11 +429,11 @@ namespace BridImage
                         RadioButton_CloseMode.CheckRectColor = Color.FromArgb(155, pes.BackColor);
                         RadioButton_CloseMode.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
                         RadioButton_CloseMode.CheckedChanged += RadioButton_CloseMode_CheckedChanged;
-                        if ((pes.CloseMode == "isClose") && RadioButton_CloseMode.Name == "rd_close")
+                        if ((pes.pes.CloseMode == "isClose") && RadioButton_CloseMode.Name == "rd_close")
                         {
                             (item as DuiRadioButton).Checked = true;
                         }
-                        else if ((pes.CloseMode == "isMin") && RadioButton_CloseMode.Name == "rd_min")
+                        else if ((pes.pes.CloseMode == "isMin") && RadioButton_CloseMode.Name == "rd_min")
                         {
                             (item as DuiRadioButton).Checked = true;
                         }
@@ -452,18 +458,18 @@ namespace BridImage
                         Ck_IsSwitchWallpaper = item as DuiCheckBox;
                         Ck_IsSwitchWallpaper.CheckRectColor = Color.FromArgb(155, pes.BackColor);
                         Ck_IsSwitchWallpaper.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
-                        Ck_IsSwitchWallpaper.Checked = pes.IsSwitchWallpaper;
+                        Ck_IsSwitchWallpaper.Checked = pes.pes.IsSwitchWallpaper;
                         Ck_IsSwitchWallpaper.CheckedChanged += Ck_IsSwitchWallpaper_CheckedChanged;
                         break;
                     case "db_timedw":
                         ComboBox_InterValTimeUnit = item as DuiComboBox;
                         ComboBox_InterValTimeUnit.BackColor = Color.FromArgb(155, pes.BackColor);
                         ComboBox_InterValTimeUnit.SelectedIndexChanged += ComboBox_InterValTimeUnit_SelectedIndexChanged;
-                        if (pes.InterValTime < 60)
+                        if (pes.pes.InterValTime < 60)
                         {
                             ComboBox_InterValTimeUnit.SelectedIndex = 0;
                         }
-                        else if (pes.InterValTime < 3600)
+                        else if (pes.pes.InterValTime < 3600)
                         {
                             ComboBox_InterValTimeUnit.SelectedIndex = 1;
                         }
@@ -488,7 +494,7 @@ namespace BridImage
                             Button_SwitchWallpaperType.BackgroundImage = Properties.Resources.btn_n;
                             Button_SwitchWallpaperType.IsPureColor = false;
                             Button_SwitchWallpaperType.Tag = false.ToString();
-                            foreach (var WallpaperType in pes.SwitchWallpaperTypes)
+                            foreach (var WallpaperType in pes.pes.SwitchWallpaperTypes)
                             {
                                 if (item.Name.Replace("btn_", "") == WallpaperType.ToString())
                                 {
@@ -516,7 +522,7 @@ namespace BridImage
                         RadioButton_picSize.CheckFlagColor = Color.FromArgb(155, pes.BackColor);
                         RadioButton_picSize.CheckRectColor = Color.FromArgb(155, pes.BackColor);
                         RadioButton_picSize.CheckedChanged += RadioButton_picSize_CheckedChanged;
-                        if ("rd_SizeFor" + (pes.PicSize == "default" ? "Thumb" : pes.PicSize) == item.Name)
+                        if ("rd_SizeFor" + (pes.pes.PicSize == "default" ? "Thumb" : pes.pes.PicSize) == item.Name)
                         {
                             RadioButton_picSize.Checked = true;
                         }
@@ -528,7 +534,7 @@ namespace BridImage
                     case "lb_downloadPath":
                         lb_downloadPath = item as DuiLabel;
                         lb_downloadPath.BackColor = Color.FromArgb(155, pes.BackColor);
-                        lb_downloadPath.Text = pes.DownloadPath;
+                        lb_downloadPath.Text = pes.pes.DownloadPath;
                         lb_downloadPath.TextAlign = ContentAlignment.MiddleLeft;
                         lb_downloadPath.Invalidated += Lb_downloadPath_Invalidated;
                         break;
@@ -540,7 +546,7 @@ namespace BridImage
                     case "lb_cachePath":
                         lb_cachePath = item as DuiLabel;
                         lb_cachePath.BackColor = Color.FromArgb(155, pes.BackColor);
-                        lb_cachePath.Text = pes.CachePath;
+                        lb_cachePath.Text = pes.pes.CachePath;
                         lb_cachePath.TextAlign = ContentAlignment.MiddleLeft;
                         lb_cachePath.Invalidated += Lb_cachePath_Invalidated;
                         break;
@@ -568,7 +574,7 @@ namespace BridImage
                 {
                     case "lb_ver":
                         lb_ver = item as DuiLabel;
-                        lb_ver.Text = pes.VerNo;
+                        lb_ver.Text = pes.pes.VerNo;
                         break;
                     case "btn_update":
                         btn_update = item as DuiButton;
@@ -603,6 +609,23 @@ namespace BridImage
             }
         }
 
+        public Image BackGroundSkin
+        {
+            get { return BackImg; }
+            set
+            {
+                BackImg = value;
+                if (value != null)
+                {
+                    Rectangle a = new Rectangle(new Point(), this.Size); this.BackgroundImage = BridImage.Utils.ImageVague.GaussianBlur(new Bitmap(BackImg), ref a, 20, false);
+                }
+                else
+                {
+                    this.BackgroundImage = null;
+                }
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+        }
         private void recoverDefaultStyle(LayeredLabel dl)
         {
             switch (dl.Name)

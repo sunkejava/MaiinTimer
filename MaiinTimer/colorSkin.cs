@@ -47,7 +47,7 @@ namespace BridImage
         private void Dlc_MouseClick(object sender, DuiMouseEventArgs e)
         {
             DuiLabel dlc = sender as DuiLabel;
-            //cpes.defaultColor = Color.FromArgb((int)(255 * (1 - tkb_skin.Value)), dlc.BackColor); 
+            cpes.BackGroundSkin = null;
             cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), dlc.BackColor);
             cpes.pes.Opacity = tkb_skin.Value.ToString();
             cpes.setSkinStyle();
@@ -66,7 +66,14 @@ namespace BridImage
         private void tkb_skin_MouseUp(object sender, MouseEventArgs e)
         {
             lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
-            cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), cpes.pes.BackColor.R, cpes.pes.BackColor.G, cpes.pes.BackColor.B);
+            if (cpes.BackGroundSkin != null)
+            {
+                cpes.pes.BackColor = Color.Transparent;
+            }
+            else
+            {
+                cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), cpes.pes.BackColor);
+            }
             cpes.pes.Opacity = tkb_skin.Value.ToString();
             cpes.setSkinStyle();
         }
@@ -74,9 +81,71 @@ namespace BridImage
         private void tkb_skin_ValueChanged(object sender, EventArgs e)
         {
             lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
-            cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), cpes.pes.BackColor.R, cpes.pes.BackColor.G, cpes.pes.BackColor.B);
+            if (cpes.BackGroundSkin != null)
+            {
+                cpes.pes.BackColor = Color.Transparent; 
+            }
+            else
+            {
+                cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), cpes.pes.BackColor);
+            }
             cpes.pes.Opacity = tkb_skin.Value.ToString();
             cpes.setSkinStyle();
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            PictureBox pc = sender as PictureBox;
+            switch (pc.Name)
+            {
+                case "pictureBox1":
+                    cpes.BackGroundSkin = Properties.Resources._0;
+                    break;
+                case "pictureBox2":
+                    cpes.BackGroundSkin = Properties.Resources._5;
+                    break;
+                case "pictureBox3":
+                    cpes.BackGroundSkin = Properties.Resources._4;
+                    break;
+                case "pictureBox4":
+                    cpes.BackGroundSkin = Properties.Resources._3;
+                    break;
+                case "pictureBox5":
+                    cpes.BackGroundSkin = Properties.Resources._21;
+                    break;
+                case "pictureBox7":
+                    cpes.BackGroundSkin = Properties.Resources._1;
+                    break;
+                case "pictureBox8":
+                    cpes.BackGroundSkin = Properties.Resources._2;
+                    break;
+                case "pictureBox9":
+                    cpes.BackGroundSkin = Properties.Resources._2;
+                    break;
+                default:
+                    cpes.BackGroundSkin = Properties.Resources._6;
+                    break;
+            }
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "图片文件|*.png;*.jpg;*.bmp";
+            op.Title = "打开图片";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                cpes.BackGroundSkin = Image.FromFile(op.FileName);
+            }
+        }
+        private void pictureBox17_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), colorDialog1.Color);
+                cpes.pes.Opacity = tkb_skin.Value.ToString();
+                cpes.setSkinStyle();
+            }
         }
     }
 }

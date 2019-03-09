@@ -53,6 +53,7 @@ namespace BridImage
         delegate void AsynScrollUI(object sender, EventArgs e);//委托ListBox刷新事件
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
         public PropertsUtils pes = new PropertsUtils();
+        public Image BackImg = null;
         int x, y;//记录鼠标进入控件时的位置
         #region 窗体控件事件
         public BackForm()
@@ -181,7 +182,7 @@ namespace BridImage
 
         private void btn_set_Click(object sender, EventArgs e)
         {
-            SetForm sf = new SetForm(pes);
+            SetForm sf = new SetForm(this);
             sf.Show();
         }
 
@@ -422,6 +423,28 @@ namespace BridImage
         #endregion
 
         #region 自定义事件
+
+        public Image BackGroundSkin
+        {
+            get { return BackImg; }
+            set
+            {
+                BackImg = value;
+                if (value != null)
+                {
+                    Rectangle a = new Rectangle(new Point(), BackImg.Size);
+                    this.BackgroundImage = BridImage.Utils.ImageVague.GaussianBlur(new Bitmap(BackImg), ref a, 20, false);
+                    layeredPanel_top.BackColor = Color.Transparent;
+                    Panel_Bottom.BackColor = Color.Transparent;
+                    List_Main.RefreshList();
+                }
+                else
+                {
+                    this.BackgroundImage = null;
+                }
+            }
+        }
+
         /// <summary>
         /// 更新列表
         /// </summary>

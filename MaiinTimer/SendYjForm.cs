@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using BridImage.Utils;
 using LayeredSkin.DirectUI;
 using LayeredSkin.Forms;
@@ -17,12 +18,13 @@ namespace BridImage
         DuiRadioButton dr_fklx = null;
         DuiTextBox tb_fkyj = null;
         DuiTextBox tb_lxfs = null;
-        PropertsUtils pes = null;
+        BackForm pes = null;
         DuiLabel dl_yjlen = null;
+        public Image BackImg = null;
         //相关信息
         string msgTitle = "";
 
-        public SendYjForm(PropertsUtils cps)
+        public SendYjForm(BackForm cps)
         {
             pes = cps;
             InitializeComponent();
@@ -46,6 +48,10 @@ namespace BridImage
         private void SendYjForm_Load(object sender, EventArgs e)
         {
             this.BackColor = pes.BackColor;
+            if (pes.BackGroundSkin != null)
+            {
+                BackGroundSkin = pes.BackGroundSkin;
+            }
             btn_send.BaseColor = pes.BackColor;
             foreach (DuiBaseControl item in panel_main.DUIControls)
             {
@@ -75,6 +81,23 @@ namespace BridImage
             }
         }
 
+        public Image BackGroundSkin
+        {
+            get { return BackImg; }
+            set
+            {
+                BackImg = value;
+                if (value != null)
+                {
+                    Rectangle a = new Rectangle(new Point(), this.Size); this.BackgroundImage = BridImage.Utils.ImageVague.GaussianBlur(new Bitmap(BackImg), ref a, 20, false);
+                }
+                else
+                {
+                    this.BackgroundImage = null;
+                }
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+        }
         private void Tb_fkyj_Invalidated(object sender, System.Windows.Forms.InvalidateEventArgs e)
         {
             DuiTextBox dtb = sender as DuiTextBox;
