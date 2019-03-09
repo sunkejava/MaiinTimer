@@ -69,6 +69,49 @@ namespace BridImage
             scorllbar.BackColor = defaultColor;
             Panel_Bottom.BackColor = defaultColor;
             Panel_load.BackColor = Color.FromArgb(125, defaultColor.R, defaultColor.G, defaultColor.B);
+            string bkimg = pes.BackImg.Replace("comboboxpb", "pictureBox");
+            switch (bkimg)
+            {
+                case "pictureBox1":
+                    BackGroundSkin = Properties.Resources._0;
+                    pes.BackImg = "comboboxpb1";
+                    break;
+                case "pictureBox2":
+                    BackGroundSkin = Properties.Resources._5;
+                    pes.BackImg = "comboboxpb2";
+                    break;
+                case "pictureBox3":
+                    BackGroundSkin = Properties.Resources._4;
+                    pes.BackImg = "comboboxpb3";
+                    break;
+                case "pictureBox4":
+                    BackGroundSkin = Properties.Resources._3;
+                    pes.BackImg = "comboboxpb4";
+                    break;
+                case "pictureBox5":
+                    BackGroundSkin = Properties.Resources._21;
+                    pes.BackImg = "comboboxpb5";
+                    break;
+                case "pictureBox7":
+                    BackGroundSkin = Properties.Resources._1;
+                    pes.BackImg = "comboboxpb7";
+                    break;
+                case "pictureBox8":
+                    BackGroundSkin = Properties.Resources._2;
+                    pes.BackImg = "comboboxpb8";
+                    break;
+                case "pictureBox9":
+                    BackGroundSkin = Properties.Resources._6;
+                    pes.BackImg = "comboboxpb9";
+                    break;
+                default:
+                    if (!String.IsNullOrEmpty(bkimg))
+                    {
+                        BackGroundSkin = Image.FromFile(bkimg);
+                        pes.BackImg = "comboboxpb6";
+                    }
+                    break;
+            }
             List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)

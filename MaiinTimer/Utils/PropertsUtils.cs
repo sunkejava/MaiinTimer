@@ -29,6 +29,7 @@ namespace BridImage.Utils
         private Color backColor = Color.FromArgb(255, 92, 138);
         private string opacity = "1";
         private string verNo = "当前版本：1.2.0（201903011615）";
+        private string backImg = "";
         public PropertsUtils()
         {
             this.autoStart = Boolean.Parse(GetAppConfig("autoStart"));
@@ -41,6 +42,7 @@ namespace BridImage.Utils
             this.switchWallpaperTypes = new ArrayList(GetAppConfig("switchWallpaperTypes").Split(','));
             this.backColor = Color.FromArgb(int.Parse(GetAppConfig("backColor")));
             this.opacity = GetAppConfig("opacity");
+            this.backImg = GetAppConfig("backImg");
         }
         /// <summary>
         /// 是否开机自动启动
@@ -137,6 +139,14 @@ namespace BridImage.Utils
                 verNo = value;
             }
         }
+        /// <summary>
+        /// 背景图
+        /// </summary>
+        public string BackImg
+        {
+            get { return backImg; }
+            set { backImg = value; }
+        }
 
         /// <summary>
         /// 根据Key值获取value值
@@ -196,6 +206,7 @@ namespace BridImage.Utils
             UpdateAppConfig("switchWallpaperTypes", string.Join(",", (string[])switchWallpaperTypes.ToArray(typeof(string))));
             UpdateAppConfig("backColor", backColor.ToArgb().ToString());
             UpdateAppConfig("opacity", opacity.ToString());
+            UpdateAppConfig("backImg", backImg.ToString());
         }
     }
 }

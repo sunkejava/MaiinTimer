@@ -14,6 +14,7 @@ namespace BridImage
     public partial class colorSkin : LayeredForm
     {
         BackForm cpes = null;
+        bool dialoga = false;
         public colorSkin(BackForm pes)
         {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace BridImage
         {
             DuiLabel dlc = sender as DuiLabel;
             cpes.BackGroundSkin = null;
+            cpes.pes.BackImg = "";
             cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), dlc.BackColor);
             cpes.pes.Opacity = tkb_skin.Value.ToString();
             cpes.setSkinStyle();
@@ -55,7 +57,10 @@ namespace BridImage
 
         private void colorSkin_Deactivate(object sender, EventArgs e)
         {
-            Close();
+            if (!dialoga)
+            {
+                Close();
+            }
         }
 
         private void btn_skinclose_Click(object sender, EventArgs e)
@@ -100,51 +105,64 @@ namespace BridImage
             {
                 case "pictureBox1":
                     cpes.BackGroundSkin = Properties.Resources._0;
+                    cpes.pes.BackImg = "comboboxpb1";
                     break;
                 case "pictureBox2":
                     cpes.BackGroundSkin = Properties.Resources._5;
+                    cpes.pes.BackImg = "comboboxpb2";
                     break;
                 case "pictureBox3":
                     cpes.BackGroundSkin = Properties.Resources._4;
+                    cpes.pes.BackImg = "comboboxpb3";
                     break;
                 case "pictureBox4":
                     cpes.BackGroundSkin = Properties.Resources._3;
+                    cpes.pes.BackImg = "comboboxpb4";
                     break;
                 case "pictureBox5":
                     cpes.BackGroundSkin = Properties.Resources._21;
+                    cpes.pes.BackImg = "comboboxpb5";
                     break;
                 case "pictureBox7":
                     cpes.BackGroundSkin = Properties.Resources._1;
+                    cpes.pes.BackImg = "comboboxpb7";
                     break;
                 case "pictureBox8":
                     cpes.BackGroundSkin = Properties.Resources._2;
+                    cpes.pes.BackImg = "comboboxpb8";
                     break;
                 case "pictureBox9":
-                    cpes.BackGroundSkin = Properties.Resources._2;
+                    cpes.BackGroundSkin = Properties.Resources._6;
+                    cpes.pes.BackImg = "comboboxpb9";
                     break;
                 default:
-                    cpes.BackGroundSkin = Properties.Resources._6;
+                    
                     break;
             }
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
+            dialoga = true;
             OpenFileDialog op = new OpenFileDialog();
             op.Filter = "图片文件|*.png;*.jpg;*.bmp";
             op.Title = "打开图片";
             if (op.ShowDialog() == DialogResult.OK)
             {
                 cpes.BackGroundSkin = Image.FromFile(op.FileName);
+                cpes.pes.BackImg = op.FileName;
+                dialoga = false;
             }
         }
         private void pictureBox17_Click(object sender, EventArgs e)
         {
+            dialoga = true;
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), colorDialog1.Color);
                 cpes.pes.Opacity = tkb_skin.Value.ToString();
                 cpes.setSkinStyle();
+                dialoga = false;
             }
         }
     }
