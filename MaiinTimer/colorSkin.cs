@@ -59,12 +59,14 @@ namespace BridImage
         {
             if (!dialoga)
             {
+                cpes.pes.saveConfig();
                 Close();
             }
         }
 
         private void btn_skinclose_Click(object sender, EventArgs e)
         {
+            cpes.pes.saveConfig();
             Close();
         }
 
@@ -101,44 +103,9 @@ namespace BridImage
         private void panel1_Click(object sender, EventArgs e)
         {
             PictureBox pc = sender as PictureBox;
-            switch (pc.Name)
-            {
-                case "pictureBox1":
-                    cpes.BackGroundSkin = Properties.Resources._0;
-                    cpes.pes.BackImg = "comboboxpb1";
-                    break;
-                case "pictureBox2":
-                    cpes.BackGroundSkin = Properties.Resources._5;
-                    cpes.pes.BackImg = "comboboxpb2";
-                    break;
-                case "pictureBox3":
-                    cpes.BackGroundSkin = Properties.Resources._4;
-                    cpes.pes.BackImg = "comboboxpb3";
-                    break;
-                case "pictureBox4":
-                    cpes.BackGroundSkin = Properties.Resources._3;
-                    cpes.pes.BackImg = "comboboxpb4";
-                    break;
-                case "pictureBox5":
-                    cpes.BackGroundSkin = Properties.Resources._21;
-                    cpes.pes.BackImg = "comboboxpb5";
-                    break;
-                case "pictureBox7":
-                    cpes.BackGroundSkin = Properties.Resources._1;
-                    cpes.pes.BackImg = "comboboxpb7";
-                    break;
-                case "pictureBox8":
-                    cpes.BackGroundSkin = Properties.Resources._2;
-                    cpes.pes.BackImg = "comboboxpb8";
-                    break;
-                case "pictureBox9":
-                    cpes.BackGroundSkin = Properties.Resources._6;
-                    cpes.pes.BackImg = "comboboxpb9";
-                    break;
-                default:
-                    
-                    break;
-            }
+            cpes.pes.BackImg = pc.Name;
+            cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), 255, 92, 138);
+            cpes.setSkinStyle();
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
@@ -151,6 +118,8 @@ namespace BridImage
             {
                 cpes.BackGroundSkin = Image.FromFile(op.FileName);
                 cpes.pes.BackImg = op.FileName;
+                cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), 255, 92, 138);
+                cpes.setSkinStyle();
                 dialoga = false;
             }
         }
@@ -160,6 +129,7 @@ namespace BridImage
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), colorDialog1.Color);
+                cpes.pes.BackImg = "";
                 cpes.pes.Opacity = tkb_skin.Value.ToString();
                 cpes.setSkinStyle();
                 dialoga = false;

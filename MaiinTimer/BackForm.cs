@@ -108,10 +108,11 @@ namespace BridImage
                     if (!String.IsNullOrEmpty(bkimg))
                     {
                         BackGroundSkin = Image.FromFile(bkimg);
-                        pes.BackImg = "comboboxpb6";
+                        pes.BackImg = bkimg;
                     }
                     break;
             }
+            
             List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)
