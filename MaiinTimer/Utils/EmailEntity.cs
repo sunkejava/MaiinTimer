@@ -144,9 +144,9 @@ namespace BridImage.Utils
                 return true;
 
             }
-            catch (System.Net.Mail.SmtpException)
+            catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
 
         }
