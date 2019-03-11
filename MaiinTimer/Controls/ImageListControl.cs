@@ -142,15 +142,28 @@ namespace BridImage.Controls
             DuiButton dbn = sender as DuiButton;
             string url = dbn.Tag.ToString().Split('|')[1].ToString();
             string fileName = "";
-            if (string.IsNullOrEmpty(pes.DownloadPath))
+            if (dbn.Name.Contains("btn_Setting_"))
             {
-                fileName = AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\";
+                if (string.IsNullOrEmpty(pes.CachePath))
+                {
+                    fileName = AppDomain.CurrentDomain.BaseDirectory + @"CacheWallpaper\";
+                }
+                else
+                {
+                    fileName = pes.CachePath + @"CacheWallpaper\";
+                }
             }
             else
             {
-                fileName = pes.DownloadPath + @"ImageWallpaper\";
+                if (string.IsNullOrEmpty(pes.DownloadPath))
+                {
+                    fileName = AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\";
+                }
+                else
+                {
+                    fileName = pes.DownloadPath + @"ImageWallpaper\";
+                }
             }
-            
             if (!Directory.Exists(fileName))
             {
                 Directory.CreateDirectory(fileName);

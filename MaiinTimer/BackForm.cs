@@ -15,6 +15,7 @@ using LayeredSkin.DirectUI;
 using LayeredSkin.Forms;
 using BridImage.Controls;
 using BridImage.Utils;
+using System.Collections;
 
 namespace BridImage
 {
@@ -44,6 +45,7 @@ namespace BridImage
         bool isSearch = false;//是否搜索
         bool isEnd = false;//是否为页尾
         bool isLoadData = false;//是否正在加载数据
+        ArrayList imgList = new ArrayList();
         int cheight = 0;
         EllipseControl ctEnd = new BridImage.Controls.EllipseControl();
         string nCount = "0";//当前类型可获取的图片总数
@@ -110,9 +112,13 @@ namespace BridImage
                         BackGroundSkin = Image.FromFile(bkimg);
                         pes.BackImg = bkimg;
                     }
+                    else {
+                        BackGroundSkin = null;
+                        pes.BackImg = "";
+                    }
                     break;
             }
-            
+            Thread thread = new Thread(() => setAutoBackPic());
             List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)
@@ -991,6 +997,38 @@ namespace BridImage
             }
         }
 
+        /// <summary>
+        /// 设置自动壁纸切换
+        /// </summary>
+        private void setAutoBackPic()
+        {
+            if (!pes.AutoStart)
+            {
+                return;
+            }
+            else
+            {
+                System.Windows.Forms.Timer amPic = new System.Windows.Forms.Timer();
+                amPic.Interval = pes.InterValTime * 1000;
+                amPic.Enabled = true;
+                amPic.Tick += AmPic_Tick;
+            }
+        }
+
+        private void AmPic_Tick(object sender, EventArgs e)
+        {
+            imgList.TrimToSize();
+            if (imgList.Count > 0)
+            {
+
+                imgList.Remove("");
+            }
+            else
+            {
+
+                imgList.Add("");
+            }
+        }
         #endregion
 
         #region 滚动条事件

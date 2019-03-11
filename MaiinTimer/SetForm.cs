@@ -27,9 +27,9 @@ namespace BridImage
         //DuiButton Button_SwitchWallpaperType = null;
         //下载设置控件
         DuiRadioButton RadioButton_picSize = null;
-        DuiLabel lb_downloadPath = null;
+        DuiTextBox lb_downloadPath = null;
         DuiButton btn_selectDownloadPath = null;
-        DuiLabel lb_cachePath = null;
+        DuiTextBox lb_cachePath = null;
         DuiButton btn_selectCachePath = null;
         DuiLabel lb_nowCacheSize = null;
         DuiLabel lb_clearCache = null;
@@ -531,11 +531,10 @@ namespace BridImage
                             RadioButton_picSize.Checked = false;
                         }
                         break;
-                    case "lb_downloadPath":
-                        lb_downloadPath = item as DuiLabel;
+                    case "text_downloadPath":
+                        lb_downloadPath = item as DuiTextBox;
                         lb_downloadPath.BackColor = Color.FromArgb(155, pes.pes.BackColor);
-                        lb_downloadPath.Text = pes.pes.DownloadPath;
-                        lb_downloadPath.TextAlign = ContentAlignment.MiddleLeft;
+                        lb_downloadPath.Text = (String.IsNullOrEmpty(pes.pes.DownloadPath) ? AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\" : pes.pes.DownloadPath);
                         lb_downloadPath.Invalidated += Lb_downloadPath_Invalidated;
                         break;
                     case "btn_selectDownloadPath":
@@ -543,11 +542,10 @@ namespace BridImage
                         btn_selectDownloadPath.Cursor = System.Windows.Forms.Cursors.Hand;
                         btn_selectDownloadPath.MouseClick += Btn_selectDownloadPath_MouseClick;
                         break;
-                    case "lb_cachePath":
-                        lb_cachePath = item as DuiLabel;
+                    case "text_cachePath":
+                        lb_cachePath = item as DuiTextBox;
                         lb_cachePath.BackColor = Color.FromArgb(155, pes.pes.BackColor);
-                        lb_cachePath.Text = pes.pes.CachePath;
-                        lb_cachePath.TextAlign = ContentAlignment.MiddleLeft;
+                        lb_cachePath.Text = (String.IsNullOrEmpty(pes.pes.CachePath) ? AppDomain.CurrentDomain.BaseDirectory + @"CacheWallpaper\" : pes.pes.CachePath);
                         lb_cachePath.Invalidated += Lb_cachePath_Invalidated;
                         break;
                     case "btn_selectCachePath":
