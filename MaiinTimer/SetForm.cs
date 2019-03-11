@@ -87,7 +87,7 @@ namespace BridImage
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            pes.pes.saveConfig();
+            saveConfig();
             this.Close();
         }
 
@@ -222,31 +222,6 @@ namespace BridImage
         }
 
         /// <summary>
-        /// 下载路径变化事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Lb_downloadPath_Invalidated(object sender, InvalidateEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(lb_downloadPath.Text))
-            {
-                pes.pes.DownloadPath = lb_downloadPath.Text;
-            }
-        }
-        /// <summary>
-        /// 缓存路径变化事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Lb_cachePath_Invalidated(object sender, InvalidateEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(lb_cachePath.Text))
-            {
-                pes.pes.CachePath = lb_cachePath.Text;
-            }
-        }
-
-        /// <summary>
         /// 清理缓存事件
         /// </summary>
         /// <param name="sender"></param>
@@ -262,19 +237,26 @@ namespace BridImage
         /// <param name="e"></param>
         private void Btn_selectDownloadPath_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            dialog.Description = "请选择下载目录";
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+                dialog.Description = "请选择下载目录";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    lb_downloadPath.Text = "请选择缓存保存目录";
+                    DuiTextBox bctb = getThisBaseControl(layeredPanel_xzsz, "text_downloadPath") as DuiTextBox;
+                    if (string.IsNullOrEmpty(dialog.SelectedPath))
+                    {
+                        lb_downloadPath.Text = "请选择缓存保存目录";
+                    }
+                    else
+                    {
+                        lb_downloadPath.Text = dialog.SelectedPath;
+                    }
                 }
-                else
-                {
-                    lb_downloadPath.Text = dialog.SelectedPath;
-                }
-                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         /// <summary>
@@ -284,18 +266,26 @@ namespace BridImage
         /// <param name="e"></param>
         private void Btn_selectCachePath_MouseClick(object sender, DuiMouseEventArgs e)
         {
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            dialog.Description = "请选择缓存目录";
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+                dialog.Description = "请选择缓存目录";
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    lb_cachePath.Text = "请选择缓存保存目录";
+                    DuiTextBox actb = getThisBaseControl(layeredPanel_xzsz, "text_cachePath") as DuiTextBox;
+                    if (string.IsNullOrEmpty(dialog.SelectedPath))
+                    {
+                        actb.Text = "请选择缓存保存目录";
+                    }
+                    else
+                    {
+                        actb.Text = dialog.SelectedPath;
+                    }
                 }
-                else
-                {
-                    lb_cachePath.Text = dialog.SelectedPath;
-                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -403,13 +393,14 @@ namespace BridImage
         #region 自定义事件
         private void setDefaultStyle()
         {
-            this.BackColor = Color.FromArgb(125, pes.pes.BackColor);
+            this.BackColor = Color.FromArgb(185, pes.pes.BackColor);
             if (pes.BackGroundSkin != null)
             {
                 BackGroundSkin = pes.BackGroundSkin;
+                this.BackColor = Color.Transparent;
             }
             btn_point.BaseColor = Color.Red;
-            btn_cg.ForeColor = Color.FromArgb(155, pes.pes.BackColor);
+            btn_cg.ForeColor = Color.FromArgb(255, pes.pes.BackColor);
             layeredPanel_cg.BringToFront();
             //常规界面相关处理
             foreach (DuiBaseControl item in layeredPanel_cg.DUIControls)
@@ -535,7 +526,6 @@ namespace BridImage
                         lb_downloadPath = item as DuiTextBox;
                         lb_downloadPath.BackColor = Color.FromArgb(155, pes.pes.BackColor);
                         lb_downloadPath.Text = (String.IsNullOrEmpty(pes.pes.DownloadPath) ? AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\" : pes.pes.DownloadPath);
-                        lb_downloadPath.Invalidated += Lb_downloadPath_Invalidated;
                         break;
                     case "btn_selectDownloadPath":
                         btn_selectDownloadPath = item as DuiButton;
@@ -546,7 +536,6 @@ namespace BridImage
                         lb_cachePath = item as DuiTextBox;
                         lb_cachePath.BackColor = Color.FromArgb(155, pes.pes.BackColor);
                         lb_cachePath.Text = (String.IsNullOrEmpty(pes.pes.CachePath) ? AppDomain.CurrentDomain.BaseDirectory + @"CacheWallpaper\" : pes.pes.CachePath);
-                        lb_cachePath.Invalidated += Lb_cachePath_Invalidated;
                         break;
                     case "btn_selectCachePath":
                         btn_selectCachePath = item as DuiButton;
@@ -665,6 +654,26 @@ namespace BridImage
             }
         }
 
+        private DuiBaseControl getThisBaseControl(LayeredPanel lp, string controlName)
+        {
+            DuiBaseControl cb = null;
+            foreach (DuiBaseControl item in lp.DUIControls)
+            {
+                if (item.Name == controlName)
+                {
+                    cb = item;
+                }
+            }
+            return cb;
+        }
+
+        private void saveConfig()
+        {
+            pes.pes.AutoStart = Ck_AutoStart.Checked;
+            pes.pes.DownloadPath = lb_downloadPath.Text;
+            pes.pes.CachePath = lb_cachePath.Text;
+            pes.pes.saveConfig();
+        }
         #endregion
     }
 }
