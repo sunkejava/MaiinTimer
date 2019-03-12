@@ -56,6 +56,7 @@ namespace BridImage
         delegate void AsynScrollUpdateUI(object sender, EventArgs e);//委托ListBoxValue更新事件
         public PropertsUtils pes = new PropertsUtils();
         public Image BackImg = null;
+        string SwitchWallpaperStartNos = "0";
         int x, y;//记录鼠标进入控件时的位置
         #region 窗体控件事件
         public BackForm()
@@ -1018,6 +1019,8 @@ namespace BridImage
         private void AmPic_Tick(object sender, EventArgs e)
         {
             imgList.TrimToSize();
+            var result = new Utils.Response<BridImg.ImageJson>();
+            
             if (imgList.Count > 0)
             {
 
@@ -1025,8 +1028,37 @@ namespace BridImage
             }
             else
             {
-
-                imgList.Add("");
+                foreach (var type in pes.SwitchWallpaperTypes)
+                {
+                    result.Result = bimg.getImageInfos(type.ToString(), SwitchWallpaperStartNos, "5");
+                    //result.Result = bimg.getImageInfos(type.ToString(), SwitchWallpaperStartNos, "5", tagName);
+                    foreach (BridImg.ImageInfo ci in result.Result.data)
+                    {
+                        switch (pes.PicSize)
+                        {
+                            case "default":
+                                imgList.Add(ci.url_thumb);
+                                break;
+                            case "1600900":
+                                imgList.Add(ci.img_1600_900);
+                                break;
+                            case "1440900":
+                                imgList.Add(ci.img_1440_900);
+                                break;
+                            case "12801024":
+                                imgList.Add(ci.img_1280_1024);
+                                break;
+                            case "1024768":
+                                imgList.Add(ci.img_1024_768);
+                                break;
+                            case "1280800":
+                                imgList.Add(ci.img_1280_800);
+                                break;
+                        }
+                    }
+                }
+                SwitchWallpaperStartNos = (int.Parse(SwitchWallpaperStartNos) + 1).ToString();
+                
             }
         }
         #endregion
