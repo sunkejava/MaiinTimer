@@ -4,6 +4,8 @@ using System.Collections;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
+using System.Net;
 
 namespace BridImage.Utils
 {
@@ -139,6 +141,44 @@ namespace BridImage.Utils
         }
         #endregion
 
+        #region 利用系统接口设置壁纸
+        [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
+        public static extern int SystemParametersInfo(
+                int uAction,
+                int uParam,
+                string lpvParam,
+                int fuWinIni
+                );
+        public static void setWallpaperApi(string strSavePath)
+        {
+            SystemParametersInfo(20, 1, strSavePath, 1);
+        }
+        #endregion
+
+        public static string DownloaImage(string fileName, string url)
+        {
+            try
+            {
+                WebRequest webreq = WebRequest.Create(url);
+                WebResponse webres = webreq.GetResponse();
+                Stream stream = webres.GetResponseStream();
+                Stream fileStream = new FileStream(fileName, FileMode.Create);
+                byte[] bArray = new byte[1024];
+                int size;
+                do
+                {
+                    size = stream.Read(bArray, 0, (int)bArray.Length);
+                    fileStream.Write(bArray, 0, size);
+                } while (size > 0);
+                fileStream.Close();
+                stream.Close();
+                return fileName;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("下载图片失败，原因为：" + ex.Message);
+            }
+        }
 
 
         #region 返回新图片尺寸

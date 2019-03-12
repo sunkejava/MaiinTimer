@@ -236,7 +236,7 @@ namespace BridImage.Controls
                 ImageSavePath = ImageSavePath + "\\" + new Uri(dp.Tag.ToString()).Segments[new Uri(dp.Tag.ToString()).Segments.Length-1];
                 bmpWallpaper.Save(ImageSavePath, ImageFormat.Jpeg);
                 stream.Close();
-                setWallpaperApi(ImageSavePath);
+                PicDeal.setWallpaperApi(ImageSavePath);
             }
             catch (Exception ex)
             {
@@ -507,19 +507,6 @@ namespace BridImage.Controls
                 throw new Exception("未搜索到内容，原因为：" + e.Message);
             }
         }
-        #region 利用系统接口设置壁纸
-        [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
-        public static extern int SystemParametersInfo(
-                int uAction,
-                int uParam,
-                string lpvParam,
-                int fuWinIni
-                );
-        public static void setWallpaperApi(string strSavePath)
-        {
-            SystemParametersInfo(20, 1, strSavePath, 1);
-        }
-        #endregion
 
         /// <summary>
         /// 获取图片并添加水印
@@ -627,7 +614,7 @@ namespace BridImage.Controls
                 stream.Close();
                 if (btnName.Contains("btn_Setting_"))
                 {
-                    Thread thread = new Thread(() => setWallpaperApi(fileName));
+                    Thread thread = new Thread(() => PicDeal.setWallpaperApi(fileName));
                     thread.Start();
                 }
                 else

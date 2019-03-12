@@ -1023,8 +1023,9 @@ namespace BridImage
             
             if (imgList.Count > 0)
             {
-
-                imgList.Remove("");
+                string imgUrl = imgList[0].ToString();
+                setAutoBack(imgUrl);
+                imgList.Remove(0);
             }
             else
             {
@@ -1058,8 +1059,31 @@ namespace BridImage
                     }
                 }
                 SwitchWallpaperStartNos = (int.Parse(SwitchWallpaperStartNos) + 1).ToString();
-                
+                string imgUrl = imgList[0].ToString();
+                setAutoBack(imgUrl);
+                imgList.Remove(0);
             }
+        }
+
+
+        private void setAutoBack(string imgUrl)
+        {
+            string fileName = "";
+            if (string.IsNullOrEmpty(pes.CachePath))
+            {
+                fileName = AppDomain.CurrentDomain.BaseDirectory + @"CacheWallpaper\";
+            }
+            else
+            {
+                fileName = pes.CachePath + @"CacheWallpaper\";
+            }
+            if (!Directory.Exists(fileName))
+            {
+                Directory.CreateDirectory(fileName);
+            }
+            fileName = fileName + new Uri(imgUrl).Segments[new Uri(imgUrl).Segments.Length - 1];
+            fileName = PicDeal.DownloaImage(fileName, imgUrl);
+            PicDeal.setWallpaperApi(fileName);
         }
         #endregion
 
