@@ -119,8 +119,9 @@ namespace BridImage
                     }
                     break;
             }
-            Thread thread = new Thread(() => setAutoBackPic());
-            thread.Start();
+            //Thread thread = new Thread(() => setAutoBackPic());
+            //thread.Start();
+            setAutoBackPic();
             List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)
@@ -1004,7 +1005,7 @@ namespace BridImage
         /// </summary>
         private void setAutoBackPic()
         {
-            if (!pes.AutoStart)
+            if (!pes.IsSwitchWallpaper)
             {
                 return;
             }

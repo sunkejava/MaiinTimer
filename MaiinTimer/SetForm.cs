@@ -168,22 +168,22 @@ namespace BridImage
         /// <param name="e"></param>
         private void TextBox_InterValTime_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(TextBox_InterValTime.Text))
-            {
-                int interVal = int.Parse(TextBox_InterValTime.Text);
-                switch (ComboBox_InterValTimeUnit.SelectedIndex)
-                {
-                    case 0:
-                        pes.pes.InterValTime = interVal;
-                        break;
-                    case 1:
-                        pes.pes.InterValTime = interVal * 60;
-                        break;
-                    default:
-                        pes.pes.InterValTime = interVal * 60 * 60;
-                        break;
-                }
-            }
+            //if (!string.IsNullOrEmpty(TextBox_InterValTime.Text))
+            //{
+            //    int interVal = int.Parse(TextBox_InterValTime.Text);
+            //    switch (ComboBox_InterValTimeUnit.SelectedIndex)
+            //    {
+            //        case 0:
+            //            pes.pes.InterValTime = interVal;
+            //            break;
+            //        case 1:
+            //            pes.pes.InterValTime = interVal * 60;
+            //            break;
+            //        default:
+            //            pes.pes.InterValTime = interVal * 60 * 60;
+            //            break;
+            //    }
+            //}
         }
 
         /// <summary>
@@ -459,14 +459,17 @@ namespace BridImage
                         if (pes.pes.InterValTime < 60)
                         {
                             ComboBox_InterValTimeUnit.SelectedIndex = 0;
+                            TextBox_InterValTime.Text = pes.pes.InterValTime.ToString();
                         }
                         else if (pes.pes.InterValTime < 3600)
                         {
                             ComboBox_InterValTimeUnit.SelectedIndex = 1;
+                            TextBox_InterValTime.Text = (pes.pes.InterValTime/60).ToString();
                         }
                         else
                         {
                             ComboBox_InterValTimeUnit.SelectedIndex = 2;
+                            TextBox_InterValTime.Text = (pes.pes.InterValTime/3600).ToString();
                         }
                         break;
                     case "tb_timeStr":
@@ -474,6 +477,7 @@ namespace BridImage
                         TextBox_InterValTime.BackColor = Color.FromArgb(155, pes.pes.BackColor);
                         TextBox_InterValTime.AutoHeight = true;
                         TextBox_InterValTime.Invalidated += TextBox_InterValTime_TextChanged;
+                        //TextBox_InterValTime.Text = pes.pes.InterValTime.ToString();
                         break;
                     default:
                         if (item is DuiButton && item.Name.Contains("btn_"))
@@ -671,7 +675,21 @@ namespace BridImage
         {
             pes.pes.AutoStart = Ck_AutoStart.Checked;
             pes.pes.DownloadPath = lb_downloadPath.Text;
+            pes.pes.IsSwitchWallpaper = Ck_IsSwitchWallpaper.Checked;
             pes.pes.CachePath = lb_cachePath.Text;
+            int interVal = int.Parse(TextBox_InterValTime.Text);
+            switch (ComboBox_InterValTimeUnit.SelectedIndex)
+            {
+                case 0:
+                    pes.pes.InterValTime = interVal;
+                    break;
+                case 1:
+                    pes.pes.InterValTime = interVal * 60;
+                    break;
+                default:
+                    pes.pes.InterValTime = interVal * 60 * 60;
+                    break;
+            }
             pes.pes.saveConfig();
         }
         #endregion
