@@ -150,7 +150,7 @@ namespace BridImage.Controls
                 }
                 else
                 {
-                    fileName = pes.CachePath + @"CacheWallpaper\";
+                    fileName = pes.CachePath.Replace("\\CacheWallpaper", "") + @"CacheWallpaper\";
                 }
             }
             else
@@ -161,7 +161,7 @@ namespace BridImage.Controls
                 }
                 else
                 {
-                    fileName = pes.DownloadPath + @"ImageWallpaper\";
+                    fileName = pes.DownloadPath.Replace("\\ImageWallpaper", "") + @"ImageWallpaper\";
                 }
             }
             if (!Directory.Exists(fileName))

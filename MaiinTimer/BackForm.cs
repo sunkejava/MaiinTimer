@@ -120,6 +120,7 @@ namespace BridImage
                     break;
             }
             Thread thread = new Thread(() => setAutoBackPic());
+            thread.Start();
             List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)
