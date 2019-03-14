@@ -1027,7 +1027,7 @@ namespace BridImage
             {
                 string imgUrl = imgList[0].ToString();
                 setAutoBack(imgUrl);
-                imgList.Remove(0);
+                imgList.Remove(imgUrl);
             }
             else
             {
@@ -1060,10 +1060,13 @@ namespace BridImage
                         }
                     }
                 }
-                SwitchWallpaperStartNos = (int.Parse(SwitchWallpaperStartNos) + 1).ToString();
-                string imgUrl = imgList[0].ToString();
-                setAutoBack(imgUrl);
-                imgList.Remove(0);
+                SwitchWallpaperStartNos = (int.Parse(SwitchWallpaperStartNos) + 5).ToString();
+                if (imgList.Count > 0)
+                {
+                    string imgUrl = imgList[0].ToString();
+                    setAutoBack(imgUrl);
+                    imgList.Remove(imgUrl);
+                }
             }
         }
 
@@ -1077,7 +1080,7 @@ namespace BridImage
             }
             else
             {
-                fileName = pes.CachePath + @"CacheWallpaper\";
+                fileName = pes.CachePath.Replace("\\CacheWallpaper", "") + @"CacheWallpaper\";
             }
             if (!Directory.Exists(fileName))
             {
