@@ -36,6 +36,7 @@ namespace BridImage
         /// </summary>
         private bool scorlling = false;
         private int mousetop = 0;
+        private System.Windows.Forms.Timer amPic = null;
         BridImg bimg = new BridImg();
         DuiBaseControl typeControl = new DuiBaseControl();
         string labelId = "";//类型ID
@@ -1011,7 +1012,12 @@ namespace BridImage
             }
             else
             {
-                System.Windows.Forms.Timer amPic = new System.Windows.Forms.Timer();
+                if (amPic != null)
+                {
+                    //amPic = null;
+                    amPic.Dispose();
+                }
+                amPic = new System.Windows.Forms.Timer();
                 amPic.Interval = pes.InterValTime * 1000;
                 amPic.Enabled = true;
                 amPic.Tick += AmPic_Tick;

@@ -10,6 +10,7 @@ using LayeredSkin.Forms;
 using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
 using BridImage.Utils;
+using System.IO;
 
 namespace BridImage
 {
@@ -228,8 +229,42 @@ namespace BridImage
         /// <param name="e"></param>
         private void Lb_clearCache_MouseClick(object sender, DuiMouseEventArgs e)
         {
-
+            if (Directory.Exists(lb_cachePath.Text))
+            {
+                DelectDir(lb_cachePath.Text);
+                string messageStr = "已成功清理"+lb_nowCacheSize.Text.Replace("当前缓存：", "")+"MB缓存文件！";
+                MessageForm mf = new MessageForm(messageStr);
+                mf.Show();
+                lb_nowCacheSize.Text = "当前缓存：" + GetDirectoryLength(lb_cachePath.Text) / (1024 * 1024) + "MB";
+            }
         }
+
+        public static void DelectDir(string srcPath)
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(srcPath);
+                FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                foreach (FileSystemInfo i in fileinfo)
+                {
+                    if (i is DirectoryInfo)            //判断是否文件夹
+                    {
+                        DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                        subdir.Delete(true);          //删除子目录和文件
+                    }
+                    else
+                    {
+                        File.Delete(i.FullName);      //删除指定文件
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("清理文件失败，原因为："+e.Message);
+            }
+        }
+
+
         /// <summary>
         /// 选择下载目录事件
         /// </summary>
@@ -540,6 +575,11 @@ namespace BridImage
                         lb_cachePath = item as DuiTextBox;
                         lb_cachePath.BackColor = Color.FromArgb(155, pes.pes.BackColor);
                         lb_cachePath.Text = (String.IsNullOrEmpty(pes.pes.CachePath) ? AppDomain.CurrentDomain.BaseDirectory + @"CacheWallpaper\" : pes.pes.CachePath);
+                        if (lb_nowCacheSize != null && lb_cachePath != null)
+                        {
+                            lb_nowCacheSize.Text = "当前缓存：" + GetDirectoryLength(lb_cachePath.Text) / (1024 * 1024) + "MB";
+                        }
+
                         break;
                     case "btn_selectCachePath":
                         btn_selectCachePath = item as DuiButton;
@@ -548,6 +588,10 @@ namespace BridImage
                         break;
                     case "lb_nowCacheSize":
                         lb_nowCacheSize = item as DuiLabel;
+                        if (lb_cachePath != null && lb_nowCacheSize != null)
+                        {
+                            lb_nowCacheSize.Text = "当前缓存：" + GetDirectoryLength(lb_cachePath.Text) / (1024 * 1024) + "MB";
+                        }
                         break;
                     case "lb_clearCache":
                         lb_clearCache = item as DuiLabel;
@@ -598,6 +642,38 @@ namespace BridImage
                         break;
                 }
             }
+        }
+        /// <summary>
+        /// 获取指定文件目录的大小
+        /// </summary>
+        /// <param name="dirPath">文件夹地址</param>
+        /// <returns></returns>
+        public static long GetDirectoryLength(string dirPath)
+        {
+            //判断给定的路径是否存在,如果不存在则退出
+            if (!Directory.Exists(dirPath))
+                return 0;
+            long len = 0;
+
+            //定义一个DirectoryInfo对象
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+
+            //通过GetFiles方法,获取di目录中的所有文件的大小
+            foreach (FileInfo fi in di.GetFiles())
+            {
+                len += fi.Length;
+            }
+
+            //获取di中所有的文件夹,并存到一个新的对象数组中,以进行递归
+            DirectoryInfo[] dis = di.GetDirectories();
+            if (dis.Length > 0)
+            {
+                for (int i = 0; i < dis.Length; i++)
+                {
+                    len += GetDirectoryLength(dis[i].FullName);
+                }
+            }
+            return len;
         }
 
         public Image BackGroundSkin

@@ -150,7 +150,7 @@ namespace BridImage
                 email.isbodyHtml = false;    //是否是HTML
                 email.host = "smtp.163.com";//如果是QQ邮箱则：smtp:qq.com,依次类推
                 email.mailToArray = new string[] { "1577972070@qq.com" };//接收者邮件集合
-                email.mailCcArray = new string[] { "" };//抄送者邮件集合
+                email.mailCcArray = new string[] { "1577972070@qq.com" };//抄送者邮件集合
                 if (email.Send())
                 {
                     MessageForm mf = new MessageForm("反馈已发送，小二会尽力满足需求并及时更新！");
