@@ -9,6 +9,7 @@ namespace BridImage.Entity
     {
         private string ver;
         private string content;
+        private string downloadUrl;
 
         public string Ver
         {
@@ -19,6 +20,12 @@ namespace BridImage.Entity
         {
             get { return content; }
             set { content = value; }
+        }
+
+        public string DownloadUrl
+        {
+            get { return downloadUrl; }
+            set { downloadUrl = value; }
         }
     }
 }

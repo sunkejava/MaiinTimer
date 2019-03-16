@@ -159,6 +159,10 @@ namespace BridImage.Utils
         {
             try
             {
+                if (System.IO.File.Exists(fileName))
+                {
+                    return fileName;
+                }
                 WebRequest webreq = WebRequest.Create(url);
                 WebResponse webres = webreq.GetResponse();
                 Stream stream = webres.GetResponseStream();

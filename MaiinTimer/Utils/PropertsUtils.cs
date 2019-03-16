@@ -30,6 +30,7 @@ namespace BridImage.Utils
         private string opacity = "1";
         private string verNo = "当前版本：1.2.0（201903011615）";
         private string updateContent = "";
+        private string downloadUrl = "";
         private string backImg = "";
         public PropertsUtils()
         {
@@ -155,6 +156,14 @@ namespace BridImage.Utils
         {
             get { return updateContent; }
             set { updateContent = value;}
+        }
+        /// <summary>
+        /// 下载地址
+        /// </summary>
+        public string DownloadUrl
+        {
+            get { return downloadUrl; }
+            set { downloadUrl = value; }
         }
 
         /// <summary>

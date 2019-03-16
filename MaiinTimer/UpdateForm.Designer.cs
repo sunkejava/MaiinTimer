@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateForm));
-            LayeredSkin.DirectUI.DuiTextBox duiTextBox3 = new LayeredSkin.DirectUI.DuiTextBox();
+            LayeredSkin.DirectUI.DuiTextBox duiTextBox1 = new LayeredSkin.DirectUI.DuiTextBox();
             this.layeredPanel_close = new LayeredSkin.Controls.LayeredPanel();
             this.btn_close = new LayeredSkin.Controls.LayeredButton();
-            this.customHxjdt = new BridImage.Controls.CustomHxjdtControl();
             this.layeredBaseControl1 = new LayeredSkin.Controls.LayeredBaseControl();
+            this.customHxjdt = new BridImage.Controls.CustomHxjdtControl();
             this.layeredPanel_close.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +94,82 @@
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             this.btn_close.MouseEnter += new System.EventHandler(this.btn_close_MouseEnter);
             // 
+            // layeredBaseControl1
+            // 
+            this.layeredBaseControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.layeredBaseControl1.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.layeredBaseControl1.Borders.BottomWidth = 1;
+            this.layeredBaseControl1.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.layeredBaseControl1.Borders.LeftWidth = 1;
+            this.layeredBaseControl1.Borders.RightColor = System.Drawing.Color.Empty;
+            this.layeredBaseControl1.Borders.RightWidth = 1;
+            this.layeredBaseControl1.Borders.TopColor = System.Drawing.Color.Empty;
+            this.layeredBaseControl1.Borders.TopWidth = 1;
+            this.layeredBaseControl1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredBaseControl1.Canvas")));
+            duiTextBox1.AutoHeight = false;
+            duiTextBox1.AutoSize = false;
+            duiTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            duiTextBox1.BackgroundImage = null;
+            duiTextBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            duiTextBox1.BackgroundRender = null;
+            duiTextBox1.BitmapCache = false;
+            duiTextBox1.BorderPath = null;
+            duiTextBox1.BorderRender = null;
+            duiTextBox1.Borders.BottomColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.BottomWidth = 1;
+            duiTextBox1.Borders.LeftColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.LeftWidth = 1;
+            duiTextBox1.Borders.RightColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.RightWidth = 1;
+            duiTextBox1.Borders.TopColor = System.Drawing.Color.Empty;
+            duiTextBox1.Borders.TopWidth = 1;
+            duiTextBox1.CanFocus = true;
+            duiTextBox1.CaretColor = System.Drawing.SystemColors.ControlText;
+            duiTextBox1.CaretIndex = 0;
+            duiTextBox1.ClientRectangle = new System.Drawing.Rectangle(0, 0, 100, 12);
+            duiTextBox1.CurrentCursor = System.Windows.Forms.Cursors.Default;
+            duiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            duiTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            duiTextBox1.Enabled = true;
+            duiTextBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            duiTextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            duiTextBox1.Height = 12;
+            duiTextBox1.IsInsert = true;
+            duiTextBox1.IsMoveParentPaint = true;
+            duiTextBox1.Left = 0;
+            duiTextBox1.Location = new System.Drawing.Point(0, 0);
+            duiTextBox1.Margin = new System.Windows.Forms.Padding(0);
+            duiTextBox1.Multiline = true;
+            duiTextBox1.Name = "Text_Sjnr";
+            duiTextBox1.ParentInvalidate = true;
+            duiTextBox1.ReadOnly = true;
+            duiTextBox1.RollSize = 12;
+            duiTextBox1.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            duiTextBox1.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
+            duiTextBox1.ScrollBarNormalColor = System.Drawing.Color.Gray;
+            duiTextBox1.ScrollBarPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            duiTextBox1.SelectionBackColor = System.Drawing.Color.Gray;
+            duiTextBox1.SelectionColor = System.Drawing.Color.Red;
+            duiTextBox1.SelectionLength = 0;
+            duiTextBox1.SelectionStart = 0;
+            duiTextBox1.ShowBorder = true;
+            duiTextBox1.ShowScrollBar = true;
+            duiTextBox1.Size = new System.Drawing.Size(100, 12);
+            duiTextBox1.SuspendInvalidate = false;
+            duiTextBox1.Tag = null;
+            duiTextBox1.Text = "";
+            duiTextBox1.TextRenderMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            duiTextBox1.Top = 0;
+            duiTextBox1.Visible = true;
+            duiTextBox1.Width = 100;
+            this.layeredBaseControl1.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
+            duiTextBox1});
+            this.layeredBaseControl1.Location = new System.Drawing.Point(13, 294);
+            this.layeredBaseControl1.Name = "layeredBaseControl1";
+            this.layeredBaseControl1.Size = new System.Drawing.Size(371, 262);
+            this.layeredBaseControl1.TabIndex = 8;
+            this.layeredBaseControl1.Text = "layeredBaseControl1";
+            // 
             // customHxjdt
             // 
             this.customHxjdt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -115,82 +191,6 @@
             this.customHxjdt.TabIndex = 7;
             this.customHxjdt.Text = "customHxjdtControl1";
             this.customHxjdt.Value = 30;
-            // 
-            // layeredBaseControl1
-            // 
-            this.layeredBaseControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.layeredBaseControl1.Borders.BottomColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.BottomWidth = 1;
-            this.layeredBaseControl1.Borders.LeftColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.LeftWidth = 1;
-            this.layeredBaseControl1.Borders.RightColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.RightWidth = 1;
-            this.layeredBaseControl1.Borders.TopColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.TopWidth = 1;
-            this.layeredBaseControl1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredBaseControl1.Canvas")));
-            duiTextBox3.AutoHeight = false;
-            duiTextBox3.AutoSize = false;
-            duiTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            duiTextBox3.BackgroundImage = null;
-            duiTextBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            duiTextBox3.BackgroundRender = null;
-            duiTextBox3.BitmapCache = false;
-            duiTextBox3.BorderPath = null;
-            duiTextBox3.BorderRender = null;
-            duiTextBox3.Borders.BottomColor = System.Drawing.Color.Empty;
-            duiTextBox3.Borders.BottomWidth = 1;
-            duiTextBox3.Borders.LeftColor = System.Drawing.Color.Empty;
-            duiTextBox3.Borders.LeftWidth = 1;
-            duiTextBox3.Borders.RightColor = System.Drawing.Color.Empty;
-            duiTextBox3.Borders.RightWidth = 1;
-            duiTextBox3.Borders.TopColor = System.Drawing.Color.Empty;
-            duiTextBox3.Borders.TopWidth = 1;
-            duiTextBox3.CanFocus = true;
-            duiTextBox3.CaretColor = System.Drawing.SystemColors.ControlText;
-            duiTextBox3.CaretIndex = 0;
-            duiTextBox3.ClientRectangle = new System.Drawing.Rectangle(0, 0, 100, 12);
-            duiTextBox3.CurrentCursor = System.Windows.Forms.Cursors.Default;
-            duiTextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            duiTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            duiTextBox3.Enabled = true;
-            duiTextBox3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            duiTextBox3.ForeColor = System.Drawing.SystemColors.ControlText;
-            duiTextBox3.Height = 12;
-            duiTextBox3.IsInsert = true;
-            duiTextBox3.IsMoveParentPaint = true;
-            duiTextBox3.Left = 0;
-            duiTextBox3.Location = new System.Drawing.Point(0, 0);
-            duiTextBox3.Margin = new System.Windows.Forms.Padding(0);
-            duiTextBox3.Multiline = true;
-            duiTextBox3.Name = "Text_Sjnr";
-            duiTextBox3.ParentInvalidate = true;
-            duiTextBox3.ReadOnly = true;
-            duiTextBox3.RollSize = 12;
-            duiTextBox3.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            duiTextBox3.ScrollBarHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            duiTextBox3.ScrollBarNormalColor = System.Drawing.Color.Gray;
-            duiTextBox3.ScrollBarPressColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            duiTextBox3.SelectionBackColor = System.Drawing.Color.Gray;
-            duiTextBox3.SelectionColor = System.Drawing.Color.Red;
-            duiTextBox3.SelectionLength = 0;
-            duiTextBox3.SelectionStart = 0;
-            duiTextBox3.ShowBorder = true;
-            duiTextBox3.ShowScrollBar = true;
-            duiTextBox3.Size = new System.Drawing.Size(100, 12);
-            duiTextBox3.SuspendInvalidate = false;
-            duiTextBox3.Tag = null;
-            duiTextBox3.Text = "";
-            duiTextBox3.TextRenderMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            duiTextBox3.Top = 0;
-            duiTextBox3.Visible = true;
-            duiTextBox3.Width = 100;
-            this.layeredBaseControl1.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
-            duiTextBox3});
-            this.layeredBaseControl1.Location = new System.Drawing.Point(13, 294);
-            this.layeredBaseControl1.Name = "layeredBaseControl1";
-            this.layeredBaseControl1.Size = new System.Drawing.Size(371, 262);
-            this.layeredBaseControl1.TabIndex = 8;
-            this.layeredBaseControl1.Text = "layeredBaseControl1";
             // 
             // UpdateForm
             // 

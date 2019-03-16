@@ -124,7 +124,7 @@ namespace BridImage
             //Thread thread = new Thread(() => setAutoBackPic());
             //thread.Start();
             setAutoBackPic();
-            SetAutoRun(Application.StartupPath+ @"BridImage.exe", pes.AutoStart);
+            SetAutoRun(Application.StartupPath+ @"\BridImage.exe", pes.AutoStart);
             List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)
@@ -1049,7 +1049,6 @@ namespace BridImage
                 if (amPic != null)
                 {
                     amPic.Enabled = false;
-                    amPic.Interval = 0;
                     amPic.Elapsed += null;
                     amPic = null;
                 }

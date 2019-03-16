@@ -411,9 +411,14 @@ namespace BridImage
             GetVersion gv = new GetVersion();
             Entity.VerEntity cv = gv.getVer();
             pes.pes.UpdateContent = cv.Content;
+            pes.pes.DownloadUrl = cv.DownloadUrl;
             if (!lb_ver.Text.Equals(cv.Ver))
             {
                 //执行更新操作
+                if (string.IsNullOrEmpty(pes.pes.DownloadPath))
+                {
+                    pes.pes.DownloadPath = lb_downloadPath.Text;
+                }
                 UpdateForm pf = new UpdateForm(pes.pes);
                 pf.ShowDialog();
             }

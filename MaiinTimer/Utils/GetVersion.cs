@@ -30,6 +30,7 @@ namespace BridImage.Utils
                     break;
                 }
             }
+            ver.DownloadUrl = Between2(vcode, "【**", "**】");
             return ver;
         }
         public static string Between2(string str, string strLeft, string strRight) //取文本中间

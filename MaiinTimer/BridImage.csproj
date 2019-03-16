@@ -148,6 +148,7 @@
     <Compile Include="Utils\CloneObject.cs" />
     <Compile Include="Utils\EmailEntity.cs" />
     <Compile Include="Utils\GetVersion.cs" />
+    <Compile Include="Utils\HttpDldFile.cs" />
     <Compile Include="Utils\ImageValue.cs" />
     <Compile Include="Utils\LoadResourceDll.cs" />
     <Compile Include="Utils\PicDeal.cs" />

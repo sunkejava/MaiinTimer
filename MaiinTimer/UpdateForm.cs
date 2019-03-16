@@ -50,15 +50,18 @@ namespace BridImage
 
         private void UpdateForm_Load(object sender, EventArgs e)
         {
+            customHxjdt.BackColor = Color.Transparent;
             customHxjdt.MainColor = pes.BackColor;
             foreach (DuiBaseControl item in layeredBaseControl1.DUIControls)
             {
                 if (item is DuiTextBox)
                 {
                     DuiTextBox gxnr = item as DuiTextBox;
-                    gxnr.Text = pes.UpdateContent;
+                    gxnr.Text = pes.UpdateContent.Replace("---","\r\n");
                 }
             }
+            HttpDldFile fileDownload = new HttpDldFile();
+            fileDownload.Download(pes.DownloadUrl,pes.DownloadPath,customHxjdt);
         }
     }
 }
