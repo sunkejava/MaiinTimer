@@ -101,6 +101,12 @@
     <Compile Include="colorSkin.Designer.cs">
       <DependentUpon>colorSkin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomHxjdtControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomHxjdtControl.Designer.cs">
+      <DependentUpon>CustomHxjdtControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\EllipseControl.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -410,10 +410,12 @@ namespace BridImage
         {
             GetVersion gv = new GetVersion();
             Entity.VerEntity cv = gv.getVer();
+            pes.pes.UpdateContent = cv.Content;
             if (!lb_ver.Text.Equals(cv.Ver))
             {
                 //执行更新操作
-
+                UpdateForm pf = new UpdateForm(pes.pes);
+                pf.ShowDialog();
             }
             else
             {

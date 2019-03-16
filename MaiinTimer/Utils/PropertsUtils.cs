@@ -29,6 +29,7 @@ namespace BridImage.Utils
         private Color backColor = Color.FromArgb(255, 92, 138);
         private string opacity = "1";
         private string verNo = "当前版本：1.2.0（201903011615）";
+        private string updateContent = "";
         private string backImg = "";
         public PropertsUtils()
         {
@@ -146,6 +147,14 @@ namespace BridImage.Utils
         {
             get { return backImg; }
             set { backImg = value; }
+        }
+        /// <summary>
+        /// 更新内容
+        /// </summary>
+        public string UpdateContent
+        {
+            get { return updateContent; }
+            set { updateContent = value;}
         }
 
         /// <summary>
