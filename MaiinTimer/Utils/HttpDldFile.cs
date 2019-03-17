@@ -21,12 +21,12 @@ namespace BridImage.Utils
         /// <returns></returns>
         public void Download(string url, string localfile,Controls.CustomHxjdtControl jdtc)
         {
-            if (jdtc.InvokeRequired)
-            {
-                AsynDownloadFile au = new AsynDownloadFile(Download);
-                jdtc.Invoke(au, new object[] { url, localfile, jdtc });
-            }
-            else
+            //if (jdtc.ParentInvalidate)
+            //{
+            //    AsynDownloadFile au = new AsynDownloadFile(Download);
+            //    jdtc.Invalidated(au, new object[] { url, localfile, jdtc });
+            //}
+            //else
             {
                 long startPosition = 0; // 上次下载的文件起始位置
                 FileStream writeStream; // 写入本地文件流对象
@@ -81,7 +81,7 @@ namespace BridImage.Utils
                     {
                         currPostion += contentSize;
                         int percent = (int)(currPostion * 100 / remoteFileLength);
-                        //System.Console.WriteLine("percent=" + percent + "%");
+                        System.Console.WriteLine("percent=" + percent + "%");
                         jdtc.Value = percent;
                         writeStream.Write(btArray, 0, contentSize);// 写入本地文件
                         contentSize = readStream.Read(btArray, 0, btArray.Length);// 继续向远程文件读取

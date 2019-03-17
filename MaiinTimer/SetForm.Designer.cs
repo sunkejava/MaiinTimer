@@ -729,6 +729,7 @@
             this.btn_close.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             this.btn_close.MouseEnter += new System.EventHandler(this.layeredPanel_close_MouseEnter);
+            this.btn_close.MouseLeave += new System.EventHandler(this.layeredPanel_close_MouseLeave);
             // 
             // layeredPanel_xzsz
             // 

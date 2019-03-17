@@ -7,11 +7,11 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using LayeredSkin.Controls;
+using LayeredSkin.DirectUI;
 
 namespace BridImage.Controls
 {
-    public partial class CustomHxjdtControl : LayeredBaseControl
+    public partial class CustomHxjdtControl : DuiBaseControl
     {
         /// <summary>
         /// 背景色

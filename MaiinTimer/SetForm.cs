@@ -420,7 +420,7 @@ namespace BridImage
                     pes.pes.DownloadPath = lb_downloadPath.Text;
                 }
                 UpdateForm pf = new UpdateForm(pes.pes);
-                pf.ShowDialog();
+                pf.Show();
             }
             else
             {

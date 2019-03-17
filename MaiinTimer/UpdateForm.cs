@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using BridImage.Utils;
 using LayeredSkin.Controls;
@@ -16,6 +17,7 @@ namespace BridImage
     {
 
         public PropertsUtils pes = new PropertsUtils();
+        Controls.CustomHxjdtControl customHxjdt = new Controls.CustomHxjdtControl();
         public UpdateForm(PropertsUtils cps)
         {
             pes = cps;
@@ -30,38 +32,36 @@ namespace BridImage
 
         private void btn_close_MouseEnter(object sender, EventArgs e)
         {
-            LayeredPanel thisButton = sender as LayeredPanel;
-            switch (thisButton.Name)
-            {
-                case "layeredPanel_close":
-                    thisButton.BackColor = Color.FromArgb(255, 88, 88);
-                    break;
-                default:
-                    thisButton.BackColor = Color.FromArgb(100, 234, 234, 234);
-                    break;
-            }
+           layeredPanel_close.BackColor = Color.FromArgb(255, 88, 88);
         }
 
         private void layeredPanel_close_MouseLeave(object sender, EventArgs e)
         {
-            LayeredPanel thisButton = sender as LayeredPanel;
-            thisButton.BackColor = Color.Transparent;
+            layeredPanel_close.BackColor = Color.Transparent;
         }
 
         private void UpdateForm_Load(object sender, EventArgs e)
         {
+            customHxjdt.Size = new Size(250, 250);
+            customHxjdt.Location = new Point(50, 0);
+            customHxjdt.Value = 0;
+            customHxjdt.Lcp = System.Drawing.Drawing2D.LineCap.Round;
+            customHxjdt.CircularWidth = 25;
             customHxjdt.BackColor = Color.Transparent;
             customHxjdt.MainColor = pes.BackColor;
-            foreach (DuiBaseControl item in layeredBaseControl1.DUIControls)
+            lbc.DUIControls.Add(customHxjdt);
+            this.BackColor = Color.FromArgb(185, pes.BackColor);
+            foreach (DuiBaseControl item in lbc.DUIControls)
             {
                 if (item is DuiTextBox)
                 {
                     DuiTextBox gxnr = item as DuiTextBox;
-                    gxnr.Text = pes.UpdateContent.Replace("---","\r\n");
+                    gxnr.Text = pes.VerNo+"\r\n"+pes.UpdateContent.Replace("---","\r\n");
                 }
             }
             HttpDldFile fileDownload = new HttpDldFile();
-            fileDownload.Download(pes.DownloadUrl,pes.DownloadPath,customHxjdt);
+            Thread thread = new Thread(() => fileDownload.Download(pes.DownloadUrl, pes.DownloadPath + @"\newVersion.zip", customHxjdt));
+            thread.Start();
         }
     }
 }

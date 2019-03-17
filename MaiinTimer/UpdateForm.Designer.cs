@@ -32,8 +32,7 @@
             LayeredSkin.DirectUI.DuiTextBox duiTextBox1 = new LayeredSkin.DirectUI.DuiTextBox();
             this.layeredPanel_close = new LayeredSkin.Controls.LayeredPanel();
             this.btn_close = new LayeredSkin.Controls.LayeredButton();
-            this.layeredBaseControl1 = new LayeredSkin.Controls.LayeredBaseControl();
-            this.customHxjdt = new BridImage.Controls.CustomHxjdtControl();
+            this.lbc = new LayeredSkin.Controls.LayeredBaseControl();
             this.layeredPanel_close.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,19 +92,23 @@
             this.btn_close.TextShowMode = LayeredSkin.TextShowModes.Halo;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             this.btn_close.MouseEnter += new System.EventHandler(this.btn_close_MouseEnter);
+            this.btn_close.MouseLeave += new System.EventHandler(this.layeredPanel_close_MouseLeave);
             // 
-            // layeredBaseControl1
+            // lbc
             // 
-            this.layeredBaseControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.layeredBaseControl1.Borders.BottomColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.BottomWidth = 1;
-            this.layeredBaseControl1.Borders.LeftColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.LeftWidth = 1;
-            this.layeredBaseControl1.Borders.RightColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.RightWidth = 1;
-            this.layeredBaseControl1.Borders.TopColor = System.Drawing.Color.Empty;
-            this.layeredBaseControl1.Borders.TopWidth = 1;
-            this.layeredBaseControl1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("layeredBaseControl1.Canvas")));
+            this.lbc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.lbc.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.lbc.Borders.BottomWidth = 1;
+            this.lbc.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.lbc.Borders.LeftWidth = 1;
+            this.lbc.Borders.RightColor = System.Drawing.Color.Empty;
+            this.lbc.Borders.RightWidth = 1;
+            this.lbc.Borders.TopColor = System.Drawing.Color.Empty;
+            this.lbc.Borders.TopWidth = 1;
+            this.lbc.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("lbc.Canvas")));
             duiTextBox1.AutoHeight = false;
             duiTextBox1.AutoSize = false;
             duiTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -126,18 +129,18 @@
             duiTextBox1.CanFocus = true;
             duiTextBox1.CaretColor = System.Drawing.SystemColors.ControlText;
             duiTextBox1.CaretIndex = 0;
-            duiTextBox1.ClientRectangle = new System.Drawing.Rectangle(0, 0, 100, 12);
+            duiTextBox1.ClientRectangle = new System.Drawing.Rectangle(0, 250, 371, 200);
             duiTextBox1.CurrentCursor = System.Windows.Forms.Cursors.Default;
             duiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            duiTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            duiTextBox1.Dock = System.Windows.Forms.DockStyle.None;
             duiTextBox1.Enabled = true;
             duiTextBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             duiTextBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            duiTextBox1.Height = 12;
+            duiTextBox1.Height = 200;
             duiTextBox1.IsInsert = true;
             duiTextBox1.IsMoveParentPaint = true;
             duiTextBox1.Left = 0;
-            duiTextBox1.Location = new System.Drawing.Point(0, 0);
+            duiTextBox1.Location = new System.Drawing.Point(0, 250);
             duiTextBox1.Margin = new System.Windows.Forms.Padding(0);
             duiTextBox1.Multiline = true;
             duiTextBox1.Name = "Text_Sjnr";
@@ -154,55 +157,34 @@
             duiTextBox1.SelectionStart = 0;
             duiTextBox1.ShowBorder = true;
             duiTextBox1.ShowScrollBar = true;
-            duiTextBox1.Size = new System.Drawing.Size(100, 12);
+            duiTextBox1.Size = new System.Drawing.Size(371, 200);
             duiTextBox1.SuspendInvalidate = false;
             duiTextBox1.Tag = null;
             duiTextBox1.Text = "";
             duiTextBox1.TextRenderMode = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            duiTextBox1.Top = 0;
+            duiTextBox1.Top = 250;
             duiTextBox1.Visible = true;
-            duiTextBox1.Width = 100;
-            this.layeredBaseControl1.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
+            duiTextBox1.Width = 371;
+            this.lbc.DUIControls.AddRange(new LayeredSkin.DirectUI.DuiBaseControl[] {
             duiTextBox1});
-            this.layeredBaseControl1.Location = new System.Drawing.Point(13, 294);
-            this.layeredBaseControl1.Name = "layeredBaseControl1";
-            this.layeredBaseControl1.Size = new System.Drawing.Size(371, 262);
-            this.layeredBaseControl1.TabIndex = 8;
-            this.layeredBaseControl1.Text = "layeredBaseControl1";
-            // 
-            // customHxjdt
-            // 
-            this.customHxjdt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.customHxjdt.Borders.BottomColor = System.Drawing.Color.Empty;
-            this.customHxjdt.Borders.BottomWidth = 1;
-            this.customHxjdt.Borders.LeftColor = System.Drawing.Color.Empty;
-            this.customHxjdt.Borders.LeftWidth = 1;
-            this.customHxjdt.Borders.RightColor = System.Drawing.Color.Empty;
-            this.customHxjdt.Borders.RightWidth = 1;
-            this.customHxjdt.Borders.TopColor = System.Drawing.Color.Empty;
-            this.customHxjdt.Borders.TopWidth = 1;
-            this.customHxjdt.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("customHxjdt.Canvas")));
-            this.customHxjdt.CircularWidth = 30;
-            this.customHxjdt.Lcp = System.Drawing.Drawing2D.LineCap.Round;
-            this.customHxjdt.Location = new System.Drawing.Point(73, 30);
-            this.customHxjdt.MainColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(92)))), ((int)(((byte)(138)))));
-            this.customHxjdt.Name = "customHxjdt";
-            this.customHxjdt.Size = new System.Drawing.Size(250, 250);
-            this.customHxjdt.TabIndex = 7;
-            this.customHxjdt.Text = "customHxjdtControl1";
-            this.customHxjdt.Value = 30;
+            this.lbc.Location = new System.Drawing.Point(13, 29);
+            this.lbc.Name = "lbc";
+            this.lbc.Size = new System.Drawing.Size(371, 416);
+            this.lbc.TabIndex = 8;
+            this.lbc.Text = "layeredBaseControl1";
             // 
             // UpdateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(395, 568);
-            this.Controls.Add(this.layeredBaseControl1);
-            this.Controls.Add(this.customHxjdt);
+            this.ClientSize = new System.Drawing.Size(395, 457);
+            this.Controls.Add(this.lbc);
             this.Controls.Add(this.layeredPanel_close);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdateForm";
+            this.Radius = 15;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "程序更新";
             this.Load += new System.EventHandler(this.UpdateForm_Load);
             this.layeredPanel_close.ResumeLayout(false);
@@ -214,7 +196,6 @@
 
         private LayeredSkin.Controls.LayeredPanel layeredPanel_close;
         private LayeredSkin.Controls.LayeredButton btn_close;
-        private Controls.CustomHxjdtControl customHxjdt;
-        private LayeredSkin.Controls.LayeredBaseControl layeredBaseControl1;
+        private LayeredSkin.Controls.LayeredBaseControl lbc;
     }
 }
