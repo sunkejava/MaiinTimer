@@ -421,6 +421,8 @@ namespace BridImage
                 }
                 UpdateForm pf = new UpdateForm(pes.pes);
                 pf.Show();
+                this.Dispose();
+                this.Close();
             }
             else
             {

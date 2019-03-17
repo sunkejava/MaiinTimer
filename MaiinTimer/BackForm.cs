@@ -226,7 +226,8 @@ namespace BridImage
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            pes.saveConfig();  
+            pes.saveConfig();
+            this.Dispose();
             this.Close();
         }
 

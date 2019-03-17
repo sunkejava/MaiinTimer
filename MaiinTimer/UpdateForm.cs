@@ -17,6 +17,7 @@ namespace BridImage
     {
 
         public PropertsUtils pes = new PropertsUtils();
+        System.Timers.Timer st = new System.Timers.Timer();
         Controls.CustomHxjdtControl customHxjdt = new Controls.CustomHxjdtControl();
         public UpdateForm(PropertsUtils cps)
         {
@@ -42,6 +43,9 @@ namespace BridImage
 
         private void UpdateForm_Load(object sender, EventArgs e)
         {
+            st.Interval = 100;
+            st.Enabled = true;
+            st.Elapsed += St_Elapsed;
             customHxjdt.Size = new Size(250, 250);
             customHxjdt.Location = new Point(50, 0);
             customHxjdt.Value = 0;
@@ -60,8 +64,19 @@ namespace BridImage
                 }
             }
             HttpDldFile fileDownload = new HttpDldFile();
-            Thread thread = new Thread(() => fileDownload.Download(pes.DownloadUrl, pes.DownloadPath + @"\newVersion.zip", customHxjdt));
+            Thread thread = new Thread(() => fileDownload.Download(pes.DownloadUrl, pes.DownloadPath.Replace("\\ImageWallpaper", "") + @"\newVersion.zip", customHxjdt));
             thread.Start();
+        }
+
+        private void St_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (customHxjdt.Value == 100)
+            {
+                //System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);  //重新开启当前程序
+                System.Windows.Forms.Application.Restart();
+                Dispose();
+                Close();//关闭当前程序
+            }
         }
     }
 }
