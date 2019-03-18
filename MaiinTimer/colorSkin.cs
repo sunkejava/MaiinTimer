@@ -43,6 +43,15 @@ namespace BridImage
             }
             tkb_skin.Value = Double.Parse(cpes.pes.Opacity);
             lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
+            string[] imgsUrl = new Utils.PropertsUtils().BackImgsUrl;
+            pictureBox1.ImageLocation = imgsUrl[0];
+            pictureBox2.ImageLocation = imgsUrl[1];
+            pictureBox3.ImageLocation = imgsUrl[2];
+            pictureBox4.ImageLocation = imgsUrl[3];
+            pictureBox5.ImageLocation = imgsUrl[4];
+            pictureBox7.ImageLocation = imgsUrl[5];
+            pictureBox8.ImageLocation = imgsUrl[6];
+            pictureBox9.ImageLocation = imgsUrl[7];
         }
 
         private void Dlc_MouseClick(object sender, DuiMouseEventArgs e)

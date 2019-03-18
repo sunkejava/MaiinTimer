@@ -89,7 +89,7 @@ namespace BridImage.Utils
         private  string GetAppConfig(string strKey)
         {
             string cfile = System.Windows.Forms.Application.ExecutablePath.Replace(System.IO.Path.GetFileName(System.Windows.Forms.Application.ExecutablePath), "AppUpdate.exe");
-            if (!File.Exists(cfile+".config"))
+            if (!File.Exists(cfile))
             {
                 
             }

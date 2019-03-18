@@ -154,7 +154,12 @@ namespace BridImage.Utils
             SystemParametersInfo(20, 1, strSavePath, 1);
         }
         #endregion
-
+        /// <summary>
+        /// 下载图片到本地并返回图片地址
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static string DownloaImage(string fileName, string url)
         {
             try
@@ -183,7 +188,34 @@ namespace BridImage.Utils
                 throw new Exception("下载图片失败，原因为：" + ex.Message);
             }
         }
+        /// <summary>
+        /// 获取网络图片
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static Image GetImageByUrl(string url)
+        {
+            System.Drawing.Image image = null;
+            try
+            {
+                System.Net.WebRequest webreq = System.Net.WebRequest.Create(url);
+                System.Net.WebResponse webres = webreq.GetResponse();
+                using (System.IO.Stream stream = webres.GetResponseStream())
+                {
+                    image = Image.FromStream(stream);
+                    return image;
+                }
+            }
+            catch (Exception ex)
+            {
 
+                throw new Exception("获取图片失败，原因为：" + ex.Message);
+            }
+            finally
+            {
+                image.Dispose();
+            }
+        }
 
         #region 返回新图片尺寸
         /// <summary>

@@ -32,7 +32,7 @@ namespace BridImage.Controls
         PropertsUtils pes = null;
         int cheight = 0;
         EllipseControl ctEnd = null;
-        public delegate Image getImageByUIrlDelegate(string url, int zWidth, int zHeight);
+        public delegate Image getImageByUIrlDelegate(string url);
         #region 控件事件
 
         /// <summary>
@@ -285,8 +285,8 @@ namespace BridImage.Controls
                     int thisWidthScreen = Screen.PrimaryScreen.Bounds.Width;
                     int thisHeiightScreen = Screen.PrimaryScreen.Bounds.Height;
                     dp.Tag = imgInfo.img_1280_1024;
-                    getImageByUIrlDelegate newg = new getImageByUIrlDelegate(GetImageByUrlDrawLetter);
-                    dp.BackgroundImage = newg(imgInfo.url.Replace("__85", "300_161_100"), zWidth - 4, zHeight - 4);
+                    getImageByUIrlDelegate newg = new getImageByUIrlDelegate(PicDeal.GetImageByUrl);
+                    dp.BackgroundImage = newg(imgInfo.url.Replace("__85", "300_161_100"));
                     dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                     dp.Name = "back_" + imgInfo.id.ToString();
                     dp.Location = new Point(2, 2);
@@ -534,94 +534,7 @@ namespace BridImage.Controls
                 throw new Exception("未搜索到内容，原因为：" + e.Message);
             }
         }
-
-        /// <summary>
-        /// 获取图片并添加水印
-        /// </summary>
-        /// <param name="url">图片地址</param>
-        /// <param name="zWidth">宽</param>
-        /// <param name="zHeight">高</param>
-        /// <returns></returns>
-        private Image GetImageByUrlDrawLetter(string url, int zWidth, int zHeight)
-        {
-            //去除添加水印操作，部分索引格式像素图片报错
-            //string letter = "@sunkejava";
-            //int fontSize = 8;
-            System.Drawing.Image image = null;
-            try
-            {
-                System.Net.WebRequest webreq = System.Net.WebRequest.Create(url);
-                System.Net.WebResponse webres = webreq.GetResponse();
-                using (System.IO.Stream stream = webres.GetResponseStream())
-                {
-                    image = Image.FromStream(stream);
-                    //Graphics gs = Graphics.FromImage(image);
-                    //Font font = new Font("宋体", fontSize);
-                    //Brush br = new SolidBrush(Color.White);
-                    //gs.DrawString(letter, font, br, zWidth - (fontSize * letter.Length), zHeight - fontSize - 5);
-                    //gs.Dispose();
-                    return image;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("获取图片失败，原因为：" + ex.Message);
-            }
-            finally
-            {
-                //image.Dispose();
-            }
-        }
-        private Image GetImageByUrl(string url,int zWidth,int zHeight)
-        {
-            System.Drawing.Image image = null;
-            HttpWebRequest req;
-            HttpWebResponse res = null;
-            try
-            {
-                System.Uri httpUrl = new System.Uri(url);
-                string saveUrl = System.AppDomain.CurrentDomain.BaseDirectory + "\\picTemp\\";
-                if (!Directory.Exists(saveUrl))
-                {
-                    Directory.CreateDirectory(saveUrl);
-                }
-                string rImgPath = System.AppDomain.CurrentDomain.BaseDirectory + "\\picMixTemp\\";
-                if (!Directory.Exists(rImgPath))
-                {
-                    Directory.CreateDirectory(rImgPath);
-                }
-                saveUrl = saveUrl + httpUrl.Segments[httpUrl.Segments.Length - 1];
-                rImgPath = rImgPath + httpUrl.Segments[httpUrl.Segments.Length - 1];
-                //下载原图
-                req = (HttpWebRequest)(WebRequest.Create(httpUrl));
-                req.Timeout = 10000; //设置超时值10秒
-                req.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36";
-                req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8";
-                req.Method = "GET";
-                res = (HttpWebResponse)(req.GetResponse());
-                image = new Bitmap(res.GetResponseStream());//获取图片流                 
-                image.Save(saveUrl);
-                //缩小图片并加水印
-                PicDeal.MakeThumbnail(saveUrl, rImgPath, zWidth, zHeight, "Cut");
-                PicDeal.LetterWatermark(rImgPath, 8, "@sunkejava", Color.White, "");
-                if (image != null)
-                {
-                    image.Dispose();
-                }
-                image = System.Drawing.Image.FromFile(rImgPath);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("获取图片失败，原因为：" + ex.Message);
-            }
-            finally
-            {
-                res.Close();
-            }
-            return image;
-        }
-
+        
         public void DownloaImage(string fileName,string url,string btnName)
         {
             try

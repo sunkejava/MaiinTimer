@@ -11,7 +11,7 @@ namespace BridImage.Utils
     {
 
 
-        delegate void AsynDownloadFile(string url, string localfile, Controls.CustomHxjdtControl jdtc);
+        delegate void AsynDownloadFile(string url, string localfile);
 
         /// <summary>
         /// Http方式下载文件
@@ -19,7 +19,7 @@ namespace BridImage.Utils
         /// <param name="url">http地址</param>
         /// <param name="localfile">本地文件</param>
         /// <returns></returns>
-        public void Download(string url, string localfile,Controls.CustomHxjdtControl jdtc)
+        public void Download(string url, string localfile)
         {
             //if (jdtc.ParentInvalidate)
             //{
@@ -82,7 +82,6 @@ namespace BridImage.Utils
                         currPostion += contentSize;
                         int percent = (int)(currPostion * 100 / remoteFileLength);
                         System.Console.WriteLine("percent=" + percent + "%");
-                        jdtc.Value = percent;
                         writeStream.Write(btArray, 0, contentSize);// 写入本地文件
                         contentSize = readStream.Read(btArray, 0, btArray.Length);// 继续向远程文件读取
                         System.Windows.Forms.Application.DoEvents();

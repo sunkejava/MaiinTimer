@@ -32,6 +32,8 @@ namespace BridImage.Utils
         private string updateContent = "";
         private string downloadUrl = "";
         private string backImg = "";
+        private string[] backImgsUrl = { "http://wx1.sinaimg.cn/large/a24d4f55ly1g17f79kjbmj208y0c80zm.jpg", "http://wx4.sinaimg.cn/mw690/a24d4f55ly1g17f92nwarj20920c8jte.jpg", "http://wx4.sinaimg.cn/large/a24d4f55ly1g17f8v1o4sj20920c8wih.jpg", "http://wx1.sinaimg.cn/large/a24d4f55ly1g17f80ill3j20920c8ada.jpg", "http://wx2.sinaimg.cn/large/a24d4f55ly1g17f7tj7fvj20920c8myy.jpg", "http://wx4.sinaimg.cn/large/a24d4f55ly1g17f7k68rcj21400p041h.jpg", "http://wx4.sinaimg.cn/large/a24d4f55ly1g17f7nr96mj21400p0dji.jpg", "http://wx2.sinaimg.cn/large/a24d4f55ly1g17f99fi3tj20920c8mzs.jpg" };
+
         public PropertsUtils()
         {
             this.autoStart = Boolean.Parse(GetAppConfig("autoStart"));
@@ -46,6 +48,13 @@ namespace BridImage.Utils
             this.opacity = GetAppConfig("opacity");
             this.backImg = GetAppConfig("backImg");
         }
+
+        public string[] BackImgsUrl
+        {
+            get { return backImgsUrl; }
+            set { backImgsUrl = value; }
+        }
+
         /// <summary>
         /// 是否开机自动启动
         /// </summary>
