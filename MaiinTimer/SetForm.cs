@@ -11,6 +11,7 @@ using LayeredSkin.Controls;
 using LayeredSkin.DirectUI;
 using BridImage.Utils;
 using System.IO;
+using System.Diagnostics;
 
 namespace BridImage
 {
@@ -414,15 +415,22 @@ namespace BridImage
             pes.pes.DownloadUrl = cv.DownloadUrl;
             if (!lb_ver.Text.Equals(cv.Ver))
             {
-                //执行更新操作
-                if (string.IsNullOrEmpty(pes.pes.DownloadPath))
-                {
-                    pes.pes.DownloadPath = lb_downloadPath.Text;
-                }
-                UpdateForm pf = new UpdateForm(pes.pes);
-                pf.Show();
-                this.Dispose();
-                this.Close();
+                UpdateProperts upConfig = new UpdateProperts();
+                upConfig.VerNo = cv.Ver;
+                upConfig.BackColor = pes.pes.BackColor;
+                upConfig.BackImg = pes.pes.BackImg;
+                upConfig.DownloadUrl = cv.DownloadUrl;
+                upConfig.UpdateContent = cv.Content;
+                upConfig.MainApplicationName = System.IO.Path.GetFileName(Application.ExecutablePath).Replace(".exe","");
+                upConfig.saveConfig();
+                //调用更新窗体
+                Process myProcess = new Process();
+                myProcess.StartInfo.UseShellExecute = false;
+                myProcess.StartInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + @"\AppUpdate.exe";
+                myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.Start();
+                //关闭程序
+                System.Environment.Exit(0);
             }
             else
             {

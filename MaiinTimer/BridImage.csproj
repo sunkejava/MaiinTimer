@@ -154,6 +154,7 @@
     <Compile Include="Utils\PicDeal.cs" />
     <Compile Include="Utils\PropertsUtils.cs" />
     <Compile Include="Utils\Response.cs" />
+    <Compile Include="Utils\UpdateProperts.cs" />
     <EmbeddedResource Include="BackForm.resx">
       <DependentUpon>BackForm.cs</DependentUpon>
     </EmbeddedResource>
