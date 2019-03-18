@@ -50,7 +50,7 @@ namespace BridImage
 
         private void SendYjForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = pes.pes.BackColor;
+            this.BackColor = Color.FromArgb(185, pes.pes.BackColor);
             if (pes.BackGroundSkin != null)
             {
                 BackGroundSkin = pes.BackGroundSkin;
@@ -144,7 +144,7 @@ namespace BridImage
             {
                 EmailEntity email = new EmailEntity();
                 email.mailFrom = "declineaberdeen@163.com";
-                email.mailPwd = "sadecline123";
+                email.mailPwd = "testDECLINE123";
                 email.mailSubject = msgTitle;//邮件主题
                 email.mailBody = tb_fkyj.Text+"=======反馈人联系方式："+lxfs;//邮件内容
                 email.isbodyHtml = false;    //是否是HTML

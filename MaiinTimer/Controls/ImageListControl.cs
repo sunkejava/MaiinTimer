@@ -352,7 +352,7 @@ namespace BridImage.Controls
                     btn_sc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                     btn_sc.MouseClick += Btn_Sc_MouseClick;
                     btn_sc.IsPureColor = true;
-                    btn_sc.Tag = "收藏|" + imgInfo.url_thumb;
+                    btn_sc.Tag = "收藏|" + getSetUrl(imgInfo);
                     btn_sc.MouseEnter += Btn_Download_MouseEnter;
                     btn_sc.MouseLeave += Btn_Download_MouseLeave;
                     //设置按钮
@@ -365,7 +365,7 @@ namespace BridImage.Controls
                     btn_Setting.Name = "btn_Setting_" + imgInfo.id.ToString();
                     btn_Setting.BaseColor = Color.Transparent;//Color.FromArgb(100, 0, 0, 0);
                     btn_Setting.Radius = 35;
-                    btn_Setting.Tag = "设置|" + imgInfo.url_thumb;
+                    btn_Setting.Tag = "设置|" + getSetUrl(imgInfo);
                     btn_Setting.ShowBorder = false;
                     btn_Setting.BackgroundImage = Properties.Resources.set;
                     btn_Setting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -407,6 +407,33 @@ namespace BridImage.Controls
                 RefreshList();
                 GC.Collect();
                 return true;
+        }
+
+        private string getSetUrl(BridImg.ImageInfo ci)
+        {
+            string curl = "";
+            switch (pes.PicSize)
+            {
+                case "default":
+                    curl = ci.url_thumb;
+                    break;
+                case "1600900":
+                    curl = ci.img_1600_900;
+                    break;
+                case "1440900":
+                    curl = ci.img_1440_900;
+                    break;
+                case "12801024":
+                    curl = ci.img_1280_1024;
+                    break;
+                case "1024768":
+                    curl = ci.img_1024_768;
+                    break;
+                case "1280800":
+                    curl = ci.img_1280_800;
+                    break;
+            }
+            return curl;
         }
         /// <summary>
         /// 添加底线控件

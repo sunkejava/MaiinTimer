@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -64,7 +66,7 @@ namespace BridImage
                 }
             }
             HttpDldFile fileDownload = new HttpDldFile();
-            Thread thread = new Thread(() => fileDownload.Download(pes.DownloadUrl, pes.DownloadPath.Replace("\\ImageWallpaper", "") + @"\newVersion.zip", customHxjdt));
+            Thread thread = new Thread(() => fileDownload.Download(pes.DownloadUrl, AppDomain.CurrentDomain.BaseDirectory + @"\newVersion.zip", customHxjdt));
             thread.Start();
         }
 
@@ -72,7 +74,6 @@ namespace BridImage
         {
             if (customHxjdt.Value == 100)
             {
-                //System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);  //重新开启当前程序
                 System.Windows.Forms.Application.Restart();
                 Dispose();
                 Close();//关闭当前程序
