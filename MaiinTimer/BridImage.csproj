@@ -295,14 +295,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="log32.ico" />
-    <None Include="Resources\1.jpg" />
-    <None Include="Resources\0.png" />
-    <None Include="Resources\6.png" />
-    <None Include="Resources\5.png" />
-    <None Include="Resources\4.png" />
-    <None Include="Resources\3.png" />
-    <None Include="Resources\2.png" />
-    <None Include="Resources\2.jpg" />
     <None Include="Resources\btn_select_n.png" />
     <None Include="Resources\btn_p.png" />
     <None Include="Resources\btn_n.png" />

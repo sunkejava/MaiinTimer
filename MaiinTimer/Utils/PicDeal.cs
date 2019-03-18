@@ -213,7 +213,7 @@ namespace BridImage.Utils
             }
             finally
             {
-                image.Dispose();
+                //image.Dispose();
             }
         }
 
