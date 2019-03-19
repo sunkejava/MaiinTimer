@@ -28,7 +28,7 @@ namespace BridImage.Utils
         private ArrayList switchWallpaperTypes = new ArrayList();
         private Color backColor = Color.FromArgb(255, 92, 138);
         private string opacity = "1";
-        private string verNo = "当前版本：1.2.0（201903011615）";
+        private string verNo = "当前版本：1.2.0（201903192358）";
         private string updateContent = "";
         private string downloadUrl = "";
         private string backImg = "";

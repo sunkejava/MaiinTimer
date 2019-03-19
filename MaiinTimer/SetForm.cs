@@ -430,6 +430,8 @@ namespace BridImage
                 myProcess.StartInfo.CreateNoWindow = true;
                 myProcess.Start();
                 //关闭程序
+                Dispose();
+                Close();
                 System.Environment.Exit(0);
             }
             else
