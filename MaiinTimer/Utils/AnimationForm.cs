@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BridImage.Utils
 {
-    public class Win32
+    public class CWin32
     {
         /// <summary>
         /// 执行动画

@@ -1300,6 +1300,21 @@ namespace BridImage
             }
         }
 
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    FormNotifyMenucs f = new FormNotifyMenucs(this);
+            //    f.Show();
+            //    f.Location = new Point(MousePosition.X - f.Width, MousePosition.Y - f.Height);
+            //}
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
         private void Ctm_Tick(object sender, EventArgs e)
         {
             if (cheight >= 10)
