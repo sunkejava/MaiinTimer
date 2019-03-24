@@ -68,6 +68,10 @@ namespace BridImage
         {
             if (!dialoga)
             {
+                if (cpes.pes.BackColor == Color.FromArgb(0, 255, 255, 255) || cpes.pes.BackColor == Color.Transparent)
+                {
+                    cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), 255, 92, 138);
+                }
                 cpes.pes.saveConfig();
                 Close();
             }
@@ -75,6 +79,10 @@ namespace BridImage
 
         private void btn_skinclose_Click(object sender, EventArgs e)
         {
+            if (cpes.pes.BackColor == Color.FromArgb(0,255,255,255) || cpes.pes.BackColor == Color.Transparent)
+            {
+                cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), 255, 92, 138);
+            }
             cpes.pes.saveConfig();
             Close();
         }
@@ -99,7 +107,7 @@ namespace BridImage
             lb_skintr.Text = (tkb_skin.Value * 100).ToString("0") + "%";
             if (cpes.BackGroundSkin != null)
             {
-                cpes.pes.BackColor = Color.Transparent; 
+                cpes.pes.BackColor = Color.FromArgb((int)(255 * (tkb_skin.Value)), 255, 92, 138);
             }
             else
             {
