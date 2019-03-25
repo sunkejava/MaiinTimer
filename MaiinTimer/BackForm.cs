@@ -234,7 +234,8 @@ namespace BridImage
 
         private void btn_min_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            //this.WindowState = FormWindowState.Minimized;
+            this.Visible = false;
         }
 
 
@@ -1312,7 +1313,8 @@ namespace BridImage
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            //this.WindowState = FormWindowState.Maximized;
+            this.Visible = true;
         }
 
         private void Ctm_Tick(object sender, EventArgs e)
