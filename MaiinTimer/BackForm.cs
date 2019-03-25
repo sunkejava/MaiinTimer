@@ -285,6 +285,11 @@ namespace BridImage
             }
         }
 
+        private void btn_skin_MouseLeave(object sender, EventArgs e)
+        {
+            LayeredButton thisButton = sender as LayeredButton;
+            thisButton.BackColor = Color.Transparent;
+        }
         private void btn_min_MouseLeave(object sender, EventArgs e)
         {
             LayeredPanel thisButton = sender as LayeredPanel;
@@ -479,6 +484,23 @@ namespace BridImage
         {
             //Panel_TypeMess.Visible = true;
         }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            //if (e.Button == MouseButtons.Right)
+            //{
+            //    FormNotifyMenucs f = new FormNotifyMenucs(this);
+            //    f.Show();
+            //    f.Location = new Point(MousePosition.X - f.Width, MousePosition.Y - f.Height);
+            //}
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //this.WindowState = FormWindowState.Maximized;
+            this.Visible = true;
+        }
+
         #endregion
 
         #region 自定义事件
@@ -1299,22 +1321,6 @@ namespace BridImage
                     }
                 }
             }
-        }
-
-        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Right)
-            //{
-            //    FormNotifyMenucs f = new FormNotifyMenucs(this);
-            //    f.Show();
-            //    f.Location = new Point(MousePosition.X - f.Width, MousePosition.Y - f.Height);
-            //}
-        }
-
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            //this.WindowState = FormWindowState.Maximized;
-            this.Visible = true;
         }
 
         private void Ctm_Tick(object sender, EventArgs e)
