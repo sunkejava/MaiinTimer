@@ -228,8 +228,15 @@ namespace BridImage
         private void btn_close_Click(object sender, EventArgs e)
         {
             pes.saveConfig();
-            this.Dispose();
-            this.Close();
+            if (pes.CloseMode == "isMin")
+            {
+                this.Visible = false;
+            }
+            else
+            {
+                this.Dispose();
+                this.Close();
+            }
         }
 
         private void btn_min_Click(object sender, EventArgs e)
