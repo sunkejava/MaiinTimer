@@ -154,6 +154,48 @@ namespace BridImage.Utils
             SystemParametersInfo(20, 1, strSavePath, 1);
         }
         #endregion
+
+        /// <summary>
+        /// 下载图片到缓存目录，如果存在则返回图片目录，不存在则下载
+        /// </summary>
+        /// <param name="url">图片地址</param>
+        /// <returns>返回下载到本地后的地址</returns>
+        public static string DownloaImage(string url)
+        {
+            try
+            {
+                string fileName = AppDomain.CurrentDomain.BaseDirectory + @"CacheWallpaper\";
+                if (!Directory.Exists(fileName))
+                {
+                    Directory.CreateDirectory(fileName);
+                }
+                fileName = fileName + new Uri(url).Segments[new Uri(url).Segments.Length - 1];
+                if (System.IO.File.Exists(fileName))
+                {
+                    return fileName;
+                }
+                WebRequest webreq = WebRequest.Create(url);
+                WebResponse webres = webreq.GetResponse();
+                Stream stream = webres.GetResponseStream();
+                Stream fileStream = new FileStream(fileName, FileMode.Create);
+                byte[] bArray = new byte[1024];
+                int size;
+                do
+                {
+                    size = stream.Read(bArray, 0, (int)bArray.Length);
+                    fileStream.Write(bArray, 0, size);
+                } while (size > 0);
+                fileStream.Close();
+                stream.Close();
+                return fileName;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("下载图片失败，原因为：" + ex.Message);
+            }
+        }
+
+
         /// <summary>
         /// 下载图片到本地并返回图片地址
         /// </summary>
