@@ -32,7 +32,7 @@ namespace BridImage.Controls
         PropertsUtils pes = null;
         int cheight = 0;
         EllipseControl ctEnd = null;
-        public delegate Image getImageByUIrlDelegate(string url);
+        public delegate String getImagePathByUIrlDelegate(string url);
         #region 控件事件
 
         /// <summary>
@@ -285,8 +285,8 @@ namespace BridImage.Controls
                     int thisWidthScreen = Screen.PrimaryScreen.Bounds.Width;
                     int thisHeiightScreen = Screen.PrimaryScreen.Bounds.Height;
                     dp.Tag = imgInfo.img_1280_1024;
-                    getImageByUIrlDelegate newg = new getImageByUIrlDelegate(PicDeal.GetImageByUrl);
-                    dp.BackgroundImage = newg(imgInfo.url.Replace("__85", "300_161_100"));
+                    getImagePathByUIrlDelegate newg = new getImagePathByUIrlDelegate(PicDeal.DownloaImage);
+                    dp.BackgroundImage = Image.FromFile(newg(imgInfo.url.Replace("__85", "300_161_100")));
                     dp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                     dp.Name = "back_" + imgInfo.id.ToString();
                     dp.Location = new Point(2, 2);
