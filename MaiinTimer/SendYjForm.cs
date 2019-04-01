@@ -144,7 +144,7 @@ namespace BridImage
             {
                 EmailEntity email = new EmailEntity();
                 email.mailFrom = "declineaberdeen@163.com";
-                email.mailPwd = "testDECLINE123";
+                email.mailPwd = "saDECLINE123";
                 email.mailSubject = msgTitle;//邮件主题
                 email.mailBody = tb_fkyj.Text+"=======反馈人联系方式："+lxfs;//邮件内容
                 email.isbodyHtml = false;    //是否是HTML
