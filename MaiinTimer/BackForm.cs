@@ -116,7 +116,8 @@ namespace BridImage
                         BackGroundSkin = Image.FromFile(bkimg);
                         pes.BackImg = bkimg;
                     }
-                    else {
+                    else
+                    {
                         BackGroundSkin = null;
                         pes.BackImg = "";
                     }
@@ -125,7 +126,7 @@ namespace BridImage
             //Thread thread = new Thread(() => setAutoBackPic());
             //thread.Start();
             setAutoBackPic();
-            SetAutoRun(Application.StartupPath+ @"\BridImage.exe", pes.AutoStart);
+            SetAutoRun(Application.StartupPath + @"\BridImage.exe", pes.AutoStart);
             List_Main.RefreshList();
         }
         private void BackForm_Load(object sender, EventArgs e)
@@ -366,9 +367,9 @@ namespace BridImage
                     newpm.Dock = DockStyle.Fill;
                     Panel_TypeMess.DUIControls.Add(newpm);
                     Panel_TypeMess.Size = item.Size;
-                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height-5);
+                    Panel_TypeMess.Location = new Point(item.Location.X, layeredPanel_top.Height + Panel_Type.Height - 5);
                     //Panel_TypeMess.Visible = true;
-                    Utils.AnimationControl.ShowControl(Panel_TypeMess, true,AnchorStyles.Right);
+                    Utils.AnimationControl.ShowControl(Panel_TypeMess, true, AnchorStyles.Right);
                 }
             }
             Point ms = Control.MousePosition;
@@ -523,7 +524,7 @@ namespace BridImage
             try
             {
                 if (!System.IO.File.Exists(fileName))
-                    throw new Exception("该文件不存在!");
+                    throw new Exception(fileName + "文件不存在!");
                 String name = fileName.Substring(fileName.LastIndexOf(@"\") + 1);
                 reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 if (reg == null)
@@ -571,12 +572,12 @@ namespace BridImage
         /// <param name="tagId">类型ID或搜索关键字</param>
         /// <param name="startNos">开始数</param>
         /// <returns></returns>
-        private bool updateImgList(string tagId,string startNos)
+        private bool updateImgList(string tagId, string startNos)
         {
-            return updateImgList(tagId,startNo,"");
+            return updateImgList(tagId, startNo, "");
         }
 
-        private bool updateImgList(string tagId, string startNos,string tagName)
+        private bool updateImgList(string tagId, string startNos, string tagName)
         {
             try
             {
@@ -649,9 +650,9 @@ namespace BridImage
             }
             catch (Exception ex)
             {
-                throw new Exception("加载图片失败,原因为："+ex.Message);
+                throw new Exception("加载图片失败,原因为：" + ex.Message);
             }
-            
+
         }
         /// <summary>
         /// 添加列表信息
@@ -661,10 +662,10 @@ namespace BridImage
         /// <returns></returns>
         private bool addImgListItem(string tagId, string startNos)
         {
-            return addImgListItem(tagId, startNos,"");
+            return addImgListItem(tagId, startNos, "");
         }
 
-        private bool addImgListItem(string tagId, string startNos,string tagName)
+        private bool addImgListItem(string tagId, string startNos, string tagName)
         {
             LoadingControl(true);
             //准备加载下一页图片
@@ -690,18 +691,18 @@ namespace BridImage
                     }
                     else
                     {
-                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount,tagName);
+                        result.Result = bimg.getImageInfos(tagId, startNos, pageCount, tagName);
                     }
                 }
 
             }
             nCount = result.Result.total.ToString();
-            loadPageTextUpdate((Math.Floor((decimal.Parse(startNos)+ decimal.Parse(pageCount)) / decimal.Parse(pageCount))).ToString(), (Math.Ceiling(decimal.Parse(nCount) / decimal.Parse(pageCount))).ToString());
+            loadPageTextUpdate((Math.Floor((decimal.Parse(startNos) + decimal.Parse(pageCount)) / decimal.Parse(pageCount))).ToString(), (Math.Ceiling(decimal.Parse(nCount) / decimal.Parse(pageCount))).ToString());
             for (int i = 0; i < result.Result.data.Count; i++)
             {
                 int zi = i + 1;
                 imgInfos.Add(result.Result.data[i]);
-                if (zi % 3 == 0 || zi== result.Result.data.Count)
+                if (zi % 3 == 0 || zi == result.Result.data.Count)
                 {
                     //Thread imgThread = new Thread(() => addImgListThread(imgInfos));
                     //imgThread.Start();
@@ -742,7 +743,7 @@ namespace BridImage
             }
         }
 
-        private void loadPageTextUpdate(string nowPage,string countPage)
+        private void loadPageTextUpdate(string nowPage, string countPage)
         {
             if (this.Panel_load.InvokeRequired)
             {
@@ -908,7 +909,7 @@ namespace BridImage
         /// <returns></returns>
         private Boolean addTypeLable(BridImg.ImageType imgType)
         {
-            int i = (typeControl.Controls.Count/2);
+            int i = (typeControl.Controls.Count / 2);
             DuiLabel dlbe = new DuiLabel();
             dlbe.Size = new Size(60, 20);
             dlbe.Text = imgType.name;
@@ -927,16 +928,16 @@ namespace BridImage
             dLabel1.BackColor = System.Drawing.Color.Silver;
             dLabel1.Height = 2;
             dLabel1.Tag = imgType.id;
-            dLabel1.Location = new Point(0,30);
+            dLabel1.Location = new Point(0, 30);
             dLabel1.MouseClick += Dlbe_MouseClick;
 
             DuiBaseControl dlbControl = new DuiBaseControl();
-            dlbControl.Size = new Size(60,35);
+            dlbControl.Size = new Size(60, 35);
             dlbControl.Location = new Point(61 * i, 0);
             dlbControl.MouseMove += Dlbe_MouseEnter;
             //dlbControl.MouseEnter += Dlbe_MouseEnter;
             dlbControl.MouseLeave += Dlbe_MouseLeave;
-            dlbControl.Controls.AddRange(new DuiBaseControl[] { dlbe,dLabel1});
+            dlbControl.Controls.AddRange(new DuiBaseControl[] { dlbe, dLabel1 });
             if (imgType.id == 0)
             {
                 dlbe.ForeColor = defaultColor;
@@ -953,9 +954,9 @@ namespace BridImage
         /// <param name="typeId">分类ID</param>
         /// <param name="index">当前顺序</param>
         /// <returns></returns>
-        private DuiBaseControl addHotTagControl(List<BridImg.tagItem> tagsList,string typeId)
+        private DuiBaseControl addHotTagControl(List<BridImg.tagItem> tagsList, string typeId)
         {
-            int index = ((typeControl.Controls.Count-1) / 2);
+            int index = ((typeControl.Controls.Count - 1) / 2);
             DuiBaseControl ltypeControl = new DuiBaseControl();
             if (tagsList.Count > 0)
             {
@@ -965,7 +966,7 @@ namespace BridImage
             {
                 ltypeControl.Size = new Size(154, 0);
             }
-            
+
             ltypeControl.Name = "ImageTypeGrid_" + typeId;
             ltypeControl.Location = new Point(60 * index, 25);
             ltypeControl.Visible = false;
@@ -999,11 +1000,11 @@ namespace BridImage
         /// <returns></returns>
         private DuiBaseControl addNoHotTagControl(List<BridImg.ImageType> typeList, string typeId)
         {
-            int index = ((typeControl.Controls.Count-1) / 2);
+            int index = ((typeControl.Controls.Count - 1) / 2);
             DuiBaseControl ltypeControl = new DuiBaseControl();
             ltypeControl.Size = new Size(124, typeList.Count * 32 / 2);
             ltypeControl.Name = "ImageTypeGrid_" + typeId;
-            ltypeControl.Location = new Point(60 * (index-1), 25);
+            ltypeControl.Location = new Point(60 * (index - 1), 25);
             ltypeControl.Visible = false;
             ltypeControl.BackColor = Color.White; //Color.FromArgb(defaultColor.R, defaultColor.G, defaultColor.B);
             int rowi = 1;
@@ -1095,7 +1096,7 @@ namespace BridImage
         {
             imgList.TrimToSize();
             var result = new Utils.Response<BridImg.ImageJson>();
-            
+
             if (imgList.Count > 0)
             {
                 string imgUrl = imgList[0].ToString();
@@ -1147,13 +1148,13 @@ namespace BridImage
         private void setAutoBack(string imgUrl)
         {
             string fileName = "";
-            if (string.IsNullOrEmpty(pes.CachePath))
+            if (string.IsNullOrEmpty(pes.DownloadPath))
             {
-                fileName = AppDomain.CurrentDomain.BaseDirectory + @"CacheWallpaper\";
+                fileName = AppDomain.CurrentDomain.BaseDirectory + @"ImageWallpaper\";
             }
             else
             {
-                fileName = pes.CachePath.Replace("\\CacheWallpaper", "") + @"CacheWallpaper\";
+                fileName = pes.CachePath.Replace("\\ImageWallpaper", "") + @"ImageWallpaper\";
             }
             if (!Directory.Exists(fileName))
             {
@@ -1223,7 +1224,7 @@ namespace BridImage
             if (this.List_Main.InvokeRequired)
             {
                 AsynScrollUI au = new AsynScrollUI(List_Main_RefreshListed);
-                this.Invoke(au, new object[] { sender,e });
+                this.Invoke(au, new object[] { sender, e });
             }
             else
             {
@@ -1270,7 +1271,7 @@ namespace BridImage
                 if (List_Main.Value == 1 && !isLoadData)
                 {
                     //如果为尾页则显示加载完毕
-                    if ((int.Parse(startNo)+ int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0" && startNo != "0" && !isLoadData)
+                    if ((int.Parse(startNo) + int.Parse(pageCount)) >= int.Parse(nCount) && nCount != "0" && startNo != "0" && !isLoadData)
                     {
                         if (!isEnd)
                         {
@@ -1295,7 +1296,7 @@ namespace BridImage
                             ctEnd.LeftPotion = new System.Drawing.Point(0, 30);
                             ctEnd.Location = new System.Drawing.Point(0, 0);
                             ctEnd.Name = "backControlC";
-                            ctEnd.RightPotion = new System.Drawing.Point(List_Main.Width - 5, zHeight /2);
+                            ctEnd.RightPotion = new System.Drawing.Point(List_Main.Width - 5, zHeight / 2);
                             ctEnd.Size = new System.Drawing.Size(List_Main.Width - 5, zHeight);
                             ctEnd.StrValue = "啊哦，已经是最后一页了！";
                             ctEnd.TabIndex = 1;
@@ -1305,7 +1306,7 @@ namespace BridImage
                             panel_ctEndLine.Size = ctEnd.Size;
                             panel_ctEndLine.Location = new Point(List_Main.Left, 77 + 557 - zHeight);
                             //panel_ctEndLine.BackColor = Color.White;
-                            ctEnd.Location = new Point(0,0);
+                            ctEnd.Location = new Point(0, 0);
                             panel_ctEndLine.BringToFront();
                             panel_ctEndLine.Refresh();
                             panel_ctEndLine.Visible = true;

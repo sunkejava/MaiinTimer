@@ -199,8 +199,8 @@ namespace BridImage.Utils
         /// <summary>
         /// 下载图片到本地并返回图片地址
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="url"></param>
+        /// <param name="fileName">带详细路径的图片名称</param>
+        /// <param name="url">图片url</param>
         /// <returns></returns>
         public static string DownloaImage(string fileName, string url)
         {
@@ -233,7 +233,7 @@ namespace BridImage.Utils
         /// <summary>
         /// 获取网络图片
         /// </summary>
-        /// <param name="url"></param>
+        /// <param name="url">url地址</param>
         /// <returns></returns>
         public static Image GetImageByUrl(string url)
         {
